@@ -1,12 +1,29 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <title>{% block title %}Willkommen bei epilepc.ch{% endblock %}</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('landing/assets/css/main.css') }}" />
+            <link rel="shortcut icon" type="image/png" href="{{ asset('landing/images/favicon.ico') }}"/>
+            <noscript><link rel="stylesheet" href="{{ asset('landing/assets/css/noscript.css') }}" /></noscript>
+        {% endblock %}
+
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<body class="is-preload">
+{% block body %}{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('landing/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('landing/assets/js/jquery.scrollex.min.js') }}"></script>
+    <script src="{{ asset('landing/assets/js/jquery.scrolly.min.js') }}"></script>
+    <script src="{{ asset('landing/assets/js/browser.min.js') }}"></script>
+    <script src="{{ asset('landing/assets/js/breakpoints.min.js') }}"></script>
+    <script src="{{ asset('landing/assets/js/util.js') }}"></script>
+    <script src="{{ asset('landing/assets/js/main.js') }}"></script>
+{% endblock %}
+
+</body>
 </html>

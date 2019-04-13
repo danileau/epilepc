@@ -1,0 +1,168 @@
+{% extends 'landing/base.html.twig' %}
+
+{% block body %}
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="alt">
+            <span class="logo"><img src="{{ asset('landing/images/rund-logo.svg') }}" alt="" /></span>
+            <h1>epilepc</h1>
+            <p>Nimm die Kontrolle über dein Leben wieder in die Hand.</p>
+        </header>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="#intro" class="active">Um was gehts</a></li>
+                <li><a href="#first">Funktionen</a></li>
+                <li><a href="#second">Sicherheit</a></li>
+                <li><a href="#cta">Los gehts</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- Introduction -->
+            <section id="intro" class="main">
+                <div class="spotlight">
+                    <div class="content">
+                        <header class="major">
+                            <h2>Wir helfen dir, dir selber zu helfen</h2>
+                        </header>
+                        <p>
+                            Bei epilepc.ch findest du sämtliche Werkzeuge und Tools, welche du benötigst um deine Epilepsie-Behandlung effektiv und sicher zu begleiten!
+                            Oftmals fehlen den behandelnden Ärzten die nötigen Informationen, um die Epilepsie effektiv behandeln zu können. Und diese Informationen können nur wir,
+                            die Betroffenen sammeln. Genau dabei unterstützt dich epilepc!
+                        </p>
+                        <ul class="actions">
+                            <li><a href="generic.html" class="button">Mehr dazu</a></li>
+                        </ul>
+                    </div>
+                    <span class="image"><img src="{{ asset('landing/images/small.png') }}" alt="" /></span>
+                </div>
+            </section>
+
+            <!-- First Section -->
+            <section id="first" class="main special">
+                <header class="major">
+                    <h2>Funktionen</h2>
+                </header>
+                <ul class="features">
+                    <li>
+                        <span class="icon major style1 fa-pencil"></span>
+                        <h3>Anfälle dokumentieren</h3>
+                        <p>Dokumentiere alle deine Anfälle in <b>epilepc</b>! So kannst du dir bequem einen Überblick beschaffen, wie es dir letzten Monat gegangen ist oder
+                            Auffälligkeiten entdecken!</p>
+                    </li>
+                    <li>
+                        <span class="icon major style2 fa-book"></span>
+                        <h3>Tagebuch schreiben</h3>
+                        <p>Mit der Tagebuchfunktion kannst du hier alle deine Gedanken niederschreiben und zu einem späteren
+                            Zeitpunkt wieder lesen.</p>
+                    </li>
+                    <li>
+                        <span class="icon major style5 fa-bar-chart"></span>
+                        <h3>Übersicht generieren</h3>
+                        <p>Generiere bequem eine PDF-Datei mit allen Informationen, die du deinen Arzt mitgeben möchtest und bring es mit zur nächsten Sprechstunde! <br>
+                            Mit intuitiven Diagrammen kann dein behandelnder Arzt schnell sehen, wie sich die letzte Medikationsanpassung ausgewirkt hat.
+                        </p>
+                    </li>
+                </ul>
+                <footer class="major">
+                    <ul class="actions special">
+                        <li><a href="generic.html" class="button">Mehr dazu</a></li>
+                    </ul>
+                </footer>
+            </section>
+
+            <!-- Second Section -->
+            <section id="second" class="main special">
+                <header class="major">
+                    <h2>Sicherheit</h2>
+                    <p>Wenn es eines gibt, was wir uns bewusst sind, dann ist es folgendes:<br />
+                        Hier werden sensible und schützenswerte Daten gespeichert. Und wir sind verpflichtet darauf aufzupassen! <br />
+                        Alle vom <b>epilepc</b>-Nutzer eingegebenen Daten werden ausschliesslich verschlüsselt übermittelt und zusätzlich verschlüsselt in unsere Datenbank gespeichert. <br />
+                        Erst beim auslesen der Daten durch den Erfasser, werden diese mittels deinem persönlichen Schlüssel entschlüsselt und in Klartext wieder angezeigt!
+
+                    </p>
+                </header><!--
+								<ul class="statistics">
+									<li class="style1">
+										<span class="icon fa-lock"></span>
+										<strong>5,120</strong> Etiam
+									</li>
+									<li class="style2">
+										<span class="icon fa-folder-open-o"></span>
+										<strong>8,192</strong> Magna
+									</li>
+									<li class="style3">
+										<span class="icon fa-signal"></span>
+										<strong>2,048</strong> Tempus
+									</li>
+									<li class="style4">
+										<span class="icon fa-laptop"></span>
+										<strong>4,096</strong> Aliquam
+									</li>
+									<li class="style5">
+										<span class="icon fa-diamond"></span>
+										<strong>1,024</strong> Nullam
+									</li>
+								</ul>
+								<p class="content">Nam elementum nisl et mi a commodo porttitor. Morbi sit amet nisl eu arcu faucibus hendrerit vel a risus. Nam a orci mi, elementum ac arcu sit amet, fermentum pellentesque et purus. Integer maximus varius lorem, sed convallis diam accumsan sed. Etiam porttitor placerat sapien, sed eleifend a enim pulvinar faucibus semper quis ut arcu. Ut non nisl a mollis est efficitur vestibulum. Integer eget purus nec nulla mattis et accumsan ut magna libero. Morbi auctor iaculis porttitor. Sed ut magna ac risus et hendrerit scelerisque. Praesent eleifend lacus in lectus aliquam porta. Cras eu ornare dui curabitur lacinia.</p>
+								-->
+                <footer class="major">
+                    <ul class="actions special">
+                        <li><a href="generic.html" class="button">Mehr dazu</a></li>
+                    </ul>
+                </footer>
+            </section>
+
+            <!-- Get Started -->
+            <section id="cta" class="main special">
+                <header class="major">
+                    <h2>Los gehts</h2>
+                    <p>Keine Lust mehr dir von der Epilepsie dein Leben diktieren zu lassen?<br />
+                        Möchtest du endlich wieder die Kontrolle übernehmen können?<br />
+                        Dann registriere dich jetzt bei epilepc und hilf mit deinen detaillierten Informationen deinen Ärzten, dir zu helfen.</p>
+                </header>
+                <footer class="major">
+                    <ul class="actions special">
+                        <li><a href="generic.html" class="button primary disabled">Registrieren</a></li>
+                        <li><a href="generic.html" class="button disabled">Einloggen</a></li>
+                    </ul>
+                </footer>
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <section>
+                <h2>Über uns</h2>
+                <p>Diese Applikation ist im Rahmen meiner Diplomarbeit an der TSBE zum Informatiker HF entstanden. Das Ziel ist es, von Epilepsie betroffenen Personen Werkzeuge in die Hand zu geben, um selber gegen Epilepsie aktiv zu werden.<br /> <br />
+                </p>
+                <ul class="actions">
+                    <li><a href="generic.html" class="button">Mehr dazu</a></li>
+                </ul>
+            </section>
+            <section>
+                <h2>Unterstützer und Sponsoren</h2>
+                <p>Haben Sie Fragen? Möchten Sie unser ehrenamtliches Projekt unterstützen oder Sponsor werden?<br />Dann melden Sie sich bei uns!</p>
+                <dl class="alt">
+                    <dt>Email</dt>
+                    <dd><a href="#">info@epilepc.ch</a></dd>
+                </dl>
+                <p>Sie finden uns auch auf den folgenden sozialen Netzwerken:</p>
+                <ul class="icons">
+                    <li><a href="#" class="icon fa-twitter alt"><span class="label">Twitter</span></a></li>
+                    <li><a href="#" class="icon fa-facebook alt"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon fa-github alt"><span class="label">GitHub</span></a></li>
+                </ul>
+            </section>
+            <p class="copyright">&copy; 2019 - epilepc</p>
+        </footer>
+
+    </div>
+{% endblock %}
