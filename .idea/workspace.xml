@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24d455dc-d3a1-413b-95e5-f2a287d6a832" name="Default Changelist" comment="" />
+    <list default="true" id="24d455dc-d3a1-413b-95e5-f2a287d6a832" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/templates/landing/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/landing/base.html.twig" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +46,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/landing/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+            <state relative-caret-position="272">
+              <caret line="31" column="57" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -75,8 +77,8 @@
         <option value="$PROJECT_DIR$/src/Controller/LandingPageController.php" />
         <option value="$PROJECT_DIR$/templates/landing/detail.html.twig" />
         <option value="$PROJECT_DIR$/templates/landing/index.html.twig" />
-        <option value="$PROJECT_DIR$/templates/landing/base.html.twig" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/templates/landing/base.html.twig" />
       </list>
     </option>
   </component>
@@ -235,15 +237,16 @@
       <updated>1555170659125</updated>
       <workItem from="1555170661172" duration="36000" />
       <workItem from="1555170699239" duration="1897000" />
-      <workItem from="1555172702762" duration="2256000" />
+      <workItem from="1555172702762" duration="2969000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4189000" />
+    <option name="totallyTimeSpent" value="4902000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -314,8 +317,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/landing/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+        <state relative-caret-position="272">
+          <caret line="31" column="57" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
         </state>
       </provider>
     </entry>
