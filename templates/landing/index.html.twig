@@ -1,8 +1,8 @@
 {% extends 'landing/base.html.twig' %}
 
 {% block body %}
-    <!-- Wrapper -->
-    <div id="wrapper">
+
+
 
         <!-- Header -->
         <header id="header" class="alt">
@@ -37,7 +37,7 @@
                             die Betroffenen sammeln. Genau dabei unterstützt dich epilepc!
                         </p>
                         <ul class="actions">
-                            <li><a href="generic.html" class="button">Mehr dazu</a></li>
+                            <li><a href="{{ path('app_landingpage_detail') }}" class="button">Mehr dazu</a></li>
                         </ul>
                     </div>
                     <span class="image"><img src="{{ asset('landing/images/small.png') }}" alt="" /></span>
@@ -138,7 +138,7 @@
         </div>
 
         <!-- Footer -->
-        <footer id="footer">
+       <!-- <footer id="footer">
             <section>
                 <h2>Über uns</h2>
                 <p>Diese Applikation ist im Rahmen meiner Diplomarbeit an der TSBE zum Informatiker HF entstanden. Das Ziel ist es, von Epilepsie betroffenen Personen Werkzeuge in die Hand zu geben, um selber gegen Epilepsie aktiv zu werden.<br /> <br />
@@ -162,7 +162,7 @@
                 </ul>
             </section>
             <p class="copyright">&copy; 2019 - epilepc</p>
-        </footer>
+        </footer>-->
 
-    </div>
+
 {% endblock %}
