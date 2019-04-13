@@ -13,8 +13,33 @@
 
     </head>
 <body class="is-preload">
+<!-- Wrapper -->
+<div id="wrapper">
 {% block body %}{% endblock %}
 
+<!-- Footer -->
+<footer id="footer">
+    <section>
+        <h2>Über uns</h2>
+        <p>Diese Applikation ist im Rahmen meiner Diplomarbeit an der TSBE zum Informatiker HF entstanden. Das Ziel ist es, von Epilepsie betroffenen Personen Werkzeuge in die Hand zu geben, um selber gegen Epilepsie aktiv zu werden.<br /> <br />
+        </p>
+    </section>
+    <section>
+        <h2>Unterstützer und Sponsoren</h2>
+        <p>Haben Sie Fragen? Möchten Sie unser ehrenamtliches Projekt unterstützen oder Sponsor werden?<br />Dann melden Sie sich bei uns!</p>
+        <dl class="alt">
+            <dt>Email</dt>
+            <dd><a href="">info@epilepc.ch</a></dd>
+        </dl>
+        <p>Sie finden uns auch auf den folgenden sozialen Netzwerken:</p>
+        <ul class="icons">
+            <!--<li><a href="#" class="icon fa-twitter alt"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon fa-facebook alt"><span class="label">Facebook</span></a></li>-->
+            <li><a href="https://github.com/danileau/epilepc" target="_blank" class="icon fa-github alt"><span class="label">GitHub</span></a></li>
+        </ul>
+    </section>
+    <p class="copyright">&copy; {{ "now"|date("Y") }} - epilepc</p>
+</footer>
 {% block javascripts %}
     <script src="{{ asset('landing/assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('landing/assets/js/jquery.scrollex.min.js') }}"></script>
@@ -24,6 +49,6 @@
     <script src="{{ asset('landing/assets/js/util.js') }}"></script>
     <script src="{{ asset('landing/assets/js/main.js') }}"></script>
 {% endblock %}
-
+</div>
 </body>
 </html>

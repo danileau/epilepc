@@ -1,0 +1,43 @@
+{% extends 'landing/base.html.twig' %}
+
+{% block body %}
+
+
+        <!-- Header -->
+        <header id="header" class="alt">
+            <span class="logo"><a href="{{ path('app_landingpage') }}"><img src="{{ asset('landing/images/rund-logo.svg') }}" alt="" /></a></span>
+            <h1>epilepc</h1>
+            <p>Nimm die Kontrolle über dein Leben wieder in die Hand.</p>
+        </header>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="#intro" class="active">Um was gehts</a></li>
+                <li><a href="{{ path('app_landingpage') }}">Zurück</a> </li>
+            </ul>
+        </nav>
+
+        <!-- Main -->
+        <				<!-- Main -->
+        <div id="main">
+
+            <!-- Content -->
+            <section id="content" class="main">
+                <h2>Wieso epilepc?</h2>
+                <p>Von den vielen Krankheiten und Gebrechen, die einen Menschen heimsuchen können, kann man die Epilepsie wahrscheinlich als eine der heimtückischeren bezeichnen.<br />Oft nicht greifbar und äusserst schwierig zu behandeln kann sie dazu führen, dass sich Betroffene mit der Zeit immer mehr isolieren, was zu einer Verschlimmerung der Beschwerden führen kann.</p>
+                <p>An Epilepsie erkrankte Menschen fühlen sich oftmals hilflos der Krankheit ausgeliefert, da die Therapie vor allem aus einer langfristigen Anfallsprophylaxe besteht.<br />Um mögliche epileptische Anfälle gar nicht erst entstehen zu lassen, beginnen Betroffene oft mögliche Auslöser (Trigger) zu vermeiden. <br />Leider gibt es auch Ausnahmen, bei welchen Anfälle sich nicht bestimmten Triggern zuordnen lassen. Begleitend zu einer medikamentösen Therapie um Anfälle zu unterdrücken, wird den Betroffenen oftmals empfohlen Tagebuch zu führen, damit nachvollzogen werden kann, wie die aktuelle Behandlung und Medikation wirken. Mit einem Tagebuch können auch Zusammenhänge zwischen Situationen und dem aktuellen Zustand besser verstanden werden. Auch wenn das Gedächtnis der Betroffenen voll funktionsfähig ist, können mittels Tagebücher längst vergessene Details wiederentdeckt oder sogar ganze Tage rekonstruiert und somit mögliche Auslöser identifiziert werden. <br />Damit dies jedoch gelingt, müssen im Tagebuch sämtliche Anfälle notiert werden, am besten mit genauen Informationen wie Datum, Uhrzeit, Ort und Situation.</p>
+                <p>Leider kann man den Zeitpunkt eines epileptischen Anfalls nicht planen und genau dann, wenn man das Tagebuch benötigen würde, liegt es nicht in Griffnähe oder kann nicht aufgefunden werden.</p>
+                <p>Eine weitere Schwierigkeit besteht darin, dass die Sprechstunden und Kontrollen beim behandelnden Arzt nur alle paar Monate stattfinden und bis dahin viele Zwischenfälle oder wichtige Hinweise vergessen gehen. <br />Ohne diese detaillierten Informationen fällt es den Ärzten sehr schwer, den Patienten befriedigend auf eine neue Medikation einzustellen. Um genauere Details über die epileptischen Anfälle zu erfahren, müssen oft Daueraufenthalte in epileptischen Polikliniken durchgeführt werden, wo Betroffene dauerüberwacht und künstlich auf Schlafentzug gesetzt werden, damit Anfälle provoziert und die benötigten Daten erhoben werden können.</p>
+                <p><b>Ziel von epilepc.ch ist es, betroffenen Personen die für eine effektive Therapie benötigten Werkzeuge zuverlässig und sicher zur Verfügung zu stellen.</b></p>
+                <ul class="actions">
+                    <li><a href="{{ path('app_landingpage') }}" class="button">Zurück</a></li>
+                </ul>
+            </section>
+
+        </div>
+
+
+
+
+{% endblock %}
