@@ -11,10 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 class AppController extends AbstractController
 {
     /**
-     * @Route("/app", name="app_landingpage")
+     * @Route("/app", name="app_dashboard")
      */
     public function index(){
-        return $this->render('landing/index.html.twig', []);
+        return $this->render('app/dashboard.html.twig', []);
     }
 
     /**
