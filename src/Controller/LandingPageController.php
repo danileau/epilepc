@@ -25,17 +25,11 @@ class LandingPageController extends AbstractController
     }
 
     /**
-     * @Route("/functions", name="app_landingpage_functions")
+     * @Route("/funktionen", name="app_landingpage_functions")
      */
     public function functions(){
         return $this->render('landing/function.html.twig', []);
     }
 
-    /**
-     * @Route("/security", name="app_landingpage_security")
-     */
-    public function security(){
-        return $this->render('landing/security.html.twig', []);
-    }
 
 }
