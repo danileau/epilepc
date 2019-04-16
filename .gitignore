@@ -12,3 +12,5 @@
 /.web-server-pid
 ###< symfony/web-server-bundle ###
 /.idea/workspace.xml
+
+/composer.phar
