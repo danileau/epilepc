@@ -15,7 +15,7 @@ class User implements UserInterface
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $id_user;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -36,7 +36,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $fistname;
+    private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -50,7 +50,7 @@ class User implements UserInterface
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->id_user;
     }
 
     public function getEmail(): ?string
@@ -126,14 +126,14 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getFistname(): ?string
+    public function getFirstname(): ?string
     {
-        return $this->fistname;
+        return $this->firstname;
     }
 
-    public function setFistname(string $fistname): self
+    public function setFirstname(string $firstname): self
     {
-        $this->fistname = $fistname;
+        $this->firstname = $firstname;
 
         return $this;
     }
