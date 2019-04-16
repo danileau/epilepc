@@ -18,10 +18,10 @@ class LandingPageController extends AbstractController
     }
 
     /**
-     * @Route("/detail", name="app_landingpage_detail")
+     * @Route("/wieso-epilepc", name="app_landingpage_wieso")
      */
     public function detail(){
-        return $this->render('landing/detail.html.twig', []);
+        return $this->render('landing/wieso.html.twig', []);
     }
 
     /**
