@@ -28,7 +28,7 @@ class LandingPageController extends AbstractController
      * @Route("/functions", name="app_landingpage_functions")
      */
     public function functions(){
-        return $this->render('landing/fuctions.html.twig', []);
+        return $this->render('landing/function.html.twig', []);
     }
 
     /**

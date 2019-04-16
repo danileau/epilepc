@@ -1,0 +1,70 @@
+{% extends 'landing/base.html.twig' %}
+
+{% block body %}
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="#intro" class="active">Funktionen</a></li>
+                <li><a href="{{ path('app_landingpage') }}">Zurück</a> </li>
+            </ul>
+        </nav>
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- Content -->
+            <section id="content" class="main">
+                <header class="major">
+                    <h2>Funktionen</h2>
+                </header>
+                <p>
+                    Die folgenden Funktionen stehen dir aktuell auf epilepc.ch zur Verfügung:
+                </p>
+                <ul class="features">
+                    <li>
+                        <span class="icon major style1 fa-pencil"></span>
+                        <h3><b>Anfälle dokumentieren</b></h3>
+                        <p>Dokumentiere alle deine Anfälle in epilepc! So kannst du dir bequem einen Überblick beschaffen, wie es dir letzten Monat gegangen ist oder
+                            Auffälligkeiten entdecken!</p>
+                    </li>
+                    <li>
+                        <span class="icon major style5 fa-exclamation-triangle"></span>
+                        <h3><b>Ereignisse notieren</b></h3>
+                        <p>Notiere und speichere alle Ereignisse die dir aufgefallen sind! So kannst du Auffälligkeiten entdecken Trigger erkennen und
+                        definieren. Durch die regelmässige pflege von Ereignissen in epilepc, kannst du Zusammenhänge entdecken oder Faktoren ausschliessen.</p>
+                    </li>
+                    <li>
+                        <span class="icon major style3 fa-medkit"></span>
+                        <h3><b>Medikation pflegen</b></h3>
+                        <p>Trage alle deine Medikamente in epilepc ein. So behälst du die Übersicht über sämtliche Details, wann welche
+                            Anpassungen vorgenommen worden sind und wann welche Medikamente eingenommen werden müssen.
+                        </p>
+                    </li>
+                    <li>
+                        <span class="icon major style6 fa-book"></span>
+                        <h3><b>Tagebuch schreiben</b></h3>
+                        <p>Mit der Tagebuchfunktion kannst du hier alle deine Gedanken niederschreiben und zu einem späteren
+                            Zeitpunkt wieder lesen.</p>
+                    </li>
+                    <li>
+                        <span class="icon major style2 fa-bar-chart"></span>
+                        <h3><b>Übersicht generieren</b></h3>
+                        <p>Generiere bequem eine PDF-Datei mit allen Informationen, die du deinen Arzt mitgeben möchtest und bring es mit zur nächsten Sprechstunde! <br>
+                            Mit intuitiven Diagrammen kann dein behandelnder Arzt schnell sehen, wie sich die letzte Medikationsanpassung ausgewirkt hat.
+                        </p>
+                    </li>
+                </ul>
+                <footer class="major">
+                    <ul class="actions special">
+                        <li><a href="{{ path('app_landingpage') }}" class="button primary">Zurück</a></li>
+                    </ul>
+                </footer>
+            </section>
+
+        </div>
+
+
+
+
+{% endblock %}
