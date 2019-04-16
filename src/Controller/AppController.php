@@ -18,6 +18,13 @@ class AppController extends AbstractController
     }
 
     /**
+     * @Route("/app/seizure", name="app_seizure_overview")
+     */
+    public function seizure_overview(){
+        return $this->render('app/seizure.html.twig', []);
+    }
+
+    /**
      * @Route("/app/login", name="app_login")
      */
     public function login(){

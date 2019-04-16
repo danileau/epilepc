@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ path('app_dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -37,7 +37,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Anfall Funktionen</h6>
                 <a class="collapse-item" href="buttons.html">Neuer Anfall</a>
-                <a class="collapse-item" href="cards.html">Alle anzeigen</a>
+                <a class="collapse-item" href="{{ path('app_seizure_overview') }}">Alle anzeigen</a>
             </div>
         </div>
     </li>
