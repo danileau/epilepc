@@ -23,6 +23,7 @@
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}"
                     >
+                    <input type="hidden" name="_target_path" value="{{ path('app_dashboard') }}"/>
                     <div class="form-group">
                         <div class="custom-control custom-checkbox small">
                             <input type="checkbox" name="_remember_me" class="custom-control-input" id="customCheck">

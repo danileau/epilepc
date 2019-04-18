@@ -2,7 +2,7 @@ security:
     encoders:
         App\Entity\User:
             algorithm: bcrypt
-            cost: 20
+            # cost: 20
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -24,9 +24,12 @@ security:
             logout:
                 path: app_logout
 
+
             remember_me:
                 secret: '%kernel.secret%'
                 lifetime: 2592000
+
+
 
             # activate different ways to authenticate
 

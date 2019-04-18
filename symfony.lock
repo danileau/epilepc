@@ -108,6 +108,9 @@
             "./config/packages/dev/easy_log_handler.yaml"
         ]
     },
+    "fzaninotto/faker": {
+        "version": "v1.8.0"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
