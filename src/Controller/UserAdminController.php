@@ -27,15 +27,7 @@ class UserAdminController extends AbstractController
      */
     public function new(EntityManagerInterface $em)
     {
-        $user = new User();
-        $user->setFirstname('Danilo')
-            ->setLastname('Licitra')
-            ->setEmail('danilo'.rand(5, 100).'@gmail.com')
-            ->setPassword('12345')
-            ->setDeactivated(false);
-
-        $em->persist($user);
-        $em->flush();
+        die('todo');
 
         return new Response(sprintf(
             'User ID: #%d für User %s erstellt!',
