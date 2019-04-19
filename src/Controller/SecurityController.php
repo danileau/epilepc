@@ -14,6 +14,9 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_dashboard');
+        }
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -29,6 +32,9 @@ class SecurityController extends AbstractController
      * @Route("/register", name="app_register")
      */
     public function register(){
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_dashboard');
+        }
         return $this->render('app/authentication/register.html.twig', []);
     }
 
@@ -36,6 +42,9 @@ class SecurityController extends AbstractController
      * @Route("/password-forgot", name="app_forgot")
      */
     public function forgot(){
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_dashboard');
+        }
         return $this->render('app/authentication/forgot.html.twig', []);
     }
 
