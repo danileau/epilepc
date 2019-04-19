@@ -28,20 +28,6 @@ class AppController extends AbstractController
     }
 
 
-    // TODO: In Security Controller verschieben und in / statt /app ablegen
-    /**
-     * @Route("/app/register", name="app_register")
-     */
-    public function register(){
-        return $this->render('app/authentication/register.html.twig', []);
-    }
-
-    /**
-     * @Route("/app/forgot", name="app_forgot")
-     */
-    public function forgot(){
-        return $this->render('app/authentication/forgot.html.twig', []);
-    }
 
 
 
