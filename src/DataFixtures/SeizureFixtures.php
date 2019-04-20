@@ -15,6 +15,7 @@ class SeizureFixtures extends BaseFixtures implements DependentFixtureInterface
     {
         $this->createMany(10, 'main_seizure', function($count) use ($manager) {
             $seizure = new Seizure();
+            $seizure->setTitle($this->faker->text);
             $seizure->setDescription($this->faker->text);
             $seizure->setTimestampWhen($this->faker->dateTime);
             $seizure->setCreatedAt($this->faker->dateTime);

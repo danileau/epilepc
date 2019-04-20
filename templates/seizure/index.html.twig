@@ -1,7 +1,6 @@
 {% extends 'app/base.html.twig' %}
 
 {% block body %}
-
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         <!-- Sidebar - Brand -->
@@ -32,8 +31,8 @@
             <div id="collapseSeizures" class="collapse" aria-labelledby="headingSeizures" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Anfall Funktionen</h6>
-                    <a class="collapse-item" href="buttons.html">Neuer Anfall</a>
-                    <a class="collapse-item" href="{{ path('app_seizure_overview') }}">Alle anzeigen</a>
+                    <a class="collapse-item" href="{{ path('seizure_new') }}">Neuer Anfall erfassen</a>
+                    <a class="collapse-item" href="{{ path('seizure_index') }}">Alle anzeigen</a>
                 </div>
             </div>
         </li>
@@ -103,7 +102,7 @@
             <div id="collapseAccount" class="collapse" aria-labelledby="headingAccount" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Benutzeraccount</h6>
-                    <a class="collapse-item" href="utilities-color.html">Profil anzeigen</a>
+                    <a class="collapse-item" href="{{ path('app_account') }}">Profil anzeigen</a>
                     <a class="collapse-item" href="utilities-color.html">Passwort ändern</a>
                 </div>
             </div>
@@ -114,7 +113,7 @@
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="nav-link" href="{{ path('app_logout') }}" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-fw fa-sign-out-alt"></i>
                     <span>Ausloggen</span></a>
             </li>
@@ -136,30 +135,19 @@
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                     <i class="fa fa-bars"></i>
                 </button>
-                <!-- Topbar Search
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form> -->
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <div class="topbar-divider d-none d-sm-block"></div>
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-3 d-none d-lg-inline text-gray-600 small">Danilo Licitra</span>
+                            <span class="mr-3 d-none d-lg-inline text-gray-600 small">{{ app.user.firstname }} {{ app.user.lastname }}</span>
                             <i class="mr-2 fa fa-user"></i>
 
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{ path('app_account') }}">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profil anzeigen
                             </a>
@@ -168,7 +156,7 @@
                                 Passwort ändern
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <a class="dropdown-item" href="{{ path('app_logout') }}" data-toggle="modal" data-target="#logoutModal">
                                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Ausloggen
                             </a>
@@ -182,10 +170,10 @@
                 <!-- Page Heading -->
                 <div class="mb-5">
                     <div class="text-center">
-                        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Anfälle Übersicht</h1>
-                        <p class="mb-4">Untenstehend findest du alle deine erstellten Anfälle. Zusätzlich kannst du auf das Pluszeichen <i class="fas fa-plus-circle"></i> klicken, um einen neuen Anfall zu erstellen</p>
+                        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Übersicht</h1>
+                        <p class="mb-4">Untenstehend findest du alle deine erstellten Anfälle. <br />Zusätzlich kannst du auf das Pluszeichen <i class="fas fa-plus-circle"></i> klicken, um einen neuen Anfall zu erstellen</p>
 
-                        <a href="new.html"><i class="fas fa-plus-circle fa-3x" style="color: #EEA034"></i></a>
+                        <a href="{{ path('seizure_new') }}"><i class="fas fa-plus-circle fa-3x" style="color: #EEA034"></i></a>
                     </div>
                 </div>
 
@@ -195,8 +183,35 @@
                         <h6 class="m-0 font-weight-bold text-primary">Erfasste Anfälle</h6>
                     </div>
                     <div class="card-body">
-                        <p>Sämtliche von dir erfassten Anfälle, können auf dieser Seite angezeigt, bearbeitet und gelöscht werden:</p>
-
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" data-sort-name="date" data-sort-order="asc">
+                                <thead>
+                                <tr>
+                                    <th>Anfallstitel</th>
+                                    <th>Anfallsdatum</th>
+                                    <th>Zuletzt bearbeitet</th>
+                                    <th>Aktionen</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for seizure in seizures %}
+                                    <tr>
+                                        <td>{{ seizure.title }}</td>
+                                        <td>{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
+                                        <td>{{ seizure.modifiedAt ? seizure.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                        <td>
+                                            <a href="{{ path('seizure_show', {'id': seizure.id}) }}">Anzeigen</a>
+                                            <a href="{{ path('seizure_edit', {'id': seizure.id}) }}">Bearbeiten</a>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="6">Keine Anfälle vorhanden</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -213,9 +228,9 @@
         </footer>
         <!-- End of Footer -->
 
-</div>
-<!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Content Wrapper -->
 
-</div>
-<!-- End of Page Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
 {% endblock %}

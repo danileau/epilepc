@@ -20,15 +20,6 @@ class AppController extends BaseController
     }
 
     /**
-     * @Route("/app/seizure", name="app_seizure_overview")
-     * @IsGranted("ROLE_USER")
-     */
-    public function seizure_overview(){
-        return $this->render('app/seizure.html.twig', []);
-    }
-
-
-    /**
      * @Route("/api/value_sum", name="api_value_sum")
      */
     public function valueSumApi()

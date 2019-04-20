@@ -11,12 +11,21 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Seizure|null findOneBy(array $criteria, array $orderBy = null)
  * @method Seizure[]    findAll()
  * @method Seizure[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+
  */
 class SeizureRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Seizure::class);
+    }
+
+    /**
+     * @return Seizure[] Returns all Seizures ordered by the newest Timestamp
+     */
+    public function findAllOrderedByTimestamp()
+    {
+        return $this->findBy(array(), array('timestamp_when' => 'DESC'));
     }
 
     // /**

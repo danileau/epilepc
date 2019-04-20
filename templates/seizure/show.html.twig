@@ -1,24 +1,38 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Seizure{% endblock %}
+
 {% block body %}
-{# Test Page zum Twig üben #}
-<h1>{{ title }}</h1>
+    <h1>Seizure</h1>
 
-<div>
-    <p>Loremlk kjasdhflaskjdgflaskjdfg</p>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ seizure.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ seizure.description }}</td>
+            </tr>
+            <tr>
+                <th>Timestamp_when</th>
+                <td>{{ seizure.timestampWhen ? seizure.timestampWhen|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Modified_at</th>
+                <td>{{ seizure.modifiedAt ? seizure.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ seizure.createdAt ? seizure.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-    <p>Loremlk kjasdhflaskjdgflaskjdfg</p>
+    <a href="{{ path('seizure_index') }}">back to list</a>
 
-    <p>Loremlk kjasdhflaskjdgflaskjdfg</p>
+    <a href="{{ path('seizure_edit', {'id': seizure.id}) }}">edit</a>
 
-</div>
-
-<h2> Comments ({{ comments|length }})</h2>
-
-<ul>
-    {% for comment in comments %}
-        <li>{{ comment }}</li>
-    {% endfor %}
-</ul>
-
+    {{ include('seizure/_delete_form.html.twig') }}
 {% endblock %}
