@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Seizure;
+use App\Entity\User;
 use App\Form\SeizureType;
 use App\Repository\SeizureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/app/seizure")
@@ -18,11 +20,13 @@ class SeizureController extends AbstractController
     /**
      * @Route("/", name="seizure_index", methods={"GET"})
      */
-    public function index(SeizureRepository $seizureRepository): Response
+    public function index(SeizureRepository $seizureRepository, UserInterface $user): Response
     {
+
         return $this->render('seizure/index.html.twig', [
-            'seizures' => $seizureRepository->findAllOrderedByTimestamp(),
+            'seizures' => $seizureRepository->findAllFromUser($user->getId())
         ]);
+
     }
 
     /**

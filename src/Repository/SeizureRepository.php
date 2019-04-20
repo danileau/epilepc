@@ -9,7 +9,6 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 /**
  * @method Seizure|null find($id, $lockMode = null, $lockVersion = null)
  * @method Seizure|null findOneBy(array $criteria, array $orderBy = null)
- * @method Seizure[]    findAll()
  * @method Seizure[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
 
  */
@@ -23,27 +22,15 @@ class SeizureRepository extends ServiceEntityRepository
     /**
      * @return Seizure[] Returns all Seizures ordered by the newest Timestamp
      */
-    public function findAllOrderedByTimestamp()
+    public function findAllFromUser($id)
     {
-        return $this->findBy(array(), array('timestamp_when' => 'DESC'));
+
+        return $this->findBy(array('user' => $id), array());
     }
 
-    // /**
-    //  * @return Seizure[] Returns an array of Seizure objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+
+
+
 
     /*
     public function findOneBySomeField($value): ?Seizure
