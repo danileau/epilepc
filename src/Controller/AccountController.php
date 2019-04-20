@@ -13,11 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class AccountController extends AbstractController
 {
     /**
-     * @Route("/account", name="app_account")
+     * @Route("/app/account", name="app_account")
      */
     public function index()
     {
-        return $this->render('account/index.html.twig', [
+        return $this->render('app/account/profile.html.twig', [
             'controller_name' => 'AccountController',
         ]);
     }

@@ -106,12 +106,12 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAccount" aria-expanded="true" aria-controls="collapseAccount">
             <i class="fas fa-fw fa-user"></i>
-            <span>Profil</span>
+            <span>Profil von {{ app.user.firstname }}</span>
         </a>
         <div id="collapseAccount" class="collapse" aria-labelledby="headingAccount" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Benutzeraccount</h6>
-                <a class="collapse-item" href="utilities-color.html">Profil anzeigen</a>
+                <a class="collapse-item" href="{{ path('app_account') }}">Profil anzeigen</a>
                 <a class="collapse-item" href="utilities-color.html">Passwort ändern</a>
             </div>
         </div>
@@ -154,17 +154,6 @@
                 <i class="fa fa-bars"></i>
             </button>
 
-            <!-- Topbar Search
-            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-              <div class="input-group">
-                <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search fa-sm"></i>
-                  </button>
-                </div>
-              </div>
-            </form> -->
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
