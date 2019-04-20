@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Seizure;
 use App\Entity\User;
 
 use Doctrine\Common\Persistence\ObjectManager;
@@ -19,8 +20,8 @@ class UserFixtures extends BaseFixtures
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(User::class, 10, function (User $user, $count){
-
+        $this->createMany(10, 'main_users', function($i) use ($manager) {
+            $user = new User();
             $user->setEmail($this->faker->email);
             $user->setFirstname($this->faker->firstName);
             $user->setLastname($this->faker->lastName);
@@ -31,8 +32,21 @@ class UserFixtures extends BaseFixtures
             $user->setDeactivated(0);
 
             return $user;
+        });
 
+        $this->createMany(3, 'admin_users', function($i) {
+            $user = new User();
+            $user->setEmail($this->faker->email);
+            $user->setFirstname($this->faker->firstName);
+            $user->setLastname($this->faker->lastName);
+            $user->setPassword($this->passwordEncoder->encodePassword(
+                $user,
+                'engage'
+            ));
+            $user->setDeactivated(0);
+            $user->setRoles(['ROLE_ADMIN']);
 
+            return $user;
         });
         $manager->flush();
     }

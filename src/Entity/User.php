@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -15,10 +18,11 @@ class User implements UserInterface
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id_user;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups("main")
      */
     private $email;
 
@@ -35,11 +39,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("main")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("main")
      */
     private $lastname;
 
@@ -48,9 +54,22 @@ class User implements UserInterface
      */
     private $deactivated;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Seizure", mappedBy="user")
+     */
+    private $seizures;
+
+
+    public function __construct()
+    {
+        $this->created_at = new ArrayCollection();
+        $this->seizures = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
-        return $this->id_user;
+        return $this->id;
     }
 
     public function getEmail(): ?string
@@ -161,4 +180,40 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Seizure[]
+     */
+    public function getSeizures(): Collection
+    {
+        return $this->seizures;
+    }
+
+    public function addSeizure(Seizure $seizure): self
+    {
+        if (!$this->seizures->contains($seizure)) {
+            $this->seizures[] = $seizure;
+            $seizure->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSeizure(Seizure $seizure): self
+    {
+        if ($this->seizures->contains($seizure)) {
+            $this->seizures->removeElement($seizure);
+            // set the owning side to null (unless already changed)
+            if ($seizure->getUser() === $this) {
+                $seizure->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->getFirstname();
+    }
+
 }

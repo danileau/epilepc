@@ -1,5 +1,7 @@
 {% extends 'app/authentication/base.html.twig' %}
 
+{% block title %}Epilepc - Registrieren{% endblock %}
+
 {% block body %}
     <!-- Nested Row within Card Body -->
     <div class="row">
@@ -9,24 +11,26 @@
                 <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Registriere dich jetzt!</h1>
                 </div>
-                <form class="user">
+                <form class="user" method="post">
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Vorname">
+                            <input type="text" class="form-control form-control-user" id="FirstName" name="firstname" placeholder="Vorname">
                         </div>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Nachname">
+                            <input type="text" class="form-control form-control-user" id="LastName" name="lastname" placeholder="Nachname">
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Adresse">
+                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="email" placeholder="Email Adresse">
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Passwort">
-                        </div>
-                        <div class="col-sm-6">
-                            <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Passwort wiederholen">
+                    <div class="form-group">
+                        <input type="password" class="form-control form-control-user" id="InputPassword" name="inputPassword" placeholder="Passwort">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox small">
+                            <input type="checkbox" name="_terms" class="custom-control-input" id="customCheck">
+                            <label class="custom-control-label" for="customCheck">Ich stimme den Nutzungsbedingungen von epilepc.ch zu</label>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-user btn-block">Account erstellen</button>

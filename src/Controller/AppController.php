@@ -28,6 +28,20 @@ class AppController extends BaseController
     }
 
 
+    /**
+     * @Route("/api/value_sum", name="api_value_sum")
+     */
+    public function valueSumApi()
+    {
+
+        //Todo
+        $user = $this->getUser();
+        return $this->json($user, 200, [], [
+            'groups' => ['main']
+        ]);
+    }
+
+
 
 
 
