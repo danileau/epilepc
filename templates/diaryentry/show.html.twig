@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Diaryentry{% endblock %}
+
+{% block body %}
+    <h1>Diaryentry</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ diaryentry.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ diaryentry.title }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ diaryentry.content }}</td>
+            </tr>
+            <tr>
+                <th>Timestamp_when</th>
+                <td>{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ diaryentry.createdAt ? diaryentry.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Modified_at</th>
+                <td>{{ diaryentry.modifiedAt ? diaryentry.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('diaryentry_index') }}">back to list</a>
+
+    <a href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}">edit</a>
+
+    {{ include('diaryentry/_delete_form.html.twig') }}
+{% endblock %}
