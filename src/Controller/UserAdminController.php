@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: danileau
- * Date: 16.04.2019
- * Time: 17:03
- */
-
 namespace App\Controller;
 
 use App\Entity\User;
@@ -15,7 +8,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -38,14 +30,15 @@ class UserAdminController extends AbstractController
         $form = $this->createForm(UserAdminType::class);
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $user = new User();
-            $user->setFirstname($data['firstname']);
-            $user->setLastname($data['lastname']);
-            $user->setEmail($data['email']);
-            $user->setDeactivated($data['deactivated']);
-            $user->setPassword($passwordEncoder->encodePassword($user, $data['password']));
+            $user->setFirstname($data->getFirstname());
+            $user->setLastname($data->getLastname());
+            $user->setEmail($data->getEmail());
+            $user->setDeactivated($data->getDeactivated());
+            $user->setPassword($passwordEncoder->encodePassword($user, $data->getPassword()));
+            $user->setRoles([]);
 
             $em->persist($user);
             $em->flush();

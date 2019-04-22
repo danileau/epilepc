@@ -4,9 +4,11 @@
 namespace App\Form;
 
 
+use App\Entity\User;
 use function Sodium\add;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class UserAdminType extends AbstractType
 {
@@ -17,10 +19,17 @@ class UserAdminType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('password')
-            ->add('roles')
             ->add('deactivated')
         ;
 
     }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => User::class
+        ]);
+    }
+
 
 }
