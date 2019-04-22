@@ -6,6 +6,7 @@ use App\Entity\Seizure;
 use App\Entity\User;
 use App\Form\SeizureType;
 use App\Repository\SeizureRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,13 +56,10 @@ class SeizureController extends AbstractController
 
     /**
      * @Route("/{id}", name="seizure_show", methods={"GET"})
+     * @IsGranted("MANAGE", subject="seizure")
      */
     public function show(Seizure $seizure): Response
     {
-        $user = $this->getUser();
-        if ($user->getId() != $seizure->getUser()->getId()) {
-            throw new AccessDeniedException('Zugriff verweigert');
-        }
 
         return $this->render('app/seizure/show.html.twig', [
             'seizure' => $seizure,
@@ -70,13 +68,10 @@ class SeizureController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="seizure_edit", methods={"GET","POST"})
+     * @IsGranted("MANAGE", subject="seizure")
      */
     public function edit(Request $request, Seizure $seizure): Response
     {
-        $user = $this->getUser();
-        if ($user->getId() != $seizure->getUser()->getId()) {
-            throw new AccessDeniedException('Zugriff verweigert');
-        }
 
         $form = $this->createForm(SeizureType::class, $seizure);
         $form->handleRequest($request);
@@ -97,14 +92,10 @@ class SeizureController extends AbstractController
 
     /**
      * @Route("/{id}", name="seizure_delete", methods={"DELETE"})
+     * @IsGranted("MANAGE", subject="seizure")
      */
     public function delete(Request $request, Seizure $seizure): Response
     {
-        $user = $this->getUser();
-        if ($user->getId() != $seizure->getUser()->getId()) {
-            throw new AccessDeniedException('Zugriff verweigert');
-        }
-
         if ($this->isCsrfTokenValid('delete'.$seizure->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($seizure);
