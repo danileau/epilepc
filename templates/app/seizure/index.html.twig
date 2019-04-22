@@ -1,236 +1,51 @@
 {% extends 'app/base.html.twig' %}
 
 {% block body %}
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-            <img src="{{ asset('application/img/epilepc-head.png') }}" style="width: 90%"/>
+    <!-- Page Heading -->
+    <div class="mb-5">
+        <div class="text-center">
+            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Übersicht</h1>
+            <p class="mb-4">Untenstehend findest du alle deine erstellten Anfälle. <br />Zusätzlich kannst du auf das Pluszeichen <i class="fas fa-plus-circle"></i> klicken, um einen neuen Anfall zu erstellen</p>
 
-        </a>
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item">
-            <a class="nav-link" href="{{ path('app_dashboard') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
-        </li>
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Deine Daten
+            <a href="{{ path('seizure_new') }}"><i class="fas fa-plus-circle fa-3x" style="color: #EEA034"></i></a>
         </div>
-        <!-- Nav Item - Seizures Collapse Menu -->
-        <li class="nav-item active">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeizures" aria-expanded="true" aria-controls="collapseSeizures">
-                <i class="fas fa-fw fa-bolt"></i>
-                <span>Anfälle</span>
-            </a>
-            <div id="collapseSeizures" class="collapse" aria-labelledby="headingSeizures" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Anfall Funktionen</h6>
-                    <a class="collapse-item" href="{{ path('seizure_new') }}">Neuer Anfall erfassen</a>
-                    <a class="collapse-item" href="{{ path('seizure_index') }}">Alle anzeigen</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Nav Item - Events Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEvents" aria-expanded="true" aria-controls="collapseEvents">
-                <i class="fas fa-fw fa-exclamation-triangle"></i>
-                <span>Ereignisse</span>
-            </a>
-            <div id="collapseEvents" class="collapse" aria-labelledby="headingEvents" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Ereignis Funktionen</h6>
-                    <a class="collapse-item" href="buttons.html">Neues Ereignis</a>
-                    <a class="collapse-item" href="cards.html">Alle anzeigen</a>
-                </div>
-            </div>
-        </li>
-        <!-- Nav Item - Diary Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDiary" aria-expanded="true" aria-controls="collapseDiary">
-                <i class="fas fa-fw fa-book"></i>
-                <span>Tagebuch</span>
-            </a>
-            <div id="collapseDiary" class="collapse" aria-labelledby="headingDiary" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Tagebuch Funktionen</h6>
-                    <a class="collapse-item" href="{{ path('diaryentry_new') }}">Neuer Tagebucheintrag</a>
-                    <a class="collapse-item" href="{{ path('diaryentry_index') }}">Alle anzeigen</a>
-                </div>
-            </div>
-        </li>
-        <!-- Nav Item - Medication Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeds" aria-expanded="true" aria-controls="collapseDiary">
-                <i class="fas fa-fw fa-prescription-bottle"></i>
-                <span>Medikation</span>
-            </a>
-            <div id="collapseMeds" class="collapse" aria-labelledby="headingMeds" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Medikation Funktionen</h6>
-                    <a class="collapse-item" href="utilities-color.html">Neue Medikation</a>
-                    <a class="collapse-item" href="utilities-border.html">Alle anzeigen</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Nav Item - Overview -->
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-                <i class="fas fa-fw fa-eye"></i>
-                <span>Übersicht</span></a>
-        </li>
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Benutzer
-        </div>
-        <!-- Nav Item - Diary Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAccount" aria-expanded="true" aria-controls="collapseAccount">
-                <i class="fas fa-fw fa-user"></i>
-                <span>Profil</span>
-            </a>
-            <div id="collapseAccount" class="collapse" aria-labelledby="headingAccount" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Benutzeraccount</h6>
-                    <a class="collapse-item" href="{{ path('app_account') }}">Profil anzeigen</a>
-                    <a class="collapse-item" href="utilities-color.html">Passwort ändern</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('app_logout') }}" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-fw fa-sign-out-alt"></i>
-                    <span>Ausloggen</span></a>
-            </li>
-        </div>
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
-    </ul>
-    <!-- End of Sidebar -->
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-        <!-- Main Content -->
-        <div id="content">
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                <!-- Sidebar Toggle (Topbar) -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
-                    <div class="topbar-divider d-none d-sm-block"></div>
-                    <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-3 d-none d-lg-inline text-gray-600 small">{{ app.user.firstname }} {{ app.user.lastname }}</span>
-                            <i class="mr-2 fa fa-user"></i>
-
-                        </a>
-                        <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{{ path('app_account') }}">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profil anzeigen
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Passwort ändern
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ path('app_logout') }}" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Ausloggen
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-            <!-- End of Topbar -->
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
-                <!-- Page Heading -->
-                <div class="mb-5">
-                    <div class="text-center">
-                        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Übersicht</h1>
-                        <p class="mb-4">Untenstehend findest du alle deine erstellten Anfälle. <br />Zusätzlich kannst du auf das Pluszeichen <i class="fas fa-plus-circle"></i> klicken, um einen neuen Anfall zu erstellen</p>
-
-                        <a href="{{ path('seizure_new') }}"><i class="fas fa-plus-circle fa-3x" style="color: #EEA034"></i></a>
-                    </div>
-                </div>
-
-                <!-- DataTales Example -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Erfasste Anfälle</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" data-sort-name="date" data-sort-order="asc">
-                                <thead>
-                                <tr>
-                                    <th>Anfallstitel</th>
-                                    <th>Anfallsdatum</th>
-                                    <th>Zuletzt bearbeitet</th>
-                                    <th>Aktionen</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for seizure in seizures %}
-                                    <tr>
-                                        <td>{{ seizure.title }}</td>
-                                        <td>{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
-                                        <td>{{ seizure.modifiedAt ? seizure.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
-                                        <td>
-                                            <a href="{{ path('seizure_show', {'id': seizure.id}) }}">Anzeigen</a>
-                                            <a href="{{ path('seizure_edit', {'id': seizure.id}) }}">Bearbeiten</a>
-                                        </td>
-                                    </tr>
-                                {% else %}
-                                    <tr>
-                                        <td colspan="6">Keine Anfälle vorhanden</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.container-fluid -->
-        </div>
-        <!-- End of Main Content -->
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>&copy; 2019 - epilepc</span>
-                </div>
-            </div>
-        </footer>
-        <!-- End of Footer -->
-
     </div>
-    <!-- End of Content Wrapper -->
 
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Erfasste Anfälle</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" data-sort-name="date" data-sort-order="asc">
+                    <thead>
+                    <tr>
+                        <th>Anfallstitel</th>
+                        <th>Anfallsdatum</th>
+                        <th>Zuletzt bearbeitet</th>
+                        <th>Aktionen</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for seizure in seizures %}
+                        <tr>
+                            <td>{{ seizure.title }}</td>
+                            <td>{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
+                            <td>{{ seizure.modifiedAt ? seizure.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>
+                                <a href="{{ path('seizure_show', {'id': seizure.id}) }}">Anzeigen</a>
+                                <a href="{{ path('seizure_edit', {'id': seizure.id}) }}">Bearbeiten</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">Keine Anfälle vorhanden</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <!-- End of Page Wrapper -->
 {% endblock %}
