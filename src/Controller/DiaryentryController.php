@@ -22,7 +22,7 @@ class DiaryentryController extends AbstractController
      */
     public function index(DiaryentryRepository $diaryentryRepository, UserInterface $user): Response
     {
-        return $this->render('diaryentry/index.html.twig', [
+        return $this->render('app/diaryentry/index.html.twig', [
             'diaryentries' => $diaryentryRepository->findAllFromUser($user->getId()),
         ]);
     }
@@ -44,7 +44,7 @@ class DiaryentryController extends AbstractController
             return $this->redirectToRoute('diaryentry_index');
         }
 
-        return $this->render('diaryentry/new.html.twig', [
+        return $this->render('app/diaryentry/new.html.twig', [
             'diaryentry' => $diaryentry,
             'form' => $form->createView(),
         ]);
@@ -61,7 +61,7 @@ class DiaryentryController extends AbstractController
             throw new AccessDeniedException('Zugriff verweigert');
         }
 
-        return $this->render('diaryentry/show.html.twig', [
+        return $this->render('app/diaryentry/show.html.twig', [
             'diaryentry' => $diaryentry,
         ]);
     }
@@ -87,7 +87,7 @@ class DiaryentryController extends AbstractController
             ]);
         }
 
-        return $this->render('diaryentry/edit.html.twig', [
+        return $this->render('app/diaryentry/edit.html.twig', [
             'diaryentry' => $diaryentry,
             'form' => $form->createView(),
         ]);

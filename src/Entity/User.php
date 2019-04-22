@@ -65,6 +65,16 @@ class User implements UserInterface
      */
     private $diaryentries;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Medication", mappedBy="user")
+     */
+    private $medications;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Event", mappedBy="user")
+     */
+    private $events;
+
 
 
     public function __construct()
@@ -72,6 +82,8 @@ class User implements UserInterface
         $this->created_at = new ArrayCollection();
         $this->seizures = new ArrayCollection();
         $this->diaryentries = new ArrayCollection();
+        $this->medications = new ArrayCollection();
+        $this->events = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -249,6 +261,68 @@ class User implements UserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Medication[]
+     */
+    public function getMedications(): Collection
+    {
+        return $this->medications;
+    }
+
+    public function addMedication(Medication $medication): self
+    {
+        if (!$this->medications->contains($medication)) {
+            $this->medications[] = $medication;
+            $medication->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMedication(Medication $medication): self
+    {
+        if ($this->medications->contains($medication)) {
+            $this->medications->removeElement($medication);
+            // set the owning side to null (unless already changed)
+            if ($medication->getUser() === $this) {
+                $medication->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Event[]
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function addEvent(Event $event): self
+    {
+        if (!$this->events->contains($event)) {
+            $this->events[] = $event;
+            $event->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvent(Event $event): self
+    {
+        if ($this->events->contains($event)) {
+            $this->events->removeElement($event);
+            // set the owning side to null (unless already changed)
+            if ($event->getUser() === $this) {
+                $event->setUser(null);
+            }
+        }
 
         return $this;
     }

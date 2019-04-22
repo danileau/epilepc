@@ -1,43 +1,53 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Diaryentry index{% endblock %}
+{% extends 'app/base.html.twig' %}
 
 {% block body %}
-    <h1>Diaryentry index</h1>
+    <!-- Page Heading -->
+    <div class="mb-5">
+        <div class="text-center">
+            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Tagebuchübersicht</h1>
+            <p class="mb-4">Untenstehend findest du alle deine erfassten Tagebucheinträge. <br />Zusätzlich kannst du auf das Pluszeichen <i class="fas fa-plus-circle"></i> klicken, um einen neuen Anfall zu erstellen</p>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Timestamp_when</th>
-                <th>Created_at</th>
-                <th>Modified_at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for diaryentry in diaryentries %}
-            <tr>
-                <td>{{ diaryentry.id }}</td>
-                <td>{{ diaryentry.title }}</td>
-                <td>{{ diaryentry.content }}</td>
-                <td>{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ diaryentry.createdAt ? diaryentry.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ diaryentry.modifiedAt ? diaryentry.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('diaryentry_show', {'id': diaryentry.id}) }}">show</a>
-                    <a href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <a href="{{ path('diaryentry_new') }}"><i class="fas fa-plus-circle fa-3x" style="color: #EEA034"></i></a>
+        </div>
+    </div>
 
-    <a href="{{ path('diaryentry_new') }}">Create new</a>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Erfasste Tagebucheinträge</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" data-sort-name="date" data-sort-order="asc">
+                    <thead>
+                    <tr>
+                        <th>Titel</th>
+                        <th>Eintragsdatum</th>
+                        <th>Erstelldatum</th>
+                        <th>Zuletzt bearbeitet</th>
+                        <th>Aktionen</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for diaryentry in diaryentries %}
+                        <tr>
+                            <td>{{ diaryentry.title }}</td>
+                            <td>{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('d.m.Y') : '' }}</td>
+                            <td>{{ diaryentry.createdAt ? diaryentry.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>{{ diaryentry.modifiedAt ? diaryentry.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
+                            <td>
+                                <a href="{{ path('diaryentry_show', {'id': diaryentry.id}) }}">Anzeigen</a>
+                                <a href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}">Bearbeiten</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">Keine Tagebucheinträge vorhanden</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}
