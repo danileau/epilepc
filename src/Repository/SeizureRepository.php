@@ -25,7 +25,7 @@ class SeizureRepository extends ServiceEntityRepository
     public function findAllFromUser($id)
     {
 
-        return $this->findBy(array('user' => $id), array());
+        return $this->findBy(array('user' => $id), array('timestamp_when' => 'DESC'));
     }
 
 

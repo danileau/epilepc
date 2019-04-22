@@ -60,11 +60,17 @@ class User implements UserInterface
      */
     private $seizures;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Diaryentry", mappedBy="user")
+     */
+    private $diaryentries;
+
 
     public function __construct()
     {
         $this->created_at = new ArrayCollection();
         $this->seizures = new ArrayCollection();
+        $this->diaryentries = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -214,6 +220,37 @@ class User implements UserInterface
 
     public function __toString(){
         return $this->getFirstname();
+    }
+
+    /**
+     * @return Collection|Diaryentry[]
+     */
+    public function getDiaryentries(): Collection
+    {
+        return $this->diaryentries;
+    }
+
+    public function addDiaryentry(Diaryentry $diaryentry): self
+    {
+        if (!$this->diaryentries->contains($diaryentry)) {
+            $this->diaryentries[] = $diaryentry;
+            $diaryentry->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDiaryentry(Diaryentry $diaryentry): self
+    {
+        if ($this->diaryentries->contains($diaryentry)) {
+            $this->diaryentries->removeElement($diaryentry);
+            // set the owning side to null (unless already changed)
+            if ($diaryentry->getUser() === $this) {
+                $diaryentry->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
 }
