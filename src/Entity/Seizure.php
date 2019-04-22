@@ -48,6 +48,12 @@ class Seizure
      */
     private $title;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Seizuretype", inversedBy="seizures")
+     */
+    private $seizuretype;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -126,4 +132,17 @@ class Seizure
 
         return $this;
     }
+
+    public function getSeizuretype(): ?Seizuretype
+    {
+        return $this->seizuretype;
+    }
+
+    public function setSeizuretype(?Seizuretype $seizuretype): self
+    {
+        $this->seizuretype = $seizuretype;
+
+        return $this;
+    }
+
 }

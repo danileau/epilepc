@@ -290,6 +290,7 @@ button::-moz-focus-inner,
   border-style: none;
 }
 
+
 input[type="radio"],
 input[type="checkbox"] {
   -webkit-box-sizing: border-box;

@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Seizure;
+use App\Entity\Seizuretype;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -21,6 +22,7 @@ class SeizureFixtures extends BaseFixtures implements DependentFixtureInterface
             $seizure->setCreatedAt($this->faker->dateTime);
             $seizure->setModifiedAt($this->faker->dateTime);
             $seizure->setUser($this->getRandomReference('main_users'));
+            $seizure->setSeizuretype($this->getRandomReference('main_seizuretype'));
 
 
             return $seizure;
@@ -33,6 +35,7 @@ class SeizureFixtures extends BaseFixtures implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
+            SeizuretypeFixtures::class,
             UserFixtures::class
         ];
     }

@@ -24,7 +24,7 @@ class SeizureController extends AbstractController
     public function index(SeizureRepository $seizureRepository, UserInterface $user): Response
     {
 
-        return $this->render('seizure/index.html.twig', [
+        return $this->render('app/seizure/index.html.twig', [
             'seizures' => $seizureRepository->findAllFromUser($user->getId())
         ]);
 
@@ -47,7 +47,7 @@ class SeizureController extends AbstractController
             return $this->redirectToRoute('seizure_index');
         }
 
-        return $this->render('seizure/new.html.twig', [
+        return $this->render('app/seizure/new.html.twig', [
             'seizure' => $seizure,
             'form' => $form->createView(),
         ]);
@@ -63,7 +63,7 @@ class SeizureController extends AbstractController
             throw new AccessDeniedException('Zugriff verweigert');
         }
 
-        return $this->render('seizure/show.html.twig', [
+        return $this->render('app/seizure/show.html.twig', [
             'seizure' => $seizure,
         ]);
     }
@@ -89,7 +89,7 @@ class SeizureController extends AbstractController
             ]);
         }
 
-        return $this->render('seizure/edit.html.twig', [
+        return $this->render('app/seizure/edit.html.twig', [
             'seizure' => $seizure,
             'form' => $form->createView(),
         ]);
