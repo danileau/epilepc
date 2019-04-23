@@ -30,12 +30,11 @@
                     <tbody>
                     {% for seizure in seizures %}
                         <tr>
-                            <td>{{ seizure.title }}</td>
+                            <td><a href="{{ path('seizure_show', {'id': seizure.id}) }}"><i class="fas fa-fw fa-search"></i> {{ seizure.title }}</a></td>
                             <td>{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
                             <td>{{ seizure.modifiedAt ? seizure.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
-                            <td>
-                                <a href="{{ path('seizure_show', {'id': seizure.id}) }}">Anzeigen</a>
-                                <a href="{{ path('seizure_edit', {'id': seizure.id}) }}">Bearbeiten</a>
+                            <td align="center">
+                                <a href="{{ path('seizure_edit', {'id': seizure.id}) }}"><i class="fas fa-fw fa-edit"></i></a>
                             </td>
                         </tr>
                     {% else %}

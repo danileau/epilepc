@@ -1,11 +1,22 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}New Diaryentry{% endblock %}
+{% extends 'app/base.html.twig' %}
 
 {% block body %}
-    <h1>Create new Diaryentry</h1>
+    <!-- Page Heading -->
+    <div class="mb-5">
+    <div class="text-center">
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Neuer Tagebucheintrag erstellen</h1>
+    </div>
 
-    {{ include('app/diaryentry/_form.html.twig') }}
 
-    <a href="{{ path('diaryentry_index') }}">back to list</a>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                {{ include('app/diaryentry/_form.html.twig') }}
+
+                <a class="btn btn-link" href="{{ path('diaryentry_index') }}">Zurück zur Übersicht</a>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

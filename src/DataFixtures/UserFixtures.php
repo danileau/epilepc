@@ -30,6 +30,7 @@ class UserFixtures extends BaseFixtures
                 'engage'
             ));
             $user->setDeactivated(0);
+            $user->agreeTerms();
 
             return $user;
         });
@@ -45,6 +46,7 @@ class UserFixtures extends BaseFixtures
             ));
             $user->setDeactivated(0);
             $user->setRoles(['ROLE_ADMIN']);
+            $user->agreeTerms();
 
             return $user;
         });

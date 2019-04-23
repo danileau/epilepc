@@ -1,4 +1,8 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_errors(form) }}
+    {{ form_row(form.title, {'label': 'Anfallstitel'}) }}
+    {{ form_row(form.description, {'label': 'Beschreibung'}) }}
+    {{ form_row(form.timestamp_when, {'label': 'Anfallszeitpunkt'}) }}
+    {{ form_row(form.seizuretype, {'label': 'Anfallstyp'}) }}
+    <button class="btn btn-primary">{{ button_text }}</button>
 {{ form_end(form) }}

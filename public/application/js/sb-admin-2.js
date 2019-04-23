@@ -46,4 +46,9 @@
     e.preventDefault();
   });
 
+  $(document).ready(function(){
+    $('.js-datepicker').datepicker({
+      format: 'dd.mm.yyyy'
+    });
+  });
 })(jQuery); // End of use strict

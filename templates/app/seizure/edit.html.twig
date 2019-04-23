@@ -4,7 +4,7 @@
 <!-- Page Heading -->
 <div class="mb-5">
     <div class="text-center">
-        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Anfall {{ seizure.id }} anzeigen</h1>
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Anfall #{{ seizure.id }} anzeigen</h1>
     </div>
 
 
@@ -13,34 +13,15 @@
         <div class="card-body">
             <div class="table-responsive">
 
-                {{ include('app/seizure/_form.html.twig', {'button_label': 'Update'}) }}
-
-
-
-                <form>
-                    <div class="form-group">
-                        <label for="SeizureTitle">Anfallstitel</label>
-                        <input type="text" class="form-control" id="SeizureTitle" value="{{ seizure.title }}" >
-                        <label for="SeizureDescription">Beschreibung</label>
-                        <textarea class="form-control" id="SeizureDescription" >{{ seizure.description }}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="SeizureDate">Anfallsdatum</label>
-                        <input type="text" class="form-control" id="SeizureDate" value="{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} Uhr" >
-                    </div>
-                    <div class="form-group">
-                        <label for="SeizureDate">Zuletzt bearbeitet</label>
-                        <input type="text" class="form-control" id="SeizureDate" value="{{ seizure.modifiedAt ? seizure.modifiedAt|date('Y-m-d H:i:s') : '' }}" >
-                    </div>
-                    <button class="btn btn-primary">Update</button>
-                </form>
-                <div class="form-group">
+                {{ include('app/seizure/_form.html.twig', {'button_text': 'Updaten'}) }}
+                <br/>
+                <div class="form-group text-center">
 
                     <form method="post" action="{{ path('seizure_delete', {'id': seizure.id}) }}" onsubmit="return confirm('Bist du sicher, dass du diesen Anfall löschen willst?');">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ seizure.id) }}">
-                        <a class="btn btn-light" href="{{ path('seizure_index') }}">Zurück zur Übersicht</a>
-                        <button class="btn btn-light">Anfall löschen</button>
+                        <a class="btn btn-dark" href="{{ path('seizure_index') }}">Zurück zur Übersicht</a>
+                        <button class="btn btn-danger">Anfall löschen</button>
                     </form>
                 </div>
 

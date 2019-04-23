@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\UserRegistrationFormType;
 use App\Security\LoginFormAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,18 +39,28 @@ class SecurityController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
     {
-        if ($request->isMethod('POST')){
-            $user = new User();
-            $user->setFirstname($request->request->get('firstname'));
-            $user->setLastname($request->request->get('lastname'));
-            $user->setEmail($request->request->get('email'));
+
+        $form = $this->createForm(UserRegistrationFormType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()){
+
+            /** @var User $user */
+            $user = $form->getData();
+
+            $user->setPassword($passwordEncoder->encodePassword(
+                $user,
+                $form['plainPassword']->getData()
+            ));
+
+            $user->setFirstname($user->getFirstname());
+            $user->setLastname($user->getLastname());
+            $user->setEmail($user->getEmail());
             $user->setDeactivated(0);
-           // if ($request->request->get('password') == $request->request->get('repeatpassword')){
-                $user->setPassword($passwordEncoder->encodePassword(
-                    $user,
-                    $request->request->get('inputPassword')
-                ));
-            //}
+
+            if (true === $form['agreeTerms']->getData()){
+                $user->agreeTerms();
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -66,7 +77,9 @@ class SecurityController extends AbstractController
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirectToRoute('app_dashboard');
         }
-        return $this->render('app/authentication/register.html.twig', []);
+        return $this->render('app/authentication/register.html.twig', [
+            'registrationForm' => $form->createView()
+        ]);
     }
 
     /**

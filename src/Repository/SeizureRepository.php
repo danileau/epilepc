@@ -31,7 +31,6 @@ class SeizureRepository extends ServiceEntityRepository
 
 
 
-
     /*
     public function findOneBySomeField($value): ?Seizure
     {

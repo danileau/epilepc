@@ -1,11 +1,21 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}New Seizure{% endblock %}
+{% extends 'app/base.html.twig' %}
 
 {% block body %}
-    <h1>Create new Seizure</h1>
+    <!-- Page Heading -->
+    <div class="mb-5">
+    <div class="text-center">
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Neuer Anfall erstellen</h1>
+    </div>
 
-    {{ include('app/seizure/_form.html.twig') }}
 
-    <a href="{{ path('seizure_index') }}">back to list</a>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                {{ include('app/seizure/_form.html.twig', {'button_text': 'Erstellen'}) }}
+                <br/>
+                <a class="btn btn-dark" href="{{ path('seizure_index') }}">Zurück zur Übersicht</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
