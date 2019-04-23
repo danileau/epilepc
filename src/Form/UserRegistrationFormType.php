@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,20 +25,13 @@ class UserRegistrationFormType extends AbstractType
             ->add('lastname', null, [
                 'label' => 'Nachname'
             ])
-            ->add('email')
+            ->add('email', EmailType::class)
 
             // Absichtlich ein Feld, welches nicht in der Datenbank existiert,
             // um kein nicht verschlüsseltes Passwort aus Versehen in die Datenbank zu speichern
             // Dank "mapped"
             // Einschränkungen mittels 'constraints'
-            ->add('plainPassword', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'first_options' => [
-                    'label' => 'Passwort'
-                ],
-                'second_options' => [
-                    'label' => 'Passwort wiederholen'
-                ],
+            ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
@@ -51,7 +45,6 @@ class UserRegistrationFormType extends AbstractType
             ])
 
             ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'Ich akzeptiere die Nutzungsbedingungen',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
