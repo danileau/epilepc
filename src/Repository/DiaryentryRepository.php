@@ -28,33 +28,16 @@ class DiaryentryRepository extends ServiceEntityRepository
 
         return $this->findBy(array('user' => $id), array('timestamp_when' => 'DESC'));
     }
-    
-    // /**
-    //  * @return Diaryentry[] Returns an array of Diaryentry objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Diaryentry
-    {
+    /**
+     * @return Diaryentry[] Returns count from all Diaryentry for the Dashboard
+     */
+    public function countFindAllFromUser($id){
         return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
+            ->select('count(d.id)')
+            ->andWhere('d.user = :val')
+            ->setParameter('val', $id)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getSingleScalarResult();
     }
-    */
 }

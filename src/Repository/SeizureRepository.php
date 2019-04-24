@@ -28,18 +28,15 @@ class SeizureRepository extends ServiceEntityRepository
         return $this->findBy(array('user' => $id), array('timestamp_when' => 'DESC'));
     }
 
-
-
-
-    /*
-    public function findOneBySomeField($value): ?Seizure
-    {
+    /**
+     * @return Seizure[] Returns count from all Seizure for the Dashboard
+     */
+    public function countFindAllFromUser($id){
         return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
+            ->select('count(s.id)')
+            ->andWhere('s.user = :val')
+            ->setParameter('val', $id)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getSingleScalarResult();
     }
-    */
 }
