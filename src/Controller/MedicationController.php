@@ -6,6 +6,7 @@ use App\Entity\Medication;
 use App\Form\MedicationType;
 use App\Repository\MedicationRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,6 +59,7 @@ class MedicationController extends AbstractController
 
     /**
      * @Route("/{id}", name="medication_show", methods={"GET"})
+     * @IsGranted("MANAGE", subject="medication")
      */
     public function show(Request $request, Medication $medication): Response
     {
@@ -72,6 +74,7 @@ class MedicationController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="medication_edit", methods={"GET","POST"})
+     * @IsGranted("MANAGE", subject="medication")
      */
     public function edit(Request $request, Medication $medication, EntityManagerInterface $em): Response
     {
@@ -99,6 +102,7 @@ class MedicationController extends AbstractController
 
     /**
      * @Route("/{id}", name="medication_delete", methods={"DELETE"})
+     * @IsGranted("MANAGE", subject="medication")
      */
     public function delete(Request $request, Medication $medication): Response
     {
