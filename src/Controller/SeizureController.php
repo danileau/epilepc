@@ -25,7 +25,6 @@ class SeizureController extends AbstractController
      */
     public function index(SeizureRepository $seizureRepository, UserInterface $user): Response
     {
-
         return $this->render('app/seizure/index.html.twig', [
             'seizures' => $seizureRepository->findAllFromUser($user->getId())
         ]);
@@ -60,7 +59,7 @@ class SeizureController extends AbstractController
         }
 
         return $this->render('app/seizure/new.html.twig', [
-            'form' => $form->createView(),
+            'seizureForm' => $form->createView(),
         ]);
     }
 
@@ -68,11 +67,17 @@ class SeizureController extends AbstractController
      * @Route("/{id}", name="seizure_show", methods={"GET"})
      * @IsGranted("MANAGE", subject="seizure")
      */
-    public function show(Seizure $seizure): Response
+    // Die IsGranted "MANAGE" Annotation prüft den Security Voter und führt Ihn aus. Dort wird geprüft ob die User_id
+    // vom DB-Objekt, mit dem aktuellen User übereinstimmt.
+    // Todo: Mit Forms implementieren, inkl _form_show File
+    public function show(Request $request, Seizure $seizure): Response
     {
+        $form = $this->createForm(SeizureFormType::class, $seizure);
+        $form->handleRequest($request);
 
         return $this->render('app/seizure/show.html.twig', [
             'seizure' => $seizure,
+            'seizureForm' => $form->createView()
         ]);
     }
 
@@ -100,7 +105,7 @@ class SeizureController extends AbstractController
         return $this->render('app/seizure/edit.html.twig', [
             'seizure' => $seizure,
             'user' => $this->getUser(),
-            'form' => $form->createView(),
+            'seizureForm' => $form->createView(),
         ]);
     }
 

@@ -12,9 +12,9 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                {{ include('app/diaryentry/_form.html.twig') }}
-
-                <a class="btn btn-link" href="{{ path('diaryentry_index') }}">Zurück zur Übersicht</a>
+                {{ include('app/diaryentry/_form.html.twig', {'button_text': 'Erstellen'}) }}
+                <br/>
+                <a class="btn btn-dark" href="{{ path('diaryentry_index') }}">Zurück zur Übersicht</a>
 
             </div>
         </div>

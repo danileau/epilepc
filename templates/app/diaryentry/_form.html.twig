@@ -1,4 +1,11 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Speichern') }}</button>
+    {{ form_errors(form) }}
+    {{ form_row(form.title, {'label': 'Eintragtitel'}) }}
+    {{ form_row(form.content, {
+        'label': 'Inhalt',
+        'attr': {
+            'rows': '15'
+        }}) }}
+    {{ form_row(form.timestamp_when, {'label': 'Eintragsdatum'}) }}
+<button class="btn btn-primary">{{ button_text }}</button>
 {{ form_end(form) }}

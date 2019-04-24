@@ -1,5 +1,7 @@
 {% extends 'app/base.html.twig' %}
 
+{% block title %}epilepc - Anfall {{ seizure.id }} anzeigen{% endblock %}
+
 {% block body %}
     <!-- Page Heading -->
     <div class="mb-5">
@@ -11,12 +13,13 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
-            <div class="table-responsive">
-
+            <div class="table-responsive p-1">
                 <form>
                     <div class="form-group">
                         <label for="SeizureTitle">Anfallstitel</label>
                         <input type="text" class="form-control" id="SeizureTitle" value="{{ seizure.title }}" readonly>
+                    </div>
+                    <div class="form-group">
                         <label for="SeizureDescription">Beschreibung</label>
                         <textarea class="form-control" id="SeizureDescription" readonly>{{ seizure.description }}</textarea>
                     </div>
@@ -26,14 +29,14 @@
                     </div>
                     <div class="form-group">
                         <label for="SeizureDate">Zuletzt bearbeitet</label>
-                        <input type="text" class="form-control" id="SeizureDate" value="{{ seizure.modifiedAt ? seizure.modifiedAt|date('Y-m-d H:i:s') : '' }}" readonly>
+                        <input type="text" class="form-control" id="SeizureDate" value="{{ seizure.modifiedAt ? seizure.modifiedAt|date('d.m.Y H:i') : '' }} Uhr" readonly>
                     </div>
                     <div class="form-group">
                         <label for="SeizureDate">Anfallstyp</label>
                         <input type="text" class="form-control" id="SeizureDate" value="{{ seizure.seizuretype.name }}" readonly>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-link"><a href="{{ path('seizure_edit', {'id': seizure.id}) }}">Bearbeiten</a></button>
+                        <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('seizure_edit', {'id': seizure.id}) }}">Bearbeiten</a></button>
                     </div>
 
                 </form>
@@ -41,4 +44,11 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker').datetimepicker({
+                locale: 'de'
+            });
+        });
+    </script>
 {% endblock %}

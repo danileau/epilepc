@@ -1,13 +1,32 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Edit Diaryentry{% endblock %}
+{% extends 'app/base.html.twig' %}
 
 {% block body %}
-    <h1>Edit Diaryentry</h1>
+    <!-- Page Heading -->
+    <div class="mb-5">
+    <div class="text-center">
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Tagebucheintrag #{{ diaryentry.id }} anzeigen</h1>
+    </div>
 
-    {{ include('app/diaryentry/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('diaryentry_index') }}">back to list</a>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
 
-    {{ include('app/diaryentry/_delete_form.html.twig') }}
+                {{ include('app/diaryentry/_form.html.twig', {'button_text': 'Updaten'}) }}
+                <br/>
+                <div class="form-group text-center">
+
+                    <form method="post" action="{{ path('diaryentry_delete', {'id': diaryentry.id}) }}" onsubmit="return confirm('Bist du sicher, dass du diesen Tagebucheintrag löschen willst?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ diaryentry.id) }}">
+                        <a class="btn btn-dark" href="{{ path('diaryentry_index') }}">Zurück zur Übersicht</a>
+                        <button class="btn btn-danger">Tagebucheintrag löschen</button>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 {% endblock %}

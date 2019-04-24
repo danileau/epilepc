@@ -30,22 +30,29 @@ class DiaryentryController extends AbstractController
     /**
      * @Route("/new", name="diaryentry_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UserInterface $user): Response
     {
-        $diaryentry = new Diaryentry();
-        $form = $this->createForm(DiaryentryType::class, $diaryentry);
+        $form = $this->createForm(DiaryentryType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var Diaryentry $diaryentry */
+            $diaryentry = $form->getData();
+
+            $diaryentry->setCreatedAt(new \DateTime());
+            $diaryentry->setModifiedAt(new \DateTime());
+            $diaryentry->setUser($user);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($diaryentry);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Tagebucheintrag erfolgreich erstellt!');
             return $this->redirectToRoute('diaryentry_index');
         }
 
         return $this->render('app/diaryentry/new.html.twig', [
-            'diaryentry' => $diaryentry,
             'form' => $form->createView(),
         ]);
     }
