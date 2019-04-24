@@ -14,7 +14,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Erfasste Anfälle</h6>
+            <h6 class="m-0 font-weight-bold text-seizure">Erfasste Anfälle</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -30,11 +30,11 @@
                     <tbody>
                     {% for seizure in seizures %}
                         <tr>
-                            <td><a href="{{ path('seizure_show', {'id': seizure.id}) }}"><i class="fas fa-fw fa-search"></i> {{ seizure.title }}</a></td>
+                            <td><a href="{{ path('seizure_show', {'id': seizure.id}) }}" class="text-seizure"><i class="fas fa-fw fa-search"></i> {{ seizure.title }}</a></td>
                             <td>{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
                             <td>{{ seizure.modifiedAt ? seizure.modifiedAt|date('d.m.Y H:i') : '' }} Uhr</td>
                             <td align="center">
-                                <a href="{{ path('seizure_edit', {'id': seizure.id}) }}"><i class="fas fa-fw fa-edit"></i></a>
+                                <a href="{{ path('seizure_edit', {'id': seizure.id}) }}" class="text-seizure"><i class="fas fa-fw fa-edit"></i></a>
                             </td>
                         </tr>
                     {% else %}

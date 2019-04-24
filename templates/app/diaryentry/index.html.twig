@@ -7,14 +7,14 @@
             <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Tagebuchübersicht</h1>
             <p class="mb-4">Untenstehend findest du alle deine erfassten Tagebucheinträge. <br />Zusätzlich kannst du auf das Pluszeichen <i class="fas fa-plus-circle"></i> klicken, um einen neuen Anfall zu erstellen</p>
 
-            <a href="{{ path('diaryentry_new') }}"><i class="fas fa-plus-circle fa-3x" style="color: #EEA034"></i></a>
+            <a href="{{ path('diaryentry_new') }}"><i class="fas fa-plus-circle fa-3x" style="color: #6ccb6d"></i></a>
         </div>
     </div>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Erfasste Tagebucheinträge</h6>
+            <h6 class="m-0 font-weight-bold text-diary">Erfasste Tagebucheinträge</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -30,11 +30,11 @@
                     <tbody>
                     {% for diaryentry in diaryentries %}
                         <tr>
-                            <td><a href="{{ path('diaryentry_show', {'id': diaryentry.id}) }}"><i class="fas fa-fw fa-search"></i> {{ diaryentry.title }}</a></td>
+                            <td><a href="{{ path('diaryentry_show', {'id': diaryentry.id}) }}" class="text-diary"><i class="fas fa-fw fa-search"></i> {{ diaryentry.title }}</a></td>
                             <td>{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('d.m.Y') : '' }}</td>
                             <td>{{ diaryentry.modifiedAt ? diaryentry.modifiedAt|date('d.m.Y H:i') : '' }} Uhr</td>
                             <td align="center">
-                                <a href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}"><i class="fas fa-fw fa-edit"></i></a>
+                                <a href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}"  class="text-diary"><i class="fas fa-fw fa-edit"></i></a>
                             </td>
                         </tr>
                     {% else %}

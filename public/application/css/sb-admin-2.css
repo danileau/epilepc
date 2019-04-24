@@ -10389,6 +10389,19 @@ button.bg-dark:focus {
   color: #fff !important;
 }
 
+.text-diary{
+  color: #2a9c2b !important;
+}
+.text-seizure{
+  color: #d6820e !important;
+}
+.text-medication{
+  color: #a89cc8 !important;
+}
+.text-event{
+  color: #efc4c4 !important;
+}
+
 .text-primary {
   color: #4e73df !important;
 }
