@@ -1,0 +1,33 @@
+{% extends 'app/base.html.twig' %}
+{% block title %}Edit Medication{% endblock %}
+
+{% block body %}
+    <!-- Page Heading -->
+    <div class="mb-5">
+    <div class="text-center">
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Medikation #{{ medication.id }} anzeigen</h1>
+    </div>
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+
+                {{ include('app/medication/_form.html.twig', {'button_text': 'Updaten'}) }}
+                <br/>
+                <div class="form-group text-center">
+
+                    <form method="post" action="{{ path('medication_delete', {'id': medication.id}) }}" onsubmit="return confirm('Bist du sicher, dass du diese Medikation löschen willst?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ medication.id) }}">
+                        <a class="btn btn-dark" href="{{ path('medication_index') }}">Zurück zur Übersicht</a>
+                        <button class="btn btn-danger">Medikation löschen</button>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'app/base.html.twig' %}
+
+{% block body %}
+    <!-- Page Heading -->
+    <div class="mb-5">
+        <div class="text-center">
+            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Medikation - Übersicht</h1>
+            <p class="mb-4">Untenstehend findest du alle deine erstellten Medikationen. <br />Zusätzlich kannst du auf das Pluszeichen <i class="fas fa-plus-circle"></i> klicken, um eine neue Medikation zu erstellen</p>
+
+            <a href="{{ path('medication_new') }}"><i class="fas fa-plus-circle fa-3x" style="color: #a89cc8"></i></a>
+        </div>
+    </div>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary" >Erfasste Medikationen</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" data-sort-name="date" data-sort-order="asc">
+                    <thead>
+                    <tr>
+                        <th>Medikationsname</th>
+                        <th>Beschreibung</th>
+                        <th>Dosierung</th>
+                        <th>Einnahme Start</th>
+                        <th>Einnahme Ende</th>
+                        <th>Verschreibungsdatum</th>
+                        <th>Zuletzt bearbeitet</th>
+                        <th>Aktionen</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for medication in medications %}
+
+                        <tr>
+                            <td><a href="{{ path('medication_show', {'id': medication.id}) }}" style="color: #a89cc8"><i class="fas fa-fw fa-search"></i> {{ medication.name }}</a></td>
+                            <td>{{ medication.description }}</td>
+                            <td>{{ medication.dosage }}</td>
+                            <td>{{ medication.dateFrom ? medication.dateFrom|date('d.m.Y H:i') }} Uhr</td>
+                            <td>{{ medication.dateTo ? medication.dateTo|date('d.m.Y H:i') }} Uhr</td>
+                            <td>{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y')}}</td>
+                            <td>{{ medication.modifiedAt ? medication.modifiedAt|date('d.m.Y H:i') : '' }} Uhr</td>
+                            <td align="center">
+                                <a href="{{ path('medication_edit', {'id': medication.id}) }}" style="color: #a89cc8"><i class="fas fa-fw fa-edit" ></i></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="8">Keine Medikationen vorhanden</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

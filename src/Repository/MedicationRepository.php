@@ -19,32 +19,11 @@ class MedicationRepository extends ServiceEntityRepository
         parent::__construct($registry, Medication::class);
     }
 
-    // /**
-    //  * @return Medication[] Returns an array of Medication objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Medication[] Returns all Medications ordered by the newest Timestamp
+     */
+    public function findAllFromUser($id)
     {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return $this->findBy(array('user' => $id), array('timestamp_prescription' => 'DESC'));
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Medication
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
