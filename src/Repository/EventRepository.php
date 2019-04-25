@@ -19,32 +19,25 @@ class EventRepository extends ServiceEntityRepository
         parent::__construct($registry, Event::class);
     }
 
-    // /**
-    //  * @return Event[] Returns an array of Event objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Event
+    /**
+     * @return Event[] Returns all Events ordered by the newest Timestamp
+     */
+    public function findAllFromUser($id)
     {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $this->findBy(array('user' => $id), array('timestamp_when' => 'DESC'));
     }
-    */
-}
+
+    /**
+     * @return Event[] Returns count from all Events for the Dashboard
+     */
+    public function countFindAllFromUser($id){
+        return $this->createQueryBuilder('e')
+            ->select('count(e.id)')
+            ->andWhere('e.user = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+ }

@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Repository\DiaryentryRepository;
+use App\Repository\EventRepository;
 use App\Repository\MedicationRepository;
 use App\Repository\SeizureRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -19,12 +20,12 @@ class AppController extends BaseController
      * @Route("/app", name="app_dashboard")
      * @IsGranted("ROLE_USER")
      */
-    public function index(MedicationRepository $medicationRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user){
-
+    public function index(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user){
         return $this->render('app/dashboard.html.twig', [
             'medication_count' => $medicationRepository->countFindAllFromUser($user),
             'seizure_count' => $seizureRepository->countFindAllFromUser($user),
-            'diaryentry_count' => $diaryentryRepository->countFindAllFromUser($user)
+            'diaryentry_count' => $diaryentryRepository->countFindAllFromUser($user),
+            'event_count' => $eventRepository->countFindAllFromUser($user)
         ]);
     }
 

@@ -17,6 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/app/seizure")
+ * @IsGranted("ROLE_USER")
  */
 class SeizureController extends AbstractController
 {
