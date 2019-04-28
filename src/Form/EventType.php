@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Event;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,8 +15,16 @@ class EventType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('timestamp_when')
-            ->add('seizure')
+            ->add('timestamp_when', DateTimeType::class, [
+                'widget' => 'single_text'
+            ])
+            ->add('createdAt', DateTimeType::class, [
+                'widget' => 'single_text'
+            ])
+            ->add('modifiedAt', DateTimeType::class, [
+                'widget' => 'single_text'
+            ])
+
         ;
     }
 

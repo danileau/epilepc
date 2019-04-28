@@ -1,42 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends 'app/base.html.twig' %}
 
-{% block title %}Event{% endblock %}
+{% block title %}epilepc - Ereignis #{{ event.id }} anzeigen{% endblock %}
 
 {% block body %}
-    <h1>Event</h1>
+<!-- Page Heading -->
+<div class="mb-5">
+    <div class="text-center">
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Ereignis #{{ event.id }} anzeigen</h1>
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ event.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ event.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ event.description }}</td>
-            </tr>
-            <tr>
-                <th>Timestamp_when</th>
-                <td>{{ event.timestampWhen ? event.timestampWhen|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ event.createdAt ? event.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Modified_at</th>
-                <td>{{ event.modifiedAt ? event.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('event_index') }}">back to list</a>
-
-    <a href="{{ path('event_edit', {'id': event.id}) }}">edit</a>
-
-    {{ include('event/_delete_form.html.twig') }}
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive p-1">
+                <form>
+                    <div class="form-group">
+                        <label for="EventName">Ereignisname</label>
+                        <input type="text" class="form-control" id="EventName" value="{{ event.name }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="EventDescription">Beschreibung</label>
+                        <textarea class="form-control" id="EventDescription" readonly rows="4">{{ event.description }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="EventDate">Ereignisdatum</label>
+                        <input type="text" class="form-control" id="EventDate" value="{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y H:i') : '' }} Uhr" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="EventLastModified">Zuletzt bearbeitet</label>
+                        <input type="text" class="form-control" id="EventLastModified" value="{{ event.modifiedAt ? event.modifiedAt|date('d.m.Y H:i') : '' }} Uhr" readonly>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('event_edit', {'id': event.id}) }}">Bearbeiten</a></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker').datetimepicker({
+                locale: 'de'
+            });
+        });
+    </script>
 {% endblock %}

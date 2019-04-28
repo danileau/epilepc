@@ -1,11 +1,20 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}New Event{% endblock %}
+{% extends 'app/base.html.twig' %}
 
 {% block body %}
-    <h1>Create new Event</h1>
+    <!-- Page Heading -->
+    <div class="mb-5">
+    <div class="text-center">
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Neues Ereignis erstellen</h1>
+    </div>
 
-    {{ include('app/event/_form.html.twig') }}
-
-    <a href="{{ path('event_index') }}">back to list</a>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                {{ include('app/event/_form.html.twig', {'button_text': 'Erstellen'}) }}
+                <br/>
+                <a class="btn btn-dark" href="{{ path('event_index') }}">Zurück zur Übersicht</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

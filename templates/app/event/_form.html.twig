@@ -1,4 +1,14 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{{ form_start(eventForm) }}
+    {{ form_errors(eventForm) }}
+    {{ form_row(eventForm.name, {'label': 'Ereignisname'}) }}
+    {{ form_row(eventForm.description, {'label': 'Beschreibung',
+        'attr': {
+            'rows': '10'
+        }})
+    }}
+    {{ form_row(eventForm.timestamp_when, {'label': 'Ereignisdatum'}) }}
+    {{ form_row(eventForm.createdAt , {'label': 'Erstellt am'}) }}
+    {{ form_row(eventForm.modifiedAt, {'label': 'Zuletzt bearbeitet'}) }}
+
+<button class="btn btn-primary">{{ button_text }}</button>
+{{ form_end(eventForm) }}

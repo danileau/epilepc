@@ -1,43 +1,53 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Event index{% endblock %}
+{% extends 'app/base.html.twig' %}
 
 {% block body %}
-    <h1>Event index</h1>
+    <!-- Page Heading -->
+    <div class="mb-5">
+        <div class="text-center">
+            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Ereignisübersicht</h1>
+            <p class="mb-4">Untenstehend findest du alle deine erfassten Ereignisse. <br />Zusätzlich kannst du auf das Pluszeichen <i class="fas fa-plus-circle"></i> klicken, um ein neues Ereignis zu erstellen</p>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Timestamp_when</th>
-                <th>Created_at</th>
-                <th>Modified_at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for event in events %}
-            <tr>
-                <td>{{ event.id }}</td>
-                <td>{{ event.name }}</td>
-                <td>{{ event.description }}</td>
-                <td>{{ event.timestampWhen ? event.timestampWhen|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ event.createdAt ? event.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ event.modifiedAt ? event.modifiedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('event_show', {'id': event.id}) }}">show</a>
-                    <a href="{{ path('event_edit', {'id': event.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <a href="{{ path('event_new') }}"><i class="fas fa-plus-circle fa-3x" style="color: #ea5151"></i></a>
+        </div>
+    </div>
 
-    <a href="{{ path('event_new') }}">Create new</a>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-event">Erfasste Ereignisse</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" data-sort-name="date" data-sort-order="asc">
+                    <thead>
+                    <tr>
+                        <th>Ereignisname</th>
+                        <th>Beschreibung</th>
+                        <th>Ereignisdatum</th>
+                        <th>Zuletzt bearbeitet</th>
+                        <th>Aktionen</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for event in events %}
+                        <tr>
+                            <td><a href="{{ path('event_show', {'id': event.id}) }}" class="text-event"><i class="fas fa-fw fa-search"></i> {{ event.name }}</a></td>
+                            <td>{{ event.description|length > 50 ? event.description|slice(0, 50) ~ '...' : event.description}}"</td>
+                            <td>{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y') : '' }}</td>
+                            <td>{{ event.modifiedAt ? event.modifiedAt|date('d.m.Y H:i') : '' }} Uhr</td>
+                            <td align="center">
+                                <a href="{{ path('event_edit', {'id': event.id}) }}"  class="text-event"><i class="fas fa-fw fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">Keine Ereignisse vorhanden</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+

@@ -47,7 +47,8 @@ class EventController extends AbstractController
 
         return $this->render('app/event/new.html.twig', [
             'event' => $event,
-            'form' => $form->createView(),
+            'user' => $this->getUser(),
+            'eventForm' => $form->createView(),
         ]);
     }
 
@@ -79,8 +80,10 @@ class EventController extends AbstractController
 
         return $this->render('app/event/edit.html.twig', [
             'event' => $event,
-            'form' => $form->createView(),
+            'user' => $this->getUser(),
+            'eventForm' => $form->createView(),
         ]);
+
     }
 
     /**
