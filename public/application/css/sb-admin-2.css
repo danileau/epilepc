@@ -1961,6 +1961,11 @@ pre code {
   .table-responsive-sm > .table-bordered {
     border: 0;
   }
+  #AreaChart{
+    display: none;
+  }
+
+
 }
 
 @media (max-width: 767.98px) {
