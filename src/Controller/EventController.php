@@ -44,7 +44,6 @@ class EventController extends AbstractController
             $event->setCreatedAt(new \DateTime());
             $event->setModifiedAt(new \DateTime());
             $event->setUser($user);
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($event);
             $entityManager->flush();
