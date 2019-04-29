@@ -11606,6 +11606,7 @@ a:focus {
   position: relative;
   height: 10rem;
   width: 100%;
+  margin-bottom: 10px;
 }
 
 @media (min-width: 768px) {
