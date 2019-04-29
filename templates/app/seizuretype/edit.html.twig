@@ -1,0 +1,26 @@
+{% extends 'app/base.html.twig' %}
+
+{% block body %}
+    <!-- Page Heading -->
+    <div class="mb-5">
+    <div class="text-center">
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Anfallart #{{ seizuretype.id }} bearbeiten</h1>
+    </div>
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+
+                {{ include('app/seizuretype/_form.html.twig', {'button_text': 'Updaten'}) }}
+                <br/>
+                <div class="form-group text-center">
+                    <a class="btn btn-dark" href="{{ path('seizuretype_index') }}">Zurück zur Übersicht</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

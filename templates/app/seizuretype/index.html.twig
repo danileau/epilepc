@@ -1,0 +1,79 @@
+{% extends 'app/base.html.twig' %}
+
+{% block body %}
+    <!-- Page Heading -->
+    <div class="mb-5">
+        <div class="text-center">
+            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Anfallsarten - Übersicht</h1>
+            <p class="mb-4">Untenstehend findest du alle erstellten Anfallsarten. <br />Zusätzlich kannst du auf das Pluszeichen <i class="fas fa-plus-circle"></i> klicken,
+                um eine weitere Anfallsart hinzuzufügen. <br />Wegen möglichen Relationen zu bestehenden Anfällen, können Anfallsarten nicht gelöscht werden.</p>
+
+            <a href="{{ path('seizuretype_new') }}"><i class="fas fa-plus-circle fa-3x text-seizure" ></i></a>
+        </div>
+    </div>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-seizure">Erfasste Anfallarten</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" data-sort-name="date" data-sort-order="asc">
+                    <thead>
+                    <tr>
+                        <th>Anfallsart</th>
+                        <th>Beschreibung</th>
+                        <th>Aktionen</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for seizuretyp in seizuretypes %}
+                        <tr>
+                            <td><a href="{{ path('seizuretype_show', {'id': seizuretyp.id}) }}" class="text-seizure"><i class="fas fa-fw fa-search"></i> {{ seizuretyp.name }}</a></td>
+                            <td>{{ seizuretyp.description|length > 50 ? seizuretyp.description|slice(0, 50) ~ '...' : seizuretyp.description }}</td>
+                            <td align="center">
+                                <a href="{{ path('seizuretype_edit', {'id': seizuretyp.id}) }}" class="text-seizure"><i class="fas fa-fw fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">Keine Anfallsarten vorhanden</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('application/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('application/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('application/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('application/js/sb-admin-2.js') }}"></script>
+    <script src="{{ asset('application/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('application/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+{% endblock %}
+
+{% block zusStylesheets %}
+    <link href="{{ asset('application/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block jsCharts %}
+    // Call the dataTables jQuery plugin
+    $(document).ready(function() {
+        $('#dataTable').DataTable( {
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/German.json"
+            }
+        });
+    });
+
+{% endblock %}

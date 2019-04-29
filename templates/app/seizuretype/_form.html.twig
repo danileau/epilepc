@@ -1,0 +1,10 @@
+{{ form_start(seizuretypForm) }}
+    {{ form_errors(seizuretypForm) }}
+    {{ form_row(seizuretypForm.name, {'label': 'Anfallstitel'}) }}
+    {{ form_row(seizuretypForm.description, {'label': 'Beschreibung',
+        'attr': {
+            'rows': '11'
+        }})
+    }}
+<button class="btn btn-primary">{{ button_text }}</button>
+{{ form_end(seizuretypForm) }}
