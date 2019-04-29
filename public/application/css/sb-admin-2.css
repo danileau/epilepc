@@ -2003,6 +2003,7 @@ pre code {
   display: block;
   width: 100%;
   overflow-x: auto;
+  padding: 5px;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -4348,6 +4349,8 @@ input[type="button"].btn-block {
 .nav-tabs .nav-item {
   margin-bottom: -1px;
 }
+
+
 
 .nav-tabs .nav-link {
   border: 1px solid transparent;
@@ -10390,16 +10393,16 @@ button.bg-dark:focus {
 }
 
 .text-diary{
-  color: #2a9c2b !important;
+  color: #4e73df !important;
 }
 .text-seizure{
-  color: #d6820e !important;
+  color: #e74a3b !important;
 }
 .text-medication{
-  color: #a89cc8 !important;
+  color: #d6ab3e !important;
 }
 .text-event{
-  color: #ea5151 !important;
+  color: #069b20 !important;
 }
 
 .text-primary {
@@ -10863,6 +10866,10 @@ a:focus {
 
 .border-left-warning {
   border-left: 0.25rem solid #f6c23e !important;
+}
+
+.border-left-diary {
+  border-left: 0.25rem solid #d6ab3e !important;
 }
 
 .border-left-danger {

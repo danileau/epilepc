@@ -7,7 +7,7 @@
             <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Anfälle - Übersicht</h1>
             <p class="mb-4">Untenstehend findest du alle deine erstellten Anfälle. <br />Zusätzlich kannst du auf das Pluszeichen <i class="fas fa-plus-circle"></i> klicken, um einen neuen Anfall zu erstellen</p>
 
-            <a href="{{ path('seizure_new') }}"><i class="fas fa-plus-circle fa-3x" style="color: #EEA034"></i></a>
+            <a href="{{ path('seizure_new') }}"><i class="fas fa-plus-circle fa-3x text-seizure" ></i></a>
         </div>
     </div>
 
@@ -47,4 +47,34 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('application/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('application/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('application/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('application/js/sb-admin-2.js') }}"></script>
+    <script src="{{ asset('application/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('application/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+{% endblock %}
+
+{% block zusStylesheets %}
+    <link href="{{ asset('application/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block jsCharts %}
+    // Call the dataTables jQuery plugin
+    $(document).ready(function() {
+        $('#dataTable').DataTable( {
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/German.json"
+            }
+        });
+    });
+
 {% endblock %}

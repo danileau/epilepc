@@ -7,7 +7,7 @@
             <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Ereignisübersicht</h1>
             <p class="mb-4">Untenstehend findest du alle deine erfassten Ereignisse. <br />Zusätzlich kannst du auf das Pluszeichen <i class="fas fa-plus-circle"></i> klicken, um ein neues Ereignis zu erstellen</p>
 
-            <a href="{{ path('event_new') }}"><i class="fas fa-plus-circle fa-3x" style="color: #ea5151"></i></a>
+            <a href="{{ path('event_new') }}"><i class="fas fa-plus-circle fa-3x text-event"></i></a>
         </div>
     </div>
 
@@ -32,7 +32,7 @@
                     {% for event in events %}
                         <tr>
                             <td><a href="{{ path('event_show', {'id': event.id}) }}" class="text-event"><i class="fas fa-fw fa-search"></i> {{ event.name }}</a></td>
-                            <td>{{ event.description|length > 50 ? event.description|slice(0, 50) ~ '...' : event.description}}"</td>
+                            <td>{{ event.description|length > 50 ? event.description|slice(0, 50) ~ '...' : event.description}}</td>
                             <td>{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y') : '' }}</td>
                             <td>{{ event.modifiedAt ? event.modifiedAt|date('d.m.Y H:i') : '' }} Uhr</td>
                             <td align="center">
@@ -49,5 +49,32 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('application/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('application/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('application/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('application/js/sb-admin-2.js') }}"></script>
+    <script src="{{ asset('application/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('application/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+{% endblock %}
+{% block zusStylesheets %}
+    <link href="{{ asset('application/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+{% endblock %}
+{% block jsCharts %}
+    // Call the dataTables jQuery plugin
+    $(document).ready(function() {
+    $('#dataTable').DataTable( {
+    "language": {
+    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/German.json"
+    }
+    });
+    });
+
 {% endblock %}
 

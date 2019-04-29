@@ -8,6 +8,7 @@
         <div class="mb-5">
             <div class="text-center">
                 <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2">Dashboard von {{ app.user.firstname }}</h1>
+
             </div>
         </div>
 
@@ -67,11 +68,11 @@
 
             <!-- Erfasste Medikationen -->
             <div class="col-xl-3 col-md-6 mb-2">
-                <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card border-left-diary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Erfasste Medikationen</div>
+                                <div class="text-xs font-weight-bold text-medication text-uppercase mb-1">Erfasste Medikationen</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ medication_count }}</div>
                             </div>
                             <div class="col-auto">
@@ -91,7 +92,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-secondary">Deine Übersicht vom 2019</h6>
+                        <h6 class="m-0 font-weight-bold text-secondary">Deine Übersicht vom letzten Jahr</h6>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
@@ -107,7 +108,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-secondary">Anzahl erfasste Daten</h6>
+                        <h6 class="m-0 font-weight-bold text-secondary">Wieviel hast du von was erfasst?</h6>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
@@ -230,6 +231,20 @@
     pointHitRadius: 10,
     pointBorderWidth: 2,
     data: {{ diaryentry_data|raw }}
+    },{
+    label: "Medikationen",
+    lineTension: 0.3,
+    backgroundColor: "rgba(246, 194, 62, 0.05)",
+    borderColor: "rgba(246, 194, 62, 1)",
+    pointRadius: 3,
+    pointBackgroundColor: "rgba(246, 194, 62, 1)",
+    pointBorderColor: "rgba(246, 194, 62, 1)",
+    pointHoverRadius: 3,
+    pointHoverBackgroundColor: "rgba(246, 194, 62, 1)",
+    pointHoverBorderColor: "rgba(246, 194, 62, 1)",
+    pointHitRadius: 10,
+    pointBorderWidth: 2,
+    data: {{ medication_data|raw }}
     }
     ],
     },
@@ -301,6 +316,42 @@
     }
     }
     }
+    });
+
+    // Set new default font family and font color to mimic Bootstrap's default styling
+    Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+    Chart.defaults.global.defaultFontColor = '#858796';
+
+    // Pie Chart Example
+    var ctx = document.getElementById("myPieChart");
+    var myPieChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+    labels: ["Tagebucheinträge", "Ereignisse", "Anfälle", "Medikationen"],
+    datasets: [{
+    data: [{{ diaryentry_count }}, {{ event_count }}, {{ seizure_count }}, {{ medication_count }}],
+    backgroundColor: ['#4e73df', '#1cc88a', '#e74a3b', '#f6c23e'],
+    hoverBackgroundColor: ['#2e59d9', '#17a673', '#be2617', '#dda20a'],
+    hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+    },
+    options: {
+    maintainAspectRatio: false,
+    tooltips: {
+    backgroundColor: "rgb(255,255,255)",
+    bodyFontColor: "#858796",
+    borderColor: '#dddfeb',
+    borderWidth: 1,
+    xPadding: 15,
+    yPadding: 15,
+    displayColors: false,
+    caretPadding: 10,
+    },
+    legend: {
+    display: false
+    },
+    cutoutPercentage: 80,
+    },
     });
 
 {% endblock %}

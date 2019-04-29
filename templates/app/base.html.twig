@@ -17,7 +17,8 @@
             <link href="{{ asset('application/css/sb-admin-2.css') }}" rel="stylesheet">
             <link rel="shortcut icon" type="image/png" href="{{ asset('landing/images/favicon.ico') }}"/>
             <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet">
-
+        {% endblock %}
+        {% block zusStylesheets %}
         {% endblock %}
 
     </head>
@@ -29,7 +30,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('app_dashboard') }}">
                 <img src="{{ asset('application/img/epilepc-head.png') }}" style="width: 90%"/>
 
             </a>
@@ -48,7 +49,7 @@
                 Deine Daten
             </div>
             <!-- Nav Item - Seizures Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item seizure">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeizures" aria-expanded="true" aria-controls="collapseSeizures">
                     <i class="fas fa-fw fa-bolt"></i>
                     <span>Anfälle</span>

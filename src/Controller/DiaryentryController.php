@@ -55,7 +55,7 @@ class DiaryentryController extends AbstractController
         }
 
         return $this->render('app/diaryentry/new.html.twig', [
-            'form' => $form->createView(),
+            'diaryForm' => $form->createView(),
         ]);
     }
 
@@ -89,8 +89,15 @@ class DiaryentryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
 
+            $diaryentry = $form->getData();
+            $diaryentry->setModifiedAt(new \DateTime());
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($diaryentry);
+            $entityManager->flush();
+
+
+            $this->addFlash('success', 'Tagebucheintrag erfolgreich bearbeitet!');
             return $this->redirectToRoute('diaryentry_index', [
                 'id' => $diaryentry->getId(),
             ]);
@@ -98,7 +105,7 @@ class DiaryentryController extends AbstractController
 
         return $this->render('app/diaryentry/edit.html.twig', [
             'diaryentry' => $diaryentry,
-            'form' => $form->createView(),
+            'diaryForm' => $form->createView(),
         ]);
     }
 

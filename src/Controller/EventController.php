@@ -77,8 +77,15 @@ class EventController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
 
+            $event = $form->getData();
+            date_default_timezone_set('Europe/Zurich');
+            $event->setModifiedAt(new \DateTime("now"));
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($event);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Ereignis erfolgreich bearbeitet!');
             return $this->redirectToRoute('event_index', [
                 'id' => $event->getId(),
             ]);

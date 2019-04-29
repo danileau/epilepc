@@ -20,6 +20,10 @@ table.dataTable.nowrap td {
   white-space: nowrap;
 }
 
+div.dataTables_wrapper dt-bootstrap4 no-footer{
+  width: 99%;
+}
+
 div.dataTables_wrapper div.dataTables_length label {
   font-weight: normal;
   text-align: left;

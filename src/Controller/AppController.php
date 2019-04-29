@@ -55,10 +55,21 @@ class AppController extends BaseController
         $diaryDiagramCount = array_reverse($diaryDiagramCount);
         $diaryValueJSON = json_encode($diaryDiagramCount);
 
+        /**
+         * Medikamentendaten für die Diagramme aufbereiten
+         */
+        $medication_data = $medicationRepository->getDiagramMedicationData($user);
+        foreach ($medication_data as $key => $value) {
+            $medicationDiagramCount[] = $value;
+        }
+        $medicationDiagramCount = array_reverse($medicationDiagramCount);
+        $medicationValueJSON = json_encode($medicationDiagramCount);
+
 
 
         return $this->render('app/dashboard.html.twig', [
             'medication_count' => $medicationRepository->countFindAllFromUser($user),
+            'medication_data' => $medicationValueJSON,
             'seizure_count' => $seizureRepository->countFindAllFromUser($user),
             'seizure_month' => $seizureMonthJSON,
             'seizure_data' => $seizureValueJSON,

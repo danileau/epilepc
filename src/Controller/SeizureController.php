@@ -86,12 +86,15 @@ class SeizureController extends AbstractController
      * @Route("/{id}/edit", name="seizure_edit", methods={"GET","POST"})
      * @IsGranted("MANAGE", subject="seizure")
      */
-    public function edit(Request $request, Seizure $seizure, EntityManagerInterface $em): Response
+    public function edit(Request $request, Seizure $seizure): Response
     {
         $form = $this->createForm(SeizureFormType::class, $seizure);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $seizure = $form->getData();
+            $seizure->setModifiedAt(new \DateTime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($seizure);
             $entityManager->flush();
