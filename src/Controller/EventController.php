@@ -31,23 +31,29 @@ class EventController extends AbstractController
     /**
      * @Route("/new", name="event_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UserInterface $user): Response
     {
-        $event = new Event();
-        $form = $this->createForm(EventType::class, $event);
+        $form = $this->createForm(EventType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var Event $event */
+            $event = $form->getData();
+
+            $event->setCreatedAt(new \DateTime());
+            $event->setModifiedAt(new \DateTime());
+            $event->setUser($user);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($event);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Ereignis erfolgreich erstellt!');
             return $this->redirectToRoute('event_index');
         }
 
         return $this->render('app/event/new.html.twig', [
-            'event' => $event,
-            'user' => $this->getUser(),
             'eventForm' => $form->createView(),
         ]);
     }

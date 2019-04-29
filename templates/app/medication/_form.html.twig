@@ -1,7 +1,11 @@
 {{ form_start(medicationForm) }}
     {{ form_errors(medicationForm) }}
     {{ form_row(medicationForm.name, {'label': 'Medikationsname'}) }}
-    {{ form_row(medicationForm.description, {'label': 'Beschreibung'}) }}
+    {{ form_row(medicationForm.description, {'label': 'Beschreibung',
+        'attr': {
+            'rows': '10'
+        }})
+    }}
     {{ form_row(medicationForm.dosage, {'label': 'Dosierung'}) }}
     {{ form_row(medicationForm.date_from, {'label': 'Einnahme Von:'}) }}
     {{ form_row(medicationForm.date_to, {'label': 'Einnahme bis:'}) }}

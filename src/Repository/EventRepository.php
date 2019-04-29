@@ -40,4 +40,43 @@ class EventRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
- }
+    public function getDiagramEventData($id){
+        $month = $this->getEventLastYearJSON();
+        foreach ($month as $key => $value) {
+            $data[$value] = $this->getEventCountForMonth($id, $value);
+        }
+        return $data;
+    }
+
+    public function getEventLastYearJSON(){
+        $months[] = date("Y-m");
+        for ($i = 1; $i <= 12; $i++) {
+            $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+        }
+        return $months;
+    }
+
+
+    public function getEventCountForMonth($id, $month){
+        //Year: $date[0], Month: $date[1]
+        $date = explode('-', $month);
+
+        $startDate = date("Y-m-d", strtotime($date[0]."-".$date[1]."-1"));
+        $endDate = date("Y-m-t", strtotime($date[0]."-".$date[1]."-1"));
+        $now = new \DateTime($endDate);
+        $delay = new \DateTime($startDate);
+
+        return $this->createQueryBuilder('ed')
+            ->select('count(ed.id)')
+            ->where('ed.user = :val')
+            ->andWhere('ed.timestamp_when <= :now')
+            ->andWhere('ed.timestamp_when >= :delay')
+            ->setParameter('val', $id)
+            ->setParameter('now', $now)
+            ->setParameter('delay', $delay)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+
+}

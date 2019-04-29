@@ -18,12 +18,7 @@ class EventType extends AbstractType
             ->add('timestamp_when', DateTimeType::class, [
                 'widget' => 'single_text'
             ])
-            ->add('createdAt', DateTimeType::class, [
-                'widget' => 'single_text'
-            ])
-            ->add('modifiedAt', DateTimeType::class, [
-                'widget' => 'single_text'
-            ])
+
 
         ;
     }

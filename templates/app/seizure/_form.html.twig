@@ -1,7 +1,11 @@
 {{ form_start(seizureForm) }}
     {{ form_errors(seizureForm) }}
     {{ form_row(seizureForm.title, {'label': 'Anfallstitel'}) }}
-    {{ form_row(seizureForm.description, {'label': 'Beschreibung'}) }}
+    {{ form_row(seizureForm.description, {'label': 'Beschreibung',
+        'attr': {
+            'rows': '10'
+        }})
+    }}
     {{ form_row(seizureForm.timestamp_when, {'label': 'Anfallszeitpunkt'}) }}
     {{ form_row(seizureForm.seizuretype, {'label': 'Anfallstyp'}) }}
 <button class="btn btn-primary">{{ button_text }}</button>
