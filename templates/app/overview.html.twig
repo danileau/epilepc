@@ -81,7 +81,7 @@
                             <tbody>
                             {% for seizure in seizures %}
                                 <tr>
-                                    <td>{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
+                                    <td><span class="hidden">{{ seizure.timestampWhen ? seizure.timestampWhen|date('Y/m/d') : '' }}</span>{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
                                     <td>{{ seizure.title }}</td>
                                     <td>Anfall</td>
                                     <td align="center">
@@ -92,7 +92,7 @@
                             {% endfor %}
                             {% for event in events %}
                                 <tr>
-                                    <td>{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
+                                    <td><span class="hidden">{{ event.timestampWhen ? event.timestampWhen|date('Y/m/d') : '' }}</span>{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
                                     <td>{{ event.name }}</td>
                                     <td>Ereignis</td>
                                     <td align="center">
@@ -103,7 +103,7 @@
                             {% endfor %}
                             {% for medication in medications %}
                                 <tr>
-                                    <td>{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y H:i') : '' }} Uhr</td>
+                                    <td><span class="hidden">{{ medication.timestampPrescription ? medication.timestampPrescription|date('Y/m/d') : '' }}</span>{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y H:i') : '' }} Uhr</td>
                                     <td>{{ medication.name }}</td>
                                     <td>Medikation</td>
                                     <td align="center">
@@ -114,7 +114,7 @@
                             {% endfor %}
                             {% for diaryentry in diaryentrys %}
                                 <tr>
-                                    <td>{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
+                                    <td><span class="hidden">{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('Y/m/d') : '' }}</span>{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
                                     <td>{{ diaryentry.title }}</td>
                                     <td>Tagebucheintrag</td>
                                     <td align="center">
@@ -183,7 +183,7 @@
     return s.join(dec);
     }
 
-    // Area Chart Example
+    // Area Chart
     var ctx = document.getElementById("myAreaChart");
     var myLineChart = new Chart(ctx, {
     type: 'line',
@@ -322,7 +322,7 @@
     Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = '#858796';
 
-    // Pie Chart Example
+    // Pie Chart
     var ctx = document.getElementById("myPieChart");
     var myPieChart = new Chart(ctx, {
     type: 'doughnut',
@@ -330,27 +330,28 @@
     labels: ["Tagebucheinträge", "Ereignisse", "Anfälle", "Medikationen"],
     datasets: [{
     data: [{{ diaryentry_count }}, {{ event_count }}, {{ seizure_count }}, {{ medication_count }}],
-    backgroundColor: ['#4e73df', '#1cc88a', '#e74a3b', '#f6c23e'],
-    hoverBackgroundColor: ['#2e59d9', '#17a673', '#be2617', '#dda20a'],
-    hoverBorderColor: "rgba(234, 236, 244, 1)",
+        backgroundColor: ['#4e73df', '#1cc88a', '#e74a3b', '#f6c23e'],
+        hoverBackgroundColor: ['#2e59d9', '#17a673', '#be2617', '#dda20a'],
+        hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
     },
     options: {
-    maintainAspectRatio: false,
-    tooltips: {
-    backgroundColor: "rgb(255,255,255)",
-    bodyFontColor: "#858796",
-    borderColor: '#dddfeb',
-    borderWidth: 1,
-    xPadding: 15,
-    yPadding: 15,
-    displayColors: false,
-    caretPadding: 10,
+        maintainAspectRatio: false,
+        tooltips: {
+            backgroundColor: "rgb(255,255,255)",
+            bodyFontColor: "#858796",
+            borderColor: '#dddfeb',
+            borderWidth: 1,
+            xPadding: 15,
+            yPadding: 15,
+            displayColors: false,
+            caretPadding: 10,
+
     },
     legend: {
-    display: false
+        display: false
     },
-    cutoutPercentage: 80,
+    cutoutPercentage: 75,
     },
     });
 
@@ -359,7 +360,9 @@
         $('#dataTable').DataTable( {
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/German.json"
-            }
+            },
+            "order": [[ 0, "desc" ]]
+
         });
     });
 {% endblock %}

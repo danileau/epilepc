@@ -2,13 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\PasswordChangeType;
+use App\Form\ProfileFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @IsGranted("ROLE_USER")
@@ -19,10 +22,27 @@ class AccountController extends AbstractController
     /**
      * @Route("/app/account", name="app_account")
      */
-    public function index()
+    public function index(Request $request, UserInterface $user)
     {
+
+        $form = $this->createForm(ProfileFormType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var User $userForm */
+            $user = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Profil erfolgreich bearbeitet!');
+            return $this->redirectToRoute('app_account');
+        }
+
         return $this->render('app/account/profile.html.twig', [
-            'controller_name' => 'AccountController',
+            'user' => $user,
+            'profileForm' => $form->createView(),
         ]);
     }
 

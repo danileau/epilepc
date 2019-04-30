@@ -130,15 +130,37 @@
                         <h6 class="collapse-header">Benutzeraccount</h6>
                         <a class="collapse-item" href="{{ path('app_account') }}">Profil anzeigen</a>
                         <a class="collapse-item" href="{{ path('app_change_password') }}">Passwort ändern</a>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <b><a class="collapse-item" href="{{ path('admin_user_list') }}">Administratorenbereich</a></b>
-                        {% endif %}
                     </div>
                 </div>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    Administratorbereich
+                </div>
+                <!-- Nav Item - Diary Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="true" aria-controls="collapseAdmin">
+                        <i class="fas fa-fw fa-crown"></i>
+                        <span>Administratorbereich</span>
+                    </a>
+                    <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Administrator Funktionen</h6>
+                            <a class="collapse-item" href="{{ path('admin_user_list') }}">Benutzerverwaltung</a>
+                            <a class="collapse-item" href="{{ path('seizuretype_index') }}">Anfallstypen pflegen</a>
+                        </div>
+                    </div>
+                </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+            {% endif %}
+
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <li class="nav-item">
@@ -184,13 +206,6 @@
                                     <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Passwort ändern
                                 </a>
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#" data-toggle="modal">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Adminbereich
-                                    </a>
-                                {% endif %}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ path('app_logout') }}" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

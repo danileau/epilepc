@@ -1667,6 +1667,8 @@ pre code {
   }
 }
 
+.hidden{display:none}
+
 .table {
   width: 100%;
   margin-bottom: 1rem;
