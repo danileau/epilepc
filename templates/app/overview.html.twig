@@ -8,6 +8,19 @@
             <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2">Übersicht vom {{ date }}</h1>
         </div>
         <div class="mt-5 text-center">
+            <div class="col-lg-12">
+
+                <!-- Default Card Example -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        Information
+                    </div>
+                    <div class="card-body">
+                        In der Übersicht und im PDF werden die Tagebucheinträge nicht angezeigt
+                    </div>
+                </div>
+
+            </div>
             <button class="btn btn-primary mb-5"><a href="{{ path('app_overview_pdf') }}" target="_blank" style="color: white"><b>PDF generieren</b></a></button>
         </div>
     </div>
@@ -36,7 +49,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-secondary">Wieviel hast du von was erfasst?</h6>
+                    <h6 class="m-0 font-weight-bold text-secondary">Was wurde wie oft erfasst?</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -47,13 +60,13 @@
                 <span class="mr-2">
                   <i class="fas fa-circle text-danger"></i> Anfälle
                 </span>
-                        <span class="mr-2">
+                <span class="mr-2">
                   <i class="fas fa-circle text-success"></i> Ereignisse
                 </span>
-                        <span class="mr-2">
+               <!-- <span class="mr-2">
                   <i class="fas fa-circle text-primary"></i> Tagebucheinträge
-                </span>
-                        <span class="mr-2">
+                </span>-->
+                <span class="mr-2">
                   <i class="fas fa-circle text-warning"></i> Medikationen
                 </span>
                     </div>
@@ -66,7 +79,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-secondary">Erfasste Daten</h6>
+                    <h6 class="m-0 font-weight-bold text-secondary">Sämtliche erfassten Daten</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -114,7 +127,7 @@
                                     </td>
                                 </tr>
                             {% endfor %}
-                            {% for diaryentry in diaryentrys %}
+                           {#{% for diaryentry in diaryentrys %}
                                 <tr>
                                     <td><span class="hidden">{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('Y/m/d') : '' }}</span>{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
                                     <td>{{ diaryentry.title }}</td>
@@ -124,7 +137,7 @@
                                         <a href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}" class="text-diary"><i class="fas fa-fw fa-edit"></i></a>
                                     </td>
                                 </tr>
-                            {% endfor %}
+                            {% endfor %}#}
                             </tbody>
                         </table>
                     </div>
@@ -219,7 +232,8 @@
     pointHitRadius: 10,
     pointBorderWidth: 2,
     data: {{ event_data|raw }}
-    },{
+    },
+    /*{
     label: "Tagebucheinträge",
     lineTension: 0.3,
     backgroundColor: "rgba(78, 115, 223, 0.05)",
@@ -233,7 +247,8 @@
     pointHitRadius: 10,
     pointBorderWidth: 2,
     data: {{ diaryentry_data|raw }}
-    },{
+    },*/
+    {
     label: "Medikationen",
     lineTension: 0.3,
     backgroundColor: "rgba(246, 194, 62, 0.05)",
@@ -329,12 +344,18 @@
     var myPieChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-    labels: ["Tagebucheinträge", "Ereignisse", "Anfälle", "Medikationen"],
+    //labels: ["Tagebucheinträge", "Ereignisse", "Anfälle", "Medikationen"],
+    labels: ["Ereignisse", "Anfälle", "Medikationen"],
     datasets: [{
-    data: [{{ diaryentry_count }}, {{ event_count }}, {{ seizure_count }}, {{ medication_count }}],
+    /* data: [{{ diaryentry_count }}, {{ event_count }}, {{ seizure_count }}, {{ medication_count }}],
         backgroundColor: ['#4e73df', '#1cc88a', '#e74a3b', '#f6c23e'],
         hoverBackgroundColor: ['#2e59d9', '#17a673', '#be2617', '#dda20a'],
         hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],*/
+    data: [{{ event_count }}, {{ seizure_count }}, {{ medication_count }}],
+    backgroundColor: ['#1cc88a', '#e74a3b', '#f6c23e'],
+    hoverBackgroundColor: ['#17a673', '#be2617', '#dda20a'],
+    hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
     },
     options: {

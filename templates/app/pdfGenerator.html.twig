@@ -90,7 +90,7 @@
         <!--Add HTML content you want to convert to PDF-->
         <div id="content">
             <div class="print-wrap" >
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('app_dashboard') }}">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                     <img src="{{ asset('application/img/epilepc-color.png') }}" style="width: 500px  "/>
                 </a>
                 <!-- Page Heading -->
@@ -99,7 +99,7 @@
                         <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2">PDF-Übersicht vom {{ date }} - {{ app.user.firstname }} {{ app.user.lastname }}</h1>
                     </div>
                 </div>
-                <div class="mt-2 text-center">
+                <div class="mt-2 text-center hidden">
                     <button id="closeWindow" class="btn btn-primary mb-5"><b>Fenster schliessen</b></button>
                 </div>
 
@@ -131,7 +131,7 @@
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-secondary">Wieviel hast du von was erfasst?</h6>
+                                <h6 class="m-0 font-weight-bold text-secondary">Was wurde wieviel erfasst?</h6>
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
