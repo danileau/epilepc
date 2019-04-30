@@ -1,7 +1,4 @@
 {
-    "composer/ca-bundle": {
-        "version": "1.1.4"
-    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -114,6 +111,21 @@
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
+    "knplabs/knp-snappy": {
+        "version": "v1.1.0"
+    },
+    "knplabs/knp-snappy-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "c81bdcf4a9d4e7b1959071457f9608631865d381"
+        },
+        "files": [
+            "./config/packages/knp_snappy.yaml"
+        ]
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },
@@ -163,18 +175,6 @@
         },
         "files": [
             "./config/packages/sensio_framework_extra.yaml"
-        ]
-    },
-    "sensiolabs/security-checker": {
-        "version": "4.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "4.0",
-            "ref": "05daf6b214e54aed4089f3480f944a67ac3a7889"
-        },
-        "files": [
-            "./config/packages/security_checker.yaml"
         ]
     },
     "symfony/apache-pack": {

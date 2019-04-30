@@ -1669,6 +1669,10 @@ pre code {
 
 .hidden{display:none}
 
+div#content{
+  background-color: #ffffff;
+}
+
 .table {
   width: 100%;
   margin-bottom: 1rem;

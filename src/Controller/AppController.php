@@ -8,6 +8,11 @@ use App\Repository\DiaryentryRepository;
 use App\Repository\EventRepository;
 use App\Repository\MedicationRepository;
 use App\Repository\SeizureRepository;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Knp\Bundle\SnappyBundle\Snappy\Response\SnappyResponse;
+use Knp\Snappy\Pdf;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -144,6 +149,7 @@ class AppController extends BaseController
         $medicationDiagramCount = array_reverse($medicationDiagramCount);
         $medicationValueJSON = json_encode($medicationDiagramCount);
         $medications = $medicationRepository->findAllFromUser($user);
+
         return $this->render('app/overview.html.twig', [
             'medication_count' => $medicationRepository->countFindAllFromUser($user),
             'medication_data' => $medicationValueJSON,
@@ -162,7 +168,84 @@ class AppController extends BaseController
         ]);
     }
 
+    /**
+     * @Route("/app/overview/pdf", name="app_overview_pdf")
+     */
+    public function pdfAction(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user, Pdf $snappy)
+    {
+        /**
+         * Anfallsdaten für die Übersicht aufbereiten
+         */
+        $seizure_data = $seizureRepository->getDiagramSeizureData($user);
+        foreach ($seizure_data as $key => $value) {
+            $seizureDiagramMonth[] = strftime("%B %Y", strtotime($key."-01"));
+            $seizureDiagramCount[] = $value;
+        }
+        $seizureDiagramMonth = array_reverse($seizureDiagramMonth);
+        $seizureDiagramCount = array_reverse($seizureDiagramCount);
+        $seizureMonthJSON = json_encode($seizureDiagramMonth);
+        $seizureValueJSON = json_encode($seizureDiagramCount);
+        $seizures = $seizureRepository->findAllFromUser($user);
 
+        /**
+         * Ereignisdaten für die Diagramme aufbereiten
+         */
+        $event_data = $eventRepository->getDiagramEventData($user);
+        foreach ($event_data as $key => $value) {
+            $eventDiagramCount[] = $value;
+        }
+        $eventDiagramCount = array_reverse($eventDiagramCount);
+        $eventValueJSON = json_encode($eventDiagramCount);
+        $events = $eventRepository->findAllFromUser($user);
+
+        /**
+         * Tagebuchdaten für die Diagramme aufbereiten
+         */
+        $diary_data = $diaryentryRepository->getDiagramDiaryData($user);
+        foreach ($diary_data as $key => $value) {
+            $diaryDiagramCount[] = $value;
+        }
+        $diaryDiagramCount = array_reverse($diaryDiagramCount);
+        $diaryValueJSON = json_encode($diaryDiagramCount);
+        $diaryentrys = $diaryentryRepository->findAllFromUser($user);
+
+        /**
+         * Medikamentendaten für die Diagramme aufbereiten
+         */
+        $medication_data = $medicationRepository->getDiagramMedicationData($user);
+        foreach ($medication_data as $key => $value) {
+            $medicationDiagramCount[] = $value;
+        }
+        $medicationDiagramCount = array_reverse($medicationDiagramCount);
+        $medicationValueJSON = json_encode($medicationDiagramCount);
+        $medications = $medicationRepository->findAllFromUser($user);
+
+        return $this->render('app/pdfGenerator.html.twig', [
+            'medication_count' => $medicationRepository->countFindAllFromUser($user),
+            'medication_data' => $medicationValueJSON,
+            'medications' => $medications,
+            'seizure_count' => $seizureRepository->countFindAllFromUser($user),
+            'seizure_month' => $seizureMonthJSON,
+            'seizure_data' => $seizureValueJSON,
+            'seizures' => $seizures,
+            'diaryentry_count' => $diaryentryRepository->countFindAllFromUser($user),
+            'diaryentry_data' => $diaryValueJSON,
+            'diaryentrys' => $diaryentrys,
+            'event_count' => $eventRepository->countFindAllFromUser($user),
+            'event_data' => $eventValueJSON,
+            'events' => $events,
+            'date' => date("d.m.Y")
+        ]);
+
+
+/*        $pdfContent = $snappy->getOutputFromHtml($html);
+        $response=new Response($pdfContent);
+        $response->headers->set('Content-type', 'application/pdf');
+        $response->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', "epilepc-export-".date('d-m-Y').".pdf"));
+        $response->headers->set('Content-Transfer-Encoding', 'binary');
+        return $response;
+*/
+    }
 
 
 
