@@ -65,6 +65,9 @@ class SeizureRepository extends ServiceEntityRepository
         $startDate = date("Y-m-d", strtotime($date[0]."-".$date[1]."-1"));
         $endDate = date("Y-m-t", strtotime($date[0]."-".$date[1]."-1"));
         $now = new \DateTime($endDate);
+        // Jetzt + 1 Tag um einen gerade eben geschriebenen Eintrag, während demselben Tag auf dem Diagramm anzuzeigen;
+        // "# <= :now" funktioniert am gleichen Tag nicht wie erwartet
+        $now->modify('+1 day');
         $delay = new \DateTime($startDate);
 
         return $this->createQueryBuilder('sd')

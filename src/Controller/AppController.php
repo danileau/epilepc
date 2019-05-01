@@ -57,6 +57,7 @@ class AppController extends BaseController
         foreach ($diary_data as $key => $value) {
             $diaryDiagramCount[] = $value;
         }
+
         $diaryDiagramCount = array_reverse($diaryDiagramCount);
         $diaryValueJSON = json_encode($diaryDiagramCount);
 

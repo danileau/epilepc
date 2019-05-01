@@ -50,6 +50,9 @@ class DiaryentryRepository extends ServiceEntityRepository
         return $data;
     }
 
+    /**
+     * @return array von allen Tagebucheinträgen vom letzten Jahr im JSON-Format
+     */
     public function getDiaryLastYearJSON(){
         $months[] = date("Y-m");
         for ($i = 1; $i <= 12; $i++) {
@@ -58,14 +61,23 @@ class DiaryentryRepository extends ServiceEntityRepository
         return $months;
     }
 
-
+    /**
+     * @param $id
+     * @param $month
+     * @return doctrine-query mit der Anzahl Tagebucheinträgen für den abgefragten Monat
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getDiaryCountForMonth($id, $month){
         //Year: $date[0], Month: $date[1]
         $date = explode('-', $month);
 
-        $startDate = date("Y-m-d", strtotime($date[0]."-".$date[1]."-1"));
+        $startDate = date("Y-m-d H:i:s ", strtotime($date[0]."-".$date[1]."-1"));
         $endDate = date("Y-m-t", strtotime($date[0]."-".$date[1]."-1"));
         $now = new \DateTime($endDate);
+        // Jetzt + 1 Tag um einen gerade eben geschriebenen Eintrag, während demselben Tag auf dem Diagramm anzuzeigen;
+        // "# <= :now" funktioniert am gleichen Tag nicht wie erwartet
+        $now->modify('+1 day');
+
         $delay = new \DateTime($startDate);
 
         return $this->createQueryBuilder('dd')
