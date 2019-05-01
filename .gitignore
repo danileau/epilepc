@@ -13,3 +13,6 @@
 ###< symfony/web-server-bundle ###
 /.idea/workspace.xml
 
+/.Defuse.key
+/.Halite.key
+
