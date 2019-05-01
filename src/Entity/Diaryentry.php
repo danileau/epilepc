@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Ambta\DoctrineEncryptBundle\Configuration\Encrypted;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,11 +19,13 @@ class Diaryentry
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Encrypted
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Encrypted
      */
     private $content;
 

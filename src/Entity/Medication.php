@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Ambta\DoctrineEncryptBundle\Configuration\Encrypted;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,16 +19,19 @@ class Medication
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Encrypted
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Encrypted
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Encrypted
      */
     private $dosage;
 

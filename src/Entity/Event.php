@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Ambta\DoctrineEncryptBundle\Configuration\Encrypted;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,11 +21,13 @@ class Event
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Encrypted
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Encrypted
      */
     private $description;
 

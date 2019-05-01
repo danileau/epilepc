@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Ambta\DoctrineEncryptBundle\Configuration\Encrypted;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,6 +22,7 @@ class Seizure
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Encrypted
      */
     private $description;
 
@@ -50,6 +52,7 @@ class Seizure
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Titel darf nicht leer sein")
+     * @Encrypted
      */
     private $title;
 

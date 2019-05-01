@@ -1,4 +1,7 @@
 {
+    "defuse/php-encryption": {
+        "version": "v2.2.1"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -126,6 +129,9 @@
             "./config/packages/knp_snappy.yaml"
         ]
     },
+    "michaeldegroot/doctrine-encrypt-bundle": {
+        "version": "4.0.1"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },
@@ -143,6 +149,18 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.2.2"
+    },
+    "paragonie/constant_time_encoding": {
+        "version": "v2.2.3"
+    },
+    "paragonie/halite": {
+        "version": "v4.5.3"
+    },
+    "paragonie/hidden-string": {
+        "version": "v1.0.0"
+    },
+    "paragonie/sodium_compat": {
+        "version": "v1.9.1"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
