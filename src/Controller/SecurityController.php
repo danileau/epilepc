@@ -37,7 +37,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator)
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator, \Swift_Mailer $mailer)
     {
 
         $form = $this->createForm(UserRegistrationFormType::class);
@@ -64,6 +64,22 @@ class SecurityController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+
+            $message = (new \Swift_Message('Ihre Registrierung bei epilepc'))
+                ->setFrom('no-reply@epilepc.ch')
+                ->setTo($user->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'mail/register.mail.html.twig',
+                        [
+                            'name' => $user->getFirstname(),
+                        ]
+                    ),
+                    'text/html'
+                );
+
+            $mailer->send($message);
+            $this->addFlash('success', 'Herzliche Gratulation! Ihre Registrierung ist abgeschlossen!');
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
