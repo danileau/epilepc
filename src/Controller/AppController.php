@@ -238,14 +238,6 @@ class AppController extends BaseController
             'date' => date("d.m.Y")
         ]);
 
-
-/*        $pdfContent = $snappy->getOutputFromHtml($html);
-        $response=new Response($pdfContent);
-        $response->headers->set('Content-type', 'application/pdf');
-        $response->headers->set('Content-Disposition', sprintf('attachment; filename="%s"', "epilepc-export-".date('d-m-Y').".pdf"));
-        $response->headers->set('Content-Transfer-Encoding', 'binary');
-        return $response;
-*/
     }
 
 

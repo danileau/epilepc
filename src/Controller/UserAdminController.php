@@ -19,9 +19,12 @@ class UserAdminController extends AbstractController
     /**
      * @Route("/admin")
      */
-    public function index(){
-
+    public function index(UserRepository $userRepository){
+        return $this->render('user_admin/index.html.twig', [
+            'users' => $userRepository->findAll()
+        ]);
     }
+
     /**
      * @Route("/admin/user/new")
      */
@@ -45,21 +48,49 @@ class UserAdminController extends AbstractController
 
             $this->addFlash('success', "Neuer Benutzer erstellt");
 
-            return $this->redirectToRoute('admin_user_list');
+            return $this->redirectToRoute('app_useradmin_index');
         }
 
         return $this->render('user_admin/new.html.twig', [
             'userForm' => $form->createView(),
         ]);
     }
-    /**
-     * @Route("/admin/user/list", name="admin_user_list")
-     */
-    public function list(UserRepository $userRepository){
-        $users = $userRepository->findAll();
 
-        return $this->render('user_admin/list.html.twig', [
-            'users' => $users
+    /**
+     * @Route("/admin/user/{id}", name="admin_user_show")
+     */
+    public function show(User $user){
+        return $this->render('user_admin/show.html.twig', [
+            'user' => $user,
         ]);
+
+    }
+
+    /**
+     * @Route("/admin/user/{id}/makeAdmin", name="admin_user_make_admin")
+     */
+    public function makeAdmin(Request $request, UserRepository $userRepository, User $user){
+        //$userRepository->makeAdmin($user);
+        $this->addFlash('success', "Adminrechte wurden vergeben");
+        $roles = ["ROLE_ADMIN"];
+        $user->setRoles($roles);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_useradmin_index');
+    }
+
+    /**
+     * @Route("/admin/user/{id}/removeAdmin", name="admin_user_remove_admin")
+     */
+    public function removeAdmin(Request $request, UserRepository $userRepository, User $user){
+        //$userRepository->makeAdmin($user);
+        $this->addFlash('success', "Adminrechte wurden entfernt");
+        $roles = [];
+        $user->setRoles($roles);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_useradmin_index');
     }
 }

@@ -55,14 +55,15 @@
                         </div>
                         <hr class="mb-4">
                         <div class="text-center">
+
+                            {% if app.user.roles.0 == 'ROLE_ADMIN' %}
                             <div class="custom-control custom-checkbox">
-                                {% if app.user.roles.0 == 'ROLE_ADMIN' %}
-                                    <input type="checkbox" class="custom-control-input" id="isAdmin" checked disabled>
-                                {% else %}
-                                    <input type="checkbox" class="custom-control-input" id="isAdmin" disabled>
-                                {% endif %}
                                 <label class="custom-control-label" for="isAdmin">User ist Administrator</label>
+                                <input type="checkbox" class="custom-control-input" id="isAdmin" checked disabled>
                             </div>
+                            {% endif %}
+
+
                             <div class="custom-control custom-checkbox">
                                 {% if app.user.deactivated == true %}
                                     <input type="checkbox" class="custom-control-input" id="isDeactivated" checked disabled>

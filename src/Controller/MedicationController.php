@@ -15,6 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/app/medication")
+ * @IsGranted("ROLE_USER")
  */
 class MedicationController extends AbstractController
 {

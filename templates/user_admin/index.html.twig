@@ -1,0 +1,91 @@
+{% extends 'app/base.html.twig' %}
+
+{% block body %}
+    <!-- Page Heading -->
+    <div class="mb-5">
+        <div class="text-center">
+            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Benutzerübersicht</h1>
+            <p class="mb-4">Untenstehend eine Auflistung aller registrierten Benutzer.</p>
+        </div>
+    </div>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-event">Vorhandene Benutzer</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" data-sort-name="date" data-sort-order="asc">
+                    <thead>
+                    <tr>
+                        <th>Vorname</th>
+                        <th>Nachname</th>
+                        <th>Email</th>
+                        <th>Deaktiviert</th>
+                        <th>Rolle</th>
+                        <th>Registrierungsdatum</th>
+                        <th>Aktionen</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td><a href="{{ path('admin_user_show', {'id': user.id}) }}" class="text-event"><i class="fas fa-fw fa-search"></i> {{ user.firstname }}</a></td>
+                            <td>{{ user.lastname }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{% if user.deactivated == 0 %}Nicht deaktiviert{% else %}Deaktiviert{% endif %}</td>
+                            <td>
+                                {% if user.roles.0 == 'ROLE_ADMIN' %}
+                                    <p class="text-danger">Administrator</p>
+                                {% else %}
+                                    <p class="text-success">Benutzer</p>
+                                {% endif %}
+                            </td>
+                            <td>{{ user.agreedTermsAt|date('d.m.Y') }} um {{ user.agreedTermsAt|date('H:i') }} Uhr</td>
+                            <td>
+                                {% if user.roles.0 != 'ROLE_ADMIN' %}
+                                    <a class="text-danger" href="{{ path('admin_user_make_admin', {'id': user.id}) }}">Adminrechte vergeben</a> </td>
+                                {% else %}
+                                    <a class="text-success" href="{{ path('admin_user_remove_admin', {'id': user.id}) }}">Adminrechte entfernen</a> </td>
+                                {% endif %}
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">Keine Benutzer vorhanden</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('application/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('application/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('application/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('application/js/sb-admin-2.js') }}"></script>
+    <script src="{{ asset('application/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('application/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+{% endblock %}
+{% block zusStylesheets %}
+    <link href="{{ asset('application/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+{% endblock %}
+{% block jsCharts %}
+    // Call the dataTables jQuery plugin
+    $(document).ready(function() {
+        $('#dataTable').DataTable( {
+            "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/German.json"
+            }
+        });
+    });
+
+{% endblock %}
+
