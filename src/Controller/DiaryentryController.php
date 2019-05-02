@@ -27,8 +27,6 @@ class DiaryentryController extends AbstractController
         ]);
     }
 
-    // Todo: Felder encrypten beim schreiben und Auslesen
-
     /**
      * @Route("/new", name="diaryentry_new", methods={"GET","POST"})
      */

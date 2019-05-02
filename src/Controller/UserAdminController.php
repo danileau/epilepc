@@ -69,7 +69,7 @@ class UserAdminController extends AbstractController
     /**
      * @Route("/admin/user/{id}/makeAdmin", name="admin_user_make_admin")
      */
-    public function makeAdmin(Request $request, UserRepository $userRepository, User $user){
+    public function makeAdmin(Request $request, User $user){
         //$userRepository->makeAdmin($user);
         $this->addFlash('success', "Adminrechte wurden vergeben");
         $roles = ["ROLE_ADMIN"];

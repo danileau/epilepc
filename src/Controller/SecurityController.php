@@ -3,18 +3,23 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\PasswordForgotType;
 use App\Form\UserRegistrationFormType;
+use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+
     /**
      * @Route("/login", name="app_login")
      */
@@ -98,16 +103,6 @@ class SecurityController extends AbstractController
         return $this->render('app/authentication/register.html.twig', [
             'registrationForm' => $form->createView()
         ]);
-    }
-
-    /**
-     * @Route("/password-forgot", name="app_forgot")
-     */
-    public function forgot(){
-        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return $this->redirectToRoute('app_dashboard');
-        }
-        return $this->render('app/authentication/forgot.html.twig', []);
     }
 
     /**
