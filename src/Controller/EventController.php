@@ -62,6 +62,7 @@ class EventController extends AbstractController
      */
     public function show(Event $event): Response
     {
+        dd($event->getSeizure());
         return $this->render('app/event/show.html.twig', [
             'event' => $event,
         ]);

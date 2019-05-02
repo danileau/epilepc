@@ -32,7 +32,6 @@ class SeizureController extends AbstractController
 
     }
 
-    // Todo: Felder encrypten beim schreiben und Auslesen
 
     /**
      * @Route("/new", name="seizure_new", methods={"GET","POST"})
@@ -70,7 +69,6 @@ class SeizureController extends AbstractController
      */
     // Die IsGranted "MANAGE" Annotation prüft den Security Voter und führt Ihn aus. Dort wird geprüft ob die User_id
     // vom DB-Objekt, mit dem aktuellen User übereinstimmt.
-    // Todo: Mit Forms implementieren, inkl _form_show File
     public function show(Request $request, Seizure $seizure): Response
     {
         $form = $this->createForm(SeizureFormType::class, $seizure);

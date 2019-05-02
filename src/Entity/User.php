@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Ambta\DoctrineEncryptBundle\Configuration\Encrypted;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -48,12 +49,14 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("main")
+     * @Encrypted
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups("main")
+     * @Encrypted
      */
     private $lastname;
 

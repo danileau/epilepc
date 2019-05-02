@@ -101,6 +101,9 @@ class Seizure
         return $this;
     }
 
+    public function __toString(){
+        return $this->getTitle();
+    }
 
 
     public function getModifiedAt(): ?\DateTimeInterface

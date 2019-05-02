@@ -41,7 +41,8 @@ class EventFixtures extends BaseFixtures implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            UserFixtures::class
+            UserFixtures::class,
+            SeizureFixtures::class
         ];
     }
 }

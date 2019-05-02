@@ -10,8 +10,6 @@ use App\Repository\MedicationRepository;
 use App\Repository\SeizureRepository;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
-use Knp\Bundle\SnappyBundle\Snappy\Response\SnappyResponse;
 use Knp\Snappy\Pdf;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
