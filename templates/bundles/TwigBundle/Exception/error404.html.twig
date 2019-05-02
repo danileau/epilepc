@@ -1,18 +1,122 @@
 {# templates/bundles/TwigBundle/Exception/error404.html.twig #}
-{% extends 'app/base.html.twig' %}
+<!DOCTYPE html>
+<html>
+<head>
 
-{% block body %}
-    <!-- Begin Page Content -->
-    <div class="container-fluid">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <!-- 404 Error Text -->
-        <div class="text-center mt-6">
-            <div class="error mx-auto" data-text="404">404</div>
-            <p class="lead text-gray-800 mb-5">Seite nicht gefunden</p>
-            <p class="text-gray-500 mb-0">Scheint als hättest du einen Fehler in der Matrix gefunden...</p>
-            <a href="{{ path('app_dashboard') }}">&larr; Zurück zum Dashboard</a>
+    <title>{% block title %}Epilepc - Dashboard{% endblock %}</title>
+    {% block stylesheets %}
+        <!-- Custom fonts for this template-->
+        <link href="{{ asset('application/vendor/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <!-- Custom styles for this template-->
+        <link href="{{ asset('application/css/sb-admin-2.css') }}" rel="stylesheet">
+        <link rel="shortcut icon" type="image/png" href="{{ asset('landing/images/favicon.ico') }}"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet">
+    {% endblock %}
+    {% block zusStylesheets %}
+    {% endblock %}
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- 404 Error Text -->
+                    <div class="text-center mt-6">
+                        <div class="error mx-auto" data-text="404">404</div>
+                        <p class="lead text-gray-800 mb-5">Seite nicht gefunden</p>
+                        <p class="text-gray-500 mb-0">Scheint als hättest du einen Fehler in der Matrix gefunden...</p>
+                        <a href="{{ path('app_dashboard') }}">&larr; Zurück</a>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End Page Content -->
         </div>
+        <!-- End of Main Content -->
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>&copy; 2019 - epilepc</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
 
     </div>
-    <!-- /.container-fluid -->
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Fertig?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Wähle "Ausloggen" aus, wenn du bereit bist die aktuelle Sitzung zu beenden.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Abbrechen</button>
+                <a class="btn btn-primary" href="{{ path('app_logout') }}">Ausloggen</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% block javascripts %}
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('application/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('application/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('application/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('application/js/sb-admin-2.js') }}"></script>
+    <script type="text/javascript" src="https://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
 {% endblock %}
+
+</body>
+
+</html>
