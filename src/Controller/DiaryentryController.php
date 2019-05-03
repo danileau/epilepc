@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Diaryentry;
 use App\Form\DiaryentryType;
 use App\Repository\DiaryentryRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @Route("/app/diaryentry")
+ * @IsGranted("ROLE_USER")
  */
 class DiaryentryController extends AbstractController
 {
@@ -59,6 +61,7 @@ class DiaryentryController extends AbstractController
 
     /**
      * @Route("/{id}", name="diaryentry_show", methods={"GET"})
+     * @IsGranted("MANAGE", subject="diaryentry")
      */
     public function show(Diaryentry $diaryentry): Response
     {
@@ -75,6 +78,7 @@ class DiaryentryController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="diaryentry_edit", methods={"GET","POST"})
+     * @IsGranted("MANAGE", subject="diaryentry")
      */
     public function edit(Request $request, Diaryentry $diaryentry): Response
     {
@@ -109,6 +113,7 @@ class DiaryentryController extends AbstractController
 
     /**
      * @Route("/{id}", name="diaryentry_delete", methods={"DELETE"})
+     * @IsGranted("MANAGE", subject="diaryentry")
      */
     public function delete(Request $request, Diaryentry $diaryentry): Response
     {

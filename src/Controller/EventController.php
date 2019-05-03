@@ -59,6 +59,7 @@ class EventController extends AbstractController
 
     /**
      * @Route("/{id}", name="event_show", methods={"GET"})
+     * @IsGranted("MANAGE", subject="event")
      */
     public function show(Event $event): Response
     {
@@ -69,6 +70,7 @@ class EventController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="event_edit", methods={"GET","POST"})
+     * @IsGranted("MANAGE", subject="event")
      */
     public function edit(Request $request, Event $event): Response
     {
@@ -100,6 +102,7 @@ class EventController extends AbstractController
 
     /**
      * @Route("/{id}", name="event_delete", methods={"DELETE"})
+     * @IsGranted("MANAGE", subject="event")
      */
     public function delete(Request $request, Event $event): Response
     {
