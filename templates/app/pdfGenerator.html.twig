@@ -145,9 +145,9 @@
                                     <span class="mr-2">
                                   <i class="fas fa-circle text-success"></i> Ereignisse
                                 </span>
-                                    <span class="mr-2">
+                                <!--<span class="mr-2">
                                   <i class="fas fa-circle text-primary"></i> Tagebucheinträge
-                                </span>
+                                </span>-->
                                     <span class="mr-2">
                                   <i class="fas fa-circle text-warning"></i> Medikationen
                                 </span>
@@ -180,7 +180,7 @@
                                     {% for seizure in seizures %}
                                         <tr>
                                             <td><span class="hidden">{{ seizure.timestampWhen ? seizure.timestampWhen|date('Y/m/d') : '' }}</span>{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
-                                            <td>{{ seizure.title}}</td>
+                                            <td>{{ seizure.title}} - {{ seizure.seizuretype }}</td>
                                             <td>Anfall</td>
                                         </tr>
                                     {% endfor %}
@@ -198,13 +198,13 @@
                                             <td>Medikation</td>
                                         </tr>
                                     {% endfor %}
-                                    {% for diaryentry in diaryentrys %}
+                                    {#{% for diaryentry in diaryentrys %}
                                         <tr>
                                             <td><span class="hidden">{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('Y/m/d') : '' }}</span>{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
                                             <td>{{ diaryentry.title }}</td>
                                             <td>Tagebucheintrag</td>
                                         </tr>
-                                    {% endfor %}
+                                    {% endfor %}#}
                                     </tbody>
                                 </table>
                             </div>
@@ -298,7 +298,8 @@
                     pointHitRadius: 10,
                     pointBorderWidth: 2,
                     data: {{ event_data|raw }}
-                },{
+                },
+                /*{
                     label: "Tagebucheinträge",
                     lineTension: 0.3,
                     backgroundColor: "rgba(78, 115, 223, 0.05)",
@@ -311,8 +312,9 @@
                     pointHoverBorderColor: "rgba(78, 115, 223, 1)",
                     pointHitRadius: 10,
                     pointBorderWidth: 2,
-                    data: {{ diaryentry_data|raw }}
-                },{
+                    data:  diaryentry_data|raw
+                },*/
+                {
                     label: "Medikationen",
                     lineTension: 0.3,
                     backgroundColor: "rgba(246, 194, 62, 0.05)",
@@ -409,11 +411,11 @@
         var myPieChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ["Tagebucheinträge", "Ereignisse", "Anfälle", "Medikationen"],
+                labels: ["Ereignisse", "Anfälle", "Medikationen"],
                 datasets: [{
-                    data: [{{ diaryentry_count }}, {{ event_count }}, {{ seizure_count }}, {{ medication_count }}],
-                    backgroundColor: ['#4e73df', '#1cc88a', '#e74a3b', '#f6c23e'],
-                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#be2617', '#dda20a'],
+                    data: [ {{ event_count }}, {{ seizure_count }}, {{ medication_count }}],
+                    backgroundColor: ['#1cc88a', '#e74a3b', '#f6c23e'],
+                    hoverBackgroundColor: ['#17a673', '#be2617', '#dda20a'],
                     hoverBorderColor: "rgba(234, 236, 244, 1)",
                 }],
             },

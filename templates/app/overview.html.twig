@@ -16,7 +16,7 @@
                         Hinweis
                     </div>
                     <div class="card-body">
-                        <p>In der Übersicht und im generierten PDF werden die Tagebucheinträge nicht angezeigt.</p>
+                        <p>Im generierten PDF werden die Tagebucheinträge nicht angezeigt.</p>
                         <p>Das PDF wurde für eine Anzeige an einem Bildschirm optimiert.</p>
                     </div>
                 </div>
@@ -64,9 +64,9 @@
                 <span class="mr-2">
                   <i class="fas fa-circle text-success"></i> Ereignisse
                 </span>
-               <!-- <span class="mr-2">
+                <span class="mr-2">
                   <i class="fas fa-circle text-primary"></i> Tagebucheinträge
-                </span>-->
+                </span>
                 <span class="mr-2">
                   <i class="fas fa-circle text-warning"></i> Medikationen
                 </span>
@@ -98,7 +98,7 @@
                             {% for seizure in seizures %}
                                 <tr>
                                     <td><span class="hidden">{{ seizure.timestampWhen ? seizure.timestampWhen|date('Y/m/d') : '' }}</span>{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
-                                    <td>{{ seizure.title }}</td>
+                                    <td>{{ seizure.title }} - {{ seizure.seizuretype }}</td>
                                     <td>Anfall</td>
                                     <td align="center">
                                         <a href="{{ path('seizure_show', {'id': seizure.id}) }}" class="text-seizure"><i class="fas fa-fw fa-search"></i></a> -
@@ -128,7 +128,7 @@
                                     </td>
                                 </tr>
                             {% endfor %}
-                           {#{% for diaryentry in diaryentrys %}
+                           {% for diaryentry in diaryentrys %}
                                 <tr>
                                     <td><span class="hidden">{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('Y/m/d') : '' }}</span>{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
                                     <td>{{ diaryentry.title }}</td>
@@ -138,7 +138,7 @@
                                         <a href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}" class="text-diary"><i class="fas fa-fw fa-edit"></i></a>
                                     </td>
                                 </tr>
-                            {% endfor %}#}
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -170,6 +170,7 @@
 {% endblock %}
 
 {% block jsCharts %}
+
     // Set new default font family and font color to mimic Bootstrap's default styling
     Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
     Chart.defaults.global.defaultFontColor = '#858796';
@@ -234,7 +235,7 @@
     pointBorderWidth: 2,
     data: {{ event_data|raw }}
     },
-    /*{
+    {
     label: "Tagebucheinträge",
     lineTension: 0.3,
     backgroundColor: "rgba(78, 115, 223, 0.05)",
@@ -248,7 +249,7 @@
     pointHitRadius: 10,
     pointBorderWidth: 2,
     data: {{ diaryentry_data|raw }}
-    },*/
+    },
     {
     label: "Medikationen",
     lineTension: 0.3,
@@ -286,7 +287,7 @@
     drawBorder: false
     },
     ticks: {
-    maxTicksLimit: 7
+    autoSkip: false
     }
     }],
     yAxes: [{
@@ -345,19 +346,19 @@
     var myPieChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-    //labels: ["Tagebucheinträge", "Ereignisse", "Anfälle", "Medikationen"],
-    labels: ["Ereignisse", "Anfälle", "Medikationen"],
+    labels: ["Tagebucheinträge", "Ereignisse", "Anfälle", "Medikationen"],
+    //labels: ["Ereignisse", "Anfälle", "Medikationen"],
     datasets: [{
-    /* data: [{{ diaryentry_count }}, {{ event_count }}, {{ seizure_count }}, {{ medication_count }}],
+    data: [{{ diaryentry_count }}, {{ event_count }}, {{ seizure_count }}, {{ medication_count }}],
         backgroundColor: ['#4e73df', '#1cc88a', '#e74a3b', '#f6c23e'],
         hoverBackgroundColor: ['#2e59d9', '#17a673', '#be2617', '#dda20a'],
         hoverBorderColor: "rgba(234, 236, 244, 1)",
-    }],*/
-    data: [{{ event_count }}, {{ seizure_count }}, {{ medication_count }}],
+    }],
+    /*data: [{{ event_count }}, {{ seizure_count }}, {{ medication_count }}],
     backgroundColor: ['#1cc88a', '#e74a3b', '#f6c23e'],
     hoverBackgroundColor: ['#17a673', '#be2617', '#dda20a'],
     hoverBorderColor: "rgba(234, 236, 244, 1)",
-    }],
+    }],*/
     },
     options: {
         maintainAspectRatio: false,
