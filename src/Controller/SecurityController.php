@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\PasswordChangeType;
 use App\Form\PasswordForgotType;
 use App\Form\UserRegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -104,6 +106,57 @@ class SecurityController extends AbstractController
             'registrationForm' => $form->createView()
         ]);
     }
+
+
+    /**
+     * @Route("/forgot", name="app_forgot-password")
+     */
+    public function forgot(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer){
+        $form = $this->createForm(PasswordForgotType::class);
+        $em = $this->getDoctrine()->getManager();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $email = $data["email"];
+            $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['email' => $email]);
+
+            $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz()$-_';
+            $randomPW = substr(str_shuffle($data), 0, 12);
+            if ($user != null) {
+                $newEncodedPassword = $passwordEncoder->encodePassword($user, $randomPW);
+                $user->setPassword($newEncodedPassword);
+
+                $em->persist($user);
+                $em->flush();
+
+                $message = (new \Swift_Message('epilepc - Ihr Passwort wurde zurückgesetzt'))
+                    ->setFrom('no-reply@epilepc.ch')
+                    ->setTo($email)
+                    ->setBody(
+                        $this->renderView(
+                            'mail/forgot.pw.mail.html.twig',
+                            [
+                                'password' => $randomPW,
+
+                            ]
+                        ),
+                        'text/html'
+                    );
+                $mailer->send($message);
+                $this->addFlash('success', 'Passwort erfolgreich zurückgesetzt & versendet!');
+
+                return $this->redirectToRoute('app_landingpage');
+            } else {
+                $form->addError(new FormError('Die angegebene Email-Adresse ist nicht registriert'));
+            }
+        }
+
+        return $this->render('app/authentication/forgot.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
 
     /**
      * @Route("/logout", name="app_logout")

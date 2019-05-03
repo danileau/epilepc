@@ -20,6 +20,11 @@
         <span class="logo"><a href="{{ path('app_landingpage') }}"><img src="{{ asset('landing/images/rund-logo.svg') }}" alt="" /></a></span>
         <h1>epilepc</h1>
         <p>Nimm die Kontrolle über dein Leben wieder in die Hand.</p>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
     </header>
 
 {% block body %}{% endblock %}
