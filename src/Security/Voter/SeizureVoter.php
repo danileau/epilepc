@@ -44,9 +44,9 @@ class SeizureVoter extends Voter
                 }
 
                 // If the logged in user, is Admin, return true
-                if ($this->security->isGranted('ROLE_ADMIN')){
-                    return true;
-                }
+                //if ($this->security->isGranted('ROLE_ADMIN')){
+                //    return true;
+                //}
 
                 // If nothing matches, deny access
                 return false;
