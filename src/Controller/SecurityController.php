@@ -88,7 +88,7 @@ class SecurityController extends AbstractController
                 );
 
             $mailer->send($message);
-            $this->addFlash('success', 'Herzliche Gratulation! Ihre Registrierung ist abgeschlossen!');
+            $this->addFlash('success', 'Herzliche Gratulation! Ihre Registrierung ist abgeschlossen! Falls Sie unsere Bestätigungsmail nicht erhalten haben, prüfen Sie bitte Ihrem Spam-Ordner.');
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
