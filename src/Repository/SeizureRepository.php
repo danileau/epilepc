@@ -11,7 +11,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Seizure|null find($id, $lockMode = null, $lockVersion = null)
  * @method Seizure|null findOneBy(array $criteria, array $orderBy = null)
  * @method Seizure[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
-
+ * In den Repositories sind wiederverwendbare Funktionen definiert, welche ein bestimmtes Doctrine-Query ausführen
+ * und die Response retournieren
  */
 class SeizureRepository extends ServiceEntityRepository
 {
@@ -41,6 +42,11 @@ class SeizureRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * @param $id
+     * @return mixed liefert ein Array mit allen Summen der gefundenen Anfällen
+     * des eingeloggten Users zurück
+     */
     public function getDiagramSeizureData($id){
         $month = $this->getSeizureLastYearJSON();
         foreach ($month as $key => $value) {
@@ -49,6 +55,9 @@ class SeizureRepository extends ServiceEntityRepository
         return $data;
     }
 
+    /**
+     * @return array von allen Anfällen vom letzten Jahr im JSON-Format
+     */
     public function getSeizureLastYearJSON(){
         $months[] = date("Y-m");
         for ($i = 1; $i <= 12; $i++) {
@@ -57,7 +66,12 @@ class SeizureRepository extends ServiceEntityRepository
         return $months;
     }
 
-
+    /**
+     * @param $id
+     * @param $month
+     * @return mixed mit der Anzahl Anfällen für den abgefragten Monat
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getSeizureCountForMonth($id, $month){
         //Year: $date[0], Month: $date[1]
         $date = explode('-', $month);

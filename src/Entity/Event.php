@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventRepository")
+ * Definiert die Tabelle Event (Ereignisse) und sämtliche Funktionen
+ * um diese zu pflegen
  */
 class Event
 {

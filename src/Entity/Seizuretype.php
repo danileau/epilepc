@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SeizuretypeRepository")
+ * Definiert die Tabelle Seizuretype (Anfallsarten) und sämtliche Funktionen
+ * um diese zu pflegen
  */
 class Seizuretype
 {

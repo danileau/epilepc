@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DiaryentryRepository")
+ * Definiert die Tabelle Diaryenty (Tagebucheintra) und sämtliche Funktionen
+ * um diese zu pflegen
  */
 class Diaryentry
 {

@@ -11,6 +11,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Medication|null findOneBy(array $criteria, array $orderBy = null)
  * @method Medication[]    findAll()
  * @method Medication[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * In den Repositories sind wiederverwendbare Funktionen definiert, welche ein bestimmtes Doctrine-Query ausführen
+ * und die Response retournieren
  */
 class MedicationRepository extends ServiceEntityRepository
 {
@@ -39,6 +41,12 @@ class MedicationRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * Liefert ein Array mit allen Summen der gefundenen Medikationen
+     * des eingeloggten Users zurück
+     */
     public function getDiagramMedicationData($id){
         $month = $this->getMedicationLastYearJSON();
         foreach ($month as $key => $value) {
@@ -47,6 +55,9 @@ class MedicationRepository extends ServiceEntityRepository
         return $data;
     }
 
+    /**
+     * @return array von allen Medikationen vom letzten Jahr im JSON-Format
+     */
     public function getMedicationLastYearJSON(){
         $months[] = date("Y-m");
         for ($i = 1; $i <= 12; $i++) {
@@ -55,7 +66,12 @@ class MedicationRepository extends ServiceEntityRepository
         return $months;
     }
 
-
+    /**
+     * @param $id
+     * @param $month
+     * @return mixed mit der Anzahl Medikationen für den abgefragten Monat
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getMedicationCountForMonth($id, $month){
         //Year: $date[0], Month: $date[1]
         $date = explode('-', $month);

@@ -10,6 +10,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MedicationType extends AbstractType
 {
+    /*
+     * Mit dem Objekt $builder werden die einzelnen Formularfelder inkl. Clientseitige Validierung definiert.
+     * Ohne definierten Type als zweites Attribut wird ein einfaches Textfeld angezeigt
+     * "DateTimeType" erstellt ein Datumauswahlfeld mit Datum und Zeitangabe
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -28,6 +33,10 @@ class MedicationType extends AbstractType
         ;
     }
 
+    /*
+     * Mittels der Funktion configureOptions können optionale Einstellungen definiert werden
+     * Zumbeispiel welche Entity verwendet werden soll (Für CRUD-Funktionalitäten)
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

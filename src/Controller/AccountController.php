@@ -15,10 +15,10 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 
-//Schränkt den Zugriff auf alle Routen in diesem Controller ein.
-// Die Rolle "ROLE_USER" wird benötigt
+
 /**
  * @IsGranted("ROLE_USER")
+ * Schränkt den Zugriff auf alle Routen in diesem Controller ein. Die Rolle "ROLE_USER" wird benötigt
  */
 
 class AccountController extends AbstractController

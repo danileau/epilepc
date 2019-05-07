@@ -11,6 +11,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Diaryentry|null findOneBy(array $criteria, array $orderBy = null)
  * @method Diaryentry[]    findAll()
  * @method Diaryentry[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * In den Repositories sind wiederverwendbare Funktionen definiert, welche ein bestimmtes Doctrine-Query ausführen
+ * und die Response retournieren
  */
 class DiaryentryRepository extends ServiceEntityRepository
 {
@@ -42,6 +44,13 @@ class DiaryentryRepository extends ServiceEntityRepository
     }
 
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     * Ruft countFindAllFromUser() auf und liefert ein Array mit allen Summen der gefundenen Tagebucheinträge
+     * des eingeloggten Users zurück
+     */
     public function getDiagramDiaryData($id){
         $month = $this->getDiaryLastYearJSON();
         foreach ($month as $key => $value) {

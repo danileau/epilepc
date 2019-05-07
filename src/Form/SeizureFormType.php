@@ -13,6 +13,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class SeizureFormType extends AbstractType
 {
 
+    /*
+     * Mit dem Objekt $builder werden die einzelnen Formularfelder inkl. Clientseitige Validierung definiert.
+     * Ohne definierten Type als zweites Attribut wird ein einfaches Textfeld mit dem "TextType" angezeigt
+     * "EntityType" erstellt ein Auswahlfeld welches mit den Inhalten des definierten Entities
+     * und den Inhalten in der Datenbanktabelle gefüllt ist
+     * "DateTimeType" erstellt ein Datumauswahlfeld mit Datum und Zeitangabe
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
@@ -29,6 +36,10 @@ class SeizureFormType extends AbstractType
         ;
     }
 
+    /*
+     * Mittels der Funktion configureOptions können optionale Einstellungen definiert werden
+     * Zumbeispiel welche Entity verwendet werden soll (Für CRUD-Funktionalitäten)
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

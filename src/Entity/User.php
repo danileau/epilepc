@@ -17,6 +17,8 @@ use Ambta\DoctrineEncryptBundle\Configuration\Encrypted;
  *     fields={"email"},
  *     message="Du hast dich doch bereits registriert?"
  * )
+ * Definiert die Tabelle User (Benutzer) und sämtliche Funktionen
+ * um diese zu pflegen
  */
 class User implements UserInterface
 {

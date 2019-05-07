@@ -10,6 +10,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SeizureRepository")
+ * Definiert die Tabelle Seizure (Anfälle) und sämtliche Funktionen
+ * um diese zu pflegen
  */
 class Seizure
 {

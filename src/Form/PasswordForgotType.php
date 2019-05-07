@@ -12,6 +12,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class PasswordForgotType extends AbstractType
 {
+    /*
+     * Mit dem Objekt $builder werden die einzelnen Formularfelder inkl. Clientseitige Validierung definiert.
+     * Ohne definierten Type als zweites Attribut wird ein einfaches Textfeld angezeigt
+     * "EmailType" erstellt ein Emailfeld an, welches eine valide Emailadresse benötigt
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('email', EmailType::class);

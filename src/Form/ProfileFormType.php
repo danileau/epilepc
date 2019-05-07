@@ -16,6 +16,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProfileFormType extends AbstractType
 {
+
+    /*
+     * Mit dem Objekt $builder werden die einzelnen Formularfelder inkl. Clientseitige Validierung definiert.
+     * Ohne definierten Type als zweites Attribut wird ein einfaches Textfeld mit dem "TextType" angezeigt
+     * "EmailType" erstellt ein Emailfeld an, welches eine valide Emailadresse benötigt
+     * "DateTimeType" erstellt ein Datumauswahlfeld mit Datum und Zeitangabe
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

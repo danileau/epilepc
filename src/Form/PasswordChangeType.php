@@ -11,6 +11,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class PasswordChangeType extends AbstractType
 {
+    /*
+     * Mit dem Objekt $builder werden die einzelnen Formularfelder inkl. Clientseitige Validierung definiert.
+     * Ohne definierten Type als zweites Attribut wird ein einfaches Textfeld angezeigt
+     * "PasswordType" erstellt ein Passwortfeld welches die Eingabe maskiert
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -26,27 +31,3 @@ class PasswordChangeType extends AbstractType
     }
 
 }
-
-/**
-class UserAdminType extends AbstractType
-{
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('email', EmailType::class)
-            ->add('firstname', TextType::class)
-            ->add('lastname', TextType::class)
-            ->add('password', PasswordType::class)
-            ->add('deactivated', CheckboxType::class);
-
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => User::class
-        ]);
-    }
-
-
-}*/

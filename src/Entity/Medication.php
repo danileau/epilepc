@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MedicationRepository")
+ * Definiert die Tabelle Medication (Medikation) und sämtliche Funktionen
+ * um diese zu pflegen
  */
 class Medication
 {

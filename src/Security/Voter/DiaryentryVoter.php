@@ -8,6 +8,14 @@ use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class DiaryentryVoter
+ * @package App\Security\Voter
+ * Alle Voter werden jedes Mal aufgerufen, wenn  die isGranted()-Methode auf dem
+ * authorization-checker von Symfony verwendet oder denyAccessUnlessGranted() in einem
+ * Controller aufgerufen wird.
+ * Hier kann eigene Logik in die Authentisierung implementiert werden
+ */
 class DiaryentryVoter extends Voter
 {
     private $security;
@@ -17,7 +25,11 @@ class DiaryentryVoter extends Voter
         $this->security = $security;
     }
 
-
+    /**
+     * @param string $attribute
+     * @param mixed $subject
+     * @return bool - prüft ob 'MANAGE' in der Annotation der Route definiert ist.
+     */
     protected function supports($attribute, $subject)
     {
         // replace with your own logic
@@ -26,6 +38,13 @@ class DiaryentryVoter extends Voter
             && $subject instanceof Diaryentry;
     }
 
+    /**
+     * @param string $attribute
+     * @param mixed $subject
+     * @param TokenInterface $token
+     * @return bool - Falls 'MANAGE' gesetzt ist, kann die Seite nur aufgerufen werden, wenn die user_id vom aktuellen
+     * Eintrag mit der eingeloggten user_id übereinstimmt
+     */
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         /** @var Diaryentry $subject */

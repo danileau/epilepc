@@ -11,6 +11,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Event|null findOneBy(array $criteria, array $orderBy = null)
  * @method Event[]    findAll()
  * @method Event[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * In den Repositories sind wiederverwendbare Funktionen definiert, welche ein bestimmtes Doctrine-Query ausführen
+ * und die Response retournieren
  */
 class EventRepository extends ServiceEntityRepository
 {
@@ -40,6 +42,12 @@ class EventRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * Ruft countFindAllFromUser() auf und liefert ein Array mit allen Summen der gefundenen Ereignisse
+     * des eingeloggten Users zurück
+     */
     public function getDiagramEventData($id){
         $month = $this->getEventLastYearJSON();
         foreach ($month as $key => $value) {
@@ -48,6 +56,9 @@ class EventRepository extends ServiceEntityRepository
         return $data;
     }
 
+    /**
+     * @return array von allen Eregnissen vom letzten Jahr im JSON-Forma
+     */
     public function getEventLastYearJSON(){
         $months[] = date("Y-m");
         for ($i = 1; $i <= 12; $i++) {
@@ -56,7 +67,12 @@ class EventRepository extends ServiceEntityRepository
         return $months;
     }
 
-
+    /**
+     * @param $id
+     * @param $month
+     * @return mixed mit der Anzahl Ereignissen für den abgefragten Monat
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getEventCountForMonth($id, $month){
         //Year: $date[0], Month: $date[1]
         $date = explode('-', $month);

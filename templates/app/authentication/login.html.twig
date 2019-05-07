@@ -11,7 +11,7 @@
                     <h1 class="h4 text-gray-900 mb-4">Willkommen zurück!</h1>
                 </div>
 
-                <form class="user" method="post">
+                <form class="user" method="post" autocomplete="off">
                     {% if error %}
                         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}
@@ -19,7 +19,7 @@
                         <input type="email" class="form-control form-control-user" value="{{ last_username }}" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Email Adresse" required autofocus>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control form-control-user" name="password" id="inputPassword" placeholder="Passwort">
+                        <input type="password" class="form-control form-control-user" name="password" id="inputPassword" placeholder="Passwort" autocomplete="off">
                     </div>
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}"
