@@ -31,10 +31,6 @@
                         <label for="AgreedTermsDate">Registrierungsdatum</label>
                         <input type="text" class="form-control" id="AgreedTermsDate" value="{{ user.agreedTermsAt ? user.agreedTermsAt|date('d.m.Y H:i') : '' }} Uhr" readonly>
                     </div>
-                    <div class="form-group">
-                        <label for="deactivated">Deaktiviert</label>
-                        <input type="checkbox" class="form-control" id="deactivated" value="{{ user.deactivated }}" readonly>
-                    </div>
                 </form>
             </div>
         </div>

@@ -1,0 +1,8 @@
+{{ form_start(profileForm) }}
+    {{ form_errors(profileForm) }}
+    {{ form_row(profileForm.firstname, {'label': 'Vorname'}) }}
+    {{ form_row(profileForm.lastname, {'label': 'Nachname'}) }}
+    {{ form_row(profileForm.email, {'label': 'Email-Adresse'}) }}
+    {{ form_row(profileForm.agreed_terms_at, {'label': 'Registriert am'   }) }}
+<button class="btn btn-primary">{{ button_text }}</button>
+{{ form_end(profileForm) }}

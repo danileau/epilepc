@@ -14,6 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
+//Schränkt den Zugriff auf alle Routen in diesem Controller ein. Die Rolle "ROLE_USER" wird benötigt
 /**
  * @IsGranted("ROLE_USER")
  */
@@ -25,7 +27,7 @@ class AccountController extends AbstractController
      */
     public function index(Request $request, UserInterface $user)
     {
-
+        // Erstellt das Formular Profile
         $form = $this->createForm(ProfileFormType::class, $user);
         $form->handleRequest($request);
 

@@ -2,8 +2,6 @@
 
 
 namespace App\Form;
-
-
 use App\Entity\User;
 use function Sodium\add;
 use Symfony\Component\Form\AbstractType;
@@ -23,7 +21,6 @@ class UserAdminType extends AbstractType
             ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
             ->add('password', PasswordType::class)
-            ->add('deactivated', CheckboxType::class)
         ;
 
     }

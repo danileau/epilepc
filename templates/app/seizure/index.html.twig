@@ -7,7 +7,7 @@
             <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Anfälle - Übersicht</h1>
             <p class="mb-4">Untenstehend findest du alle deine erstellten Anfälle. <br />Zusätzlich kannst du auf das Pluszeichen <i class="fas fa-plus-circle"></i> klicken, um einen neuen Anfall zu erstellen</p>
 
-            <a href="{{ path('seizure_new') }}"><i class="fas fa-plus-circle fa-3x text-seizure" ></i></a>
+            <a href="{{ path('seizure_new') }}" title="Neuer Anfall erstellen"><i class="fas fa-plus-circle fa-3x text-seizure" ></i></a>
         </div>
     </div>
 
@@ -30,11 +30,11 @@
                     <tbody>
                     {% for seizure in seizures %}
                         <tr>
-                            <td><a href="{{ path('seizure_show', {'id': seizure.id}) }}" class="text-seizure"><i class="fas fa-fw fa-search"></i> {{ seizure.title }}</a></td>
+                            <td><a href="{{ path('seizure_show', {'id': seizure.id}) }}" class="text-seizure" title="Anzeigen"><i class="fas fa-fw fa-search"></i> {{ seizure.title }}</a></td>
                             <td>{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
                             <td>{{ seizure.modifiedAt ? seizure.modifiedAt|date('d.m.Y H:i') : '' }} Uhr</td>
                             <td align="center">
-                                <a href="{{ path('seizure_edit', {'id': seizure.id}) }}" class="text-seizure"><i class="fas fa-fw fa-edit"></i></a>
+                                <a href="{{ path('seizure_edit', {'id': seizure.id}) }}" title="Bearbeiten" class="text-seizure"><i class="fas fa-fw fa-edit"></i></a>
                             </td>
                         </tr>
                     {% else %}

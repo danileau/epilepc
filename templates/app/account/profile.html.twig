@@ -7,7 +7,7 @@
     <div class="mb-5">
         <div class="text-center">
             <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Profilübersicht von {{ app.user.firstname }}</h1>
-            <p class="mb-4">Hier findest du alle Informationen über dein Profil</p>
+            <p class="mb-4">Hier findest du alle Informationen über dein Profil und kannst Sie gleich bearbeiten</p>
         </div>
     </div>
 
@@ -23,59 +23,9 @@
 
             <div class="row">
                 <div class="col-md-12 order-md-1">
-                    <form class="needs-validation" novalidate="">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="firstName">Vorname</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value="{{ user.firstname }}" disabled>
-                                <div class="invalid-feedback">
-                                    Valid first name is required.
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="lastName">Nachname</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="" value="{{ user.lastname }}" disabled>
-                                <div class="invalid-feedback">
-                                    Valid last name is required.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="email">E-Mail Adresse</label>
-                            <input type="email" class="form-control" id="email" value="{{ user.email }}" disabled>
-                            <div class="invalid-feedback">
-                                Please enter a valid email address for shipping updates.
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="registeredAt">Account erstellt am</label>
-                            <input type="text" class="form-control" id="registeredAt" value="{{ app.user.agreedTermsAt|date('d.m.Y') }} um {{ app.user.agreedTermsAt|date('H:i') }} Uhr" disabled>
-
-                        </div>
-                        <hr class="mb-4">
-                        <div class="text-center">
-
-                            {% if app.user.roles.0 == 'ROLE_ADMIN' %}
-                            <div class="custom-control custom-checkbox">
-                                <label class="custom-control-label" for="isAdmin" >User ist Administrator</label>
-                                <input type="checkbox" class="custom-control-input" id="isAdmin" checked disabled>
-                            </div>
-                            {% endif %}
-
-
-                            <div class="custom-control custom-checkbox">
-                                {% if app.user.deactivated == true %}
-                                    <input type="checkbox" class="custom-control-input" id="isDeactivated" checked disabled>
-                                {% else %}
-                                    <input type="checkbox" class="custom-control-input" id="isDeactivated" disabled>
-                                {% endif %}
-                                <label class="custom-control-label" for="isDeactivated">Dieser Benutzer wurde deaktiviert</label>
-                            </div>
-                        </div>
-
-                        <hr class="mb-4">
-                    </form>
+                    {{ include('app/account/_form.html.twig', {'button_text': 'Speichern'}) }}
+                    <br/>
+                    <a class="btn btn-dark" href="{{ path('app_dashboard') }}">Zurück zum Dashboard</a>
                 </div>
             </div>
         </div>

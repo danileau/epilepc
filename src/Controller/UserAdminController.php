@@ -16,6 +16,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class UserAdminController extends AbstractController
 {
+    // Visualisiert die Benutzerübersicht für Admins
     /**
      * @Route("/admin")
      */
@@ -31,22 +32,20 @@ class UserAdminController extends AbstractController
     public function new(EntityManagerInterface $em, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $form = $this->createForm(UserAdminType::class);
-
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-            $user = new User();
-            $user->setFirstname($data->getFirstname());
-            $user->setLastname($data->getLastname());
-            $user->setEmail($data->getEmail());
-            $user->setDeactivated($data->getDeactivated());
-            $user->setPassword($passwordEncoder->encodePassword($user, $data->getPassword()));
-            $user->setRoles([]);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var User $user */
+            $user = $form->getData();
+            $user->setPassword($passwordEncoder->encodePassword($user, $user->getPassword()));
+            $user->setRoles([]);
+            $user->setDeactivated(0);
+            $user->agreeTerms();
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('success', "Neuer Benutzer erstellt");
+            $this->addFlash('success', "Neuer Benutzer wurde erstellt");
 
             return $this->redirectToRoute('app_useradmin_index');
         }
@@ -88,6 +87,32 @@ class UserAdminController extends AbstractController
         $this->addFlash('success', "Adminrechte wurden entfernt");
         $roles = [];
         $user->setRoles($roles);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_useradmin_index');
+    }
+
+    /**
+     * @Route("/admin/user/{id}/makeDeactivated", name="admin_user_make_deactivated")
+     */
+    public function makeDeactivated(Request $request, User $user){
+        //$userRepository->makeAdmin($user);
+        $this->addFlash('success', "Benutzer wurde deaktiviert");
+        $user->setDeactivated(1);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_useradmin_index');
+    }
+
+    /**
+     * @Route("/admin/user/{id}/removeDeactivated", name="admin_user_remove_deactivated")
+     */
+    public function removeDeactivated(Request $request, UserRepository $userRepository, User $user){
+        //$userRepository->makeAdmin($user);
+        $this->addFlash('success', "Benutzer wurde reaktiviert");
+        $user->setDeactivated(0);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();

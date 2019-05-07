@@ -101,8 +101,8 @@
                                     <td>{{ seizure.title }} - {{ seizure.seizuretype }}</td>
                                     <td>Anfall</td>
                                     <td align="center">
-                                        <a href="{{ path('seizure_show', {'id': seizure.id}) }}" class="text-seizure"><i class="fas fa-fw fa-search"></i></a> -
-                                        <a href="{{ path('seizure_edit', {'id': seizure.id}) }}" class="text-seizure"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="{{ path('seizure_show', {'id': seizure.id}) }}" class="text-seizure" title="Anzeigen"><i class="fas fa-fw fa-search"></i></a> -
+                                        <a href="{{ path('seizure_edit', {'id': seizure.id}) }}" class="text-seizure" title="Bearbeiten"><i class="fas fa-fw fa-edit"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -112,8 +112,8 @@
                                     <td>{{ event.name }}</td>
                                     <td>Ereignis</td>
                                     <td align="center">
-                                        <a href="{{ path('event_show', {'id': event.id}) }}" class="text-event"><i class="fas fa-fw fa-search"></i></a> -
-                                        <a href="{{ path('event_edit', {'id': event.id}) }}" class="text-event"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="{{ path('event_show', {'id': event.id}) }}" class="text-event" title="Anzeigen"><i class="fas fa-fw fa-search"></i></a> -
+                                        <a href="{{ path('event_edit', {'id': event.id}) }}" class="text-event" title="Bearbeiten"><i class="fas fa-fw fa-edit"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -123,8 +123,8 @@
                                     <td>{{ medication.name }}</td>
                                     <td>Medikation</td>
                                     <td align="center">
-                                        <a href="{{ path('medication_show', {'id': medication.id}) }}" class="text-medication"><i class="fas fa-fw fa-search"></i></a> -
-                                        <a href="{{ path('medication_edit', {'id': medication.id}) }}" class="text-medication"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="{{ path('medication_show', {'id': medication.id}) }}" class="text-medication" title="Anzeigen"><i class="fas fa-fw fa-search"></i></a> -
+                                        <a href="{{ path('medication_edit', {'id': medication.id}) }}" class="text-medication" title="Bearbeiten"><i class="fas fa-fw fa-edit"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -134,8 +134,8 @@
                                     <td>{{ diaryentry.title }}</td>
                                     <td>Tagebucheintrag</td>
                                     <td align="center">
-                                        <a href="{{ path('diaryentry_show', {'id': diaryentry.id}) }}" class="text-diary"><i class="fas fa-fw fa-search"></i></a> -
-                                        <a href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}" class="text-diary"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="{{ path('diaryentry_show', {'id': diaryentry.id}) }}" class="text-diary" title="Anzeigen"><i class="fas fa-fw fa-search"></i></a> -
+                                        <a href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}" class="text-diary" title="Bearbeiten"><i class="fas fa-fw fa-edit"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
