@@ -19,8 +19,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class MedicationController extends AbstractController
 {
+
     /**
      * @Route("/", name="medication_index", methods={"GET"})
+     * Übersicht generieren und anzeigen
      */
     public function index(MedicationRepository $medicationRepository, UserInterface $user): Response
     {
@@ -29,8 +31,10 @@ class MedicationController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/new", name="medication_new", methods={"GET","POST"})
+     * Neue Medikation erstellen
      */
     public function new(Request $request, UserInterface $user): Response
     {
@@ -58,9 +62,11 @@ class MedicationController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/{id}", name="medication_show", methods={"GET"})
      * @IsGranted("MANAGE", subject="medication")
+     * Bestehende Medikation anzeigen - eingeschränkt auf Owner
      */
     public function show(Request $request, Medication $medication): Response
     {
@@ -73,9 +79,11 @@ class MedicationController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/{id}/edit", name="medication_edit", methods={"GET","POST"})
      * @IsGranted("MANAGE", subject="medication")
+     * Bestehende Medikation bearbeiten - Eingeschränkt auf Owner
      */
     public function edit(Request $request, Medication $medication, EntityManagerInterface $em): Response
     {
@@ -101,9 +109,11 @@ class MedicationController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/{id}", name="medication_delete", methods={"DELETE"})
      * @IsGranted("MANAGE", subject="medication")
+     * Bestehende Medikation löschen - Eingeschränkt auf Owner
      */
     public function delete(Request $request, Medication $medication): Response
     {

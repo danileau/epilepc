@@ -19,16 +19,22 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class DiaryentryController extends AbstractController
 {
+    // Übersicht generieren und anzeigen
     /**
      * @Route("/", name="diaryentry_index", methods={"GET"})
      */
     public function index(DiaryentryRepository $diaryentryRepository, UserInterface $user): Response
     {
+        /*
+         * ->findAllFromUser erstellt ein Query, welches nur die Einträge mit der mitgegebenen User-ID aus der DB ausliest
+         * Die Werte werden dann mit diaryentries übergeben und mit dem twig Template gerendert
+         */
         return $this->render('app/diaryentry/index.html.twig', [
             'diaryentries' => $diaryentryRepository->findAllFromUser($user->getId()),
         ]);
     }
 
+    // Neuer Tagebucheintrag erstellen
     /**
      * @Route("/new", name="diaryentry_new", methods={"GET","POST"})
      */
@@ -42,6 +48,7 @@ class DiaryentryController extends AbstractController
             /** @var Diaryentry $diaryentry */
             $diaryentry = $form->getData();
 
+            // Aktueller user und aktuelle Uhrzeit & Datum fix setzen
             $diaryentry->setCreatedAt(new \DateTime());
             $diaryentry->setModifiedAt(new \DateTime());
             $diaryentry->setUser($user);
@@ -59,6 +66,10 @@ class DiaryentryController extends AbstractController
         ]);
     }
 
+    /*
+     * Detailansicht bestehender Eintrag
+     * "MANAGE" ermöglicht die Ansicht nur für den User, dessen User-ID dem Eintrag angehängt ist, ansonsten 403 Zugriff verweigert
+     */
     /**
      * @Route("/{id}", name="diaryentry_show", methods={"GET"})
      * @IsGranted("MANAGE", subject="diaryentry")
@@ -76,6 +87,7 @@ class DiaryentryController extends AbstractController
         ]);
     }
 
+    // Bestehender Eintrag bearbeiten
     /**
      * @Route("/{id}/edit", name="diaryentry_edit", methods={"GET","POST"})
      * @IsGranted("MANAGE", subject="diaryentry")
@@ -83,6 +95,7 @@ class DiaryentryController extends AbstractController
     public function edit(Request $request, Diaryentry $diaryentry): Response
     {
         $user = $this->getUser();
+        // 403-Exception wenn User_Id != Ersteller ID vom Eintrag
         if ($user->getId() != $diaryentry->getUser()->getId()) {
             throw new AccessDeniedException('Zugriff verweigert');
         }
@@ -111,6 +124,7 @@ class DiaryentryController extends AbstractController
         ]);
     }
 
+    // Tagebucheintrag löschen
     /**
      * @Route("/{id}", name="diaryentry_delete", methods={"DELETE"})
      * @IsGranted("MANAGE", subject="diaryentry")

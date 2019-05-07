@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
+// Landingpages mit statischem Text rendern und anzeigen
 class LandingPageController extends AbstractController
 {
     /**

@@ -23,6 +23,7 @@ class SeizureController extends AbstractController
 {
     /**
      * @Route("/", name="seizure_index", methods={"GET"})
+     * Übersicht generieren und alle anfälle anzeigen
      */
     public function index(SeizureRepository $seizureRepository, UserInterface $user): Response
     {
@@ -35,6 +36,7 @@ class SeizureController extends AbstractController
 
     /**
      * @Route("/new", name="seizure_new", methods={"GET","POST"})
+     * Neuer Anfall erstellen
      */
     public function new(Request $request, UserInterface $user): Response
     {
@@ -66,6 +68,7 @@ class SeizureController extends AbstractController
     /**
      * @Route("/{id}", name="seizure_show", methods={"GET"})
      * @IsGranted("MANAGE", subject="seizure")
+     * Anfall anzeigen - Eingeschränkt auf Owner
      */
     // Die IsGranted "MANAGE" Annotation prüft den Security Voter und führt Ihn aus. Dort wird geprüft ob die User_id
     // vom DB-Objekt, mit dem aktuellen User übereinstimmt.

@@ -18,6 +18,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class EventController extends AbstractController
 {
+    // Übersicht generieren und anzeigen
     /**
      * @Route("/", name="event_index", methods={"GET"})
      */
@@ -28,6 +29,7 @@ class EventController extends AbstractController
         ]);
     }
 
+    // Neues Ereignis erstellen
     /**
      * @Route("/new", name="event_new", methods={"GET","POST"})
      */
@@ -57,6 +59,7 @@ class EventController extends AbstractController
         ]);
     }
 
+    // Bestehendes Ereignis anzeigen
     /**
      * @Route("/{id}", name="event_show", methods={"GET"})
      * @IsGranted("MANAGE", subject="event")
@@ -68,6 +71,7 @@ class EventController extends AbstractController
         ]);
     }
 
+    // Bestehendes Ereignis bearbeiten
     /**
      * @Route("/{id}/edit", name="event_edit", methods={"GET","POST"})
      * @IsGranted("MANAGE", subject="event")
@@ -100,6 +104,7 @@ class EventController extends AbstractController
 
     }
 
+    // Bestehendes Ereignis löschen
     /**
      * @Route("/{id}", name="event_delete", methods={"DELETE"})
      * @IsGranted("MANAGE", subject="event")

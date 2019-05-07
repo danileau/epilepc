@@ -22,12 +22,13 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
 
+    // Loginfunktion
     /**
      * @Route("/login", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-
+        // Falls bereits eingeloggt, reditect zu /app
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirectToRoute('app_dashboard');
         }
@@ -43,6 +44,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
+    // Registrierungsfunktion mit Mailversand
     /**
      * @Route("/register", name="app_register")
      */
@@ -56,7 +58,7 @@ class SecurityController extends AbstractController
 
             /** @var User $user */
             $user = $form->getData();
-
+            // Verschlüsselt das eingegebene Passwort und SET ins User Objekt
             $user->setPassword($passwordEncoder->encodePassword(
                 $user,
                 $form['plainPassword']->getData()
@@ -71,9 +73,11 @@ class SecurityController extends AbstractController
                 $user->agreeTerms();
             }
             $em = $this->getDoctrine()->getManager();
+            // Daten in Datenbank speichern
             $em->persist($user);
             $em->flush();
 
+            // Build & Versand Registrierungsbestätigung
             $message = (new \Swift_Message('Ihre Registrierung bei epilepc'))
                 ->setFrom('no-reply@epilepc.ch')
                 ->setTo($user->getEmail())
@@ -90,6 +94,7 @@ class SecurityController extends AbstractController
             $mailer->send($message);
             $this->addFlash('success', 'Herzliche Gratulation! Ihre Registrierung ist abgeschlossen! Falls Sie unsere Bestätigungsmail nicht erhalten haben, prüfen Sie bitte Ihrem Spam-Ordner.');
 
+            // Nach Erstellung des Users, Login
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,

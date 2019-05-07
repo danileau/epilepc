@@ -9,17 +9,20 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
 {
+    // Kontaktformular erstellen und Mailing Logik
     /**
      * @Route("/contact", name="contact")
      */
     public function index(Request $request, \Swift_Mailer $mailer)
     {
+        // Erstellt das Kontaktformular
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $contactFormData = $form->getData();
 
+            // Generiert und versendet das Email
             $message = (new \Swift_Message('Neue Kontaktformular-Nachricht auf epilepc.ch erhalten!'))
                 ->setFrom('no-reply@epilepc.ch');
             $message->setTo('info@epilepc.ch');

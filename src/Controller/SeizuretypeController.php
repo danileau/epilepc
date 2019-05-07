@@ -14,11 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/seizuretype")
  * @IsGranted("ROLE_ADMIN")
+ * Anfallsarten dürfen nur Administratoren pflegen
  */
 class SeizuretypeController extends AbstractController
 {
     /**
      * @Route("/", name="seizuretype_index", methods={"GET"})
+     * Anfallsarten anzeigen
      */
     public function index(SeizuretypeRepository $seizuretypeRepository): Response
     {
@@ -29,9 +31,12 @@ class SeizuretypeController extends AbstractController
 
     /**
      * @Route("/new", name="seizuretype_new", methods={"GET","POST"})
+     * Neue Anfallsart erstellen
      */
     public function new(Request $request): Response
     {
+        // Generiert das Formular wie in SeizuretypeFormType definiert.
+        // Wenn das Formular ausgefüllt worden ist, wird der Inhalt in die Datenbank geschrieben
         $form = $this->createForm(SeizuretypeFormType::class);
         $form->handleRequest($request);
 
@@ -54,6 +59,7 @@ class SeizuretypeController extends AbstractController
 
     /**
      * @Route("/{id}", name="seizuretype_show", methods={"GET"})
+     * Anfallsart anzeigen
      */
     public function show(Request $request, Seizuretype $seizuretype): Response
     {
@@ -68,6 +74,7 @@ class SeizuretypeController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="seizuretype_edit", methods={"GET","POST"})
+     * Anfallsart bearbeiten
      */
     public function edit(Request $request, Seizuretype $seizuretype): Response
     {
@@ -90,6 +97,7 @@ class SeizuretypeController extends AbstractController
 
     /**
      * @Route("/{id}", name="seizuretype_delete", methods={"DELETE"})
+     * Anfallsart löschen
      */
     public function delete(Request $request, Seizuretype $seizuretype): Response
     {

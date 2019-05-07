@@ -17,11 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class AppController extends BaseController
+class AppController extends AbstractController
 {
+
     /**
      * @Route("/app", name="app_dashboard")
      * @IsGranted("ROLE_USER")
+     * Dashboard mit allen queries für die Counts und Diagramme
      */
     public function index(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user)
     {
@@ -69,8 +71,9 @@ class AppController extends BaseController
         $medicationDiagramCount = array_reverse($medicationDiagramCount);
         $medicationValueJSON = json_encode($medicationDiagramCount);
 
-
-
+        /*
+         * Twig Template mit allen Variablen rendern
+         */
         return $this->render('app/dashboard.html.twig', [
             'medication_count' => $medicationRepository->countFindAllFromUser($user),
             'medication_data' => $medicationValueJSON,
@@ -84,21 +87,10 @@ class AppController extends BaseController
         ]);
     }
 
-    /**
-     * @Route("/api/value_sum", name="api_value_sum")
-     */
-    public function valueSumApi()
-    {
-
-        //Todo
-        $user = $this->getUser();
-        return $this->json($user, 200, [], [
-            'groups' => ['main']
-        ]);
-    }
 
     /**
      * @Route("/app/overview", name="app_overview")
+     * Übersicht mit allen Werten generieren
      */
     public function overview(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user)
     {
@@ -149,6 +141,9 @@ class AppController extends BaseController
         $medicationValueJSON = json_encode($medicationDiagramCount);
         $medications = $medicationRepository->findAllFromUser($user);
 
+        /*
+         * Twig Template mit allen Variablen rendern
+         */
         return $this->render('app/overview.html.twig', [
             'medication_count' => $medicationRepository->countFindAllFromUser($user),
             'medication_data' => $medicationValueJSON,
@@ -167,8 +162,10 @@ class AppController extends BaseController
         ]);
     }
 
+
     /**
      * @Route("/app/overview/pdf", name="app_overview_pdf")
+     * PDF generieren
      */
     public function pdfAction(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user, Pdf $snappy)
     {
@@ -219,6 +216,9 @@ class AppController extends BaseController
         $medicationValueJSON = json_encode($medicationDiagramCount);
         $medications = $medicationRepository->findAllFromUser($user);
 
+        /**
+         * PDF Twig Template mit Variablen rendern
+         */
         return $this->render('app/pdfGenerator.html.twig', [
             'medication_count' => $medicationRepository->countFindAllFromUser($user),
             'medication_data' => $medicationValueJSON,

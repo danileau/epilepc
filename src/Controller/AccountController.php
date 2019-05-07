@@ -15,15 +15,18 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 
-//Schränkt den Zugriff auf alle Routen in diesem Controller ein. Die Rolle "ROLE_USER" wird benötigt
+//Schränkt den Zugriff auf alle Routen in diesem Controller ein.
+// Die Rolle "ROLE_USER" wird benötigt
 /**
  * @IsGranted("ROLE_USER")
  */
 
 class AccountController extends AbstractController
 {
+
     /**
      * @Route("/app/account", name="app_account")
+     * Profilübersicht
      */
     public function index(Request $request, UserInterface $user)
     {
@@ -31,6 +34,7 @@ class AccountController extends AbstractController
         $form = $this->createForm(ProfileFormType::class, $user);
         $form->handleRequest($request);
 
+        // Wenn das Formular versendet wurde und valid ist, DB Abfragen durchführen
         if ($form->isSubmitted() && $form->isValid()) {
 
             /** @var User $userForm */
@@ -49,8 +53,10 @@ class AccountController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/api/account", name="api_account")
+     * Stellt die User Informationen als JSON String zur Verfügung
      */
     public function accountApi()
     {
@@ -60,8 +66,10 @@ class AccountController extends AbstractController
         ]);
     }
 
+
     /**
      * @Route("/app/account/changePassword", name="app_change_password")
+     * Passwort ändern
      */
     public function change_user_password(Request $request, UserPasswordEncoderInterface $passwordEncoder){
         $form = $this->createForm(PasswordChangeType::class);
