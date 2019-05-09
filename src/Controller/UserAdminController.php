@@ -14,7 +14,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @IsGranted("ROLE_ADMIN")
- * Benutzer dürfen nur Administratoren pflegen
+ * Benutzer dürfen nur durch Administratoren gepflegt werden
  */
 class UserAdminController extends AbstractController
 {

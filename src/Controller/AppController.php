@@ -4,10 +4,12 @@
 namespace App\Controller;
 
 
+use App\Entity\User;
 use App\Repository\DiaryentryRepository;
 use App\Repository\EventRepository;
 use App\Repository\MedicationRepository;
 use App\Repository\SeizureRepository;
+use App\Repository\UserRepository;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Knp\Snappy\Pdf;
@@ -94,6 +96,8 @@ class AppController extends AbstractController
      */
     public function overview(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user)
     {
+        /** @var $user User */
+        $diagnose = $user->getDiagnose();
         /**
          * Anfallsdaten für die Übersicht aufbereiten
          */
@@ -158,7 +162,8 @@ class AppController extends AbstractController
             'event_count' => $eventRepository->countFindAllFromUser($user),
             'event_data' => $eventValueJSON,
             'events' => $events,
-            'date' => date("d.m.Y")
+            'date' => date("d.m.Y"),
+            'diagnose' => $diagnose
         ]);
     }
 
@@ -169,6 +174,8 @@ class AppController extends AbstractController
      */
     public function pdfAction(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user, Pdf $snappy)
     {
+        /** @var $user User */
+        $diagnose = $user->getDiagnose();
         /**
          * Anfallsdaten für die Übersicht aufbereiten
          */
@@ -233,7 +240,8 @@ class AppController extends AbstractController
             'event_count' => $eventRepository->countFindAllFromUser($user),
             'event_data' => $eventValueJSON,
             'events' => $events,
-            'date' => date("d.m.Y")
+            'date' => date("d.m.Y"),
+            'diagnose' => $diagnose
         ]);
 
     }

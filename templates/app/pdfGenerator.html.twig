@@ -115,6 +115,9 @@
                             </div>
                             <!-- Card Body -->
                             <div class="card-body" style="color:black">
+                                {% if diagnose != null %}
+                                    <p><b>Diagnose:</b> {{ diagnose }} </p>
+                                {% endif %}
                                 <div class="chart-area">
                                     <canvas id="myAreaChart"></canvas>
                                 </div>

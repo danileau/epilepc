@@ -16,8 +16,11 @@
                         Hinweis
                     </div>
                     <div class="card-body">
-                        <p>Im generierten PDF werden die Tagebucheinträge nicht angezeigt.</p>
-                        <p>Das PDF wurde für eine Anzeige an einem Bildschirm optimiert.</p>
+                        {% if diagnose != null %}
+                            <p><u><b>Diagnose:</b></u> {{ diagnose }} </p>
+                        {% endif %}
+                        <p>Im generierten PDF werden die Tagebucheinträge nicht angezeigt.<br>
+                        Das PDF wurde für eine Anzeige an einem Bildschirm optimiert.</p>
                     </div>
                 </div>
 

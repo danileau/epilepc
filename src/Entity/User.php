@@ -93,6 +93,11 @@ class User implements UserInterface
      */
     private $agreedTermsAt;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $diagnose;
+
 
 
     public function __construct()
@@ -353,6 +358,18 @@ class User implements UserInterface
     public function agreeTerms(): self
     {
         $this->agreedTermsAt = new \DateTime();
+
+        return $this;
+    }
+
+    public function getDiagnose(): ?string
+    {
+        return $this->diagnose;
+    }
+
+    public function setDiagnose(?string $diagnose): self
+    {
+        $this->diagnose = $diagnose;
 
         return $this;
     }

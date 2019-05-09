@@ -29,7 +29,9 @@ class ProfileFormType extends AbstractType
             ->add('email', EmailType::class)
             ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
-
+            ->add('diagnose', TextType::class, [
+                'required' => false
+            ])
             ->add('agreed_terms_at', DateTimeType::class, [
                 'widget' => 'single_text',
                 'disabled' => true
