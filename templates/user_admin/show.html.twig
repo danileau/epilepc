@@ -31,6 +31,9 @@
                         <label for="AgreedTermsDate">Registrierungsdatum</label>
                         <input type="text" class="form-control" id="AgreedTermsDate" value="{{ user.agreedTermsAt ? user.agreedTermsAt|date('d.m.Y H:i') : '' }} Uhr" readonly>
                     </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('admin_user_edit', {'id': user.id}) }}">Bearbeiten</a></button>
+                    </div>
                 </form>
             </div>
         </div>

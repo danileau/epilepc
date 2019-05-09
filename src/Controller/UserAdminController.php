@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -19,7 +20,7 @@ class UserAdminController extends AbstractController
 {
 
     /**
-     * @Route("/admin")
+     * @Route("/admin", name="admin_user_index")
      * isualisiert die Benutzerübersicht
      */
     public function index(UserRepository $userRepository){
@@ -29,7 +30,7 @@ class UserAdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user/new")
+     * @Route("/admin/user/new", name="admin_user_new")
      * Neuer Benutzer erstellen
      */
     public function new(EntityManagerInterface $em, Request $request, UserPasswordEncoderInterface $passwordEncoder)
@@ -68,6 +69,37 @@ class UserAdminController extends AbstractController
         ]);
 
     }
+    /**
+     * @Route("/admin/user/{id}/edit", name="admin_user_edit")
+     * Benutzer editieren
+     */
+    public function edit(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        $form = $this->createForm(UserAdminType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $user = $form->getData();
+            $user->setPassword($passwordEncoder->encodePassword($user, $user->getPassword()));
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Benutzer erfolgreich bearbeitet!');
+
+            return $this->redirectToRoute('admin_user_index', [
+                'id' => $user->getId(),
+            ]);
+        }
+
+        return $this->render('user_admin/edit.html.twig', [
+            'user' => $user,
+            'userForm' => $form->createView(),
+        ]);
+
+    }
+
 
     /**
      * @Route("/admin/user/{id}/makeAdmin", name="admin_user_make_admin")
@@ -81,7 +113,7 @@ class UserAdminController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
-        return $this->redirectToRoute('app_useradmin_index');
+        return $this->redirectToRoute('admin_user_index');
     }
 
     /**
@@ -96,7 +128,7 @@ class UserAdminController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
-        return $this->redirectToRoute('app_useradmin_index');
+        return $this->redirectToRoute('admin_user_index');
     }
 
     /**
@@ -110,7 +142,7 @@ class UserAdminController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
-        return $this->redirectToRoute('app_useradmin_index');
+        return $this->redirectToRoute('admin_user_index');
     }
 
     /**
@@ -124,6 +156,6 @@ class UserAdminController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
-        return $this->redirectToRoute('app_useradmin_index');
+        return $this->redirectToRoute('admin_user_index');
     }
 }
