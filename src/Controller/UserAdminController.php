@@ -51,7 +51,7 @@ class UserAdminController extends AbstractController
 
             $this->addFlash('success', "Neuer Benutzer wurde erstellt");
 
-            return $this->redirectToRoute('app_useradmin_index');
+            return $this->redirectToRoute('admin_user_index');
         }
 
         return $this->render('user_admin/new.html.twig', [
@@ -75,13 +75,15 @@ class UserAdminController extends AbstractController
      */
     public function edit(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
     {
+
         $form = $this->createForm(UserAdminType::class, $user);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $user = $form->getData();
-            $user->setPassword($passwordEncoder->encodePassword($user, $user->getPassword()));
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();

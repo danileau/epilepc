@@ -9,6 +9,7 @@ use App\Form\UserRegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManager;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,18 +27,21 @@ class SecurityController extends AbstractController
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils, LoggerInterface $logger): Response
     {
         // Falls bereits eingeloggt, reditect zu /app
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirectToRoute('app_dashboard');
         }
-
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
+        // Bei fehlerhaftem Login -> Versuch protokollieren
+
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-
+        if ($error){
+            $logger->info('------------------- Fehlerhafter Loginversuch von '.$lastUsername.' -------------------------------');
+        }
         return $this->render('app/authentication/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error
