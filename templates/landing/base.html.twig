@@ -1,9 +1,10 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="de">
     <head>
-        <title>{% block title %}Willkommen bei epilepc.ch{% endblock %}</title>
+        <title>{% block title %}epilepc - Hilf dir bei Epilepsie!{% endblock %}</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="description" content="Bei epilepc.ch findest du sämtliche Werkzeuge und Tools, welche du benötigst um deine Epilepsie-Behandlung effektiv und sicher zu begleiten!"/>
 
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('landing/assets/css/main.css') }}" />
@@ -17,7 +18,7 @@
 <div id="wrapper">
     <!-- Header -->
     <header id="header" class="alt">
-        <span class="logo"><a href="{{ path('app_landingpage') }}"><img src="{{ asset('landing/images/rund-logo.svg') }}" alt="" /></a></span>
+        <span class="logo"><a href="{{ path('app_landingpage') }}"><img src="{{ asset('landing/images/rund-logo.svg') }}" alt="epilepc" /></a></span>
         <h1>epilepc</h1>
         <p>Nimm die Kontrolle über dein Leben wieder in die Hand.</p>
         {% for message in app.flashes('success') %}
