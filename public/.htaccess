@@ -11,6 +11,30 @@ DirectoryIndex index.php
 # when compiling LESS/Sass/CoffeScript assets.
 # Options FollowSymlinks
 
+<IfModule mod_headers.c>
+    Header set Strict-Transport-Security "max-age=31536000" env=HTTPS
+</IfModule>
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !^www.epilepc.ch$
+RewriteRule ^(.*)$ http://www.epilepc.ch/$1 [R=301,L]
+
+# compress text, html, javascript, css, xml:
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+
+# Or, compress certain file types by extension:
+<files *.html>
+SetOutputFilter DEFLATE
+</files>
+
 # Disabling MultiViews prevents unwanted negotiation, e.g. "/index" should not resolve
 # to the front controller "/index.php" but be rewritten to "/index.php/index".
 <IfModule mod_negotiation.c>

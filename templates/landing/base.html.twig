@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="de">
     <head>
-        <title>{% block title %}Willkommen bei epilepc.ch{% endblock %}</title>
+        <title>{% block title %}epilepc - Hilf dir bei Epilepsie!{% endblock %}</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
+        <meta name="description" content="Bei epilepc.ch findest du sämtliche Werkzeuge und Tools, welche du benötigst um deine Epilepsie-Behandlung effektiv und sicher zu begleiten!"/>
+        <meta name="google-site-verification" content="vsAN2S_WxCAVkKug_CtoXwc_LWoo3VzVPZH21KsDUb8" />
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('landing/assets/css/main.css') }}" />
             <link rel="shortcut icon" type="image/png" href="{{ asset('landing/images/favicon.ico') }}"/>
@@ -17,7 +18,7 @@
 <div id="wrapper">
     <!-- Header -->
     <header id="header" class="alt">
-        <span class="logo"><a href="{{ path('app_landingpage') }}"><img src="{{ asset('landing/images/rund-logo.svg') }}" alt="" /></a></span>
+        <span class="logo"><a href="{{ path('app_landingpage') }}"><img src="{{ asset('landing/images/rund-logo.svg') }}" alt="epilepc" /></a></span>
         <h1>epilepc</h1>
         <p>Nimm die Kontrolle über dein Leben wieder in die Hand.</p>
         {% for message in app.flashes('success') %}
@@ -52,13 +53,14 @@
     <p class="copyright">&copy; {{ "now"|date("Y") }} - epilepc</p>
 </footer>
 {% block javascripts %}
-    <script src="{{ asset('landing/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('landing/assets/js/one-js.min.js') }}"></script>
+    <!--<script src="{{ asset('landing/assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('landing/assets/js/jquery.scrollex.min.js') }}"></script>
     <script src="{{ asset('landing/assets/js/jquery.scrolly.min.js') }}"></script>
     <script src="{{ asset('landing/assets/js/browser.min.js') }}"></script>
     <script src="{{ asset('landing/assets/js/breakpoints.min.js') }}"></script>
     <script src="{{ asset('landing/assets/js/util.js') }}"></script>
-    <script src="{{ asset('landing/assets/js/main.js') }}"></script>
+    <script src="{{ asset('landing/assets/js/main.js') }}"></script>-->
 {% endblock %}
 </div>
 </body>
