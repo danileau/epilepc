@@ -63,14 +63,11 @@ class Seizure
      */
     private $seizuretype;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Event", mappedBy="seizure")
-     */
-    private $events;
+
 
     public function __construct()
     {
-        $this->events = new ArrayCollection();
+
     }
 
 
@@ -168,32 +165,6 @@ class Seizure
         return $this;
     }
 
-    /**
-     * @return Collection|Event[]
-     */
-    public function getEvents(): Collection
-    {
-        return $this->events;
-    }
 
-    public function addEvent(Event $event): self
-    {
-        if (!$this->events->contains($event)) {
-            $this->events[] = $event;
-            $event->addSeizure($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEvent(Event $event): self
-    {
-        if ($this->events->contains($event)) {
-            $this->events->removeElement($event);
-            $event->removeSeizure($this);
-        }
-
-        return $this;
-    }
 
 }

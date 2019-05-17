@@ -54,14 +54,10 @@ class Event
      */
     private $modified_at;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\seizure", inversedBy="events")
-     */
-    private $seizure;
 
     public function __construct()
     {
-        $this->seizure = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -141,29 +137,4 @@ class Event
         return $this;
     }
 
-    /**
-     * @return Collection|seizure[]
-     */
-    public function getSeizure(): Collection
-    {
-        return $this->seizure;
-    }
-
-    public function addSeizure(seizure $seizure): self
-    {
-        if (!$this->seizure->contains($seizure)) {
-            $this->seizure[] = $seizure;
-        }
-
-        return $this;
-    }
-
-    public function removeSeizure(seizure $seizure): self
-    {
-        if ($this->seizure->contains($seizure)) {
-            $this->seizure->removeElement($seizure);
-        }
-
-        return $this;
-    }
 }
