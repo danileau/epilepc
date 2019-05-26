@@ -13,6 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class UserRegistrationFormType extends AbstractType
 {
@@ -46,9 +47,9 @@ class UserRegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Wähle ein sicheres Passwort aus'
                     ]),
-                    new Length([
-                        'min' => 5,
-                        'minMessage' => 'Also mehr als 5 Zeichen müssen es schon sein...'
+                    new Regex([
+                        'pattern' => '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*\d.*\d)(?=.*?[^\w\s]).{8,}$/',
+                        'message' => 'Dein Passwort muss die folgenden Anforderungen erfüllten: Gross-, Kleinschreibung, min. 2 Zahlen, min. 1 Sonderzeichen und Mindestlänge 8 Zeichen'
                     ])
                 ]
             ])
