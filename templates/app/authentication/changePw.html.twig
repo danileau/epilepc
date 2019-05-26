@@ -11,6 +11,15 @@
                     <h1 class="h4 text-gray-900 mb-2">Passwort ändern?</h1>
                     <p class="mb-4">Um dein Passwort zu ändern, trage unten dein aktuelles und dein neues Passwort ein.</p>
                 </div>
+                <div class="form-group">
+                    <p>Um die Sicherheit deiner Daten gewährleisten zu können, muss dein Passwort die folgenden Anforderungen erfüllen:</p>
+                    <ul class="dashed">
+                        <li> Gross- und Kleinschreibung</li>
+                        <li> Mindestens 2 Zahlen</li>
+                        <li> Mindestens 1 Sonderzeichen</li>
+                        <li> Mindestlänge des Passworts: 8 Zeichen</li>
+                    </ul>
+                </div>
                 {{ include('app/authentication/_form.html.twig', {'button_text': 'Passwort ändern'}) }}
                 <hr>
 
