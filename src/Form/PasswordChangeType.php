@@ -22,7 +22,7 @@ class PasswordChangeType extends AbstractType
     {
         $builder
             ->add('old_password', PasswordType::class, array(
-                'label' => 'Altes Passwort',
+                'label' => 'Aktuelles Passwort',
             ))
             ->add('new_password', PasswordType::class, array(
                 'label' => 'Neues Passwort',
