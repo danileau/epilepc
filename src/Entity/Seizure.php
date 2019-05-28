@@ -52,7 +52,7 @@ class Seizure
     private $created_at;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      * @Assert\NotBlank(message="Titel darf nicht leer sein")
      * @Encrypted
      */
