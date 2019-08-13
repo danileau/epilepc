@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Medication;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,22 +22,27 @@ class MedicationType extends AbstractType
         $builder
             ->add('name', TextType::class, [])
             ->add('description')
-            ->add('dosage')
+            ->add('dosage', null, [
+                'help' => 'Dosierung in mg. z. B. 3x15mg pro Tag'
+            ])
             ->add('date_from', DateTimeType::class, [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'help' => 'Start Medikamenteneinnahme im Format TT.MM.YYYY HH:MM'
             ])
             ->add('date_to', DateTimeType::class, [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'help' => 'Ende Medikamenteneinnahme im Format TT.MM.YYYY HH:MM'
             ])
-            ->add('timestamp_prescription', DateTimeType::class, [
-                'widget' => 'single_text'
+            ->add('timestamp_prescription', DateType::class, [
+                'widget' => 'single_text',
+                'help' => 'Ausstelldatum des Rezepts'
             ])
         ;
     }
 
     /*
      * Mittels der Funktion configureOptions können optionale Einstellungen definiert werden
-     * Zumbeispiel welche Entity verwendet werden soll (Für CRUD-Funktionalitäten)
+     * Zum Beispiel welche Entity verwendet werden soll (Für CRUD-Funktionalitäten)
      */
     public function configureOptions(OptionsResolver $resolver)
     {

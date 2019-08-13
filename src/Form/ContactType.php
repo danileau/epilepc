@@ -42,7 +42,7 @@ class ContactType extends AbstractType
                 ]
             ])
             ->add('copy', CheckboxType::class, [
-                'label'    => 'Schick mit eine Kopie dieser Nachticht',
+                'label'    => 'Schick mir eine Kopie dieser Nachticht',
                 'required' => false,
             ]);
     }

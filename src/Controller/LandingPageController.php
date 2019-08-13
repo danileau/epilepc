@@ -39,5 +39,12 @@ class LandingPageController extends AbstractController
         return $this->render('landing/datenschutz.html.twig', []);
     }
 
+    /**
+     * @Route("/releasenotes", name="app_landingpage_releasenotes")
+     */
+    public function releasenotes(){
+        return $this->render('landing/releasenotes.html.twig', []);
+    }
+
 
 }

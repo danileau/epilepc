@@ -1,0 +1,49 @@
+{% extends 'landing/base.html.twig' %}
+
+{% block body %}
+
+    <!-- Nav -->
+    <nav id="nav">
+        <ul>
+            <li><a href="#intro" class="active">Releasenotes</a></li>
+            <li><a href="{{ path('app_landingpage') }}">Zurück</a> </li>
+        </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+
+        <!-- Content -->
+        <section id="content" class="main">
+            <h2>Release Notes</h2>
+            <p>Das Ziel von epilepc ist, ein möglichst gutes Tool anzubieten. Da Fehler leider allen passieren und wir stetig die Funktionen erweitern, sind auf dieser Seite  alle durchgeführten Anpassungen dokumentiert.</p>
+
+            <h3>Version 1.0.1</h3>
+            <h5>18.08.2019</h5>
+            <ul>
+                <li>Datetimepicker Bug für Firefox gefixt</li>
+                <li>Releasenotes Seite hinzugefügt und verlinkt</li>
+                <li>Rechtschreibefehler korrigiert</li>
+                <li>Hinweise unter Formularfelder hinzugefügt</li>
+
+            </ul>
+            <hr>
+            <!--<h3>Version 1.0.1</h3>
+            <h5>18.08.2019</h5>
+            <ul>
+                <li>Datetimepicker Bug für Firefox gefixt</li>
+                <li>Releasenotes Seite hinzugefügt und verlinkt</li>
+            </ul>
+            <hr>-->
+
+            <ul class="actions">
+                <li><a href="{{ path('app_landingpage') }}" class="button primary">Zurück</a></li>
+            </ul>
+        </section>
+
+    </div>
+
+
+
+
+{% endblock %}

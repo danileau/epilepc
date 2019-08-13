@@ -28,11 +28,13 @@ class SeizureFormType extends AbstractType
             ->add('title', TextType::class, [])
             ->add('description')
             ->add('timestamp_when', DateTimeType::class, [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'help' => 'Zeitpunkt des Anfalls im Format TT.MM.YYYY HH:MM'
             ])
             ->add('seizuretype', EntityType::class, [
                 'placeholder' => 'Anfallstyp auswählen',
-                'class' => \App\Entity\Seizuretype::class
+                'class' => \App\Entity\Seizuretype::class,
+                'help' => 'Wenn unbekannt, fragen Sie Ihren Arzt nach der auszuwählenden Anfallsart'
             ])
         ;
     }
