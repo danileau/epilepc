@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use function Sodium\add;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -41,6 +42,12 @@ class ContactType extends AbstractType
                     'Idee' => 'Idee'
                 ]
             ])
+            ->add('a_password', TextType::class, [
+                'attr' => ['style' => 'display:none !important', 'tabindex' => '-1', 'autocomplete' => 'nope'],
+                'label' => false,
+                'required' => false
+            ])
+
             ->add('copy', CheckboxType::class, [
                 'label'    => 'Schick mir eine Kopie dieser Nachticht',
                 'required' => false,
