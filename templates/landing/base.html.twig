@@ -41,7 +41,10 @@
 <footer id="footer">
     <section>
         <h2>Über uns</h2>
-        <p>Diese Applikation ist im Rahmen meiner Diplomarbeit an der TSBE zum dipl. Techniker Informatik HF entstanden. <br />Das Ziel ist es für Personen die unter Epilepsie leiden, eine sichere Dokumentationsplattform zur Verfügung zu stellen. Dieses Tool soll dabei helfen, selbständig gegen Epilepsie aktiv zu werden. <br /> <br />
+        <p>Der Startschuss von epilepc wurde während der Abschlussarbeit zum dipl. Techniker Informatik HF gelegt. <br />
+            Erklärtes Ziel ist es für Personen die unter Epilepsie (Zukünftig auch weitere chronische Krankheiten) leiden, eine sichere Dokumentationsplattform zur Verfügung zu stellen. <br />
+            Dieses Werkzeug soll dabei helfen, selbständig das Ruder wieder in die Hand zu nehmen und die eigene "Genesung" aktiv zu unterstützen.<br /> <br />
+
         </p>
     </section>
     <section>
@@ -49,15 +52,10 @@
         <p>Haben Sie Fragen? Möchten Sie unser Produkt unterstützen oder Sponsor werden?</p>
         <p>Dann schreiben Sie uns eine Email an <b><a href="mailto:support@epilepc.ch">support@epilepc.ch</a></b> oder benutzen Sie unser <b><a href="{{ path('contact') }}">Kontaktformular</a></b></p>
 
-        <h2>Social Media</h2>
-        <ul class="icons">
-            <li><a href="https://twitter.com/epilepc" target="_blank" class="icon fa-twitter alt"><span class="label">Twitter</span></a></li>
-            <li><a href="https://www.facebook.com/epilepc" target="_blank" class="icon fa-facebook alt"><span class="label">Facebook</span></a></li>
 
-        </ul>
     </section>
 
-    <p class="copyright">&copy; {{ "now"|date("Y") }} - epilepc - <a href="{{ path('app_landingpage_datenschutz') }}">Datenschutzerklärung</a> - <a href="{{ path('app_landingpage_releasenotes') }}">Releasenotes</a></p>
+    <p class="copyright">&copy; {{ "now"|date("Y") }} - epilepc <br> <a href="{{ path('app_landingpage_datenschutz') }}">Datenschutzerklärung</a> - <a href="{{ path('app_landingpage_releasenotes') }}">Releasenotes</a></p>
 </footer>
 {% block javascripts %}
     <script src="{{ asset('landing/assets/js/one-js.min.js') }}"></script>
