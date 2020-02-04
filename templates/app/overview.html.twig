@@ -1,12 +1,12 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}Epilepc - Deine Übersicht vom {{ date }} {% endblock %}
+{% block title %}Epilepc - {% trans %}Übersicht vom{% endtrans %} {{ date }} {% endblock %}
 {% block body %}
 <div class="container">
     <!-- Page Heading -->
     <div class="mb-3">
         <div class="text-center">
-            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2">Übersicht vom {{ date }}</h1>
+            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2">{% trans %}Übersicht vom{% endtrans %} {{ date }}</h1>
         </div>
         <div class="mt-5 text-center">
             <div class="col-lg-12">
@@ -14,19 +14,19 @@
                 <!-- Default Card Example -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        Hinweis
+                        {% trans %}Hinweis{% endtrans %}
                     </div>
                     <div class="card-body">
                         {% if diagnose != null %}
                             <p><u><b>Diagnose:</b></u> {{ diagnose }} </p>
                         {% endif %}
-                        <p>Im generierten PDF werden die Tagebucheinträge nicht angezeigt.<br>
-                        Das PDF wurde für eine Anzeige an einem Bildschirm optimiert.</p>
+                        <p>{% trans %}Im generierten PDF werden die Tagebucheinträge nicht angezeigt.{% endtrans %}<br/>
+                        {% trans %}Das PDF wurde für eine Anzeige an einem Bildschirm optimiert.{% endtrans %}</p>
                     </div>
                 </div>
 
             </div>
-            <button class="btn btn-primary mb-5"><a href="{{ path('app_overview_pdf') }}" target="_blank" style="color: white"><b>PDF generieren</b></a></button>
+            <button class="btn btn-primary mb-5"><a href="{{ path('app_overview_pdf') }}" target="_blank" style="color: white"><b>{% trans %}PDF generieren{% endtrans %}</b></a></button>
         </div>
     </div>
 
@@ -36,14 +36,14 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-secondary">Deine Übersicht der letzten 12 Monate</h6>
+                    <h6 class="m-0 font-weight-bold text-secondary">{% trans %}Deine Übersicht der letzten 12 Monate{% endtrans %}</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-area">
                         <canvas id="myAreaChart"></canvas>
                     </div>
-                    <p><i>Mit einem Klick auf die jeweilige Legende können Linien aus- und eingeblendet werden.</i></p>
+                    <p><i>{% trans %}Mit einem Klick auf die jeweilige Legende können Linien aus- und eingeblendet werden.{% endtrans %}</i></p>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-secondary">Was wurde wie oft erfasst?</h6>
+                    <h6 class="m-0 font-weight-bold text-secondary">{% trans %}Was wurde wie oft erfasst?{% endtrans %}</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -62,16 +62,16 @@
                     </div>
                     <div class="mt-4 text-center small">
                 <span class="mr-2">
-                  <i class="fas fa-circle text-danger"></i> Anfälle
+                  <i class="fas fa-circle text-danger"></i>{% trans %}Anfälle{% endtrans %}
                 </span>
                 <span class="mr-2">
-                  <i class="fas fa-circle text-success"></i> Ereignisse
+                  <i class="fas fa-circle text-success"></i>{% trans %}Ereignisse{% endtrans %}
                 </span>
                 <span class="mr-2">
-                  <i class="fas fa-circle text-primary"></i> Tagebucheinträge
+                  <i class="fas fa-circle text-primary"></i>{% trans %}Tagebucheinträge{% endtrans %}
                 </span>
                 <span class="mr-2">
-                  <i class="fas fa-circle text-warning"></i> Medikationen
+                  <i class="fas fa-circle text-warning"></i>{% trans %}Medikationen{% endtrans %}
                 </span>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-secondary">Sämtliche erfassten Daten</h6>
+                    <h6 class="m-0 font-weight-bold text-secondary">{% trans %}Sämtliche erfassten Daten{% endtrans %}</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -91,54 +91,54 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" data-sort-name="title" data-sort-order="desc">
                             <thead>
                             <tr>
-                                <th data-field="date">Datum</th>
-                                <th data-field="title">Name</th>
-                                <th>Typ</th>
-                                <th>Aktionen</th>
+                                <th data-field="date">{% trans %}Datum{% endtrans %}</th>
+                                <th data-field="title">{% trans %}Titel{% endtrans %}</th>
+                                <th>{% trans %}Typ{% endtrans %}</th>
+                                <th>{% trans %}Aktionen{% endtrans %}</th>
                             </tr>
                             </thead>
                             <tbody>
                             {% for seizure in seizures %}
                                 <tr>
-                                    <td><span class="hidden">{{ seizure.timestampWhen ? seizure.timestampWhen|date('Y/m/d') : '' }}</span>{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
+                                    <td data-order="{{ seizure.timestampWhen|date('U') }}">{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
                                     <td>{{ seizure.title }} - {{ seizure.seizuretype }}</td>
-                                    <td>Anfall</td>
+                                    <td>{% trans %}Anfall{% endtrans %}</td>
                                     <td align="center">
-                                        <a href="{{ path('seizure_show', {'id': seizure.id}) }}" class="text-seizure" title="Anzeigen"><i class="fas fa-fw fa-search"></i></a> -
-                                        <a href="{{ path('seizure_edit', {'id': seizure.id}) }}" class="text-seizure" title="Bearbeiten"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="{{ path('seizure_show', {'id': seizure.id}) }}" class="text-seizure" title="{% trans %}Anzeigen{% endtrans %}"><i class="fas fa-fw fa-search"></i></a> -
+                                        <a href="{{ path('seizure_edit', {'id': seizure.id}) }}" class="text-seizure" title="{% trans %}Bearbeiten{% endtrans %}"><i class="fas fa-fw fa-edit"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
                             {% for event in events %}
                                 <tr>
-                                    <td><span class="hidden">{{ event.timestampWhen ? event.timestampWhen|date('Y/m/d') : '' }}</span>{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
+                                    <td data-order="{{ event.timestampWhen|date('U') }}">{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
                                     <td>{{ event.name }}</td>
-                                    <td>Ereignis</td>
+                                    <td>{% trans %}Ereignis{% endtrans %}</td>
                                     <td align="center">
-                                        <a href="{{ path('event_show', {'id': event.id}) }}" class="text-event" title="Anzeigen"><i class="fas fa-fw fa-search"></i></a> -
-                                        <a href="{{ path('event_edit', {'id': event.id}) }}" class="text-event" title="Bearbeiten"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="{{ path('event_show', {'id': event.id}) }}" class="text-event" title="{% trans %}Anzeigen{% endtrans %}"><i class="fas fa-fw fa-search"></i></a> -
+                                        <a href="{{ path('event_edit', {'id': event.id}) }}" class="text-event" title="{% trans %}Bearbeiten{% endtrans %}"><i class="fas fa-fw fa-edit"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
                             {% for medication in medications %}
                                 <tr>
-                                    <td><span class="hidden">{{ medication.timestampPrescription ? medication.timestampPrescription|date('Y/m/d') : '' }}</span>{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y H:i') : '' }} Uhr</td>
+                                    <td data-order="{{ medication.timestampPrescription|date('U') }}">{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
                                     <td>{{ medication.name }}</td>
-                                    <td>Medikation</td>
+                                    <td>{% trans %}Medikation{% endtrans %}</td>
                                     <td align="center">
-                                        <a href="{{ path('medication_show', {'id': medication.id}) }}" class="text-medication" title="Anzeigen"><i class="fas fa-fw fa-search"></i></a> -
-                                        <a href="{{ path('medication_edit', {'id': medication.id}) }}" class="text-medication" title="Bearbeiten"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="{{ path('medication_show', {'id': medication.id}) }}" class="text-medication" title="{% trans %}Anzeigen{% endtrans %}"><i class="fas fa-fw fa-search"></i></a> -
+                                        <a href="{{ path('medication_edit', {'id': medication.id}) }}" class="text-medication" title="{% trans %}Bearbeiten{% endtrans %}"><i class="fas fa-fw fa-edit"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
                            {% for diaryentry in diaryentrys %}
                                 <tr>
-                                    <td><span class="hidden">{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('Y/m/d') : '' }}</span>{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
+                                    <td data-order="{{ diaryentry.timestampWhen|date('U') }}">{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
                                     <td>{{ diaryentry.title }}</td>
-                                    <td>Tagebucheintrag</td>
+                                    <td>{% trans %}Tagebucheintrag{% endtrans %}</td>
                                     <td align="center">
-                                        <a href="{{ path('diaryentry_show', {'id': diaryentry.id}) }}" class="text-diary" title="Anzeigen"><i class="fas fa-fw fa-search"></i></a> -
-                                        <a href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}" class="text-diary" title="Bearbeiten"><i class="fas fa-fw fa-edit"></i></a>
+                                        <a href="{{ path('diaryentry_show', {'id': diaryentry.id}) }}" class="text-diary" title="{% trans %}Anzeigen{% endtrans %}"><i class="fas fa-fw fa-search"></i></a> -
+                                        <a href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}" class="text-diary" title="{% trans %}Bearbeiten{% endtrans %}"><i class="fas fa-fw fa-edit"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -210,7 +210,7 @@
     data: {
     labels: {{ seizure_month|raw }},
     datasets: [{
-    label: "Anfälle",
+    label: "{% trans %}Anfälle{% endtrans %}",
     lineTension: 0.3,
     backgroundColor: "rgba(231, 74, 59, 0.05)",
     borderColor: "rgba(231, 74, 59, 1)",
@@ -224,7 +224,7 @@
     pointBorderWidth: 2,
     data: {{ seizure_data|raw }}
     },{
-    label: "Ereignisse",
+    label: "{% trans %}Ereignisse{% endtrans %}",
     lineTension: 0.3,
     backgroundColor: "rgba(28, 200, 138, 0.05)",
     borderColor: "rgba(28, 200, 138, 1)",
@@ -239,7 +239,7 @@
     data: {{ event_data|raw }}
     },
     {
-    label: "Tagebucheinträge",
+    label: "{% trans %}Tagebucheinträge{% endtrans %}",
     lineTension: 0.3,
     backgroundColor: "rgba(78, 115, 223, 0.05)",
     borderColor: "rgba(78, 115, 223, 1)",
@@ -254,7 +254,7 @@
     data: {{ diaryentry_data|raw }}
     },
     {
-    label: "Medikationen",
+    label: "{% trans %}Medikationen{% endtrans %}",
     lineTension: 0.3,
     backgroundColor: "rgba(246, 194, 62, 0.05)",
     borderColor: "rgba(246, 194, 62, 1)",
@@ -349,8 +349,8 @@
     var myPieChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-    labels: ["Tagebucheinträge", "Ereignisse", "Anfälle", "Medikationen"],
-    //labels: ["Ereignisse", "Anfälle", "Medikationen"],
+    labels: ["{% trans %}Tagebucheinträge{% endtrans %}", "{% trans %}Ereignisse{% endtrans %}", "{% trans %}Anfälle{% endtrans %}", "{% trans %}Medikationen{% endtrans %}"],
+    //labels: ["{% trans %}Ereignisse{% endtrans %}", "{% trans %}Anfälle{% endtrans %}", "{% trans %}Medikationen{% endtrans %}"],
     datasets: [{
     data: [{{ diaryentry_count }}, {{ event_count }}, {{ seizure_count }}, {{ medication_count }}],
         backgroundColor: ['#4e73df', '#1cc88a', '#e74a3b', '#f6c23e'],
@@ -387,7 +387,7 @@
     $(document).ready(function() {
         $('#dataTable').DataTable( {
             "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/German.json"
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/{% trans %}German{% endtrans %}.json"
             },
             "order": [[ 0, "desc" ]]
 

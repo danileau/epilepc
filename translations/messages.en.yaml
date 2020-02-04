@@ -12,6 +12,7 @@ Ereignis Funktionen: Event functions
 Neues Ereignis: New event
 Tagebuch: Diary
 Tagebucheinträge: Diaryentries
+Tagebucheintrag: Diaryentry
 Tagebuch Funktionen: Diary functions
 Neuer Tagebucheintrag: New diaryentry
 Medikation: Medication
@@ -39,5 +40,19 @@ Profil anzeigen & bearbeiten: Show & edit profile
 Fertig?: Finished?
 Wähle "Ausloggen" aus, wenn du bereit bist, die aktuelle Sitzung zu beenden: Select "Logout" when you are ready to end the current session.
 Abbrechen: Cancel
-
+Übersicht vom: Overview from
+Hinweis: Note
+Im generierten PDF werden die Tagebucheinträge nicht angezeigt.: The diary entries are not displayed in the generated PDF.
+Das PDF wurde für eine Anzeige an einem Bildschirm optimiert.: The PDF has been optimized for display on a screen.
+PDF generieren: Generate PDF
+Mit einem Klick auf die jeweilige Legende können Linien aus- und eingeblendet werden.: The lines can be hidden with a simple click on the corresponding legendentry.
+Sämtliche erfassten Daten: All data collected
+Datum: Date
+Titel: Title
+Typ: Type
+Aktionen: Actions
+Anzeigen: Show
+Bearbeiten: Modify
+Uhr: o'clock
+German: English
 
