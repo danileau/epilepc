@@ -37,13 +37,13 @@
                     {% for medication in medications %}
 
                         <tr>
-                            <td><a href="{{ path('medication_show', {'id': medication.id}) }}" class="text-medication" title="Anzeigen"><i class="fas fa-fw fa-search"></i> {{ medication.name }}</a></td>
-                            <td>{{ medication.description }}</td>
-                            <td>{{ medication.dosage }}</td>
-                            <td>{{ medication.dateFrom ? medication.dateFrom|date('d.m.Y H:i') }} Uhr</td>
-                            <td>{{ medication.dateTo ? medication.dateTo|date('d.m.Y H:i') }} Uhr</td>
-                            <td>{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y')}}</td>
-                            <td>{{ medication.modifiedAt ? medication.modifiedAt|date('d.m.Y H:i') : '' }} Uhr</td>
+                            <td data-search="medication.name"><a href="{{ path('medication_show', {'id': medication.id}) }}" class="text-medication" title="Anzeigen"><i class="fas fa-fw fa-search"></i> {{ medication.name }}</a></td>
+                            <td data-search="medication.description">{{ medication.description }}</td>
+                            <td data-search="medication.dosage">{{ medication.dosage }}</td>
+                            <td data-order="{{ medication.dateFrom|date('U') }}">{{ medication.dateFrom ? medication.dateFrom|date('d.m.Y H:i') }} Uhr</td>
+                            <td data-order="{{ medication.dateTo|date('U') }}">{{ medication.dateTo ? medication.dateTo|date('d.m.Y H:i') }} Uhr</td>
+                            <td data-order="{{ medication.timestampPrescription|date('U') }}">{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y')}}</td>
+                            <td data-order="{{ medication.modifiedAt|date('U') }}">{{ medication.modifiedAt ? medication.modifiedAt|date('d.m.Y H:i') : '' }} Uhr</td>
                             <td align="center">
                                 <a href="{{ path('medication_edit', {'id': medication.id}) }}" title="Bearbeiten" class="text-medication"><i class="fas fa-fw fa-edit" ></i></a>
                             </td>

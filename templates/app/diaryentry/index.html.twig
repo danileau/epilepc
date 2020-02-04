@@ -32,9 +32,9 @@
                     <tbody>
                     {% for diaryentry in diaryentries %}
                         <tr>
-                            <td><a href="{{ path('diaryentry_show', {'id': diaryentry.id}) }}" class="text-diary" title="Anzeigen"><i class="fas fa-fw fa-search"></i> {{ diaryentry.title }}</a></td>
-                            <td>{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('d.m.Y') : '' }}</td>
-                            <td>{{ diaryentry.modifiedAt ? diaryentry.modifiedAt|date('d.m.Y H:i') : '' }} Uhr</td>
+                            <td data-search="{{ diaryentry.title }}"><a href="{{ path('diaryentry_show', {'id': diaryentry.id}) }}" class="text-diary" title="Anzeigen"><i class="fas fa-fw fa-search"></i> {{ diaryentry.title }}</a></td>
+                            <td data-order="{{ diaryentry.timestampWhen|date('U') }}">{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('d.m.Y') : '' }}</td>
+                            <td data-order="{{ diaryentry.modifiedAt|date('U') }}">{{ diaryentry.modifiedAt ? diaryentry.modifiedAt|date('d.m.Y H:i') : '' }} Uhr</td>
                             <td align="center">
                                 <a href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}" title="Bearbeiten" class="text-diary"><i class="fas fa-fw fa-edit"></i></a>
                             </td>

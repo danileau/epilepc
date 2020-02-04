@@ -32,8 +32,8 @@
                     <tbody>
                     {% for seizuretyp in seizuretypes %}
                         <tr>
-                            <td><a href="{{ path('seizuretype_show', {'id': seizuretyp.id}) }}" class="text-seizure"><i class="fas fa-fw fa-search"></i> {{ seizuretyp.name }}</a></td>
-                            <td>{{ seizuretyp.description|length > 50 ? seizuretyp.description|slice(0, 50) ~ '...' : seizuretyp.description }}</td>
+                            <td data-search="{{ seizuretyp.name }}"><a href="{{ path('seizuretype_show', {'id': seizuretyp.id}) }}" class="text-seizure"><i class="fas fa-fw fa-search"></i> {{ seizuretyp.name }}</a></td>
+                            <td data-search="{{ seizuretyp.description }}">{{ seizuretyp.description|length > 50 ? seizuretyp.description|slice(0, 50) ~ '...' : seizuretyp.description }}</td>
                             <td align="center">
                                 <a href="{{ path('seizuretype_edit', {'id': seizuretyp.id}) }}" class="text-seizure"><i class="fas fa-fw fa-edit"></i></a>
                             </td>

@@ -32,10 +32,10 @@
                     <tbody>
                     {% for event in events %}
                         <tr>
-                            <td><a href="{{ path('event_show', {'id': event.id}) }}" class="text-event" title="Anzeigen"><i class="fas fa-fw fa-search"></i> {{ event.name }}</a></td>
-                            <td>{{ event.description|length > 50 ? event.description|slice(0, 50) ~ '...' : event.description}}</td>
-                            <td>{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y') : '' }}</td>
-                            <td>{{ event.modifiedAt ? event.modifiedAt|date('d.m.Y H:i') : '' }} Uhr</td>
+                            <td data-search="{{ event.name }}"><a href="{{ path('event_show', {'id': event.id}) }}" class="text-event" title="Anzeigen"><i class="fas fa-fw fa-search"></i> {{ event.name }}</a></td>
+                            <td data-search="{{ event.description }}">{{ event.description|length > 50 ? event.description|slice(0, 50) ~ '...' : event.description}}</td>
+                            <td data-order="{{ event.timestampWhen|date('U') }}">{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y') : '' }}</td>
+                            <td data-order="{{ event.modifiedAt|date('U') }}">{{ event.modifiedAt ? event.modifiedAt|date('d.m.Y H:i') : '' }} Uhr</td>
                             <td align="center">
                                 <a href="{{ path('event_edit', {'id': event.id}) }}" title="Bearbeiten" class="text-event"><i class="fas fa-fw fa-edit"></i></a>
                             </td>
