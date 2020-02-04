@@ -7,7 +7,7 @@
         <!-- Page Heading -->
         <div class="mb-5">
             <div class="text-center">
-                <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2">Dashboard von {{ app.user.firstname }}</h1>
+                <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2">{% trans %}Dashboard von{% endtrans %} {{ app.user.firstname }}</h1>
 
             </div>
         </div>
@@ -21,7 +21,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Erfasste Anfälle</div>
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">{% trans %}Erfasste Anfälle{% endtrans %}</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ seizure_count }}</div>
                             </div>
                             <div class="col-auto">
@@ -38,7 +38,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Erfasste Ereignisse</div>
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">{% trans %}Erfasste Ereignisse{% endtrans %}</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ event_count }}</div>
                             </div>
                             <div class="col-auto">
@@ -55,7 +55,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Erfasste Tagebucheinträge</div>
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{% trans %}Erfasste Tagebucheinträge{% endtrans %}</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ diaryentry_count }}</div>
                             </div>
                             <div class="col-auto">
@@ -72,7 +72,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-medication text-uppercase mb-1">Erfasste Medikationen</div>
+                                <div class="text-xs font-weight-bold text-medication text-uppercase mb-1">{% trans %}Erfasste Medikationen{% endtrans %}</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ medication_count }}</div>
                             </div>
                             <div class="col-auto">
@@ -92,7 +92,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-secondary">Deine Übersicht der letzten 12 Monate</h6>
+                        <h6 class="m-0 font-weight-bold text-secondary">{% trans %}Deine Übersicht der letzten 12 Monate{% endtrans %}</h6>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
@@ -108,7 +108,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-secondary">Was wurde wie oft erfasst?</h6>
+                        <h6 class="m-0 font-weight-bold text-secondary">{% trans %}Was wurde wie oft erfasst?{% endtrans %}</h6>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
@@ -117,16 +117,16 @@
                         </div>
                         <div class="mt-4 text-center small">
                     <span class="mr-2">
-                      <i class="fas fa-circle text-danger"></i> Anfälle
+                      <i class="fas fa-circle text-danger"></i> {% trans %}Anfälle{% endtrans %}
                     </span>
                             <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Ereignisse
+                      <i class="fas fa-circle text-success"></i> {% trans %}Ereignisse{% endtrans %}
                     </span>
                             <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Tagebucheinträge
+                      <i class="fas fa-circle text-primary"></i> {% trans %}Tagebucheinträge{% endtrans %}
                     </span>
                             <span class="mr-2">
-                      <i class="fas fa-circle text-warning"></i> Medikationen
+                      <i class="fas fa-circle text-warning"></i> {% trans %}Medikationen{% endtrans %}
                     </span>
                         </div>
                     </div>
@@ -190,7 +190,7 @@
     data: {
     labels: {{ seizure_month|raw }},
     datasets: [{
-    label: "Anfälle",
+    label: "{% trans %}Anfälle{% endtrans %}",
     lineTension: 0.3,
     backgroundColor: "rgba(231, 74, 59, 0.05)",
     borderColor: "rgba(231, 74, 59, 1)",
@@ -204,7 +204,7 @@
     pointBorderWidth: 2,
     data: {{ seizure_data|raw }}
     },{
-    label: "Ereignisse",
+    label: "{% trans %}Ereignisse{% endtrans %}",
     lineTension: 0.3,
     backgroundColor: "rgba(28, 200, 138, 0.05)",
     borderColor: "rgba(28, 200, 138, 1)",
@@ -218,7 +218,7 @@
     pointBorderWidth: 2,
     data: {{ event_data|raw }}
     },{
-    label: "Tagebucheinträge",
+    label: "{% trans %}Tagebucheinträge{% endtrans %}",
     lineTension: 0.3,
     backgroundColor: "rgba(78, 115, 223, 0.05)",
     borderColor: "rgba(78, 115, 223, 1)",
@@ -232,7 +232,7 @@
     pointBorderWidth: 2,
     data: {{ diaryentry_data|raw }}
     },{
-    label: "Medikationen",
+    label: "{% trans %}Medikationen{% endtrans %}",
     lineTension: 0.3,
     backgroundColor: "rgba(246, 194, 62, 0.05)",
     borderColor: "rgba(246, 194, 62, 1)",
@@ -327,7 +327,7 @@
     var myPieChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-    labels: ["Tagebucheinträge", "Ereignisse", "Anfälle", "Medikationen"],
+    labels: ["{% trans %}Tagebucheinträge{% endtrans %}", "{% trans %}Ereignisse{% endtrans %}", "{% trans %}Anfälle{% endtrans %}", "{% trans %}Medikationen{% endtrans %}"],
     datasets: [{
     data: [{{ diaryentry_count }}, {{ event_count }}, {{ seizure_count }}, {{ medication_count }}],
     backgroundColor: ['#4e73df', '#1cc88a', '#e74a3b', '#f6c23e'],

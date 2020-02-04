@@ -13,7 +13,7 @@
         <meta property="og:description" content="Bei epilepc.ch findest du sämtliche Werkzeuge und Tools, welche du benötigst um deine Epilepsie-Behandlung effektiv und sicher zu begleiten!"/>
         <meta property="og:updated_time" content="1559635102"/>
         <meta property="og:image:alt" content="epilepc"/>
-        <title>{% block title %}Epilepc - Dashboard{% endblock %}</title>
+        <title>{% block title %}Epilepc - {% trans %}Dashboard{% endtrans %}{% endblock %}</title>
 
         {% block stylesheets %}
             <!-- Custom fonts for this template-->
@@ -46,25 +46,25 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ path('app_dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>{% trans %}Dashboard{% endtrans %}</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Heading -->
             <div class="sidebar-heading">
-                Deine Daten
+                {% trans %}Deine Daten{% endtrans %}
             </div>
             <!-- Nav Item - Seizures Collapse Menu -->
             <li class="nav-item seizure">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeizures" aria-expanded="true" aria-controls="collapseSeizures">
                     <i class="fas fa-fw fa-bolt"></i>
-                    <span>Anfälle</span>
+                    <span>{% trans %}Anfälle{% endtrans %}</span>
                 </a>
                 <div id="collapseSeizures" class="collapse" aria-labelledby="headingSeizures" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Anfall Funktionen</h6>
-                        <a class="collapse-item" href="{{ path('seizure_new') }}">Neuer Anfall</a>
-                        <a class="collapse-item" href="{{ path('seizure_index') }}">Alle anzeigen</a>
+                        <h6 class="collapse-header">{% trans %}Anfall Funktionen{% endtrans %}</h6>
+                        <a class="collapse-item" href="{{ path('seizure_new') }}">{% trans %}Neuer Anfall{% endtrans %}</a>
+                        <a class="collapse-item" href="{{ path('seizure_index') }}">{% trans %}Alle anzeigen{% endtrans %}</a>
                     </div>
                 </div>
             </li>
@@ -73,13 +73,13 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEvents" aria-expanded="true" aria-controls="collapseEvents">
                     <i class="fas fa-fw fa-exclamation-triangle"></i>
-                    <span>Ereignisse</span>
+                    <span>{% trans %}Ereignisse{% endtrans %}</span>
                 </a>
                 <div id="collapseEvents" class="collapse" aria-labelledby="headingEvents" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Ereignis Funktionen</h6>
-                        <a class="collapse-item" href="{{ path('event_new') }}">Neues Ereignis</a>
-                        <a class="collapse-item" href="{{ path('event_index') }}">Alle anzeigen</a>
+                        <h6 class="collapse-header">{% trans %}Ereignis Funktionen{% endtrans %}</h6>
+                        <a class="collapse-item" href="{{ path('event_new') }}">{% trans %}Neues Ereignis{% endtrans %}</a>
+                        <a class="collapse-item" href="{{ path('event_index') }}">{% trans %}Alle anzeigen{% endtrans %}</a>
                     </div>
                 </div>
             </li>
@@ -87,13 +87,13 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDiary" aria-expanded="true" aria-controls="collapseDiary">
                     <i class="fas fa-fw fa-book"></i>
-                    <span>Tagebuch</span>
+                    <span>{% trans %}Tagebuch{% endtrans %}</span>
                 </a>
                 <div id="collapseDiary" class="collapse" aria-labelledby="headingDiary" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Tagebuch Funktionen</h6>
-                        <a class="collapse-item" href="{{ path('diaryentry_new') }}">Neuer Tagebucheintrag</a>
-                        <a class="collapse-item" href="{{ path('diaryentry_index') }}">Alle anzeigen</a>
+                        <h6 class="collapse-header">{% trans %}Tagebuch Funktionen{% endtrans %}</h6>
+                        <a class="collapse-item" href="{{ path('diaryentry_new') }}">{% trans %}Neuer Tagebucheintrag{% endtrans %}</a>
+                        <a class="collapse-item" href="{{ path('diaryentry_index') }}">{% trans %}Alle anzeigen{% endtrans %}</a>
                     </div>
                 </div>
             </li>
@@ -101,13 +101,13 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeds" aria-expanded="true" aria-controls="collapseDiary">
                     <i class="fas fa-fw fa-prescription-bottle"></i>
-                    <span>Medikation</span>
+                    <span>{% trans %}Medikation{% endtrans %}</span>
                 </a>
                 <div id="collapseMeds" class="collapse" aria-labelledby="headingMeds" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Medikation Funktionen</h6>
-                        <a class="collapse-item" href="{{ path('medication_new') }}">Neue Medikation</a>
-                        <a class="collapse-item" href="{{ path('medication_index') }}">Alle anzeigen</a>
+                        <h6 class="collapse-header">{% trans %}Medikation Funktionen{% endtrans %}</h6>
+                        <a class="collapse-item" href="{{ path('medication_new') }}">{% trans %}Neue Medikation{% endtrans %}</a>
+                        <a class="collapse-item" href="{{ path('medication_index') }}">{% trans %}Alle anzeigen{% endtrans %}</a>
                     </div>
                 </div>
             </li>
@@ -116,26 +116,26 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ path('app_overview') }}">
                     <i class="fas fa-fw fa-eye"></i>
-                    <span>Übersicht</span></a>
+                    <span>{% trans %}Übersicht{% endtrans %}</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Benutzer
+                {% trans %}Benutzer{% endtrans %}
             </div>
             <!-- Nav Item - Diary Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAccount" aria-expanded="true" aria-controls="collapseAccount">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>Profil</span>
+                    <span>{% trans %}Profil{% endtrans %}</span>
                 </a>
                 <div id="collapseAccount" class="collapse" aria-labelledby="headingAccount" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Benutzeraccount</h6>
-                        <a class="collapse-item" href="{{ path('app_account') }}">Profil anzeigen</a>
-                        <a class="collapse-item" href="{{ path('app_change_password') }}">Passwort ändern</a>
+                        <h6 class="collapse-header">{% trans %}Benutzeraccount{% endtrans %}</h6>
+                        <a class="collapse-item" href="{{ path('app_account') }}">{% trans %}Profil anzeigen{% endtrans %}</a>
+                        <a class="collapse-item" href="{{ path('app_change_password') }}">{% trans %}Passwort ändern{% endtrans %}</a>
                     </div>
                 </div>
             </li>
@@ -146,19 +146,19 @@
             {% if is_granted('ROLE_ADMIN') %}
                 <!-- Heading -->
                 <div class="sidebar-heading">
-                    Adminbereich
+                    {% trans %}Adminbereich{% endtrans %}
                 </div>
                 <!-- Nav Item - Diary Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="true" aria-controls="collapseAdmin">
                         <i class="fas fa-fw fa-crown"></i>
-                        <span>Adminbereich</span>
+                        <span>{% trans %}Adminbereich{% endtrans %}</span>
                     </a>
                     <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Administrator Funktionen</h6>
-                            <a class="collapse-item" href="{{ path('admin_user_index') }}">Benutzerverwaltung</a>
-                            <a class="collapse-item" href="{{ path('seizuretype_index') }}">Anfallstypen pflegen</a>
+                            <h6 class="collapse-header">{% trans %}Administrator Funktionen{% endtrans %}</h6>
+                            <a class="collapse-item" href="{{ path('admin_user_index') }}">{% trans %}Benutzerverwaltung{% endtrans %}</a>
+                            <a class="collapse-item" href="{{ path('seizuretype_index') }}">{% trans %}Anfallstypen pflegen{% endtrans %}</a>
                         </div>
                     </div>
                 </li>
@@ -172,7 +172,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_logout') }}" data-toggle="modal" data-target="#logoutModal">
                         <i class="fas fa-fw fa-sign-out-alt"></i>
-                        <span>Ausloggen</span></a>
+                        <span>{% trans %}Ausloggen{% endtrans %}</span></a>
                 </li>
             </div>
 
@@ -206,16 +206,16 @@
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="{{ path('app_account') }}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profil anzeigen & bearbeiten
+                                    {% trans %}Profil anzeigen & bearbeiten{% endtrans %}
                                 </a>
                                 <a class="dropdown-item" href="{{ path('app_change_password') }}">
                                     <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Passwort ändern
+                                    {% trans %}Passwort ändern{% endtrans %}
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ path('app_logout') }}" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Ausloggen
+                                    {% trans %}Ausloggen{% endtrans %}
                                 </a>
                             </div>
                         </li>
@@ -241,7 +241,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>&copy; 2019 - epilepc</span>
+                        <span>&copy; {{ "now"|date("Y") }} - epilepc</span>
                     </div>
                 </div>
             </footer>
@@ -262,15 +262,16 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Fertig?</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">{% trans %}Fertig?{% endtrans %}</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    <div class="modal-body">Wähle "Ausloggen" aus, wenn du bereit bist, die aktuelle Sitzung zu beenden.</div>
+                    <div class="modal-body">{% trans %}Wähle "Ausloggen" aus, wenn du bereit bist, die aktuelle Sitzung zu beenden{% endtrans %}</div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Abbrechen</button>
-                        <a class="btn btn-primary" href="{{ path('app_logout') }}">Ausloggen</a>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">{% trans %}Abbrechen{% endtrans %}</button>
+                        <a class="btn btn-primary" href="{{ path('app_logout') }}">{% trans %}Ausloggen{% endtrans %}</a>
+
                     </div>
                 </div>
             </div>
