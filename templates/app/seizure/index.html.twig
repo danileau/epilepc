@@ -1,47 +1,47 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}Epilepc - Anfallsübersicht{% endblock %}
+{% block title %}Epilepc - {% trans %}Anfallsübersicht{% endtrans %}{% endblock %}
 
 {% block body %}
     <!-- Page Heading -->
     <div class="mb-5">
         <div class="text-center">
-            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Anfälle - Übersicht</h1>
-            <p class="mb-4">Untenstehend findest du alle deine erstellten Anfälle. <br />Zusätzlich kannst du auf das Pluszeichen <i class="fas fa-plus-circle"></i> klicken, um einen neuen Anfall zu erstellen</p>
+            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Anfälle{% endtrans %} - {% trans %}Übersicht{% endtrans %}</h1>
+            <p class="mb-4">{% trans %}Untenstehend findest du alle deine erstellten Anfälle.{% endtrans %} <br />{% trans %}Zusätzlich kannst du auf das Pluszeichen{% endtrans %} <i class="fas fa-plus-circle"></i> {% trans %}klicken, um einen neuen Anfall zu erstellen{% endtrans %}</p>
 
-            <a href="{{ path('seizure_new') }}" title="Neuer Anfall erstellen"><i class="fas fa-plus-circle fa-3x text-seizure" ></i></a>
+            <a href="{{ path('seizure_new') }}" title="{% trans %}Neuer Anfall erstellen{% endtrans %}"><i class="fas fa-plus-circle fa-3x text-seizure" ></i></a>
         </div>
     </div>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-seizure">Erfasste Anfälle</h6>
+            <h6 class="m-0 font-weight-bold text-seizure">{% trans %}Erfasste Anfälle{% endtrans %}</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" data-sort-name="date" data-sort-order="asc">
                     <thead>
                     <tr>
-                        <th>Anfallstitel</th>
-                        <th>Anfallsdatum</th>
-                        <th>Zuletzt bearbeitet</th>
-                        <th>Aktionen</th>
+                        <th>{% trans %}Anfallstitel{% endtrans %}</th>
+                        <th>{% trans %}Anfallsdatum{% endtrans %}</th>
+                        <th>{% trans %}Zuletzt bearbeitet{% endtrans %}</th>
+                        <th>{% trans %}Aktionen{% endtrans %}</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for seizure in seizures %}
                         <tr>
-                            <td data-search="{{ seizure.title }}"><a href="{{ path('seizure_show', {'id': seizure.id}) }}" class="text-seizure" title="Anzeigen"><i class="fas fa-fw fa-search"></i> {{ seizure.title }}</a></td>
-                            <td data-order="{{ seizure.timestampWhen|date('U')  }}">{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
-                            <td data-order="{{ seizure.modifiedAt|date('U')  }}">{{ seizure.modifiedAt ? seizure.modifiedAt|date('d.m.Y H:i') : '' }} Uhr</td>
+                            <td data-search="{{ seizure.title }}"><a href="{{ path('seizure_show', {'id': seizure.id}) }}" class="text-seizure" title="{% trans %}Anzeigen{% endtrans %}"><i class="fas fa-fw fa-search"></i> {{ seizure.title }}</a></td>
+                            <td data-order="{{ seizure.timestampWhen|date('U')  }}">{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
+                            <td data-order="{{ seizure.modifiedAt|date('U')  }}">{{ seizure.modifiedAt ? seizure.modifiedAt|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
                             <td align="center">
-                                <a href="{{ path('seizure_edit', {'id': seizure.id}) }}" title="Bearbeiten" class="text-seizure"><i class="fas fa-fw fa-edit"></i></a>
+                                <a href="{{ path('seizure_edit', {'id': seizure.id}) }}" title="{% trans %}Bearbeiten{% endtrans %}" class="text-seizure"><i class="fas fa-fw fa-edit"></i></a>
                             </td>
                         </tr>
                     {% else %}
                         <tr>
-                            <td colspan="6">Keine Anfälle vorhanden</td>
+                            <td colspan="6">{% trans %}Keine Anfälle vorhanden{% endtrans %}</td>
                         </tr>
                     {% endfor %}
 
@@ -76,7 +76,7 @@
     $(document).ready(function() {
         $('#dataTable').DataTable( {
             "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/German.json"
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/{% trans %}German{% endtrans %}.json"
             }
         });
     });

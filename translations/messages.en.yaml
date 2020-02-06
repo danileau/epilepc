@@ -1,11 +1,27 @@
 Dashboard von: Dashboard from
 Alle anzeigen: Show all
 Deine Daten: Your data
+Zurück zur Übersicht: Back to the overview
 Erfasste Anfälle: Seizures recorded
 Anfall: Seizure
 Anfälle: Seizures
 Anfall Funktionen: Seizure functions
+Anfallstitel: Seizure title
+Anfallsübersicht: Seizure overview
 Neuer Anfall: New seizure
+Anfallszeitpunkt: Time of seizure
+Zeitpunkt des Anfalls im Format TT.MM.YYYY HH:MM: Time of seizure in format 'TT.MM.YYYY HH:MM'
+Wenn unbekannt, fragen Sie Ihren Arzt nach der auszuwählenden Anfallsart: If unknown, ask your doctor about the seizure type to be selected
+Untenstehend findest du alle deine erstellten Anfälle.: Below you will find all your created seizures
+Zusätzlich kannst du auf das Pluszeichen: Additionally you can click on the plus sign
+klicken, um einen neuen Anfall zu erstellen: to create a new seizure
+Neuer Anfall erstellen: Create a new seizure
+Anfallsdatum: Date of seizure
+Zuletzt bearbeitet: Last modified
+Keine Anfälle vorhanden: No seizures available
+Anfall erstellen: Create a seizure
+Anfallstyp: Seizuretype
+Anfallstyp auswählen: Select seizuretype
 Ereignis: Event
 Ereignisse: Events
 Ereignis Funktionen: Event functions
@@ -53,6 +69,15 @@ Typ: Type
 Aktionen: Actions
 Anzeigen: Show
 Bearbeiten: Modify
+Beschreibung: Description
+Erstellen: Create
 Uhr: o'clock
 German: English
+application/vendor/bootstrap/js/i18n/bootstrap-datepicker.de.js: application/vendor/bootstrap/js/i18n/bootstrap-datepicker.en.js
+Sprache ändern: Change language
+Deutsch: German
+Englisch: English
+Italienisch: Italian
+Französisch: French
+
 

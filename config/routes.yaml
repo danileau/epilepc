@@ -1,3 +1,12 @@
 #index:
 #    path: /
 #    controller: App\Controller\SeizureController::index
+homepage:
+  path: /
+  controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+  defaults:
+    route: app_landingpage
+    # make a permanent redirection...
+    permanent: true
+    # ...and keep the original query string parameters
+    keepQueryParams: true
