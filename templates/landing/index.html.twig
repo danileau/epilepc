@@ -5,11 +5,11 @@
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li><a href="#intro" class="active">Wieso epilepc</a></li>
-                <li><a href="#first">Funktionen</a></li>
-                <li><a href="#second">Sicherheit</a></li>
-                <li><a href="#cta">Los geht's</a></li>
-                <li><a href="{{ path('app_login') }}">Login</a></li>
+                <li><a href="#intro" class="active">{% trans %}Wieso epilepc{% endtrans %}</a></li>
+                <li><a href="#first">{% trans %}Funktionen{% endtrans %}</a></li>
+                <li><a href="#second">{% trans %}Sicherheit{% endtrans %}</a></li>
+                <li><a href="#cta">{% trans %}Los geht's{% endtrans %}</a></li>
+                <li><a href="{{ path('app_login') }}">{% trans %}Login{% endtrans %}</a></li>
             </ul>
         </nav>
 
@@ -21,15 +21,15 @@
                 <div class="spotlight">
                     <div class="content">
                         <header class="major">
-                            <h2>Wieso epilepc?</h2>
+                            <h2>{% trans %}Wieso epilepc{% endtrans %}?</h2>
                         </header>
                         <p>
-                            epilepc bietet eine Dokumentations-Plattform für Epilepsie-Betroffene und Nahestehende auf Basis von einfachen und intuitiven Prozessen, weil den behandelnden Ärzten personenbezogene Daten für eine effektive Behandlung oftmals fehlen.<br />
-                            Diese Informationen können nur wir, die Betroffenen sammeln. <br/>
-                            Genau dabei unterstützt dich epilepc!
+                            {% trans %}epilepc bietet eine Dokumentations-Plattform für Epilepsie-Betroffene und Nahestehende auf Basis von einfachen und intuitiven Prozessen, weil den behandelnden Ärzten personenbezogene Daten für eine effektive Behandlung oftmals fehlen{% endtrans %}.<br />
+                            {% trans %}Diese Informationen können nur wir, die Betroffenen sammeln{% endtrans %}. <br/>
+                            {% trans %}Genau dabei unterstützt dich epilepc!{% endtrans %}
                         </p>
                         <ul class="actions">
-                            <li><a href="{{ path('app_landingpage_wieso') }}" class="button">Mehr dazu</a></li>
+                            <li><a href="{{ path('app_landingpage_wieso') }}" class="button">{% trans %}Mehr dazu{% endtrans %}</a></li>
                         </ul>
                     </div>
                     <span class="image"><img src="{{ asset('landing/images/small.png') }}" alt="epilepc" /></span>
@@ -39,34 +39,31 @@
             <!-- First Section -->
             <section id="first" class="main special">
                 <header class="major">
-                    <h2>Funktionen</h2>
+                    <h2>{% trans %}Funktionen{% endtrans %}</h2>
                 </header>
                 <ul class="features">
                     <li>
                         <span class="icon major style1 fa-bolt"></span>
-                        <h3>Anfälle dokumentieren</h3>
-                        <p>Dokumentiere alle deine Anfälle in epilepc! So kannst du dir bequem einen Überblick beschaffen, wie es dir während des letzten Monates gegangen ist oder
-                            sogar Auffälligkeiten entdecken!</p>
+                        <h3>{% trans %}Anfälle dokumentieren{% endtrans %}</h3>
+                        <p>{% trans %}Dokumentiere alle deine Anfälle in epilepc! So kannst du dir bequem einen Überblick beschaffen, wie es dir während des letzten Monates gegangen ist oder sogar Auffälligkeiten entdecken!{% endtrans %}</p>
                     </li>
                     <li>
                         <span class="icon major style2 fa-book"></span>
-                        <h3>Tagebuch führen</h3>
-                        <p>Mit der Tagebuchfunktion kannst du hier alle deine Gedanken festhalten und zu einem späteren
-                            Zeitpunkt wieder lesen.</p>
+                        <h3>{% trans %}Tagebuch führen{% endtrans %}</h3>
+                        <p>{% trans %}Mit der Tagebuchfunktion kannst du hier alle deine Gedanken festhalten und zu einem späteren Zeitpunkt wieder lesen{% endtrans %}.</p>
                     </li>
                     <li>
                         <span class="icon major style5 fa-bar-chart"></span>
-                        <h3>Übersicht generieren</h3>
-                        <p>Generiere bequem eine PDF-Datei mit allen Informationen, die du deinem Arzt mitgeben möchtest und bring es mit zur nächsten Sprechstunde! <br>
-                            Mit intuitiven Diagrammen kann dein Arzt schnell sehen, wie sich die letzte Anpassung der Medikation ausgewirkt hat.
+                        <h3>{% trans %}Übersicht generieren{% endtrans %}</h3>
+                        <p>{% trans %}Generiere bequem eine PDF-Datei mit allen Informationen, die du deinem Arzt mitgeben möchtest und bring es mit zur nächsten Sprechstunde!{% endtrans %}<br>
+                            {% trans %}Mit intuitiven Diagrammen kann dein Arzt schnell sehen, wie sich die letzte Anpassung der Medikation ausgewirkt hat{% endtrans %}.
                         </p>
                     </li>
                 </ul>
 
-                <p><b>Und noch vieles mehr!</b></p>
                 <footer class="major">
                     <ul class="actions special">
-                        <li><a href="{{ path('app_landingpage_functions') }}" class="button">Mehr dazu</a></li>
+                        <li><a href="{{ path('app_landingpage_functions') }}" class="button">{% trans %}Mehr dazu{% endtrans %}</a></li>
                     </ul>
                 </footer>
             </section>
@@ -74,31 +71,23 @@
             <!-- Second Section -->
             <section id="second" class="main special">
                 <header class="major">
-                    <h2>Sicherheit</h2>
-                    <p>Wenn es etwas gibt, das wir mit Sicherheit wissen, dann ist es folgendes:<br />
-                        Hier werden sensible und schützenswerte Daten gespeichert. Und wir sind verpflichtet darauf aufzupassen! <br />
-                        Alle vom epilepc-Benutzer eingegebenen Daten werden ausschliesslich verschlüsselt übermittelt und zusätzlich verschlüsselt in unserer Datenbank gespeichert. <br />
-                        Erst beim Auslesen der Daten durch den Verfasser, werden diese entschlüsselt und in Klartext angezeigt.<br />
-                        Sämtliche Infrastruktur und Daten werden in der Schweiz gespeichert und betrieben.
-
-                    </p>
+                    <h2>{% trans %}Sicherheit{% endtrans %}</h2>
+                    <p>{% trans %}Wenn es etwas gibt, das wir mit Sicherheit wissen, dann ist es folgendes{% endtrans %}:<br />
+                        {% trans %}Hier werden sensible und schützenswerte Daten gespeichert. Und wir sind verpflichtet darauf aufzupassen! <br /> Alle vom epilepc-Benutzer eingegebenen Daten werden ausschliesslich verschlüsselt übermittelt und zusätzlich verschlüsselt in unserer Datenbank gespeichert. <br /> Erst beim Auslesen der Daten durch den Verfasser, werden diese entschlüsselt und in Klartext angezeigt.<br /> Sämtliche Infrastruktur und Daten werden in der Schweiz gespeichert und betrieben{% endtrans %}.</p>
                 </header>
-
             </section>
 
             <!-- Get Started -->
             <section id="cta" class="main special">
                 <header class="major">
-                    <h2>Los geht's</h2>
-                    <p>Nimm die Kontrolle über dein Leben wieder in die Hand.<br/>
-                        Registriere dich jetzt bei epilepc und unterstütze deine Ärzte mit deinen Informationen.</p>
-
-
+                    <h2>{% trans %}Los geht's{% endtrans %}</h2>
+                    <p>{% trans %}Nimm die Kontrolle über dein Leben wieder in die Hand{% endtrans %}<br/>
+                        {% trans %}Registriere dich jetzt bei epilepc und unterstütze deine Ärzte mit deinen Informationen{% endtrans %}</p>
                 </header>
                 <footer class="major">
                     <ul class="actions special">
-                        <li><a href="{{ path('app_register') }}" class="button primary">Registrieren</a></li>
-                        <li><a href="{{ path('app_login') }}" class="button">Einloggen</a></li>
+                        <li><a href="{{ path('app_register') }}" class="button primary">{% trans %}Registrieren{% endtrans %}</a></li>
+                        <li><a href="{{ path('app_login') }}" class="button">{% trans %}Einloggen{% endtrans %}</a></li>
                     </ul>
                 </footer>
             </section>

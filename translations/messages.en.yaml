@@ -48,6 +48,7 @@ Benutzeraccount: Useraccount
 Profil anzeigen: Show profile
 Passwort ändern: Change password
 Ausloggen: Logout
+Login: Login
 Adminbereich: Admin area
 Administrator Funktionen: Administrator functions
 Benutzerverwaltung: User administration
@@ -56,6 +57,8 @@ Profil anzeigen & bearbeiten: Show & edit profile
 Fertig?: Finished?
 Wähle "Ausloggen" aus, wenn du bereit bist, die aktuelle Sitzung zu beenden: Select "Logout" when you are ready to end the current session.
 Abbrechen: Cancel
+Registrieren: Register
+Einloggen: Log in
 Übersicht vom: Overview from
 Hinweis: Note
 Im generierten PDF werden die Tagebucheinträge nicht angezeigt.: The diary entries are not displayed in the generated PDF.
@@ -79,5 +82,41 @@ Deutsch: German
 Englisch: English
 Italienisch: Italian
 Französisch: French
+de: en
+Nimm die Kontrolle über dein Leben wieder in die Hand: Take control over your life again
+Hilf dir bei Epilepsie!: Help yourself with epilepsy!
+Bei epilepc.ch findest du sämtliche Werkzeuge und Tools, welche du benötigst um deine Epilepsie-Behandlung effektiv und sicher zu begleiten!: Here at epilepc.ch you will find all the tools you need to effectively and safely manage your epilepsy treatment!
+Über uns: About us
+Der Startschuss von epilepc wurde während meiner Abschlussarbeit zum dipl. Techniker Informatik HF gelegt.: The starting signal for epilepc was given during my diploma thesis to become a computer science technician HF.
+Erklärtes Ziel ist es für Personen die unter Epilepsie (Zukünftig auch weitere chronische Krankheiten) leiden, eine sichere Dokumentationsplattform zur Verfügung zu stellen.: The goal is to provide a secure documentation platform for people suffering from epilepsy (in the future other chronic diseases will follow).
+Dieses Werkzeug soll dabei helfen, selbständig das Ruder wieder in die Hand zu nehmen und die eigene "Genesung" aktiv zu unterstützen.: This tool should help you to take the controls back into your own hands and actively support your own "recovery".
+epilepc bietet eine Dokumentations-Plattform für Epilepsie-Betroffene und Nahestehende auf Basis von einfachen und intuitiven Prozessen, weil den behandelnden Ärzten personenbezogene Daten für eine effektive Behandlung oftmals fehlen: epilepc offers a documentation platform for people with epilepsy and people close to them based on simple and intuitive processes, because the treating physicians often lack personal data for effective treatment
+Diese Informationen können nur wir, die Betroffenen sammeln: This information can only be collected by us, the affected individuals
+Genau dabei unterstützt dich epilepc!: This is exactly where epilepc supports you!
+Dokumentiere alle deine Anfälle in epilepc! So kannst du dir bequem einen Überblick beschaffen, wie es dir während des letzten Monates gegangen ist oder sogar Auffälligkeiten entdecken!: Document all your seizures in epilepc! This way you can easily get an overview of how you have been feeling during the last month or even discover any particularities!
+Mit der Tagebuchfunktion kannst du hier alle deine Gedanken festhalten und zu einem späteren Zeitpunkt wieder lesen: With the diary function you can record all your thoughts here and read them again at a later date
+Generiere bequem eine PDF-Datei mit allen Informationen, die du deinem Arzt mitgeben möchtest und bring es mit zur nächsten Sprechstunde!: Easily generate a PDF file with all the information you want to give your doctor and bring it with you to your next consultation!
+Mit intuitiven Diagrammen kann dein Arzt schnell sehen, wie sich die letzte Anpassung der Medikation ausgewirkt hat: Intuitive charts allow your doctor to quickly see what effect the last adjustment of medication had
+Wenn es etwas gibt, das wir mit Sicherheit wissen, dann ist es folgendes: If there is one thing we know for sure, it is this
+Hier werden sensible und schützenswerte Daten gespeichert. Und wir sind verpflichtet darauf aufzupassen! <br /> Alle vom epilepc-Benutzer eingegebenen Daten werden ausschliesslich verschlüsselt übermittelt und zusätzlich verschlüsselt in unserer Datenbank gespeichert. <br /> Erst beim Auslesen der Daten durch den Verfasser, werden diese entschlüsselt und in Klartext angezeigt.<br /> Sämtliche Infrastruktur und Daten werden in der Schweiz gespeichert und betrieben: This is where sensitive data worthy of protection is stored. And we are obliged to take care of it! <br />All data entered by the epilepc user will be transmitted exclusively encrypted and additionally stored encrypted in our database. <br />Only when the data is read out by the author it gets decoded and displayed in plain text.<br />All infrastructure and data are stored and operated in Switzerland
+Registriere dich jetzt bei epilepc und unterstütze deine Ärzte mit deinen Informationen: Register with epilepc now and support your doctors with your information
+Unterstützer und Sponsoren: Supporter and Sponsors
+Haben Sie Fragen? Möchten Sie unser Produkt unterstützen oder Sponsor werden?: Do you have any questions? Would you like to support our product or become a sponsor?
+Dann schreiben Sie uns eine Email an: Then send us an email to
+oder benutzen Sie unser: or use our
+Kontaktformular: Contact form
+oder unterstützen Sie uns auf: or support us on
+Datenschutzerklärung: Privacy policy
+Releasenotes: Releasenotes
+Wieso epilepc: Why epilepc
+Funktionen: Functions
+Sicherheit: Security
+Los geht's: Get started
+Mehr dazu: Learn more
+Anfälle dokumentieren: Documenting seizures
+Tagebuch führen: Keep a diary
+Übersicht generieren: Generate overview
+Und noch vieles mehr!: And much more!
+
 
 
