@@ -1,22 +1,21 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}Epilepc - Anfall erstellen{% endblock %}
+{% block title %}Epilepc - {% trans %}Anfall erstellen{% endtrans %}{% endblock %}
 
 {% block body %}
     <!-- Page Heading -->
     <div class="mb-5">
     <div class="text-center">
-        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Neuen Anfall erstellen</h1>
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Neuer Anfall erstellen{% endtrans %}</h1>
     </div>
-
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                {{ include('app/seizure/_form.html.twig', {'button_text': 'Erstellen'}) }}
+                {{ include('app/seizure/_form.html.twig', {'button_text': 'Erstellen'|trans}) }}
                 <br/>
-                <a class="btn btn-dark" href="{{ path('seizure_index') }}">Zurück zur Übersicht</a>
+                <a class="btn btn-dark" href="{{ path('seizure_index') }}">{% trans %}Zurück zur Übersicht{% endtrans %}</a>
             </div>
         </div>
     </div>

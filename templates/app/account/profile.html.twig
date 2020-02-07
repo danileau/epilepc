@@ -1,15 +1,15 @@
 
 {% extends 'app/base.html.twig' %}
 
-{% block title %}Epilepc - Profilübersicht{% endblock %}
+{% block title %}Epilepc - {% trans %}Dein Profil{% endtrans %}{% endblock %}
 
 {% block body %}
 <div class="container">
     <!-- Page Heading -->
     <div class="mb-5">
         <div class="text-center">
-            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Profilübersicht von {{ app.user.firstname }}</h1>
-            <p class="mb-4">Hier findest du alle Informationen über dein Profil und kannst Sie gleich bearbeiten</p>
+            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Profilübersicht von{% endtrans %} {{ app.user.firstname }}</h1>
+            <p class="mb-4">{% trans %}Hier findest du alle Informationen über dein Profil und kannst Sie gleich bearbeiten{% endtrans %}</p>
         </div>
     </div>
 
@@ -19,15 +19,15 @@
     <div class="col-xl-12 col-lg-7">
         <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Profilinformationen</h6>
+            <h6 class="m-0 font-weight-bold text-primary">{% trans %}Profilinformationen{% endtrans %}</h6>
         </div>
         <div class="card-body">
 
             <div class="row">
                 <div class="col-md-12 order-md-1">
-                    {{ include('app/account/_form.html.twig', {'button_text': 'Speichern'}) }}
+                    {{ include('app/account/_form.html.twig', {'button_text': 'Speichern'|trans}) }}
                     <br/>
-                    <a class="btn btn-dark" href="{{ path('app_dashboard') }}">Zurück zum Dashboard</a>
+                    <a class="btn btn-dark" href="{{ path('app_dashboard') }}">{% trans %}Zurück zur Übersicht{% endtrans %}</a>
                 </div>
             </div>
         </div>

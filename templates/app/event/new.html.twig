@@ -1,17 +1,17 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}Epilepc - Ereignis erstellen{% endblock %}
+{% block title %}Epilepc - {% trans %}Ereignis erstellen{% endtrans %}{% endblock %}
 
 {% block body %}
     <!-- Page Heading -->
     <div class="mb-5">
     <div class="text-center">
-        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-3">Neues Ereignis erstellen</h1>
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-3">{% trans %}Neues Ereignis erstellen{% endtrans %}</h1>
         <a href="#" class="btn btn-secondary btn-icon-split mb-3">
             <span class="icon text-white-50">
               <i class="fas fa-info-circle"></i>
             </span>
-            <span class="text">Hier einpaar Beispiele für mögliche Ereignisse: <br/>Schlafmangel, Menstruation, Drogen- & Alkoholkonsum, Stress, Krankheiten oder temp. Unwohlsein</span>
+            <span class="text">{% trans %}Hier einpaar Beispiele für mögliche Ereignisse{% endtrans %}: <br/>{% trans %}Schlafmangel, Menstruation, Drogen- & Alkoholkonsum, Stress, tiefer Blutzucker, Krankheiten oder temporäres Unwohlsein{% endtrans %}</span>
         </a>
     </div>
 
@@ -20,9 +20,9 @@
         <div class="card-body">
 
             <div class="table-responsive">
-                {{ include('app/event/_form.html.twig', {'button_text': 'Erstellen'}) }}
+                {{ include('app/event/_form.html.twig', {'button_text': 'Erstellen'|trans}) }}
                 <br/>
-                <a class="btn btn-dark" href="{{ path('event_index') }}">Zurück zur Übersicht</a>
+                <a class="btn btn-dark" href="{{ path('event_index') }}">{% trans %}Zurück zur Übersicht{% endtrans %}</a>
             </div>
         </div>
     </div>

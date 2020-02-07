@@ -6,7 +6,7 @@
     <nav id="nav">
         <ul>
             <li><a href="#main" class="active">Releasenotes</a></li>
-            <li><a href="{{ path('app_landingpage') }}">Zurück</a> </li>
+            <li><a href="{{ path('app_landingpage') }}">{% trans %}Zurück{% endtrans %}</a> </li>
         </ul>
     </nav>
 
@@ -25,14 +25,14 @@
                 <li>Landingpage überarbeitet</li>
             </ul>
             <hr>
-            <h3>Version 1.0.2</h3>
+            <h3>v1.0.2</h3>
             <h5>12.09.2019</h5>
             <ul>
                 <li>Honeypot zum Konktaktformular hinzugefügt</li>
 
             </ul>
             <hr>
-            <h3>Version 1.0.1</h3>
+            <h3>v1.0.1</h3>
             <h5>02.09.2019</h5>
             <ul>
                 <li>Datetimepicker Bug für Firefox gefixt</li>
@@ -44,16 +44,9 @@
 
             </ul>
             <hr>
-            <!--<h3>Version 1.0.1</h3>
-            <h5>18.08.2019</h5>
-            <ul>
-                <li>Datetimepicker Bug für Firefox gefixt</li>
-                <li>Releasenotes Seite hinzugefügt und verlinkt</li>
-            </ul>
-            <hr>-->
 
             <ul class="actions">
-                <li><a href="{{ path('app_landingpage') }}" class="button primary">Zurück</a></li>
+                <li><a href="{{ path('app_landingpage') }}" class="button primary">{% trans %}Zurück{% endtrans %}</a></li>
             </ul>
         </section>
 

@@ -1,13 +1,31 @@
 Dashboard von: Dashboard from
 Alle anzeigen: Show all
 Deine Daten: Your data
+Zurück zur Übersicht: Back to the overview
+Zurück: Back
 Erfasste Anfälle: Seizures recorded
 Anfall: Seizure
 Anfälle: Seizures
 Anfall Funktionen: Seizure functions
+Anfallstitel: Seizure title
+Anfallsübersicht: Seizure overview
 Neuer Anfall: New seizure
+Anfallszeitpunkt: Time of seizure
+Zeitpunkt des Anfalls im Format TT.MM.YYYY HH:MM: Time of seizure in format 'TT.MM.YYYY HH:MM'
+Wenn unbekannt, fragen Sie Ihren Arzt nach der auszuwählenden Anfallsart: If unknown, ask your doctor about the seizure type to be selected
+Untenstehend findest du alle deine erstellten Anfälle.: Below you will find all your created seizures
+Zusätzlich kannst du auf das Pluszeichen: Additionally you can click on the plus sign
+klicken, um einen neuen Anfall zu erstellen: to create a new seizure
+Neuer Anfall erstellen: Create a new seizure
+Anfallsdatum: Date of seizure
+Zuletzt bearbeitet: Last modified
+Keine Anfälle vorhanden: No seizures available
+Anfall erstellen: Create a seizure
+Anfallstyp: Seizuretype
+Anfallstyp auswählen: Select seizuretype
 Ereignis: Event
 Ereignisse: Events
+Ereignisse notieren: Note events
 Ereignis Funktionen: Event functions
 Neues Ereignis: New event
 Tagebuch: Diary
@@ -18,6 +36,7 @@ Neuer Tagebucheintrag: New diaryentry
 Medikation: Medication
 Medikationen: Medications
 Medikation Funktionen: Medication functions
+Medikation pflegen: Maintaining medication
 Neue Medikation: New medication
 Erfasste Ereignisse: Events recorded
 Erfasste Tagebucheinträge: Diary entries recorded
@@ -32,6 +51,7 @@ Benutzeraccount: Useraccount
 Profil anzeigen: Show profile
 Passwort ändern: Change password
 Ausloggen: Logout
+Login: Login
 Adminbereich: Admin area
 Administrator Funktionen: Administrator functions
 Benutzerverwaltung: User administration
@@ -40,8 +60,13 @@ Profil anzeigen & bearbeiten: Show & edit profile
 Fertig?: Finished?
 Wähle "Ausloggen" aus, wenn du bereit bist, die aktuelle Sitzung zu beenden: Select "Logout" when you are ready to end the current session.
 Abbrechen: Cancel
+Registrieren: Register
+Einloggen: Log in
 Übersicht vom: Overview from
 Hinweis: Note
+Die folgenden Funktionen stehen dir aktuell auf epilepc.ch zur Verfügung: The following functions are currently available on epilepc.ch
+Notiere und speichere alle Ereignisse, die dir aufgefallen sind. So kannst du Auffälligkeiten entdecken, Trigger erkennen und definieren. Durch die regelmässige Pflege von Ereignissen in epilepc, kannst du Zusammenhänge entdecken oder Faktoren ausschliessen: Write down and save all events that you have noticed. This way you can discover anomalies, recognize and define triggers. Through the regular maintenance of events in epilepc, you can discover connections or exclude factors
+Trage alle deine Medikamente in epilepc ein. So behälst du die Übersicht über sämtliche Details, wann welche Anpassungen vorgenommen worden sind und wann welche Medikamente eingenommen werden müssen: Enter all your medication into epilepc. In this way you can keep track of all details, when which adjustments have been made and when which medication has to be taken
 Im generierten PDF werden die Tagebucheinträge nicht angezeigt.: The diary entries are not displayed in the generated PDF.
 Das PDF wurde für eine Anzeige an einem Bildschirm optimiert.: The PDF has been optimized for display on a screen.
 PDF generieren: Generate PDF
@@ -53,6 +78,60 @@ Typ: Type
 Aktionen: Actions
 Anzeigen: Show
 Bearbeiten: Modify
+Beschreibung: Description
+Erstellen: Create
 Uhr: o'clock
 German: English
+application/vendor/bootstrap/js/i18n/bootstrap-datepicker.de.js: application/vendor/bootstrap/js/i18n/bootstrap-datepicker.en.js
+Sprache ändern: Change language
+Deutsch: German
+Englisch: English
+Italienisch: Italian
+Französisch: French
+de: en
+Nimm die Kontrolle über dein Leben wieder in die Hand: Take control over your life again
+Hilf dir bei Epilepsie!: Help yourself with epilepsy!
+Bei epilepc.ch findest du sämtliche Werkzeuge und Tools, welche du benötigst um deine Epilepsie-Behandlung effektiv und sicher zu begleiten!: Here at epilepc.ch you will find all the tools you need to effectively and safely manage your epilepsy treatment!
+Über uns: About us
+Der Startschuss von epilepc wurde während meiner Abschlussarbeit zum dipl. Techniker Informatik HF gelegt.: The starting signal for epilepc was given during my diploma thesis to become a computer science technician HF.
+Erklärtes Ziel ist es für Personen die unter Epilepsie (Zukünftig auch weitere chronische Krankheiten) leiden, eine sichere Dokumentationsplattform zur Verfügung zu stellen.: The goal is to provide a secure documentation platform for people suffering from epilepsy (in the future other chronic diseases will follow).
+Dieses Werkzeug soll dabei helfen, selbständig das Ruder wieder in die Hand zu nehmen und die eigene "Genesung" aktiv zu unterstützen.: This tool should help you to take the controls back into your own hands and actively support your own "recovery".
+epilepc bietet eine Dokumentations-Plattform für Epilepsie-Betroffene und Nahestehende auf Basis von einfachen und intuitiven Prozessen, weil den behandelnden Ärzten personenbezogene Daten für eine effektive Behandlung oftmals fehlen: epilepc offers a documentation platform for people with epilepsy and people close to them based on simple and intuitive processes, because the treating physicians often lack personal data for effective treatment
+Diese Informationen können nur wir, die Betroffenen sammeln: This information can only be collected by us, the affected individuals
+Genau dabei unterstützt dich epilepc!: This is exactly where epilepc supports you!
+Dokumentiere alle deine Anfälle mit epilepc! So kannst du dir bequem einen Überblick verschaffen, wie es dir während des letzten Monates gegangen ist oder sogar Auffälligkeiten entdecken!: Document all your seizures in epilepc! This way you can easily get an overview of how you have been feeling during the last month or even discover any particularities!
+Mit der Tagebuchfunktion kannst du hier alle deine Gedanken festhalten und zu einem späteren Zeitpunkt wieder lesen: With the diary function you can record all your thoughts here and read them again at a later date
+Oftmals sind es die unscheinbaren Kleinigkeiten, die uns helfen uns zu organisieren und wieder zu erinnern: Often it is the inconspicuous little things that help us to organize and to remember again
+Generiere bequem eine PDF-Datei mit allen Informationen, die du deinem Arzt mitgeben möchtest und bring es mit zur nächsten Sprechstunde!: Easily generate a PDF file with all the information you want to give your doctor and bring it with you to your next consultation!
+Mit intuitiven Diagrammen kann dein Arzt schnell sehen, wie sich die letzte Anpassung der Medikation ausgewirkt hat: Intuitive charts allow your doctor to quickly see what effect the last adjustment of medication had
+Wenn es etwas gibt, das wir mit Sicherheit wissen, dann ist es folgendes: If there is one thing we know for sure, it is this
+Von den vielen Krankheiten und Gebrechen, die einen Menschen heimsuchen können, kann man die Epilepsie wahrscheinlich als eine der heimtückischeren bezeichnen.<br />Oft nicht greifbar und äusserst schwierig zu behandeln kann sie dazu führen, dass sich Betroffene mit der Zeit immer mehr isolieren, was zu einer Verschlimmerung der Beschwerden führen kann: Of the many diseases and handicaps that can afflict a person, epilepsy can probably be considered one of the more insidious.<br />Often intangible and extremely difficult to treat, epilepsy can cause sufferers to become increasingly isolated over time, which can lead to a worsening of the symptoms
+An Epilepsie erkrankte Menschen fühlen sich oftmals hilflos der Krankheit ausgeliefert, da die Therapie vor allem aus einer langfristigen Anfallsprophylaxe besteht. Um mögliche epileptische Anfälle gar nicht erst entstehen zu lassen, beginnen Betroffene oft mögliche Auslöser (Trigger) zu vermeiden. Leider gibt es auch Ausnahmen, bei welchen Anfälle sich nicht bestimmten Triggern zuordnen lassen. Begleitend zu einer medikamentösen Therapie um Anfälle zu unterdrücken, wird den Betroffenen oftmals empfohlen ein Tagebuch zu führen, damit nachvollzogen werden kann, wie die aktuelle Behandlung und Medikation wirken. Mit einem Tagebuch können auch Zusammenhänge zwischen Situationen und dem aktuellen Zustand besser verstanden werden. Auch wenn das Gedächtnis der Betroffenen voll funktionsfähig ist, können mittels Tagebücher längst vergessene Details wiederentdeckt oder sogar ganze Tage rekonstruiert und somit mögliche Auslöser identifiziert werden. Damit dies jedoch gelingt, müssen im Tagebuch sämtliche Anfälle notiert werden, am besten mit genauen Informationen wie Datum, Uhrzeit, Ort und Situation: People suffering from epilepsy often feel helplessly at the mercy of the disease, as the therapy consists mainly of long-term seizure prophylaxis. In order to prevent possible epileptic seizures from occurring in the first place, those affected often begin to avoid possible triggers. Unfortunately, there are also exceptions in which seizures cannot be assigned to certain triggers. In addition to a drug therapy to suppress seizures, it is often recommended that patients keep a diary so that they can see how the current treatment and medication are working. With a diary, connections between situations and the current condition can also be better understood. Even if the memory of the affected person is fully functional, diaries can help to rediscover long forgotten details or even reconstruct whole days and thus identify possible triggers. In order for this to succeed, however, all seizures must be recorded in the diary, preferably with precise information such as date, time, place and situation
+Leider kann man den Zeitpunkt eines epileptischen Anfalls nicht planen und genau dann, wenn man das Tagebuch benötigen würde, liegt es nicht in Griffnähe oder kann nicht aufgefunden werden: Unfortunately it is not possible to plan the time of an epileptic seizure and exactly when one would need the diary, it is not within reach or cannot be found
+Eine weitere Schwierigkeit besteht darin, dass die Sprechstunden und Kontrollen beim Arzt nur alle paar Monate stattfinden und bis dahin viele Zwischenfälle oder wichtige Hinweise vergessen gehen. <br />Ohne diese detaillierten Informationen fällt es den Ärzten sehr schwer, den Patienten befriedigend auf eine neue Medikation einzustellen. Um genauere Details über die epileptischen Anfälle zu erfahren, müssen oft Daueraufenthalte in epileptischen Polikliniken durchgeführt werden, wo Betroffene dauerüberwacht und künstlich auf Schlafentzug gesetzt werden, damit Anfälle provoziert und die benötigten Daten erhoben werden können: A further difficulty is that the consultations and checks at the doctor's office only take place every few months and by then many incidents or important details have been forgotten. <br />Without this detailed information it is very difficult for the doctors to adjust the patient satisfyingly to a new medication. In order to find out more details about epileptic seizures, it is often necessary to have permanent stays in epileptic polyclinics, where patients are permanently monitored and artificially put on sleep deprivation so that seizures can be provoked and the necessary data collected
+Ziel von epilepc.ch ist es, betroffenen Personen die für eine effektive Therapie benötigten Werkzeuge zuverlässig und sicher zur Verfügung zu stellen: The goal of epilepc.ch is to provide affected persons with the tools they need for effective therapy in a reliable and safe manner
+Hier werden sensible und schützenswerte Daten gespeichert. Und wir sind verpflichtet darauf aufzupassen! <br /> Alle vom epilepc-Benutzer eingegebenen Daten werden ausschliesslich verschlüsselt übermittelt und zusätzlich verschlüsselt in unserer Datenbank gespeichert. <br /> Erst beim Auslesen der Daten durch den Verfasser, werden diese entschlüsselt und in Klartext angezeigt.<br /> Sämtliche Infrastruktur und Daten werden in der Schweiz gespeichert und betrieben: This is where sensitive data worthy of protection is stored. And we are obliged to take care of it! <br />All data entered by the epilepc user will be transmitted exclusively encrypted and additionally stored encrypted in our database. <br />Only when the data is read out by the author it gets decoded and displayed in plain text.<br />All infrastructure and data are stored and operated in Switzerland
+Registriere dich jetzt bei epilepc und unterstütze deine Ärzte mit deinen Informationen: Register with epilepc now and support your doctors with your information
+Wir arbeiten intensiv daran epilepc mit neuen Funktionen zu erweitern und zu verbessern: We work intensively on improving and expanding epilepc with new functions
+Hast du eine Idee oder einen Verbesserungsvorschlag? Dann melde dich bei uns: Do you have an idea or a suggestion for improvement? Then get in touch with us
+Unterstützer und Sponsoren: Supporter and Sponsors
+Haben Sie Fragen? Möchten Sie unser Produkt unterstützen oder Sponsor werden?: Do you have any questions? Would you like to support our product or become a sponsor?
+Dann schreiben Sie uns eine Email an: Then send us an email to
+oder benutzen Sie unser: or use our
+Kontaktformular: Contact form
+Zum Kontaktformular: To the contact form
+oder unterstützen Sie uns auf: or support us on
+Datenschutzerklärung: Privacy policy
+Releasenotes: Releasenotes
+Wieso epilepc: Why epilepc
+Funktionen: Functions
+Sicherheit: Security
+Los geht's: Get started
+Mehr dazu: Learn more
+Anfälle dokumentieren: Documenting seizures
+Tagebuch führen: Keep a diary
+Übersicht generieren: Generate overview
+Und noch vieles mehr!: And much more!
+
+
 

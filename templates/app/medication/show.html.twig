@@ -1,12 +1,12 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}Epilepc - Medikation anzeigen{% endblock %}
+{% block title %}Epilepc - {% trans %}Medikation anzeigen{% endtrans %}{% endblock %}
 
 {% block body %}
 <!-- Page Heading -->
 <div class="mb-5">
     <div class="text-center">
-        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Medikation "{{ medication.name}}" anzeigen</h1>
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Medikation{% endtrans %} "{{ medication.name}}"</h1>
     </div>
 
 
@@ -16,31 +16,31 @@
             <div class="table-responsive p-1">
                 <form>
                     <div class="form-group">
-                        <label for="MedicationTitle">Medikationsname</label>
+                        <label for="MedicationTitle">{% trans %}Medikationsname{% endtrans %}</label>
                         <input type="text" class="form-control" id="MedicationTitle" value="{{ medication.name }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="MedicationDescription">Beschreibung</label>
+                        <label for="MedicationDescription">{% trans %}Beschreibung{% endtrans %}</label>
                         <textarea class="form-control" id="MedicationDescription" readonly rows="6">{{ medication.description }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="MedicationDosage">Dosierung</label>
+                        <label for="MedicationDosage">{% trans %}Dosierung{% endtrans %}</label>
                         <input type="text" class="form-control" id="MedicationDosage" value="{{ medication.dosage }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="MedicationDateFrom">Einnahme Start</label>
+                        <label for="MedicationDateFrom">{% trans %}Einnahme Start{% endtrans %}</label>
                         <input type="text" class="form-control" id="MedicationDateFrom" value="{{ medication.dateFrom ? medication.dateFrom|date('d.m.Y H:i') : '' }} Uhr" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="MedicationDateEnd">Einnahme Ende</label>
+                        <label for="MedicationDateEnd">{% trans %}Einnahme Ende{% endtrans %}</label>
                         <input type="text" class="form-control" id="MedicationDateEnd" value="{{ medication.dateTo ? medication.dateTo|date('d.m.Y H:i') : '' }} Uhr" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="MedicationPrescriptionDate">Verschreibungsdatum</label>
+                        <label for="MedicationPrescriptionDate">{% trans %}Verschreibungsdatum{% endtrans %}</label>
                         <input type="text" class="form-control" id="MedicationPrescriptionDate" value="{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y') : ''  }}" readonly>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('medication_edit', {'id': medication.id}) }}">Bearbeiten</a></button>
+                        <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('medication_edit', {'id': medication.id}) }}">{% trans %}Bearbeiten{% endtrans %}</a></button>
                     </div>
 
                 </form>

@@ -1,12 +1,12 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}Epilepc - Tagebucheintrag anzeigen{% endblock %}
+{% block title %}Epilepc - {% trans %}Tagebucheintrag anzeigen{% endtrans %}{% endblock %}
 
 {% block body %}
 <!-- Page Heading -->
 <div class="mb-5">
     <div class="text-center">
-        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Tagebucheintrag #{{ diaryentry.id }} anzeigen</h1>
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Tagebucheintrag{% endtrans %} #{{ diaryentry.id }}</h1>
     </div>
 
 
@@ -16,23 +16,23 @@
             <div class="table-responsive p-1">
                 <form>
                     <div class="form-group">
-                        <label for="SeizureTitle">Eintragtitel</label>
+                        <label for="SeizureTitle">{% trans %}Eintragstitel{% endtrans %}</label>
                         <input type="text" class="form-control" id="SeizureTitle" value="{{ diaryentry.title }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="SeizureDescription">Inhalt</label>
+                        <label for="SeizureDescription">{% trans %}Inhalt{% endtrans %}</label>
                         <textarea class="form-control" id="SeizureDescription" readonly rows="15">{{ diaryentry.content }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="SeizureDate">Eintragsdatum</label>
+                        <label for="SeizureDate">{% trans %}Eintragsdatum{% endtrans %}</label>
                         <input type="text" class="form-control" id="SeizureDate" value="{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('d.m.Y H:i') : '' }} Uhr" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="SeizureDate">Zuletzt bearbeitet</label>
+                        <label for="SeizureDate">{% trans %}Zuletzt bearbeitet{% endtrans %}</label>
                         <input type="text" class="form-control" id="SeizureDate" value="{{ diaryentry.modifiedAt ? diaryentry.modifiedAt|date('d.m.Y H:i') : '' }} Uhr" readonly>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}">Bearbeiten</a></button>
+                        <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}">{% trans %}Bearbeiten{% endtrans %}</a></button>
                     </div>
                 </form>
 
@@ -42,7 +42,7 @@
     <script type="text/javascript">
         $(function () {
             $('#datetimepicker').datetimepicker({
-                locale: 'de'
+                locale: '{% trans %}de{% endtrans %}'
             });
         });
     </script>

@@ -1,11 +1,11 @@
 {% extends 'app/base.html.twig' %}
-{% block title %}Epilepc - Medikation bearbeiten{% endblock %}
+{% block title %}Epilepc - {% trans %}Medikation bearbeiten{% endtrans %}{% endblock %}
 
 {% block body %}
     <!-- Page Heading -->
     <div class="mb-5">
     <div class="text-center">
-        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Medikation #{{ medication.id }} bearbeiten</h1>
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Medikation{% endtrans %} #{{ medication.id }} {% trans %}bearbeiten{% endtrans %}</h1>
     </div>
 
 
@@ -14,15 +14,15 @@
         <div class="card-body">
             <div class="table-responsive">
 
-                {{ include('app/medication/_form.html.twig', {'button_text': 'Updaten'}) }}
+                {{ include('app/medication/_form.html.twig', {'button_text': 'Updaten'|trans}) }}
                 <br/>
                 <div class="form-group text-center">
 
-                    <form method="post" action="{{ path('medication_delete', {'id': medication.id}) }}" onsubmit="return confirm('Bist du sicher, dass du diese Medikation löschen willst?');">
+                    <form method="post" action="{{ path('medication_delete', {'id': medication.id}) }}" onsubmit="return confirm('{% trans %}Bist du sicher, dass du diese Medikation löschen willst?{% endtrans %}');">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ medication.id) }}">
-                        <a class="btn btn-dark" href="{{ path('medication_index') }}">Zurück zur Übersicht</a>
-                        <button class="btn btn-danger">Medikation löschen</button>
+                        <a class="btn btn-dark" href="{{ path('medication_index') }}">{% trans %}Zurück zur Übersicht{% endtrans %}</a>
+                        <button class="btn btn-danger">{% trans %}Medikation löschen{% endtrans %}</button>
                     </form>
                 </div>
 

@@ -1,16 +1,16 @@
 <!DOCTYPE HTML>
-<html lang="de">
+<html lang="{% trans %}de{% endtrans %}">
     <head>
-        <title>{% block title %}epilepc - Hilf dir bei Epilepsie!{% endblock %}</title>
+        <title>{% block title %}epilepc - {% trans %}Hilf dir bei Epilepsie!{% endtrans %}{% endblock %}</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <meta name="description" content="Bei epilepc.ch findest du sämtliche Werkzeuge und Tools, welche du benötigst um deine Epilepsie-Behandlung effektiv und sicher zu begleiten!"/>
+        <meta name="description" content="{% trans %}Bei epilepc.ch findest du sämtliche Werkzeuge und Tools, welche du benötigst um deine Epilepsie-Behandlung effektiv und sicher zu begleiten!{% endtrans %}"/>
         <meta name="google-site-verification" content="vsAN2S_WxCAVkKug_CtoXwc_LWoo3VzVPZH21KsDUb8" />
-        <meta property="og:title" content="epilepc - Hilf dir bei Epilepsie!"/>
+        <meta property="og:title" content="epilepc - {% trans %}Hilf dir bei Epilepsie!{% endtrans %}"/>
         <meta property="og:url" content="https://www.epilepc.ch"/>
         <meta property="og:type" content="website"/>
         <meta property="og:image" content="https://www.epilepc.ch/landing/images/small.png"/>
-        <meta property="og:description" content="Bei epilepc.ch findest du sämtliche Werkzeuge und Tools, welche du benötigst um deine Epilepsie-Behandlung effektiv und sicher zu begleiten!"/>
+        <meta property="og:description" content="{% trans %}Bei epilepc.ch findest du sämtliche Werkzeuge und Tools, welche du benötigst um deine Epilepsie-Behandlung effektiv und sicher zu begleiten!{% endtrans %}"/>
         <meta property="og:updated_time" content="1559635102"/>
         <meta property="og:image:alt" content="epilepc"/>
         {% block stylesheets %}
@@ -27,7 +27,7 @@
     <header id="header" class="alt">
         <span class="logo"><a href="{{ path('app_landingpage') }}"><img src="{{ asset('landing/images/rund-logo.svg') }}" alt="epilepc" /></a></span>
         <h1>epilepc</h1>
-        <p>Nimm die Kontrolle über dein Leben wieder in die Hand.</p>
+        <p>{% trans %}Nimm die Kontrolle über dein Leben wieder in die Hand{% endtrans %}</p>
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
@@ -40,22 +40,25 @@
 <!-- Footer -->
 <footer id="footer">
     <section>
-        <h2>Über uns</h2>
-        <p>Der Startschuss von epilepc wurde während meiner Abschlussarbeit zum dipl. Techniker Informatik HF gelegt. <br />
-            Erklärtes Ziel ist es für Personen die unter Epilepsie (Zukünftig auch weitere chronische Krankheiten) leiden, eine sichere Dokumentationsplattform zur Verfügung zu stellen. <br />
-            Dieses Werkzeug soll dabei helfen, selbständig das Ruder wieder in die Hand zu nehmen und die eigene "Genesung" aktiv zu unterstützen.<br /> <br />
+        <h2>{% trans %}Über uns{% endtrans %}</h2>
+        <p>{% trans %}Der Startschuss von epilepc wurde während meiner Abschlussarbeit zum dipl. Techniker Informatik HF gelegt.{% endtrans %} <br />
+            {% trans %}Erklärtes Ziel ist es für Personen die unter Epilepsie (Zukünftig auch weitere chronische Krankheiten) leiden, eine sichere Dokumentationsplattform zur Verfügung zu stellen.{% endtrans %} <br />
+            {% trans %}Dieses Werkzeug soll dabei helfen, selbständig das Ruder wieder in die Hand zu nehmen und die eigene "Genesung" aktiv zu unterstützen.{% endtrans %}<br /> <br />
 
         </p>
     </section>
     <section>
-        <h2>Unterstützer und Sponsoren</h2>
-        <p>Haben Sie Fragen? Möchten Sie unser Produkt unterstützen oder Sponsor werden?</p>
-        <p>Dann schreiben Sie uns eine Email an <b><a href="mailto:support@epilepc.ch">support@epilepc.ch</a></b> oder benutzen Sie unser <b><a href="{{ path('contact') }}">Kontaktformular</a></b></p>
+        <h2>{% trans %}Unterstützer und Sponsoren{% endtrans %}</h2>
+        <p>{% trans %}Haben Sie Fragen? Möchten Sie unser Produkt unterstützen oder Sponsor werden?{% endtrans %}</p>
+        <p>{% trans %}Dann schreiben Sie uns eine Email an{% endtrans %} <b><a href="mailto:support@epilepc.ch">support@epilepc.ch</a></b> {% trans %}
+                oder benutzen Sie unser{% endtrans %} <b><a href="{{ path('contact') }}">{% trans %}Kontaktformular{% endtrans %}</a></b> {% trans %}
+                oder unterstützen Sie uns auf{% endtrans %} <b><a href="https://www.patreon.com/user?u=30304379" target="_blank">Patreon</a></b></p>
 
 
     </section>
 
-    <p class="copyright">&copy; {{ "now"|date("Y") }} - epilepc <br> <a href="{{ path('app_landingpage_datenschutz') }}">Datenschutzerklärung</a> - <a href="{{ path('app_landingpage_releasenotes') }}">Releasenotes</a></p>
+    <p class="copyright">&copy; {{ "now"|date("Y") }} - epilepc <br> <a href="{{ path('app_landingpage_datenschutz') }}">{% trans %}Datenschutzerklärung{% endtrans %}</a> - <a href="{{ path('app_landingpage_releasenotes') }}">{% trans %}Releasenotes{% endtrans %}</a><br/>
+    {% trans %}Sprache ändern{% endtrans %}: <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'de'})) }}">{% trans %}Deutsch{% endtrans %}</a> - <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">{% trans %}Englisch{% endtrans %}</a> - <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'it'})) }}">{% trans %}Italienisch{% endtrans %}</a> - <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">{% trans %}Französisch{% endtrans %}</a></p>
 </footer>
 {% block javascripts %}
     <script src="{{ asset('landing/assets/js/one-js.min.js') }}"></script>

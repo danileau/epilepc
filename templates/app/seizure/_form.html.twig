@@ -1,12 +1,17 @@
 {{ form_start(seizureForm) }}
     {{ form_errors(seizureForm) }}
-    {{ form_row(seizureForm.title, {'label': 'Anfallstitel'}) }}
-    {{ form_row(seizureForm.description, {'label': 'Beschreibung',
+    {{ form_row(seizureForm.title, {'label': 'Anfallstitel'|trans}) }}
+    {{ form_row(seizureForm.description, {'label': 'Beschreibung'|trans,
         'attr': {
             'rows': '10'
         }})
     }}
-    {{ form_row(seizureForm.timestamp_when, {'label': 'Anfallszeitpunkt'}) }}
-    {{ form_row(seizureForm.seizuretype, {'label': 'Anfallstyp'}) }}
+    {{ form_label(seizureForm.timestamp_when, 'Anfallszeitpunkt'|trans) }}
+    {{ form_widget(seizureForm.timestamp_when) }}
+        <small>{{ form_help(seizureForm.timestamp_when) }}</small><br/>
+
+    {{ form_label(seizureForm.seizuretype, 'Anfallstyp'|trans) }}
+    {{ form_widget(seizureForm.seizuretype) }}
+        <small>{{ form_help(seizureForm.seizuretype) }}</small><br/>
 <button class="btn btn-primary">{{ button_text }}</button>
 {{ form_end(seizureForm) }}

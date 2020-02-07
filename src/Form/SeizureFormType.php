@@ -29,7 +29,8 @@ class SeizureFormType extends AbstractType
             ->add('description')
             ->add('timestamp_when', DateTimeType::class, [
                 'widget' => 'single_text',
-                'help' => 'Zeitpunkt des Anfalls im Format TT.MM.YYYY HH:MM'
+                'choice_translation_domain' => true,
+                'help' => 'Zeitpunkt des Anfalls im Format TT.MM.YYYY HH:MM',
             ])
             ->add('seizuretype', EntityType::class, [
                 'placeholder' => 'Anfallstyp auswählen',

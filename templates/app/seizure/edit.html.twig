@@ -1,12 +1,12 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}Epilepc - Anfall bearbeiten{% endblock %}
+{% block title %}Epilepc - {% trans %}Anfall bearbeiten{% endtrans %}{% endblock %}
 
 {% block body %}
 <!-- Page Heading -->
 <div class="mb-5">
     <div class="text-center">
-        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Anfall #{{ seizure.id }} bearbeiten</h1>
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Anfall{% endtrans %} #{{ seizure.id }} {% trans %}bearbeiten{% endtrans %}</h1>
     </div>
 
 
@@ -15,15 +15,15 @@
         <div class="card-body">
             <div class="table-responsive">
 
-                {{ include('app/seizure/_form.html.twig', {'button_text': 'Updaten'}) }}
+                {{ include('app/seizure/_form.html.twig', {'button_text': 'Updaten'|trans}) }}
                 <br/>
                 <div class="form-group text-center">
 
-                    <form method="post" action="{{ path('seizure_delete', {'id': seizure.id}) }}" onsubmit="return confirm('Bist du sicher, dass du diesen Anfall löschen willst?');">
+                    <form method="post" action="{{ path('seizure_delete', {'id': seizure.id}) }}" onsubmit="return confirm('{% trans %}Bist du sicher, dass du diesen Anfall löschen willst?{% endtrans %}');">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ seizure.id) }}">
-                        <a class="btn btn-dark" href="{{ path('seizure_index') }}">Zurück zur Übersicht</a>
-                        <button class="btn btn-danger">Anfall löschen</button>
+                        <a class="btn btn-dark" href="{{ path('seizure_index') }}">{% trans %}Zurück zur Übersicht{% endtrans %}</a>
+                        <button class="btn btn-danger">{% trans %}Anfall löschen{% endtrans %}</button>
                     </form>
                 </div>
 
@@ -31,4 +31,11 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+      $(function () {
+        $('#datetimepicker').datetimepicker({
+          locale: '{% trans %}de{% endtrans %}'
+        });
+      });
+    </script>
 {% endblock %}

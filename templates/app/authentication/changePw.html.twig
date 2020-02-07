@@ -1,6 +1,6 @@
 {% extends 'app/authentication/base.html.twig' %}
 
-{% block title %}Epilepc - Passwort ändern{% endblock %}
+{% block title %}Epilepc - {% trans %}Passwort ändern{% endtrans %}{% endblock %}
 {% block body %}
     <!-- Nested Row within Card Body -->
     <div class="row">
@@ -8,27 +8,26 @@
         <div class="col-lg-6">
             <div class="p-5">
                 <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-2">Passwort ändern?</h1>
-                    <p class="mb-4">Um dein Passwort zu ändern, trage unten dein aktuelles und dein neues Passwort ein.</p>
+                    <h1 class="h4 text-gray-900 mb-2">{% trans %}Passwort ändern{% endtrans %}?</h1>
+                    <p class="mb-4">{% trans %}Um dein Passwort zu ändern, trage unten dein aktuelles und dein neues Passwort ein{% endtrans %}.</p>
                 </div>
                 <div class="form-group">
-                    <p>Um die Sicherheit deiner Daten gewährleisten zu können, muss dein Passwort die folgenden Anforderungen erfüllen:</p>
+                    <p>{% trans %}Um die Sicherheit deiner Daten gewährleisten zu können, muss dein Passwort die folgenden Anforderungen erfüllen{% endtrans %}:</p>
                     <ul class="dashed">
-                        <li> Gross- und Kleinschreibung</li>
-                        <li> Mindestens 2 Zahlen</li>
-                        <li> Mindestens 1 Sonderzeichen</li>
-                        <li> Mindestlänge des Passworts: 8 Zeichen</li>
+                        <li> {% trans %}Gross- und Kleinschreibung{% endtrans %}</li>
+                        <li> {% trans %}Mindestens 2 Zahlen{% endtrans %}</li>
+                        <li> {% trans %}Mindestens 1 Sonderzeichen (z.b. $#*){% endtrans %}</li>
+                        <li> {% trans %}Mindestlänge des Passworts - 8 Zeichen{% endtrans %}</li>
                     </ul>
                 </div>
-                {{ include('app/authentication/_form.html.twig', {'button_text': 'Passwort ändern'}) }}
+                {{ include('app/authentication/_form.html.twig', {'button_text': 'Passwort ändern'|trans}) }}
                 <hr>
 
                 <br />
                 <div class="text-center">
-                    <a class="small" href="{{ path('app_dashboard') }}">Zurück</a>
+                    <a class="small" href="{{ path('app_dashboard') }}">{% trans %}Zurück{% endtrans %}</a>
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock %}

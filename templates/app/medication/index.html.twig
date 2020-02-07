@@ -1,56 +1,56 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}Epilepc - Medikationsübersicht{% endblock %}
+{% block title %}Epilepc - {% trans %}Medikationsübersicht{% endtrans %}{% endblock %}
 
 {% block body %}
     <!-- Page Heading -->
     <div class="mb-5">
         <div class="text-center">
-            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Medikation - Übersicht</h1>
-            <p class="mb-4">Untenstehend findest du alle deine erstellten Medikationen. <br />Zusätzlich kannst du auf das Pluszeichen <i class="fas fa-plus-circle"></i> klicken, um eine neue Medikation zu erstellen</p>
+            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Medikation - Übersicht{% endtrans %}</h1>
+            <p class="mb-4">{% trans %}Untenstehend findest du alle deine erfassten{% endtrans %} {% trans %}Medikationen{% endtrans %}. <br />{% trans %}Zusätzlich kannst du auf das Pluszeichen{% endtrans %} <i class="fas fa-plus-circle"></i> {% trans %}klicken, um eine neue Medikation zu erstellen{% endtrans %}</p>
 
-            <a href="{{ path('medication_new') }}" title="Neue Medikation erstellen"><i class="fas fa-plus-circle fa-3x text-medication"></i></a>
+            <a href="{{ path('medication_new') }}" title="{% trans %}Neue Medikation erstellen{% endtrans %}"><i class="fas fa-plus-circle fa-3x text-medication"></i></a>
         </div>
     </div>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-medication" >Erfasste Medikationen</h6>
+            <h6 class="m-0 font-weight-bold text-medication" >{% trans %}Erfasste Medikationen{% endtrans %}</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" data-sort-name="date" data-sort-order="asc">
                     <thead>
                     <tr>
-                        <th>Medikationsname</th>
-                        <th>Beschreibung</th>
-                        <th>Dosierung</th>
-                        <th>Einnahme Start</th>
-                        <th>Einnahme Ende</th>
-                        <th>Verschreibungsdatum</th>
-                        <th>Zuletzt bearbeitet</th>
-                        <th>Aktionen</th>
+                        <th>{% trans %}Medikationsname{% endtrans %}</th>
+                        <th>{% trans %}Beschreibung{% endtrans %}</th>
+                        <th>{% trans %}Dosierung{% endtrans %}</th>
+                        <th>{% trans %}Einnahme Start{% endtrans %}</th>
+                        <th>{% trans %}Einnahme Ende{% endtrans %}</th>
+                        <th>{% trans %}Verschreibungsdatum{% endtrans %}</th>
+                        <th>{% trans %}Zuletzt bearbeitet{% endtrans %}</th>
+                        <th>{% trans %}Aktionen{% endtrans %}</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for medication in medications %}
 
                         <tr>
-                            <td data-search="medication.name"><a href="{{ path('medication_show', {'id': medication.id}) }}" class="text-medication" title="Anzeigen"><i class="fas fa-fw fa-search"></i> {{ medication.name }}</a></td>
+                            <td data-search="medication.name"><a href="{{ path('medication_show', {'id': medication.id}) }}" class="text-medication" title="{% trans %}Anzeigen{% endtrans %}"><i class="fas fa-fw fa-search"></i> {{ medication.name }}</a></td>
                             <td data-search="medication.description">{{ medication.description }}</td>
                             <td data-search="medication.dosage">{{ medication.dosage }}</td>
-                            <td data-order="{{ medication.dateFrom|date('U') }}">{{ medication.dateFrom ? medication.dateFrom|date('d.m.Y H:i') }} Uhr</td>
-                            <td data-order="{{ medication.dateTo|date('U') }}">{{ medication.dateTo ? medication.dateTo|date('d.m.Y H:i') }} Uhr</td>
+                            <td data-order="{{ medication.dateFrom|date('U') }}">{{ medication.dateFrom ? medication.dateFrom|date('d.m.Y H:i') }} {% trans %}Uhr{% endtrans %}</td>
+                            <td data-order="{{ medication.dateTo|date('U') }}">{{ medication.dateTo ? medication.dateTo|date('d.m.Y H:i') }} {% trans %}Uhr{% endtrans %}</td>
                             <td data-order="{{ medication.timestampPrescription|date('U') }}">{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y')}}</td>
-                            <td data-order="{{ medication.modifiedAt|date('U') }}">{{ medication.modifiedAt ? medication.modifiedAt|date('d.m.Y H:i') : '' }} Uhr</td>
+                            <td data-order="{{ medication.modifiedAt|date('U') }}">{{ medication.modifiedAt ? medication.modifiedAt|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
                             <td align="center">
-                                <a href="{{ path('medication_edit', {'id': medication.id}) }}" title="Bearbeiten" class="text-medication"><i class="fas fa-fw fa-edit" ></i></a>
+                                <a href="{{ path('medication_edit', {'id': medication.id}) }}" title="{% trans %}Bearbeiten{% endtrans %}" class="text-medication"><i class="fas fa-fw fa-edit" ></i></a>
                             </td>
                         </tr>
                     {% else %}
                         <tr>
-                            <td colspan="8">Keine Medikationen vorhanden</td>
+                            <td colspan="8">{% trans %}Keine Medikationen vorhanden{% endtrans %}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -82,7 +82,7 @@
     $(document).ready(function() {
     $('#dataTable').DataTable( {
     "language": {
-    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/German.json"
+    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/{% trans %}German{% endtrans %}.json"
     }
     });
     });

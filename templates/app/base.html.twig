@@ -194,6 +194,34 @@
                     </button>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="mr-2 fa fa-language"></i>
+                                <span class="mr-3 d-none d-lg-inline text-gray-600 small">{% trans %}Sprache ändern{% endtrans %}</span>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'de'})) }}">
+                                    <i class="fas fa-beer fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    {% trans %}Deutsch{% endtrans %}
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">
+                                    <i class="fas fa-flag-usa fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    {% trans %}Englisch{% endtrans %}
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'it'})) }}">
+                                    <i class="fas fa-pizza-slice fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    {% trans %}Italienisch{% endtrans %}
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">
+                                    <i class="fas fa-glass-martini fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    {% trans %}Französisch{% endtrans %}
+                                </a>
+                            </div>
+                        </li>
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -208,6 +236,7 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     {% trans %}Profil anzeigen & bearbeiten{% endtrans %}
                                 </a>
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ path('app_change_password') }}">
                                     <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
                                     {% trans %}Passwort ändern{% endtrans %}
@@ -227,7 +256,7 @@
                 <div class="container-fluid">
                     {% for message in app.flashes('success') %}
                         <div class="alert alert-success">
-                            {{ message }}
+                            {{ message|trans }}
                         </div>
                     {% endfor %}
                     {% block body %}
@@ -271,7 +300,6 @@
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">{% trans %}Abbrechen{% endtrans %}</button>
                         <a class="btn btn-primary" href="{{ path('app_logout') }}">{% trans %}Ausloggen{% endtrans %}</a>
-
                     </div>
                 </div>
             </div>
@@ -294,6 +322,7 @@
             webshims.setOptions('forms-ext', {types: 'datetime-local'});
             webshims.polyfill('forms forms-ext');
         </script>
+
     {% endblock %}
 
     <script type="text/javascript">

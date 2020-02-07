@@ -1,0 +1,12 @@
+{% set route = app.request.attributes.get('_route') %}
+{% set route_params = app.request.attributes.get('_route_params') %}
+{% set params = route_params|merge(app.request.query.all) %}
+
+
+
+{% set applocales=locales|split('|') %}
+{% for locale in applocales %}
+    <a class="" href="{{ path(route, params|merge({ _locale: locale })) }}">
+        {{ "Test" | trans }}
+    </a>
+{% endfor %}
