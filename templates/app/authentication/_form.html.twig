@@ -1,7 +1,7 @@
 {{ form_start(form) }}
     {{ form_errors(form) }}
-    {{ form_row(form.old_password) }}
-    {{ form_row(form.new_password) }}
-    {{ form_row(form.new_password_confirm) }}
+    {{ form_row(form.old_password, {'label': 'Aktuelles Passwort'|trans}) }}
+    {{ form_row(form.new_password, {'label': 'Neues Passwort'|trans}) }}
+    {{ form_row(form.new_password_confirm, {'label': 'Neues Passwort wiederholen'|trans}) }}
 <button class="btn btn-primary">{{ button_text }}</button>
 {{ form_end(form) }}

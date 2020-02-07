@@ -1,9 +1,9 @@
 {{ form_start(profileForm) }}
     {{ form_errors(profileForm) }}
-    {{ form_row(profileForm.firstname, {'label': 'Vorname'}) }}
-    {{ form_row(profileForm.lastname, {'label': 'Nachname'}) }}
-    {{ form_row(profileForm.email, {'label': 'Email-Adresse'}) }}
-    {{ form_row(profileForm.diagnose, {'label': 'Diagnose'}) }}
-    {{ form_row(profileForm.agreed_terms_at, {'label': 'Registriert am'   }) }}
+    {{ form_row(profileForm.firstname, {'label': 'Vorname'|trans}) }}
+    {{ form_row(profileForm.lastname, {'label': 'Nachname'|trans}) }}
+    {{ form_row(profileForm.email, {'label': 'Email-Adresse'|trans}) }}
+    {{ form_row(profileForm.diagnose, {'label': 'Diagnose'|trans}) }}
+    {{ form_row(profileForm.agreed_terms_at, {'label': 'Registriert am'|trans }) }}
 <button class="btn btn-primary">{{ button_text }}</button>
 {{ form_end(profileForm) }}
