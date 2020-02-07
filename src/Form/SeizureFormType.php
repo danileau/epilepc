@@ -33,6 +33,7 @@ class SeizureFormType extends AbstractType
                 'help' => 'Zeitpunkt des Anfalls im Format TT.MM.YYYY HH:MM',
             ])
             ->add('seizuretype', EntityType::class, [
+                'choice_translation_domain' => true,
                 'placeholder' => 'Anfallstyp auswählen',
                 'class' => \App\Entity\Seizuretype::class,
                 'help' => 'Wenn unbekannt, fragen Sie Ihren Arzt nach der auszuwählenden Anfallsart'

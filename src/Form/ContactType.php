@@ -33,6 +33,7 @@ class ContactType extends AbstractType
             ->add('from', EmailType::class)
             ->add('message', TextareaType::class)
             ->add('thema', ChoiceType::class, [
+                'choice_translation_domain' => true,
                 'choices'  => [
                     'Frage / Support' => 'Frage/Support',
                     'Sorgen' => 'Sorgen',
@@ -49,6 +50,7 @@ class ContactType extends AbstractType
             ])
 
             ->add('copy', CheckboxType::class, [
+                'choice_translation_domain' => true,
                 'label'    => 'Schick mir eine Kopie dieser Nachticht',
                 'required' => false,
             ]);

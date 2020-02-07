@@ -23,6 +23,7 @@ class DiaryentryType extends AbstractType
             ->add('content')
             ->add('timestamp_when', DateTimeType::class, [
                 'widget' => 'single_text',
+                'choice_translation_domain' => true,
                 'help' => 'Datum des Tagebucheintrags im Format TT.MM.YYYY HH:MM'
             ])
         ;

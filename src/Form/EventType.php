@@ -26,7 +26,8 @@ class EventType extends AbstractType
             ->add('description')
             ->add('timestamp_when', DateTimeType::class, [
                 'widget' => 'single_text',
-                'help' => 'Datum des Ereignisses im Format TT.MM.YYYY HH:MM'
+                'choice_translation_domain' => true,
+                'help' => 'Zeitpunkt des Ereignisses im Format TT.MM.YYYY HH:MM'
             ])
 
 
