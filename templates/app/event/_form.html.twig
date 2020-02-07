@@ -1,11 +1,13 @@
 {{ form_start(eventForm) }}
     {{ form_errors(eventForm) }}
-    {{ form_row(eventForm.name, {'label': 'Ereignisname'}) }}
-    {{ form_row(eventForm.description, {'label': 'Beschreibung',
+    {{ form_row(eventForm.name, {'label': 'Ereignisname'|trans}) }}
+    {{ form_row(eventForm.description, {'label': 'Beschreibung'|trans,
         'attr': {
             'rows': '10'
         }})
     }}
-    {{ form_row(eventForm.timestamp_when, {'label': 'Ereignisdatum'}) }}
+    {{ form_label(eventForm.timestamp_when, 'Ereignisdatum'|trans) }}
+    {{ form_widget(eventForm.timestamp_when) }}
+        <small>{{ form_help(eventForm.timestamp_when) }}</small><br/>
 <button class="btn btn-primary">{{ button_text }}</button>
 {{ form_end(eventForm) }}

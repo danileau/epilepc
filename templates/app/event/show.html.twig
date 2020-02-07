@@ -1,12 +1,12 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}Epilepc - Ereignis anzeigen{% endblock %}
+{% block title %}Epilepc - {% trans %}Ereignis anzeigen{% endtrans %}{% endblock %}
 
 {% block body %}
 <!-- Page Heading -->
 <div class="mb-5">
     <div class="text-center">
-        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Ereignis #{{ event.id }} anzeigen</h1>
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Ereignis{% endtrans %} #{{ event.id }}</h1>
     </div>
 
 
@@ -16,23 +16,23 @@
             <div class="table-responsive p-1">
                 <form>
                     <div class="form-group">
-                        <label for="EventName">Ereignisname</label>
+                        <label for="EventName">{% trans %}Ereignisname{% endtrans %}</label>
                         <input type="text" class="form-control" id="EventName" value="{{ event.name }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="EventDescription">Beschreibung</label>
+                        <label for="EventDescription">{% trans %}Beschreibung{% endtrans %}</label>
                         <textarea class="form-control" id="EventDescription" readonly rows="4">{{ event.description }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="EventDate">Ereignisdatum</label>
-                        <input type="text" class="form-control" id="EventDate" value="{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y H:i') : '' }} Uhr" readonly>
+                        <label for="EventDate">{% trans %}Ereignisdatum{% endtrans %}</label>
+                        <input type="text" class="form-control" id="EventDate" value="{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="EventLastModified">Zuletzt bearbeitet</label>
-                        <input type="text" class="form-control" id="EventLastModified" value="{{ event.modifiedAt ? event.modifiedAt|date('d.m.Y H:i') : '' }} Uhr" readonly>
+                        <label for="EventLastModified">{% trans %}Zuletzt bearbeitet{% endtrans %}</label>
+                        <input type="text" class="form-control" id="EventLastModified" value="{{ event.modifiedAt ? event.modifiedAt|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}" readonly>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('event_edit', {'id': event.id}) }}">Bearbeiten</a></button>
+                        <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('event_edit', {'id': event.id}) }}">{% trans %}Bearbeiten{% endtrans %}</a></button>
                     </div>
                 </form>
             </div>
@@ -41,7 +41,7 @@
     <script type="text/javascript">
         $(function () {
             $('#datetimepicker').datetimepicker({
-                locale: 'de'
+                locale: '{% trans %}de{% endtrans %}'
             });
         });
     </script>

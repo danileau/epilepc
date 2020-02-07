@@ -1,12 +1,12 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}Epilepc - Anfall anzeigen{% endblock %}
+{% block title %}Epilepc - {% trans %}Anfall anzeigen{% endtrans %}{% endblock %}
 
 {% block body %}
     <!-- Page Heading -->
     <div class="mb-5">
         <div class="text-center">
-            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Anfall #{{ seizure.id }} anzeigen</h1>
+            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Anfall{% endtrans %} #{{ seizure.id }}</h1>
         </div>
 
 
@@ -16,27 +16,27 @@
             <div class="table-responsive p-1">
                 <form>
                     <div class="form-group">
-                        <label for="SeizureTitle">Anfallstitel</label>
+                        <label for="SeizureTitle">{% trans %}Anfallstitel{% endtrans %}</label>
                         <input type="text" class="form-control" id="SeizureTitle" value="{{ seizure.title }}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="SeizureDescription">Beschreibung</label>
+                        <label for="SeizureDescription">{% trans %}Beschreibung{% endtrans %}</label>
                         <textarea class="form-control" id="SeizureDescription" readonly rows="4">{{ seizure.description }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="SeizureDate">Anfallsdatum</label>
-                        <input type="text" class="form-control" id="SeizureDate" value="{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} Uhr" readonly>
+                        <label for="SeizureDate">{% trans %}Anfallsdatum{% endtrans %}</label>
+                        <input type="text" class="form-control" id="SeizureDate" value="{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="SeizureDate">Zuletzt bearbeitet</label>
-                        <input type="text" class="form-control" id="SeizureDate" value="{{ seizure.modifiedAt ? seizure.modifiedAt|date('d.m.Y H:i') : '' }} Uhr" readonly>
+                        <label for="SeizureDate">{% trans %}Zuletzt bearbeitet{% endtrans %}</label>
+                        <input type="text" class="form-control" id="SeizureDate" value="{{ seizure.modifiedAt ? seizure.modifiedAt|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="SeizureDate">Anfallstyp</label>
-                        <input type="text" class="form-control" id="SeizureDate" value="{{ seizure.seizuretype.name }}" readonly>
+                        <label for="SeizureDate">{% trans %}Anfallstyp{% endtrans %}</label>
+                        <input type="text" class="form-control" id="SeizureDate" value="{{ seizure.seizuretype.name|trans }}" readonly>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('seizure_edit', {'id': seizure.id}) }}">Bearbeiten</a></button>
+                        <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('seizure_edit', {'id': seizure.id}) }}">{% trans %}Bearbeiten{% endtrans %}</a></button>
                     </div>
 
                 </form>
@@ -47,7 +47,7 @@
     <script type="text/javascript">
         $(function () {
             $('#datetimepicker').datetimepicker({
-                locale: 'de'
+                locale: '{% trans %}de{% endtrans %}'
             });
         });
     </script>

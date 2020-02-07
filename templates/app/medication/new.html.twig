@@ -1,21 +1,21 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}Epilepc - Medikation erstellen{% endblock %}
+{% block title %}Epilepc - {% trans %}Medikation erstellen{% endtrans %}{% endblock %}
 
 {% block body %}
 <!-- Page Heading -->
 <div class="mb-5">
     <div class="text-center">
-        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">Neue Medikation erstellen</h1>
+        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Neue Medikation erstellen{% endtrans %}</h1>
     </div>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-                {{ include('app/medication/_form.html.twig', {'button_text': 'Erstellen'}) }}
+                {{ include('app/medication/_form.html.twig', {'button_text': 'Erstellen'|trans}) }}
                 <br/>
-                <a class="btn btn-dark" href="{{ path('medication_index') }}">Zurück zur Übersicht</a>
+                <a class="btn btn-dark" href="{{ path('medication_index') }}">{% trans %}Zurück zur Übersicht{% endtrans %}</a>
             </div>
         </div>
     </div>

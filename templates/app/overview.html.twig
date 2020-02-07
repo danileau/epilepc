@@ -101,7 +101,7 @@
                             {% for seizure in seizures %}
                                 <tr>
                                     <td data-order="{{ seizure.timestampWhen|date('U') }}">{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
-                                    <td>{{ seizure.title }} - {{ seizure.seizuretype }}</td>
+                                    <td>{{ seizure.title }} - {{ seizure.seizuretype|trans }}</td>
                                     <td>{% trans %}Anfall{% endtrans %}</td>
                                     <td align="center">
                                         <a href="{{ path('seizure_show', {'id': seizure.id}) }}" class="text-seizure" title="{% trans %}Anzeigen{% endtrans %}"><i class="fas fa-fw fa-search"></i></a> -

@@ -1,11 +1,15 @@
 {{ form_start(diaryForm) }}
     {{ form_errors(diaryForm) }}
-    {{ form_row(diaryForm.title, {'label': 'Eintragstitel'}) }}
+    {{ form_row(diaryForm.title, {'label': 'Eintragstitel'|trans}) }}
     {{ form_row(diaryForm.content, {
-        'label': 'Inhalt',
+        'label': 'Inhalt'|trans,
         'attr': {
             'rows': '15'
         }}) }}
-    {{ form_row(diaryForm.timestamp_when, {'label': 'Eintragsdatum'}) }}
+
+    {{ form_label(diaryForm.timestamp_when, 'Eintragsdatum'|trans) }}
+    {{ form_widget(diaryForm.timestamp_when) }}
+        <small>{{ form_help(diaryForm.timestamp_when) }}</small><br/>
+
 <button class="btn btn-primary">{{ button_text }}</button>
 {{ form_end(diaryForm) }}
