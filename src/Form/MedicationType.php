@@ -27,14 +27,19 @@ class MedicationType extends AbstractType
             ])
             ->add('date_from', DateTimeType::class, [
                 'widget' => 'single_text',
+                'choice_translation_domain' => true,
                 'help' => 'Start Medikamenteneinnahme im Format TT.MM.YYYY HH:MM'
             ])
             ->add('date_to', DateTimeType::class, [
+
                 'widget' => 'single_text',
+                'choice_translation_domain' => true,
                 'help' => 'Ende Medikamenteneinnahme im Format TT.MM.YYYY HH:MM'
             ])
             ->add('timestamp_prescription', DateType::class, [
+
                 'widget' => 'single_text',
+                'choice_translation_domain' => true,
                 'help' => 'Ausstelldatum des Rezepts'
             ])
         ;
