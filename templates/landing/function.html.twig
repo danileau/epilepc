@@ -5,8 +5,8 @@
         <!-- Nav -->
         <nav id="nav">
             <ul>
-                <li><a href="#intro" class="active">Funktionen</a></li>
-                <li><a href="{{ path('app_landingpage') }}">Zurück</a> </li>
+                <li><a href="#intro" class="active">{% trans %}Funktionen{% endtrans %}</a></li>
+                <li><a href="{{ path('app_landingpage') }}">{% trans %}Zurück{% endtrans %}</a> </li>
             </ul>
         </nav>
 
@@ -16,56 +16,52 @@
             <!-- Content -->
             <section id="content" class="main special">
                 <header class="major">
-                    <h2>Funktionen</h2>
+                    <h2>{% trans %}Funktionen{% endtrans %}</h2>
                 </header>
                 <p>
-                    Die folgenden Funktionen stehen dir aktuell auf epilepc.ch zur Verfügung:
+                    {% trans %}Die folgenden Funktionen stehen dir aktuell auf epilepc.ch zur Verfügung{% endtrans %}:
                 </p>
                 <ul class="features">
                     <li>
                         <span class="icon major style1 fa-bolt"></span>
-                        <h3><b>Anfälle dokumentieren</b></h3>
-                        <p>Dokumentiere alle deine Anfälle mit epilepc! So kannst du dir bequem einen Überblick verschaffen, wie es dir während des letzten Monates gegangen ist oder
-                            sogar Auffälligkeiten entdecken!</p>
+                        <h3><b>{% trans %}Anfälle dokumentieren{% endtrans %}</b></h3>
+                        <p>{% trans %}Dokumentiere alle deine Anfälle mit epilepc! So kannst du dir bequem einen Überblick verschaffen, wie es dir während des letzten Monates gegangen ist oder sogar Auffälligkeiten entdecken!{% endtrans %}</p>
                     </li>
                     <li>
                         <span class="icon major style5 fa-exclamation-triangle"></span>
-                        <h3><b>Ereignisse notieren</b></h3>
-                        <p>Notiere und speichere alle Ereignisse, die dir aufgefallen sind. So kannst du Auffälligkeiten entdecken, Trigger erkennen und
-                        definieren. Durch die regelmässige Pflege von Ereignissen in epilepc, kannst du Zusammenhänge entdecken oder Faktoren ausschliessen.</p>
+                        <h3><b>{% trans %}Ereignisse notieren{% endtrans %}</b></h3>
+                        <p>{% trans %}Notiere und speichere alle Ereignisse, die dir aufgefallen sind. So kannst du Auffälligkeiten entdecken, Trigger erkennen und definieren. Durch die regelmässige Pflege von Ereignissen in epilepc, kannst du Zusammenhänge entdecken oder Faktoren ausschliessen{% endtrans %}.</p>
                     </li>
                     <li>
                         <span class="icon major style3 fa-medkit"></span>
-                        <h3><b>Medikation pflegen</b></h3>
-                        <p>Trage alle deine Medikamente in epilepc ein. So behälst du die Übersicht über sämtliche Details, wann welche
-                            Anpassungen vorgenommen worden sind und wann welche Medikamente eingenommen werden müssen.
+                        <h3><b>{% trans %}Medikation pflegen{% endtrans %}</b></h3>
+                        <p>{% trans %}Trage alle deine Medikamente in epilepc ein. So behälst du die Übersicht über sämtliche Details, wann welche Anpassungen vorgenommen worden sind und wann welche Medikamente eingenommen werden müssen{% endtrans %}.
                         </p>
                     </li>
                     <li>
                         <span class="icon major style6 fa-book"></span>
-                        <h3><b>Tagebuch führen</b></h3>
-                        <p>Mit der Tagebuchfunktion kannst du hier alle deine Gedanken festhalten und zu einem späteren
-                            Zeitpunkt wieder lesen.<br/>
-                        Oftmals sind es die unscheinbaren Kleinigkeiten, die uns helfen uns zu organisieren und wieder zu erinnern</p>
+                        <h3><b>{% trans %}Tagebuch führen{% endtrans %}</b></h3>
+                        <p>{% trans %}Mit der Tagebuchfunktion kannst du hier alle deine Gedanken festhalten und zu einem späteren Zeitpunkt wieder lesen{% endtrans %}.<br/>
+                        {% trans %}Oftmals sind es die unscheinbaren Kleinigkeiten, die uns helfen uns zu organisieren und wieder zu erinnern{% endtrans %}</p>
                     </li>
                     <li>
                         <span class="icon major style2 fa-bar-chart"></span>
-                        <h3><b>Übersicht generieren</b></h3>
-                        <p>Generiere bequem eine PDF-Datei mit allen Informationen, die du deinem Arzt mitgeben möchtest und bring es mit zur nächsten Sprechstunde! <br>
-                            Mit intuitiven Diagrammen kann dein Arzt schnell sehen, wie sich die letzte Anpassung der Medikation ausgewirkt hat.
+                        <h3><b>{% trans %}Übersicht generieren{% endtrans %}</b></h3>
+                        <p>{% trans %}Generiere bequem eine PDF-Datei mit allen Informationen, die du deinem Arzt mitgeben möchtest und bring es mit zur nächsten Sprechstunde!{% endtrans %} <br>
+                            {% trans %}Mit intuitiven Diagrammen kann dein Arzt schnell sehen, wie sich die letzte Anpassung der Medikation ausgewirkt hat{% endtrans %}.
                         </p>
                     </li>
                 </ul>
 
                 <p>
-                    Wir arbeiten intensiv daran epilepc mit neuen Funktionen zu erweitern und zu verbessern. <br/>
+                    {% trans %}Wir arbeiten intensiv daran epilepc mit neuen Funktionen zu erweitern und zu verbessern{% endtrans %}. <br/>
                     Hast du eine Idee oder einen Verbesserungsvorschlag? Dann melde dich bei uns! </p>
                 <p>
-                    <b><a href="{{ path('contact') }}">Zum Kontaktformular</a></b>
+                    <b><a href="{{ path('contact') }}">{% trans %}Zum Kontaktformular{% endtrans %}</a></b>
                 </p>
                 <footer class="major">
                     <ul class="actions special">
-                        <li><a href="{{ path('app_landingpage') }}" class="button primary">Zurück</a></li>
+                        <li><a href="{{ path('app_landingpage') }}" class="button primary">{% trans %}Zurück{% endtrans %}</a></li>
                     </ul>
                 </footer>
             </section>
