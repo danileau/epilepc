@@ -37,9 +37,9 @@
                     <tbody>
                     {% for user in users %}
                         <tr>
-                            <td><a href="{{ path('admin_user_show', {'id': user.id}) }}" class="text-event"><i class="fas fa-fw fa-search"></i> {{ user.firstname }}</a></td>
-                            <td>{{ user.lastname }}</td>
-                            <td>{{ user.email }}</td>
+                            <td data-search="{{ user.firstname }}"><a href="{{ path('admin_user_show', {'id': user.id}) }}" class="text-event"><i class="fas fa-fw fa-search"></i> {{ user.firstname }}</a></td>
+                            <td data-search="{{ user.lastname }}">{{ user.lastname }}</td>
+                            <td data-search="{{ user.email }}">{{ user.email }}</td>
                             <td>{% if user.deactivated == 0 %}Nicht deaktiviert{% else %}Deaktiviert{% endif %}</td>
                             <td>
                                 {% if user.roles.0 == 'ROLE_ADMIN' %}
@@ -48,7 +48,7 @@
                                     <p class="text-success">Benutzer</p>
                                 {% endif %}
                             </td>
-                            <td>{{ user.agreedTermsAt|date('d.m.Y') }} um {{ user.agreedTermsAt|date('H:i') }} Uhr</td>
+                            <td data-order="{{ user.agreedTermsAt|date('U') }}">{{ user.agreedTermsAt|date('d.m.Y') }} um {{ user.agreedTermsAt|date('H:i') }} Uhr</td>
                             <td>
                                 {# Link anzeigen zum Adminrolle vergeben und wenn vorhanden, zum entfernen. #}
                                 {% if user.roles.0 != 'ROLE_ADMIN' %}
