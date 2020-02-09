@@ -1,6 +1,6 @@
 {% extends 'app/authentication/base.html.twig' %}
 
-{% block title %}Epilepc - Passwort vergessen{% endblock %}
+{% block title %}Epilepc - {% trans %}Passwort vergessen{% endtrans %}{% endblock %}
 {% block body %}
     <!-- Nested Row within Card Body -->
     <div class="row">
@@ -8,20 +8,20 @@
         <div class="col-lg-6">
             <div class="p-5">
                 <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-2">Ou.. Passwort vergessen?</h1>
+                    <h1 class="h4 text-gray-900 mb-2">{% trans %}Ou{% endtrans %}.. {% trans %}Passwort vergessen{% endtrans %}?</h1>
                     <p class="mb-4">Kein Problem, das passiert den Besten von uns. Trage einfach deine Email Adresse ins untenstehende Feld ein und wir schicken dir eine Mail zum Zurücksetzen deines Passworts!</p>
                 </div>
-                {{ include('app/authentication/_form-forgot.html.twig', {'button_text': 'Passwort zurücksetzen'}) }}
+                {{ include('app/authentication/_form-forgot.html.twig', {'button_text': 'Passwort zurücksetzen'|trans}) }}
                 <hr>
                 <div class="text-center">
-                    <a class="small" href="{{ path('app_register') }}">Registriere dich!</a>
+                    <a class="small" href="{{ path('app_register') }}">{% trans %}Registriere dich{% endtrans %}!</a>
                 </div>
                 <div class="text-center">
-                    <a class="small" href="{{ path('app_login') }}">Account bereits erstellt? Log dich jetzt ein!</a>
+                    <a class="small" href="{{ path('app_login') }}">{% trans %}Account bereits erstellt? Log dich jetzt ein{% endtrans %}!</a>
                 </div>
                 <br />
                 <div class="text-center">
-                    <a class="small" href="{{ path('app_landingpage') }}">Zurück</a>
+                    <a class="small" href="{{ path('app_landingpage') }}">{% trans %}Zurück{% endtrans %}</a>
                 </div>
             </div>
         </div>
