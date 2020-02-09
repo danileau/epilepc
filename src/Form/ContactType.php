@@ -50,7 +50,6 @@ class ContactType extends AbstractType
             ])
 
             ->add('copy', CheckboxType::class, [
-                'choice_translation_domain' => true,
                 'label'    => 'Schick mir eine Kopie dieser Nachticht',
                 'required' => false,
             ]);
