@@ -9,7 +9,7 @@
             <div class="p-5">
                 <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-2">{% trans %}Ou{% endtrans %}.. {% trans %}Passwort vergessen{% endtrans %}?</h1>
-                    <p class="mb-4">Kein Problem, das passiert den Besten von uns. Trage einfach deine Email Adresse ins untenstehende Feld ein und wir schicken dir eine Mail zum Zurücksetzen deines Passworts!</p>
+                    <p class="mb-4">{% trans %}Kein Problem, das passiert den Besten von uns. Trage einfach deine Email Adresse ins untenstehende Feld ein und wir schicken dir eine Mail zum Zurücksetzen deines Passworts{% endtrans %}!</p>
                 </div>
                 {{ include('app/authentication/_form-forgot.html.twig', {'button_text': 'Passwort zurücksetzen'|trans}) }}
                 <hr>
