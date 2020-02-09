@@ -19,6 +19,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecurityController extends AbstractController
 {
@@ -52,7 +53,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator, \Swift_Mailer $mailer)
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator, \Swift_Mailer $mailer, TranslatorInterface $translator)
     {
 
         $form = $this->createForm(UserRegistrationFormType::class);
@@ -82,7 +83,7 @@ class SecurityController extends AbstractController
             $em->flush();
 
             // Build & Versand Registrierungsbestätigung
-            $message = (new \Swift_Message('Ihre Registrierung bei epilepc'))
+            $message = (new \Swift_Message($translator->trans('Ihre Registrierung bei epilepc')))
                 ->setFrom('no-reply@epilepc.ch')
                 ->setTo($user->getEmail())
                 ->setBody(
@@ -96,7 +97,7 @@ class SecurityController extends AbstractController
                 );
 
             $mailer->send($message);
-            $this->addFlash('success', 'Herzliche Gratulation! Ihre Registrierung ist abgeschlossen! Falls Sie unsere Bestätigungsmail nicht erhalten haben, prüfen Sie bitte Ihrem Spam-Ordner.');
+            $this->addFlash('success', $translator->trans('Herzliche Gratulation! Ihre Registrierung ist abgeschlossen! Falls Sie unsere Bestätigungsmail nicht erhalten haben, prüfen Sie bitte Ihrem Spam-Ordner.'));
 
             // Nach Erstellung des Users, Login
             return $guardHandler->authenticateUserAndHandleSuccess(
@@ -120,7 +121,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/forgot", name="app_forgot-password")
      */
-    public function forgot(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer){
+    public function forgot(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer, TranslatorInterface $translator){
         $form = $this->createForm(PasswordForgotType::class);
         $em = $this->getDoctrine()->getManager();
         $form->handleRequest($request);
@@ -139,7 +140,7 @@ class SecurityController extends AbstractController
                 $em->persist($user);
                 $em->flush();
 
-                $message = (new \Swift_Message('epilepc - Ihr Passwort wurde zurückgesetzt'))
+                $message = (new \Swift_Message($translator->trans('epilepc - Ihr Passwort wurde zurückgesetzt')))
                     ->setFrom('no-reply@epilepc.ch')
                     ->setTo($email)
                     ->setBody(
@@ -153,11 +154,11 @@ class SecurityController extends AbstractController
                         'text/html'
                     );
                 $mailer->send($message);
-                $this->addFlash('success', 'Passwort erfolgreich zurückgesetzt & versendet!');
+                $this->addFlash('success', $translator->trans('Passwort erfolgreich zurückgesetzt & versendet!'));
 
                 return $this->redirectToRoute('app_landingpage');
             } else {
-                $form->addError(new FormError('Die angegebene Email-Adresse ist nicht registriert'));
+                $form->addError(new FormError($translator->trans('Die angegebene Email-Adresse ist nicht registriert')));
             }
         }
 

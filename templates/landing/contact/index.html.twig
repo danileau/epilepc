@@ -5,11 +5,11 @@
     <!-- Nav -->
     <nav id="nav">
         <ul>
-            <li><a href="/#intro" class="active">Wieso epilepc</a></li>
-            <li><a href="/#first">Funktionen</a></li>
-            <li><a href="/#second">Sicherheit</a></li>
-            <li><a href="/#cta">Los gehts</a></li>
-            <li><a href="{{ path('app_login') }}">Login</a></li>
+            <li><a href="#intro" class="active">{% trans %}Wieso epilepc{% endtrans %}</a></li>
+            <li><a href="#first">{% trans %}Funktionen{% endtrans %}</a></li>
+            <li><a href="#second">{% trans %}Sicherheit{% endtrans %}</a></li>
+            <li><a href="#cta">{% trans %}Los geht's{% endtrans %}</a></li>
+            <li><a href="{{ path('app_login') }}">{% trans %}Login{% endtrans %}</a></li>
         </ul>
     </nav>
 
@@ -20,32 +20,32 @@
             <div class="spotlight">
                 <div class="content">
                     <header class="major">
-                        <h2>Kontaktformular</h2>
+                        <h2>{% trans %}Kontaktformular{% endtrans %}</h2>
                     </header>
                     {% for message in app.flashes('success') %}
                         <div class="alert alert-success">
                             {{ message }}
                         </div>
                     {% endfor %}
-                    <p>Habt Ihr Fragen? Anregungen? Unklarheiten? Möchtet euch sonst einbisschen unterhalten?<br/>Dann schreibt uns!</p>
+                    <p>{% trans %}Habt Ihr Fragen? Anregungen? Unklarheiten? Möchtet euch sonst einbisschen unterhalten?<br/>Dann schreibt uns!{% endtrans %}</p>
 
                         {{ form_start(contactForm) }}
                         <div class="row gtr-uniform">
                             {{ form_errors(contactForm) }}
                             <div class="col-6 col-12-xsmall">
-                            {{ form_row(contactForm.name, {'attr': {'placeholder': 'Name'} }) }}
+                            {{ form_row(contactForm.name, {'label': 'Name'|trans,'attr': {'placeholder': 'Name'} }) }}
                             </div>
                             <div class="col-6 col-12-xsmall">
-                                {{ form_row(contactForm.from, {'label': 'Email', 'attr': {'placeholder': 'Email'} }) }}
+                                {{ form_row(contactForm.from, {'label': 'Email'|trans, 'attr': {'placeholder': 'Email'} }) }}
                             </div>
                             <div class="col-12">
-                                {{ form_row(contactForm.thema, {'label': 'Thema'}) }}
+                                {{ form_row(contactForm.thema, {'label': 'Thema'|trans}) }}
                             </div>
                             <div class="col-12">
-                                {{ form_row(contactForm.copy, {'label': 'Schick mir eine Kopie'}) }}
+                                {{ form_row(contactForm.copy, {'label': 'Schick mir eine Kopie'|trans}) }}
                             </div>
                             <div class="col-12">
-                                {{ form_row(contactForm.message, {'label': 'Nachricht',
+                                {{ form_row(contactForm.message, {'label': 'Nachricht'|trans,
                                     'attr': {
                                         'rows': '10'
                                     }})
@@ -55,7 +55,7 @@
                             <div class="col-12">
                                 <ul class="actions">
 
-                                    <li><input type="submit" value="Abschicken" class="primary"></li>
+                                    <li><input type="submit" value="{% trans %}Abschicken{% endtrans %}" class="primary"></li>
                                 </ul>
                             </div>
                             {{ form_end(contactForm) }}

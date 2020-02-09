@@ -6,6 +6,7 @@ use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ContactController extends AbstractController
 {
@@ -13,7 +14,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function index(Request $request, \Swift_Mailer $mailer)
+    public function index(Request $request, \Swift_Mailer $mailer, TranslatorInterface $translator)
     {
         // Erstellt das Kontaktformular
         $form = $this->createForm(ContactType::class);
@@ -34,7 +35,7 @@ class ContactController extends AbstractController
             } else {
                 # process as normal
                 // Generiert und versendet das Email
-                $message = (new \Swift_Message('Neue Kontaktformular-Nachricht auf epilepc.ch erhalten!'))
+                $message = (new \Swift_Message($translator->trans('Neue Kontaktformular-Nachricht auf epilepc.ch erhalten!')))
                     ->setFrom('no-reply@epilepc.ch');
                 $message->setTo('info@epilepc.ch');
 
@@ -58,7 +59,7 @@ class ContactController extends AbstractController
                 );
 
                 $mailer->send($message);
-                $this->addFlash('success', 'Ihre Nachricht wurde erfolgreich versendet!');
+                $this->addFlash('success', $translator->trans('Ihre Nachricht wurde erfolgreich versendet!'));
 
                 return $this->redirectToRoute('contact');
             }
