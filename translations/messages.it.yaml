@@ -46,7 +46,7 @@ Dein Profil: Il tuo profilo
 Deine Daten: I tuoi dati
 Deine Übersicht der letzten 12 Monate: La vostra panoramica degli ultimi 12 mesi
 Deine Übersicht vom letzten Jahr: La vostra panoramica dell'ultimo anno
-Der Startschuss von epilepc wurde während meiner Abschlussarbeit zum dipl. Techniker Informatik HF gelegt.: Il segnale di partenza dell'epilessia è stato dato durante la mia tesi di laurea al Dipl. Techniker Informatik HF.
+Der Startschuss von epilepc wurde während meiner Abschlussarbeit zum dipl. Techniker Informatik HF gelegt.: Il segnale di partenza di epilepc è stato dato durante la mia tesi di laurea al Dipl. tecnico informatico HF.
 Deutsch: Tedesco
 Diagnose: Diagnosi
 Die folgenden Funktionen stehen dir aktuell auf epilepc.ch zur Verfügung: Le seguenti funzioni sono attualmente disponibili su epilepc.ch
@@ -189,7 +189,7 @@ Was wurde wie oft erfasst?: Quante volte è stato registrato cosa?
 Wenn es etwas gibt, das wir mit Sicherheit wissen, dann ist es folgendes: Se c'è una cosa che sappiamo per certo, è questa
 Wenn unbekannt, fragen Sie Ihren Arzt nach der auszuwählenden Anfallsart: Se sconosciuto, chiedete al vostro medico il tipo di sequestro da selezionare
 Wieso epilepc: Perché epilepc
-Wir arbeiten intensiv daran epilepc mit neuen Funktionen zu erweitern und zu verbessern: Stiamo lavorando intensamente per estendere e migliorare l'epilessia con nuove funzioni
+Wir arbeiten intensiv daran epilepc mit neuen Funktionen zu erweitern und zu verbessern: Stiamo lavorando intensamente per estendere e migliorare epilepc con nuove funzioni
 Wähle "Ausloggen" aus, wenn du bereit bist, die aktuelle Sitzung zu beenden: Selezionare "Disconnettiti" quando si è pronti a terminare la sessione corrente
 Zeitpunkt des Anfalls im Format TT.MM.YYYY HH:MM: Ora della crisi nel formato 'TT.MM.YYYY HH:MM'
 Zeitpunkt des Ereignisses im Format TT.MM.YYYY HH:MM: Ora del evento nel formato TT.MM.YYYY HH:MM
@@ -212,5 +212,14 @@ oder benutzen Sie unser: o utilizza il nostro
 oder unterstützen Sie uns auf: o sostenerci su
 Über uns: Chi siamo
 Übersicht generieren: Generare una panoramica
-Übersicht vom: Panoramica da
+Übersicht vom: Panoramica dal
 Übersicht: Panoramica
+Absencen: Assenze
+Aura: Aura
+Fokale Anfälle: Convulsioni focali
+Komplex fokaler Anfall: Complessa convulsione focale
+Reflex-Anfälle: Attacchi di riflesso
+Myoklonische Anfälle: Convulsioni miocloniche
+Status epilepticus: Stato epilettico
+Tonisch‐klonische Anfälle: Convulsioni tonico-cloniche
+Unilaterale Anfälle: Convulsioni unilaterali
