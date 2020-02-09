@@ -8,7 +8,7 @@
         <div class="col-lg-6">
             <div class="p-5">
                 <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Willkommen zurück!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">{% trans %}Willkommen zurück{% endtrans %}!</h1>
                 </div>
 
                 <form class="user" method="post" autocomplete="off">
@@ -16,10 +16,10 @@
                         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}
                     <div class="form-group">
-                        <input type="email" class="form-control form-control-user" value="{{ last_username }}" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Email Adresse" required autofocus>
+                        <input type="email" class="form-control form-control-user" value="{{ last_username }}" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="{% trans %}Email Adresse{% endtrans %}" required autofocus>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control form-control-user" name="password" id="inputPassword" placeholder="Passwort" autocomplete="off">
+                        <input type="password" class="form-control form-control-user" name="password" id="inputPassword" placeholder="{% trans %}Passwort{% endtrans %}" autocomplete="off">
                     </div>
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}"
@@ -28,21 +28,21 @@
                     <div class="form-group">
                         <div class="custom-control custom-checkbox small">
                             <input type="checkbox" name="_remember_me" class="custom-control-input" id="customCheck">
-                            <label class="custom-control-label" for="customCheck">Eingeloggt bleiben</label>
+                            <label class="custom-control-label" for="customCheck">{% trans %}Eingeloggt bleiben{% endtrans %}</label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                    <button type="submit" class="btn btn-primary btn-user btn-block">{% trans %}Login{% endtrans %}</button>
                 </form>
                 <hr>
                 <div class="text-center">
-                    <a class="small" href="{{ path('app_register') }}">Jetzt registrieren!</a>
+                    <a class="small" href="{{ path('app_register') }}">{% trans %}Jetzt registrieren{% endtrans %}!</a>
                 </div>
                 <div class="text-center">
-                    <a class="small" href="{{ path('app_forgot-password') }}">Passwort vergessen</a>
+                    <a class="small" href="{{ path('app_forgot-password') }}">{% trans %}Passwort vergessen{% endtrans %}</a>
                 </div>
                 <br />
                 <div class="text-center">
-                    <a class="small" href="{{ path('app_landingpage') }}">Zurück</a>
+                    <a class="small" href="{{ path('app_landingpage') }}">{% trans %}Zurück{% endtrans %}</a>
                 </div>
             </div>
         </div>
