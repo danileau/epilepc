@@ -67,6 +67,8 @@ Tagebucheintrag bearbeiten: Modify diary entry
 Eintragstitel: Entry title
 Eintragsdatum: Date of entry
 Keine Tagebucheinträge vorhanden: No Diary entries available
+Tagebucheintrag erfolgreich erstellt!: Diary entry successfully created!
+Tagebucheintrag erfolgreich bearbeitet!: Diary entry successfully edited!
 Inhalt: Content
 Datum des Tagebucheintrags im Format TT.MM.YYYY HH:MM: Date of the diary entry in format TT.MM.YYYY HH:MM
 Tagebucheintrag löschen: Delete diary entry
@@ -272,4 +274,12 @@ Na? Passwort vergessen?: Huh? Password lost?
 Nur die Ruhe bewahren. Das ist uns auch viel zu oft passiert.: Just stay calm. This has happened to us far too often.
 Wir haben dir ein neues Passwort generiert, mit welchem du dich gleich einloggen kannst: We have generated a new password for you, with which you can log in immediately
 Wir empfehlen dir nach dem ersten Einloggen, dein Passwort umgehend zu ändern: We recommend that you change your password immediately after your first login
+Account erstellen: Create Account
+Eine Spamflut ist aber nicht zu erwarten: However, a flood of spam will not be a problem
+Die neuen Passwörter stimmen nicht überein: The new passwords do not match
+Passwort erfolgreich geändert!: Password changed successfully!
+Passwort nicht korrekt: Password not correct
+Zugriff verweigert: Access denied
+
+
 

@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/app/medication")
@@ -36,7 +37,7 @@ class MedicationController extends AbstractController
      * @Route("/new", name="medication_new", methods={"GET","POST"})
      * Neue Medikation erstellen
      */
-    public function new(Request $request, UserInterface $user): Response
+    public function new(Request $request, UserInterface $user, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(MedicationType::class);
         $form->handleRequest($request);
@@ -53,7 +54,7 @@ class MedicationController extends AbstractController
             $entityManager->persist($medication);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Medikation erfolgreich erstellt!');
+            $this->addFlash('success', $translator->trans('Medikation erfolgreich erstellt!'));
             return $this->redirectToRoute('medication_index');
         }
 
@@ -85,7 +86,7 @@ class MedicationController extends AbstractController
      * @IsGranted("MANAGE", subject="medication")
      * Bestehende Medikation bearbeiten - Eingeschränkt auf Owner
      */
-    public function edit(Request $request, Medication $medication, EntityManagerInterface $em): Response
+    public function edit(Request $request, Medication $medication, EntityManagerInterface $em, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(MedicationType::class, $medication);
         $form->handleRequest($request);
@@ -95,7 +96,7 @@ class MedicationController extends AbstractController
             $entityManager->persist($medication);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Medikation erfolgreich bearbeitet!');
+            $this->addFlash('success', $translator->trans('Medikation erfolgreich bearbeitet!'));
 
             return $this->redirectToRoute('medication_edit', [
                 'id' => $medication->getId(),

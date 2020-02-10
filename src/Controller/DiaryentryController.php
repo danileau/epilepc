@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/app/diaryentry")
@@ -38,7 +39,7 @@ class DiaryentryController extends AbstractController
     /**
      * @Route("/new", name="diaryentry_new", methods={"GET","POST"})
      */
-    public function new(Request $request, UserInterface $user): Response
+    public function new(Request $request, UserInterface $user, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(DiaryentryType::class);
         $form->handleRequest($request);
@@ -57,7 +58,7 @@ class DiaryentryController extends AbstractController
             $entityManager->persist($diaryentry);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Tagebucheintrag erfolgreich erstellt!');
+            $this->addFlash('success', $translator->trans('Tagebucheintrag erfolgreich erstellt!'));
             return $this->redirectToRoute('diaryentry_index');
         }
 
@@ -74,12 +75,12 @@ class DiaryentryController extends AbstractController
      * @Route("/{id}", name="diaryentry_show", methods={"GET"})
      * @IsGranted("MANAGE", subject="diaryentry")
      */
-    public function show(Diaryentry $diaryentry): Response
+    public function show(Diaryentry $diaryentry, TranslatorInterface $translator): Response
     {
 
         $user = $this->getUser();
         if ($user->getId() != $diaryentry->getUser()->getId()) {
-            throw new AccessDeniedException('Zugriff verweigert');
+            throw new AccessDeniedException($translator->trans('Zugriff verweigert'));
         }
 
         return $this->render('app/diaryentry/show.html.twig', [
@@ -92,12 +93,12 @@ class DiaryentryController extends AbstractController
      * @Route("/{id}/edit", name="diaryentry_edit", methods={"GET","POST"})
      * @IsGranted("MANAGE", subject="diaryentry")
      */
-    public function edit(Request $request, Diaryentry $diaryentry): Response
+    public function edit(Request $request, Diaryentry $diaryentry, TranslatorInterface $translator): Response
     {
         $user = $this->getUser();
         // 403-Exception wenn User_Id != Ersteller ID vom Eintrag
         if ($user->getId() != $diaryentry->getUser()->getId()) {
-            throw new AccessDeniedException('Zugriff verweigert');
+            throw new AccessDeniedException($translator->trans('Zugriff verweigert'));
         }
 
         $form = $this->createForm(DiaryentryType::class, $diaryentry);
@@ -112,7 +113,7 @@ class DiaryentryController extends AbstractController
             $entityManager->flush();
 
 
-            $this->addFlash('success', 'Tagebucheintrag erfolgreich bearbeitet!');
+            $this->addFlash('success', $translator->trans('Tagebucheintrag erfolgreich bearbeitet!'));
             return $this->redirectToRoute('diaryentry_index', [
                 'id' => $diaryentry->getId(),
             ]);
@@ -129,11 +130,11 @@ class DiaryentryController extends AbstractController
      * @Route("/{id}", name="diaryentry_delete", methods={"DELETE"})
      * @IsGranted("MANAGE", subject="diaryentry")
      */
-    public function delete(Request $request, Diaryentry $diaryentry): Response
+    public function delete(Request $request, Diaryentry $diaryentry, TranslatorInterface $translator): Response
     {
         $user = $this->getUser();
         if ($user->getId() != $diaryentry->getUser()->getId()) {
-            throw new AccessDeniedException('Zugriff verweigert');
+            throw new AccessDeniedException($translator->trans('Zugriff verweigert'));
         }
 
         if ($this->isCsrfTokenValid('delete'.$diaryentry->getId(), $request->request->get('_token'))) {

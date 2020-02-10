@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 
 /**
@@ -28,7 +28,7 @@ class AccountController extends AbstractController
      * @Route("/app/account", name="app_account")
      * Profilübersicht
      */
-    public function index(Request $request, UserInterface $user)
+    public function index(Request $request, UserInterface $user, TranslatorInterface $translator)
     {
         // Erstellt das Formular Profile
         $form = $this->createForm(ProfileFormType::class, $user);
@@ -43,7 +43,7 @@ class AccountController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Profil erfolgreich bearbeitet!');
+            $this->addFlash('success', $translator->trans('Profil erfolgreich bearbeitet!'));
             return $this->redirectToRoute('app_account');
         }
 
@@ -71,7 +71,7 @@ class AccountController extends AbstractController
      * @Route("/app/account/changePassword", name="app_change_password")
      * Passwort ändern
      */
-    public function change_user_password(Request $request, UserPasswordEncoderInterface $passwordEncoder){
+    public function change_user_password(Request $request, UserPasswordEncoderInterface $passwordEncoder, TranslatorInterface $translator){
         $form = $this->createForm(PasswordChangeType::class);
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
@@ -86,7 +86,7 @@ class AccountController extends AbstractController
 
             if ($passwordEncoder->isPasswordValid($user, $old_pwd)) {
                 if ($new_pwd != $new_pwd_confirm){
-                    $form->addError(new FormError('Die neuen Passwörter stimmen nicht überein'));
+                    $form->addError(new FormError($translator->trans('Die neuen Passwörter stimmen nicht überein')));
                 }else {
                     $newEncodedPassword = $passwordEncoder->encodePassword($user, $new_pwd);
                     $user->setPassword($newEncodedPassword);
@@ -94,12 +94,12 @@ class AccountController extends AbstractController
                     $em->persist($user);
                     $em->flush();
 
-                    $this->addFlash('success', 'Passwort erfolgreich geändert!');
+                    $this->addFlash('success', $translator->trans('Passwort erfolgreich geändert!'));
 
                     return $this->redirectToRoute('app_account');
                 }
             } else {
-                $form->addError(new FormError('Passwort nicht korrekt'));
+                $form->addError(new FormError($translator->trans('Passwort nicht korrekt')));
             }
         }
 
