@@ -376,7 +376,7 @@
                                 <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:25px; padding-bottom:25px; padding-right: 0px; padding-left: 25px;">
                                     <!--<![endif]-->
                                     <div align="left" class="img-container left fixedwidth" style="padding-right: 0px;padding-left: 0px;">
-                                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="left"><![endif]--><img alt="Image" border="0" class="left fixedwidth" src="https://www.epilepc.ch/mail/logo.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 150px; display: block;" title="Image" width="150"/>
+                                        <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="padding-right: 0px;padding-left: 0px;" align="left"><![endif]--><img alt="epilepc" border="0" class="left fixedwidth" src="https://www.epilepc.ch/mail/logo.png" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; clear: both; border: 0; height: auto; float: none; width: 100%; max-width: 150px; display: block;" title="Image" width="150"/>
                                         <!--[if mso]></td></tr></table><![endif]-->
                                     </div>
                                     <!--[if (!mso)&(!IE)]><!-->
@@ -394,7 +394,7 @@
                                     <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
                                     <div style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
                                         <div style="font-size: 12px; line-height: 14px; color: #555555; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif;">
-                                            <p style="font-size: 14px; line-height: 16px; margin: 0;">Neue Nachricht vom Kontaktformular auf </p>
+                                            <p style="font-size: 14px; line-height: 16px; margin: 0;">{% trans %}Neue Nachricht vom Kontaktformular auf{% endtrans %} </p>
                                             <p style="font-size: 14px; line-height: 16px; margin: 0;">epilepc.ch</p>
                                         </div>
                                     </div>
@@ -422,10 +422,10 @@
                                     <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 15px; padding-top: 20px; padding-bottom: 0px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
                                     <div style="color:#052d3d;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:150%;padding-top:20px;padding-right:10px;padding-bottom:0px;padding-left:15px;">
                                         <div style="font-size: 12px; line-height: 18px; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif; color: #052d3d;">
-                                            <p style="font-size: 14px; line-height: 75px; text-align: center; margin: 0;"><span style="font-size: 50px;"><strong><span style="line-height: 75px; font-size: 50px;"><span style="font-size: 38px; line-height: 57px;">Neue Nachricht auf <span style="color: #ff6600; font-size: 38px; line-height: 57px;">epilepc</span></span></span></strong></span></p>
+                                            <p style="font-size: 14px; line-height: 75px; text-align: center; margin: 0;"><span style="font-size: 50px;"><strong><span style="line-height: 75px; font-size: 50px;"><span style="font-size: 38px; line-height: 57px;">{% trans %}Neue Nachricht auf{% endtrans %} <span style="color: #ff6600; font-size: 38px; line-height: 57px;">epilepc</span></span></span></strong></span></p>
                                             <p style="font-size: 14px; line-height: 21px; text-align: center; margin: 0;"> </p>
-                                            <p style="font-size: 14px; line-height: 51px; text-align: center; margin: 0;"><span style="font-size: 20px;"><strong><span style="line-height: 51px; font-size: 20px;"><span style="color: #2190e3; line-height: 51px; font-size: 20px;">Von: {{ name }} - {{ from }}</span></span></strong></span></p>
-                                            <p style="font-size: 14px; line-height: 51px; text-align: center; margin: 0;"><span style="font-size: 34px;"><strong><span style="line-height: 51px; font-size: 34px;"><span style="color: #2190e3; line-height: 51px; font-size: 34px;">Thema: {{ thema }}</span></span></strong></span><span style="font-size: 34px; line-height: 51px;"><span style="line-height: 51px; font-size: 3420;"><span style="color: #2190e3; line-height: 51px; font-size: 34px;"></span></span></span></p>
+                                            <p style="font-size: 14px; line-height: 51px; text-align: center; margin: 0;"><span style="font-size: 20px;"><strong><span style="line-height: 51px; font-size: 20px;"><span style="color: #2190e3; line-height: 51px; font-size: 20px;">{% trans %}Von{% endtrans %}: {{ name }} - {{ from }}</span></span></strong></span></p>
+                                            <p style="font-size: 14px; line-height: 51px; text-align: center; margin: 0;"><span style="font-size: 34px;"><strong><span style="line-height: 51px; font-size: 34px;"><span style="color: #2190e3; line-height: 51px; font-size: 34px;">{% trans %}Thema{% endtrans %}: {{ thema }}</span></span></strong></span><span style="font-size: 34px; line-height: 51px;"><span style="line-height: 51px; font-size: 3420;"><span style="color: #2190e3; line-height: 51px; font-size: 34px;"></span></span></span></p>
                                         </div>
                                     </div>
 
@@ -477,7 +477,7 @@
                                     <div style="color:#555555;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:150%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
                                         <div style="font-size: 12px; line-height: 18px; color: #555555; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif;">
                                             <p style="font-size: 14px; line-height: 21px; text-align: center; margin: 0;">epilepc.ch </p>
-                                            <p style="font-size: 14px; line-height: 21px; text-align: center; margin: 0;">3018 Bern, Schweiz</p>
+                                            <p style="font-size: 14px; line-height: 21px; text-align: center; margin: 0;">3018 Bern, {% trans %}Schweiz{% endtrans %}</p>
                                         </div>
                                     </div>
                                     <!--[if mso]></td></tr></table><![endif]-->
@@ -499,7 +499,7 @@
                                     <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Tahoma, Verdana, sans-serif"><![endif]-->
                                     <div style="color:#4F4F4F;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:120%;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
                                         <div style="font-size: 12px; line-height: 14px; color: #4F4F4F; font-family: 'Lato', Tahoma, Verdana, Segoe, sans-serif;">
-                                            <p style="font-size: 12px; line-height: 16px; text-align: center; margin: 0;"><span style="font-size: 14px;"><strong><a href="https://www.epilepc.ch" rel="noopener" style="text-decoration: underline; color: #2190E3;" target="_blank">Epilepc.ch</a></strong> |  <strong><a href="https://www.epilepc.ch/contact" rel="noopener" style="text-decoration: underline; color: #2190E3;" target="_blank">Kontaktformular</a></strong></span></p>
+                                            <p style="font-size: 12px; line-height: 16px; text-align: center; margin: 0;"><span style="font-size: 14px;"><strong><a href="https://www.epilepc.ch/{% trans %}de{% endtrans %}" rel="noopener" style="text-decoration: underline; color: #2190E3;" target="_blank">Epilepc.ch</a></strong> |  <strong><a href="https://www.epilepc.ch/{% trans %}de{% endtrans %}/contact" rel="noopener" style="text-decoration: underline; color: #2190E3;" target="_blank">{% trans %}Kontaktformular{% endtrans %}</a></strong></span></p>
                                         </div>
                                     </div>
                                     <!--[if mso]></td></tr></table><![endif]-->
