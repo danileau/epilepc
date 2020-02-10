@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/app/event")
@@ -33,7 +34,7 @@ class EventController extends AbstractController
     /**
      * @Route("/new", name="event_new", methods={"GET","POST"})
      */
-    public function new(Request $request, UserInterface $user): Response
+    public function new(Request $request, UserInterface $user, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(EventType::class);
         $form->handleRequest($request);
@@ -50,7 +51,7 @@ class EventController extends AbstractController
             $entityManager->persist($event);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Ereignis erfolgreich erstellt!');
+            $this->addFlash('success', $translator->trans('Ereignis erfolgreich erstellt!'));
             return $this->redirectToRoute('event_index');
         }
 
@@ -76,7 +77,7 @@ class EventController extends AbstractController
      * @Route("/{id}/edit", name="event_edit", methods={"GET","POST"})
      * @IsGranted("MANAGE", subject="event")
      */
-    public function edit(Request $request, Event $event): Response
+    public function edit(Request $request, Event $event, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
@@ -90,7 +91,7 @@ class EventController extends AbstractController
             $entityManager->persist($event);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Ereignis erfolgreich bearbeitet!');
+            $this->addFlash('success', $translator->trans('Ereignis erfolgreich bearbeitet!'));
             return $this->redirectToRoute('event_index', [
                 'id' => $event->getId(),
             ]);

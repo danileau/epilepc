@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/app/seizure")
@@ -38,7 +39,7 @@ class SeizureController extends AbstractController
      * @Route("/new", name="seizure_new", methods={"GET","POST"})
      * Neuer Anfall erstellen
      */
-    public function new(Request $request, UserInterface $user): Response
+    public function new(Request $request, UserInterface $user, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(SeizureFormType::class);
         $form->handleRequest($request);
@@ -56,7 +57,7 @@ class SeizureController extends AbstractController
             $entityManager->persist($seizure);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Anfall erfolgreich erstellt!');
+            $this->addFlash('success', $translator->trans('Anfall erfolgreich erstellt!'));
             return $this->redirectToRoute('seizure_index');
         }
 
@@ -87,7 +88,7 @@ class SeizureController extends AbstractController
      * @Route("/{id}/edit", name="seizure_edit", methods={"GET","POST"})
      * @IsGranted("MANAGE", subject="seizure")
      */
-    public function edit(Request $request, Seizure $seizure): Response
+    public function edit(Request $request, Seizure $seizure, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(SeizureFormType::class, $seizure);
         $form->handleRequest($request);
@@ -100,7 +101,7 @@ class SeizureController extends AbstractController
             $entityManager->persist($seizure);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Anfall erfolgreich bearbeitet!');
+            $this->addFlash('success', $translator->trans('Anfall erfolgreich bearbeitet!'));
 
             return $this->redirectToRoute('seizure_edit', [
                 'id' => $seizure->getId(),
