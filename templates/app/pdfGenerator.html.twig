@@ -180,28 +180,28 @@
                                     </thead>
                                     <tbody>
                                     {% for seizure in seizures %}
-                                        <tr>
+                                        <tr class="tr-seizure">
                                             <td data-order="{{ seizure.timestampWhen|date('U') }}">{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
                                             <td>{{ seizure.title}} - {{ seizure.seizuretype }}</td>
                                             <td>{% trans %}Anfall{% endtrans %}</td>
                                         </tr>
                                     {% endfor %}
                                     {% for event in events %}
-                                        <tr>
+                                        <tr class="tr-event">
                                             <td data-order="{{ event.timestampWhen|date('U') }}">{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
                                             <td>{{ event.name}}</td>
                                             <td>{% trans %}Ereignis{% endtrans %}</td>
                                         </tr>
                                     {% endfor %}
                                     {% for medication in medications %}
-                                        <tr>
+                                        <tr class="tr-medication">
                                             <td data-order="{{ medication.timestampPrescription|date('U') }}">{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
                                             <td>{{ medication.name}}</td>
                                             <td>{% trans %}Medikation{% endtrans %}</td>
                                         </tr>
                                     {% endfor %}
                                     {#{% for diaryentry in diaryentrys %}
-                                        <tr>
+                                        <tr class="tr-diaryentry">
                                             <td><span class="hidden">{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('Y/m/d') : '' }}</span>{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
                                             <td>{{ diaryentry.title }}</td>
                                             <td>Tagebucheintrag</td>
