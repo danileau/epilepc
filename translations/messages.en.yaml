@@ -280,6 +280,12 @@ Die neuen Passwörter stimmen nicht überein: The new passwords do not match
 Passwort erfolgreich geändert!: Password changed successfully!
 Passwort nicht korrekt: Password not correct
 Zugriff verweigert: Access denied
+Seite nicht gefunden: Site not found
+'Scheint als hättest du einen Fehler in der Matrix gefunden': 'Looks like you found a glitch in the matrix'
+'Das sind nicht die Droiden, nach denen Sie suchen': "Those aren't the droids you're looking for"
+'Interner Serverfehler': 'Internal server error'
+'Ein schwerwiegender Fehler ist aufgetreten. Wir arbeiten an der Behebung des Problems': "A serious error has occurred. We are working to correct the problem"
+'Zurück zum Dashboard': Back to the dashboard
 nutzungs.bedingungen: To use our service, you must agree to our terms of use
 Bitte eine Email-Adresse eingeben: Please enter a valid email
 
