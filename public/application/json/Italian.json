@@ -1,0 +1,41 @@
+{
+  "sEmptyTable":   	"Nessun dato disponibile nella tabella",
+  "sInfo":         	"da _START_ a _END_ di _TOTAL_ iscrizioni",
+  "sInfoEmpty":    	"Nessun dato disponibile",
+  "sInfoFiltered": 	"(filtrato da _MAX_ iscrizioni)",
+  "sInfoPostFix":  	"",
+  "sInfoThousands":  	".",
+  "sLengthMenu":   	"Mostra _MENU_ iscrizioni",
+  "sLoadingRecords": 	"Caricamento ..",
+  "sProcessing":   	"Caricamento in corso ..",
+  "sSearch":       	"Cerca",
+  "sZeroRecords":  	"Nessuna voce disponibile",
+  "oPaginate": {
+    "sFirst":    	"Primo",
+    "sPrevious": 	"Indietro",
+    "sNext":     	"Avanti",
+    "sLast":     	"Ultimo"
+  },
+  "oAria": {
+    "sSortAscending":  ": attivare per ordinare le colonne in ordine crescente",
+    "sSortDescending": ": attivare per ordinare la colonna in ordine decrescente"
+  },
+  "select": {
+    "rows": {
+      "_": "%d righe selezionate",
+      "0": "",
+      "1": "1 riga selezionata"
+    }
+  },
+  "buttons": {
+    "print":	"stampa",
+    "colvis":	"colonne",
+    "copy":		"copia",
+    "copyTitle":	"Copia negli appunti",
+    "copyKeys":	"tasto <i> ctrl </i> o <i>\u2318 </i> + <i> C </i> per copiare la tabella negli appunti. <br> <br> A fai clic per annullare il messaggio o premi Esc. ",
+    "copySuccess": {
+      "_": "%d colonne copiate",
+      "1": "1 colonna copiata"
+    }
+  }
+}

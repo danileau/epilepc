@@ -1,0 +1,41 @@
+{
+  "sEmptyTable":   	"Aucune donnée disponible dans le tableau",
+  "sInfo":         	"_START_ à _END_ de _TOTAL_ entrées",
+  "sInfoEmpty":    	"Aucune donnée disponible",
+  "sInfoFiltered": 	"(filtré par _MAX_ entrées )",
+  "sInfoPostFix":  	"",
+  "sInfoThousands":  	".",
+  "sLengthMenu":   	"Afficher _MENU_ entrées",
+  "sLoadingRecords": 	"Chargement ..",
+  "sProcessing":   	"Veuillez patienter ..",
+  "sSearch":       	"Recherche",
+  "sZeroRecords":  	"Aucune entrée disponible",
+  "oPaginate": {
+    "sFirst":    	"First",
+    "sPrevious": 	"Back",
+    "sNext":     	"Suivant",
+    "sLast":     	"Last"
+  },
+  "oAria": {
+    "sSortAscending":  ": activer pour trier les colonnes dans l'ordre croissant",
+    "sSortDescending": ": activer pour trier la colonne en ordre décroissant"
+  },
+  "select": {
+    "rows": {
+      "_": "%d lignes sélectionnées",
+      "0": "",
+      "1": "1 ligne sélectionnée"
+    }
+  },
+  "buttons": {
+    "print":	"print",
+    "colvis":	"colonnes",
+    "copy":		"copier",
+    "copyTitle":	"Copier dans le presse-papiers",
+    "copyKeys":	"touchez <i> ctrl </i> ou <i>\u2318 </i> + <i> C </i> pour copier le tableau <br> dans le presse-papiers. <br> <br> cliquez pour, annuler le message ou appuyez sur échapper. ",
+    "copySuccess": {
+      "_": "%d colonnes copiées",
+      "1": "1 colonne copiée"
+    }
+  }
+}

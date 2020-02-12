@@ -56,9 +56,9 @@
                     <!-- 404 Error Text -->
                     <div class="text-center mt-6">
                         <div class="error mx-auto" data-text="404">404</div>
-                        <p class="lead text-gray-800 mb-5">Seite nicht gefunden</p>
-                        <p class="text-gray-500 mb-0">Scheint als hättest du einen Fehler in der Matrix gefunden...</p>
-                        <a href="{{ path('app_dashboard') }}">&larr; Zurück</a>
+                        <p class="lead text-gray-800 mb-5">{% trans %}Seite nicht gefunden{% endtrans %}</p>
+                        <p class="text-gray-500 mb-0">{% trans %}Scheint als hättest du einen Fehler in der Matrix gefunden{% endtrans %}...</p>
+                        <a href="{{ path('app_dashboard') }}">&larr; {% trans %}Zurück{% endtrans %}</a>
                     </div>
 
                 </div>
@@ -71,7 +71,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>&copy; 2019 - epilepc</span>
+                    <span>&copy; {{ "now"|date("Y") }} - epilepc</span>
                 </div>
             </div>
         </footer>

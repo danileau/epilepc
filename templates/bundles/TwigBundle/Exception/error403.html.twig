@@ -51,9 +51,9 @@
                     <!-- 404 Error Text -->
                     <div class="text-center mt-6">
                         <div class="error mx-auto" data-text="403">403</div>
-                        <p class="lead text-gray-800 mb-5">Zugriff verweigert</p>
-                        <p class="text-gray-500 mb-0">Those aren't the droids you're looking for...</p>
-                        <a href="{{ path('app_dashboard') }}">&larr; Zurück</a>
+                        <p class="lead text-gray-800 mb-5">{% trans %}Zugriff verweigert{% endtrans %}</p>
+                        <p class="text-gray-500 mb-0">{% trans %}Das sind nicht die Droiden, nach denen Sie suchen{% endtrans %}...</p>
+                        <a href="{{ path('app_dashboard') }}">&larr; {% trans %}Zurück{% endtrans %}</a>
                     </div>
 
                 </div>
@@ -66,7 +66,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>&copy; 2019 - epilepc</span>
+                    <span>&copy; {{ "now"|date("Y") }} - epilepc</span>
                 </div>
             </div>
         </footer>

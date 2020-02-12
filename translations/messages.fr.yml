@@ -1,0 +1,275 @@
+'Dashboard von': 'Tableau de bord de'
+'Erfasste Anfälle': 'Crises enregistrées'
+Anfälle: Crises
+Ereignisse: Événements
+Tagebucheinträge: 'Articles de journaux intimes'
+Medikationen: Médicaments
+'Erfasste Ereignisse': 'Événements enregistrés'
+'Erfasste Tagebucheinträge': 'Articles de journaux intimes enregistrés'
+'Erfasste Medikationen': 'Médicaments enregistrés'
+'Deine Übersicht der letzten 12 Monate': 'Votre aperçu des 12 derniers mois'
+'Was wurde wie oft erfasst?': 'Qu''est-ce qui a été enregistré à quelle fréquence ?'
+German: French
+'application/json/German.json': 'application/json/French.json'
+'Profil erfolgreich bearbeitet!': ' Le profil a été traité avec succès!'
+'Die neuen Passwörter stimmen nicht überein': 'Les nouveaux mots de passe ne correspondent pas'
+'Passwort erfolgreich geändert!': 'Mot de passe changé avec succès'
+'Passwort nicht korrekt': 'Mot de passe incorrect'
+'Tagebucheintrag erfolgreich erstellt!': 'Entrée de journal créée avec succès'
+'Zugriff verweigert': 'Accès refusé'
+'Seite nicht gefunden': 'Page non trouvée'
+'Scheint als hättest du einen Fehler in der Matrix gefunden': 'Il semble que vous ayez trouvé une faille dans la matrice'
+'Das sind nicht die Droiden, nach denen Sie suchen': "Ce ne sont pas les droïdes que vous recherchez"
+'Interner Serverfehler': 'Erreur interne du serveur'
+'Ein schwerwiegender Fehler ist aufgetreten. Wir arbeiten an der Behebung des Problems': "Une erreur grave s'est produite. Nous nous efforçons de corriger le problème"
+'Zurück zum Dashboard': Retour au tableau de bord
+'Tagebucheintrag erfolgreich bearbeitet!': "L'entrée du journal a été traitée avec succès!"
+'Ereignis erfolgreich erstellt!': "L'événement a été créé avec succès!"
+'Ereignis erfolgreich bearbeitet!': "L'événement a été traité avec succès!"
+'Medikation erfolgreich erstellt!': "Le médicament a été créé avec succès!"
+'Medikation erfolgreich bearbeitet!': 'Les médicaments ont été traités avec succès!'
+'Anfall erfolgreich erstellt!': 'La crise a été créé avec succès!'
+'Anfall erfolgreich bearbeitet!': 'La crise a été traité avec succès!'
+'Neue Kontaktformular-Nachricht auf epilepc.ch erhalten!': 'Recevez le nouveau message du formulaire de contact sur epilepc.ch!'
+'Ihre Nachricht wurde erfolgreich versendet!': 'Votre message a été envoyé avec succès!'
+'Ihre Registrierung bei epilepc': 'Votre inscription à epilepc '
+'Herzliche Gratulation! Ihre Registrierung ist abgeschlossen! Falls Sie unsere Bestätigungsmail nicht erhalten haben, prüfen Sie bitte Ihrem Spam-Ordner.': "Félicitations ! Votre inscription est terminée ! Si vous n'avez pas reçu notre courrier de confirmation, veuillez vérifier votre dossier de courrier indésirable"
+'epilepc - Ihr Passwort wurde zurückgesetzt': 'epilepc - Votre mot de passe a été réinitialisé'
+'Passwort erfolgreich zurückgesetzt & versendet!': 'Mot de passe réinitialisé et envoyé avec succès!'
+'Die angegebene Email-Adresse ist nicht registriert': "L'adresse électronique donnée n'est pas enregistrée"
+'Dein Profil': 'Votre profil'
+'Profilübersicht von': "Vue d'ensemble du profil de"
+'Hier findest du alle Informationen über dein Profil und kannst Sie gleich bearbeiten': 'Vous pouvez trouver ici toutes les informations concernant votre profil et les modifier immédiatement'
+Profilinformationen: 'Informations sur le profil'
+Speichern: Sauvegarder
+'Zurück zur Übersicht': "Retour à la vue d'ensemble"
+Vorname: Prénom
+Nachname: Nom
+Email-Adresse: 'Adresse électronique - Email'
+Diagnose: Diagnostic
+'Registriert am': 'Enregistré le'
+'Passwort ändern': 'Changer de mot de passe'
+'Um dein Passwort zu ändern, trage unten dein aktuelles und dein neues Passwort ein': 'Pour changer votre mot de passe, entrez votre mot de passe actuel et votre nouveau mot de passe ci-dessous'
+'Um die Sicherheit deiner Daten gewährleisten zu können, muss dein Passwort die folgenden Anforderungen erfüllen': 'Pour garantir la sécurité de vos informations, votre mot de passe doit répondre aux exigences suivantes'
+'Gross- und Kleinschreibung': 'Majuscules et minuscules'
+'Mindestens 2 Zahlen': 'Au moins 2 numéros'
+'Mindestens 1 Sonderzeichen (z.b. $#*)': 'Au moins un caractère spécial (par exemple, $#*)'
+'Mindestlänge des Passworts - 8 Zeichen': 'Longueur minimale du mot de passe - 8 caractères'
+Zurück: Retour
+'Passwort vergessen': 'Mot de passe oublié'
+Ou: Oh
+Kein Problem, das passiert den Besten von uns. Trage einfach deine Email Adresse ins untenstehende Feld ein und wir schicken dir eine Mail zum Zurücksetzen deines Passworts: "Pas de problème, ça arrive aux meilleurs d'entre nous. Il suffit d'entrer votre adresse électronique dans le champ ci-dessous et nous vous enverrons un courriel pour réinitialiser votre mot de passe"
+'Passwort zurücksetzen': 'Réinitialisation du mot de passe'
+'Registriere dich': 'Registre'
+'Account bereits erstellt? Log dich jetzt ein': 'Compte déjà créé ? Connectez-vous maintenant'
+'Willkommen zurück': 'Bienvenue'
+'Email Adresse': 'Adresse électronique - Email'
+Passwort: 'Mot de passe'
+'Eingeloggt bleiben': 'Rester connecté'
+Login: Connexion
+'Jetzt registrieren': 'Se registre maintenant'
+Registrieren: Registre
+'Ich stimme den': "J'accepte les"
+Nutzungsbedingungen: "Conditions d'utilisation"
+'von epilepc.ch zu': 'de epilepc'
+'Registriere dich jetzt': "S'inscrire"
+'Account erstellen': 'Créer un compte'
+'Nutzungsbedingungen - epilepc': "Conditions d'utilisation - epilepc"
+datenschutzerklärung_part: "<h2>Politique de confidentialité</h2><p>L'organisme responsable en matière de lois sur la protection des données, en particulier le règlement général sur la protection des données (RGPD), est:</p><br><p>epilepc <br>3018 Bern</p><p>Courriel: <a href=\"mailto:info@epilepc.ch\">info@epilepc.ch</a><br> Site Web: <a href=\"https://www.epilepc.ch/\">https://www.epilepc.ch</a></p><p>&nbsp;</p><h2>Remarque générale</h2> <p>Conformément à l'article 13 de la Constitution fédérale suisse et aux dispositions de la Confédération sur la protection des données (DSG <!--DSG-->), toute personne à droit à la protection de sa vie privée et à la protection contre l 'utilisation abusive de sa propre données personnelles. Les opérateurs de ces pages prennent très au sérieux la protection de vos données personnelles. Nous traitons vos données personnelles de manière confidentielle et conformément aux dispositions légales en matière de protection des données et à cette déclaration de protection des données.</p><p>En collaboration avec nos hébergeurs, nous nous engageons à protéger les bases de données de la meilleure façon possible contre les accès externes, la perte, la mauvaise utilisation ou la contrefaçon.</p><p>Nous tenons à souligner que la transmission de données sur Internet (par exemple lors de la communication par e-mail) peut présenter des failles de sécurité. Il n'est pas possible de protéger complètement vos données contre l'accès de tiers.</p><p>En utilisant ce site Web, l'utilisateur accepte la collecte, le traitement et l'utilisation des données comme décrit ci-dessous. Ce site Web peut être visité sans inscription. Des données telles que les pages consultées ou le nom du fichier consulté, la date et l'heure sont stockées sur le serveur à des fins statistiques sans que ces données soient directement liées à l'utilisateur. Les données personnelles, notamment le nom, l'adresse ou l'adresse e-mail, sont collectées dans la mesure du possible sur une base volontaire. Sans votre consentement, les données ne seront pas transmises à des tiers.</p><p>&nbsp;</p><h2>Traitement des données personnelles</h2> <p>Les données personnelles sont toutes les informations relatives à une personne spécifique ou identifiable. Une personne intéressée est une personne qui est utilisée pour traiter les données personnelles. Le traitement comprend l'ensemble du traitement des données personnelles, quels sont les moyens et procédures utilisés, notamment l'archivage, la divulgation, la passation, l'annulation, l'archivage, la modification, la destruction et '' utilisation des données personnelles.</p> <p>Nous traitons les données personnelles conformément à la loi suisse sur la protection des données. En outre, nous traitons - dans la mesure et dans la mesure où le RGPD UE est applicable - les données personnelles conformément aux bases juridiques suivantes en relation avec l'art. 6 par. 1 RGPD <!--DSGVO-->:</p> <ul> <li>illuminato. a) Trattamento dei dati personali con il consenso dell''interessato.</li> <li>illuminato. b) Trattamento dei dati personali per adempiere a un contratto con l''interessato e per attuare the misure precontrattuali corrispondenti.</li> <li>illuminato. c) Trattamento dei dati personali per adempiere a un obbligo legale al quale siamo soggetti in conformità con qualsiasi legge UE applicabile o in conformità con qualsiasi legge applicabile di un paese in cui il GDPR est <!--DSGVO-->totalmente par parzialmente applicabile.</li> <li>illuminato. d) Trattamento di dati personali al fine di proteggere gli interessi vitali dell''interessato o di un''altra persona fisica.</li> <li>allumé. f) Traitement des données personnelles afin de sauvegarder nos intérêts légitimes ou ceux de tiers, à condition que les libertés et droits fondamentaux ainsi que les intérêts de la personne concernée ne prévalent pas. Les intérêts légitimes sont en particulier notre intérêt commercial à pouvoir fournir notre site Web, la sécurité des informations, le respect de nos propres droits et le respect du droit suisse.</li> </ul> <p>Nous traitons les données personnelles pendant la durée nécessaire à la ou aux fins respectives. Dans le cas d'obligations de stockage à plus long terme dues à des obligations légales et autres auxquelles nous sommes soumis, nous limitons le traitement en conséquence.</p><p>&nbsp;</p><h2>Politique de confidentialité pour les cookies</h2><p>Ce site utilise des cookies. Ce sont de petits fichiers texte qui permettent de stocker des informations spécifiques liées à l'utilisateur sur l'appareil de l'utilisateur lors de l'utilisation du site Web. Les cookies permettent notamment de déterminer la fréquence d'utilisation et le nombre d'utilisateurs des pages, d'analyser le comportement d'utilisation des pages, mais aussi de rendre notre offre plus conviviale. <!--Allg.Cookies-->Les cookies restent stockés à la fin d'une session de navigation et peuvent être rappelés lorsque vous visitez à nouveau le site. Si vous ne le souhaitez pas, vous devez configurer votre navigateur Internet pour qu'il refuse d'accepter les cookies.</p> <p></p><p>Une objection générale à l'utilisation de cookies utilisés à des fins de marketing en ligne peut être trouvée sur un grand nombre de services, en particulier dans le cas du suivi, via le site Web américain <a href=\"http://www.aboutads.info/choices/\" target=\"_blank\" rel=\"noopener\">http://www.aboutads.info/choices/</a> ou le site <a href=\"http://www.aboutads.info/choices/\" target=\"_blank\" rel=\"noopener\">Web de</a> l'UE <a href=\"http://www.youronlinechoices.com/\" target=\"_blank\" rel=\"noopener\">http://www.youronlinechoices.com/ être</a> expliqué. De plus, les cookies peuvent être enregistrés en les désactivant dans les paramètres du navigateur. Veuillez noter que toutes les fonctions de cette offre en ligne ne peuvent pas être utilisées.</p> <p>&nbsp;</p><h2>Déclaration de protection des données pour le cryptage SSL</h2><p>Ce site Web utilise le cryptage SSL pour des raisons de sécurité et pour protéger la transmission de contenu confidentiel, comme les demandes de renseignements que vous nous envoyez en tant qu'exploitant du site Web. Vous pouvez reconnaître une connexion cryptée par le fait que la ligne d'adresse du navigateur passe de \"http: //\" à \"https: //\" et par le symbole de verrouillage dans la ligne de votre navigateur.</p> <p>Si le cryptage SSL est activé, les données que vous nous transmettez ne peuvent pas être lues par des tiers.</p><p>&nbsp;</p><h2>Déclaration de protection des données pour les fichiers journaux du serveur</h2><p>Le fournisseur de ce site Web collecte et stocke automatiquement des informations dans des fichiers journaux de serveur, que votre navigateur nous transmet automatiquement. Ceux-ci sont:</p> <ul> <li>Type et version du navigateur</li> <li>Système d'exploitation utilisé</li> <li>URL de référence</li> <li>Nom d'hôte de l'ordinateur accédant</li> <li>Heure de la demande du serveur</li> </ul> <p>Ces données ne peuvent pas être attribuées à des personnes spécifiques. Ces données ne sont pas fusionnées avec d'autres sources de données. Nous nous réservons le droit de vérifier ces données rétrospectivement si nous prenons connaissance d'indications spécifiques d'utilisation illégale.</p><p>&nbsp;</p><h2>Services tiers</h2> <p>Ce site Web utilise Google Maps pour l'intégration de cartes, Google Invisible reCAPTCHA pour la protection contre les robots et le spam et YouTube pour l'intégration de vidéos.</p><p>Ces services de l'American Google LLC utilisent, entre autres, des cookies et, par conséquent, des données sont transférées à Google aux États-Unis, par lequel nous supposons qu'aucun suivi personnel n'a lieu dans ce contexte uniquement via l'utilisation de notre site Web.</p><p>Google s'engage à assurer une protection adéquate des données conformément au bouclier de protection des données américano-européen et américano-suisse.</p><p>De plus amples informations peuvent être trouvées dans <a href=\"https://policies.google.com/privacy?hl=de\" target=\"_blank\" rel=\"noopener\" style=\"color: inherit;\">la déclaration de protection des données de Google</a> .</p><p>&nbsp;</p><h2>Déclaration de protection des données pour le formulaire de contact</h2><p>Si vous nous envoyez des demandes en utilisant le formulaire de contact, vos coordonnées du formulaire de demande, y compris les coordonnées que vous y avez fournies, seront stockées par nous aux fins de traitement de la demande et en cas de questions de suivi. Nous ne transmettrons pas ces données sans votre consentement.</p><p>&nbsp;</p><h2>Déclaration de protection des données pour le droit à l'information, la suppression, le blocage</h2><p>Vous avez le droit de libérer des informations sur vos données personnelles stockées, leur origine et leur destinataire et la finalité du traitement des données ainsi qu'un droit de correction, de blocage ou de suppression de ces données à tout moment. Vous pouvez nous contacter à tout moment à l'adresse indiquée dans les mentions légales si vous avez d'autres questions sur le sujet des données personnelles.</p><p>&nbsp;</p> <h2>Déclaration de protection des données pour opposition aux courriers publicitaires</h2><p>Nous nous opposons par la présente à l'utilisation des données de contact publiées dans le cadre de l'obligation d'impression pour l'envoi de matériel publicitaire et d'information non sollicité. Les opérateurs des pages se réservent expressément le droit d'engager des poursuites judiciaires en cas d'envoi non sollicité d'informations publicitaires, telles que des courriers indésirables.</p><p>&nbsp;</p><h2>Déclaration de protection des données pour Google Analytics</h2><p>Ce site Web utilise Google Analytics, un service d'analyse Web fourni par Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043, États-Unis. Pour désactiver Google Analytics, Google fournit <a href=\"https://tools.google.com/dlpage/gaoptout?hl=de\" target=\"_blank\" style=\"color: inherit;\">https://tools.google.com/dlpage/gaoptout?hl=de</a>un plug-in de navigateur est disponible. Google Analytics utilise des cookies. Ce sont de petits fichiers texte qui permettent de stocker des informations spécifiques liées à l'utilisateur sur l'appareil de l'utilisateur. Ceux-ci permettent une analyse de l'utilisation de notre site Web par Google. Les informations collectées par le cookie sur l'utilisation de notre site Web (y compris votre adresse IP) sont généralement transférées à un serveur de Google aux États-Unis et y sont stockées. Nous tenons à souligner que Google Analytics a été étendu sur ce site Web par le code \"gat._anonymizeIp ();\" pour inclure l'enregistrement anonyme des adresses IP (ce que l'on appelle le masquage IP<!--SwissAnwalt-->) s'assurer. Si l'anonymisation est active, Google raccourcit les adresses IP dans les États membres de l'Union européenne ou dans d'autres États contractants de l'accord sur l'Espace économique européen, c'est pourquoi aucune conclusion ne peut être tirée sur votre identité. L'adresse IP complète est uniquement transférée à un serveur Google aux États-Unis et y est abrégée dans des cas exceptionnels. Google se conforme aux dispositions relatives à la protection des données de l'accord \"Privacy Shield\" et est enregistré auprès du programme \"Privacy Shield\" du département américain du Commerce et utilise les informations collectées pour évaluer l'utilisation de nos sites Web, pour rédiger des rapports pour nous dans ce égard et autres services connexes à nous fournir. En savoir plus sur <a href=\"https://support.google.com/analytics/answer/6004245?hl=de\" target=\"_blank\" style=\"color: inherit;\">https://support.google.com/analytics/answer/6004245?hl=de</a> .</p><p>&nbsp;</p><h2>Déclaration de protection des données pour l'utilisation de Google Web Fonts</h2><p>Ce site Web utilise des polices dites Web, fournies par Google, pour l'affichage uniforme des polices. Lorsque vous appelez une page, votre navigateur charge les polices Web requises dans le cache de votre navigateur afin d'afficher correctement les textes et les polices. Si votre navigateur ne prend pas en charge les polices Web, une police standard sera utilisée par votre ordinateur.</p><p>De plus amples informations sur les polices Web Google sont disponibles à l' <a href=\"https://developers.google.com/fonts/faq\" target=\"_blank\" style=\"color: inherit;\">adresse https://developers.google.com/fonts/faq</a> et dans la déclaration de protection des données de Google: <a href=\"https://www.google.com/policies/privacy/\" target=\"_blank\" style=\"color: inherit;\">https://www.google.com/policies/privacy/</a></p><p>&nbsp;</p><h2>copyrights</h2> <p>Le droit d'auteur et tous les autres droits sur le contenu, les images, les photos ou d'autres fichiers sur le site Web appartiennent exclusivement à l'exploitant de ce site Web ou aux titulaires de droits spécifiquement nommés. Le consentement écrit du titulaire du droit d'auteur doit être obtenu à l'avance pour la reproduction de tous les fichiers.</p><p>Quiconque commet une violation du droit d'auteur sans le consentement du titulaire des droits respectifs peut être puni et responsable des dommages-intérêts si nécessaire.</p><p>&nbsp;</p><h2>Clause de non-responsabilité générale</h2> <p>Toutes les informations sur ce site Web ont été soigneusement vérifiées. Nous nous efforçons d'offrir nos informations de manière actuelle, correcte et complète. Néanmoins, la survenance d'erreurs ne peut pas être totalement exclue, ce qui signifie que nous ne pouvons garantir l'exhaustivité, l'exactitude et l'actualité des informations, y compris du contenu journalistique et éditorial. Les réclamations en responsabilité fondées sur des dommages matériels ou immatériels causés par l'utilisation des informations proposées sont exclues, sauf en cas de preuve de faute intentionnelle ou de négligence grave.</p><p>L'éditeur peut modifier ou supprimer des textes à sa seule discrétion et sans préavis et n'est pas obligé de mettre à jour le contenu de ce site. L'utilisation ou l'accès à ce site Web est aux risques et périls du visiteur. L'éditeur, ses clients ou partenaires ne sont pas responsables des dommages, tels que directs, indirects, accidentels, à déterminer à l'avance ou des dommages consécutifs, qui auraient résulté de la visite de ce site Web et ne sont donc pas responsables de cela.</p><p>L'éditeur n'assume également aucune responsabilité quant au contenu et à la disponibilité de sites Web tiers accessibles via des liens externes sur ce site Web. Les opérateurs des pages liées sont seuls responsables de leur contenu. L'éditeur se distancie ainsi expressément de tout contenu tiers susceptible d'être pertinent au regard du droit pénal ou du droit de la responsabilité ou qui viole les bonnes mœurs.</p><p>&nbsp;</p><h2>amendements</h2><p>Nous pouvons modifier cette politique de confidentialité à tout moment sans préavis. La version actuelle publiée sur notre site Web s'applique. Dans la mesure où la déclaration de protection des données fait partie d'un accord avec vous, nous vous informerons de la modification par e-mail ou d'une autre manière appropriée en cas de mise à jour.</p><p>&nbsp;</p><h2>Questions au délégué à la protection des données</h2> <p>Si vous avez des questions sur la protection des données, veuillez nous envoyer un e-mail ou contacter la personne responsable de la protection des données au début de la déclaration de protection des données dans notre organisation.</p><p>Berne, <a href=\"https://www.swissanwalt.ch/\" target=\"_blank\" rel=\"noopener\">7 mai 2019</a> Source: <a href=\"https://www.swissanwalt.ch/\" target=\"_blank\" rel=\"noopener\">SwissAnwalt</a><!--ACHTUNG: Wenn Sie die Quelle ohne Erlaubnis von SwissAnwalt entfernen, dann begehen Sie eine Urheberrechtsverletzung welche in jedem Fall unter Kostenfolge geahndet wird.-->"
+'Aktuelles Passwort': 'Mot de passe actuel'
+'Neues Passwort': 'Nouveau mot de passe'
+'Neues Passwort wiederholen': 'Répéter le nouveau mot de passe'
+Dashboard: 'Tableau de bord'
+'Deine Daten': 'Vos informations'
+'Anfall Funktionen': 'Fonctions de crise'
+'Neuer Anfall': 'Nouvelle crise'
+'Alle anzeigen': 'Montrer tout'
+'Ereignis Funktionen': "Fonctions d'événement"
+'Neues Ereignis': 'Nouvel événement'
+Tagebuch: "Journal intime"
+'Tagebuch Funktionen': 'Fonctions du journal'
+'Neuer Tagebucheintrag': 'Nouvel article de journal'
+Medikation: Médicaments
+'Medikation Funktionen': 'Fonctions des médicaments'
+'Neue Medikation': 'Nouveau médicament'
+Übersicht: "Vue d'ensemble"
+Benutzer: Utilisateur
+Profil: Profil
+Benutzeraccount: "Compte d'utilisateur"
+'Profil anzeigen': 'Affichage du profil'
+Adminbereich: 'Zone administrative'
+'Administrator Funktionen': "Fonctions d'administrateur"
+Benutzerverwaltung: 'Administration des utilisateurs'
+'Anfallstypen pflegen': 'Maintenir les catégories de crise'
+Ausloggen: 'Déconnectez-vous'
+'Sprache ändern': 'Changement de langue'
+Deutsch: Allemand
+Englisch: Anglais
+Italienisch: Italien
+'Profil anzeigen & bearbeiten': 'Afficher et modifier le profil'
+'Fertig?': 'Fini?'
+'Wähle "Ausloggen" aus, wenn du bereit bist, die aktuelle Sitzung zu beenden': "Sélectionnez 'Déconnectez-vous' lorsque vous êtes prêt à terminer la session en cours"
+Abbrechen: Annuler
+'Tagebucheintrag bearbeiten': "Modifier l'entrée du journal"
+Tagebucheintrag: 'Entrée du journal'
+bearbeiten: éditer
+Updaten: 'Mise à jour'
+'Bist du sicher, dass du diesen Tagebucheintrag löschen willst?': 'Vous êtes sûr de vouloir supprimer cette entrée du journal?'
+'Tagebucheintrag löschen': "Supprimer l'entrée du journal"
+Tagebuchübersicht: 'Aperçu du journal'
+'Untenstehend findest du alle deine erfassten': 'Ci-dessous vous trouverez tous vos enregistrés'
+'Zusätzlich kannst du auf das Pluszeichen': 'Vous pouvez également cliquer sur le signe plus'
+'klicken, um einen neuen Tagebucheintrag zu erstellen': 'cliquez pour créer une nouvelle entrée de journal'
+'Neuer Tagebucheintrag erstellen': 'Créer une nouvelle entrée de journal'
+Eintragstitel: "Titre de l'entrée"
+Eintragsdatum: "Date d'entrée"
+'Zuletzt bearbeitet': 'Dernière édition'
+Aktionen: Actions
+Anzeigen: Affichage
+Uhr: ''
+Bearbeiten: Modifier
+'Keine Tagebucheinträge vorhanden': "Pas d'entrées dans le journal"
+'Tagebucheintrag erstellen': 'Créer une entrée de journal'
+Erstellen: Créer
+'Tagebucheintrag anzeigen': "Afficher l'entrée du journal"
+Inhalt: Contenu
+de: fr
+'Ereignis bearbeiten': "Modifier l'événement"
+Ereignis: Evénement
+'Bist du sicher, dass du dieses Ereignis löschen willst?': 'Etes-vous sûr de vouloir supprimer cet événement?'
+'Ereignis löschen': "Effacer l'événement"
+Ereignisübersicht: "Aperçu de l'événement"
+'Ereignis - Übersicht': "Événement - Vue d'ensemble"
+'klicken, um ein neues Ereignis zu erstellen': 'cliquez pour créer un nouvel événement'
+'Neues Ereignis erstellen': 'Créer un nouvel événement'
+Ereignisname: "Nom de l'événement"
+Beschreibung: Description
+Ereignisdatum: "Date de l'événement"
+'Keine Ereignisse vorhanden': "Pas d'événements présents"
+'Ereignis erstellen': 'Créer un événement'
+'Hier einpaar Beispiele für mögliche Ereignisse': "Voici quelques exemples d'événements possibles"
+'Schlafmangel, Menstruation, Drogen- & Alkoholkonsum, Stress, tiefer Blutzucker, Krankheiten oder temporäres Unwohlsein': "Privation de sommeil, menstruations, consommation de drogues et d'alcool, stress, hypoglycémie, maladie ou malaise temporaire"
+'Ereignis anzeigen': "Afficher l'événement"
+'Medikation bearbeiten': 'Modifier un médicament'
+'Bist du sicher, dass du diese Medikation löschen willst?': 'Êtes-vous sûr de vouloir supprimer ce médicament?'
+'Medikation löschen': 'Supprimer un médicament'
+Medikationsübersicht: 'Aperçu des médicaments'
+'Medikation - Übersicht': 'Médicaments - Aperçu'
+'klicken, um eine neue Medikation zu erstellen': 'cliquez pour créer un nouveau médicament'
+'Neue Medikation erstellen': 'Créer un nouveau médicament'
+Medikationsname: 'Nom du médicament'
+Dosierung: Dosage
+Dosierung in mg. z. B. 3x15mg pro Tag: Dosage en mg, par exemple 3x15 mg par jour
+Start Medikamenteneinnahme im Format TT.MM.YYYY HH:MM: Début de la prise de médicaments dans le format TT.MM.YYYY HH:MM
+Ende Medikamenteneinnahme im Format TT.MM.YYYY HH:MM: Fin de la prise de médicaments dans le format TT.MM.YYYY HH:MM
+'Einnahme Start': 'Début des recettes'
+'Einnahme Ende': 'Fin des recettes'
+Verschreibungsdatum: 'Date de prescription'
+Ausstelldatum des Rezepts: Date d'émission de la recette
+'Keine Medikationen vorhanden': 'Pas de médicaments'
+'Medikation erstellen': 'Créer un médicament'
+'Medikation anzeigen': 'Afficher les médicaments'
+'Übersicht vom': "Vue d'ensemble de"
+Hinweis: Note
+'Im generierten PDF werden die Tagebucheinträge nicht angezeigt.': "Dans le PDF généré, les entrées de l'agenda ne sont pas affichées."
+'Das PDF wurde für eine Anzeige an einem Bildschirm optimiert.': "Le PDF a été optimisé pour l'affichage sur un moniteur"
+'PDF generieren': 'Générer un PDF'
+'Mit einem Klick auf die jeweilige Legende können Linien aus- und eingeblendet werden.': "Un clic sur la légende permet d'afficher et de masquer les lignes correspondantes."
+'Sämtliche erfassten Daten': 'Toutes les informations enregistrées'
+Datum: Date
+Titel: Titre
+Typ: Type
+Anfall: Crise
+'PDF-Übersicht vom': "Vue d'ensemble en PDF de"
+'Fenster schliessen': 'Fermer la fenêtre'
+'Deine Übersicht vom letzten Jahr': "Votre aperçu de l'année dernière"
+'Erfasste Daten': 'Informations collectées'
+'Anfall bearbeiten': 'Modifier crise'
+'Bist du sicher, dass du diesen Anfall löschen willst?': 'Etes-vous sûr de vouloir supprimer cette crise?'
+'Anfall löschen': 'Saise crise'
+Anfallsübersicht: 'Calendrier des crises'
+'klicken, um einen neuen Anfall zu erstellen': 'cliquez pour créer une nouvelle crise'
+'Neuer Anfall erstellen': 'Créer une nouvelle crise'
+Anfallstitel: 'Titre de crise'
+Anfallsdatum: 'Date de la crise'
+'Keine Anfälle vorhanden': 'Pas de crises'
+'Anfall erstellen': 'Créer une crise'
+'Anfall anzeigen': 'Afficher la crise'
+Anfallstyp: 'Type de une crise'
+Anfallszeitpunkt: "Heure d'occurrence"
+Test: Test
+'Bei epilepc.ch findest du sämtliche Werkzeuge und Tools, welche du benötigst um deine Epilepsie-Behandlung effektiv und sicher zu begleiten!': "Sur epilepc.ch, vous trouverez tous les outils nécessaires pour gérer votre traitement de l'épilepsie de manière efficace et sûre"
+'Hilf dir bei Epilepsie!': "Aide-toi avec l'épilepsie!"
+'Nimm die Kontrolle über dein Leben wieder in die Hand': 'Reprenez le contrôle de votre vie'
+'Über uns': 'À propos de nous'
+'Der Startschuss von epilepc wurde während meiner Abschlussarbeit zum dipl. Techniker Informatik HF gelegt.': 'The starting shot of epilepc was fired during my final thesis to become a certified computer scientist HF.'
+'Erklärtes Ziel ist es für Personen die unter Epilepsie (Zukünftig auch weitere chronische Krankheiten) leiden, eine sichere Dokumentationsplattform zur Verfügung zu stellen.': "L'objectif déclaré est de fournir une plate-forme de documentation sécurisée pour les personnes souffrant d'épilepsie (à l'avenir également d'autres maladies chroniques)."
+'Dieses Werkzeug soll dabei helfen, selbständig das Ruder wieder in die Hand zu nehmen und die eigene "Genesung" aktiv zu unterstützen.': 'Cet outil est destiné à aider les gens à reprendre la barre et à soutenir activement leur propre rétablissement.'
+'Unterstützer und Sponsoren': 'Supporters and Sponsors'
+'Haben Sie Fragen? Möchten Sie unser Produkt unterstützen oder Sponsor werden?': 'Vous avez des questions ? Vous souhaitez soutenir notre produit ou devenir un sponsor'
+'Dann schreiben Sie uns eine Email an': 'Envoyez-nous ensuite un email à'
+'oder benutzen Sie unser': 'ou utiliser notre'
+Kontaktformular: 'Formulaire de contact'
+'oder unterstützen Sie uns auf': 'ou nous soutenir'
+Datenschutzerklärung: 'Politique de confidentialité'
+Releasenotes: 'Notes de mise à jour'
+Französisch: Français
+'Wieso epilepc': 'Pourquoi epilepc'
+Funktionen: Fonctions
+Sicherheit: Sécurité
+'Los geht''s': "C'est parti"
+'Habt Ihr Fragen? Anregungen? Unklarheiten? Möchtet euch sonst einbisschen unterhalten?<br/>Dann schreibt uns!': 'Vous avez des questions ? Des suggestions ? des ambiguïtés ? Si vous voulez parler un peu plus<br/> écrivez-nous!'
+Name: Nom
+Email: Email
+Thema: Objet
+'Schick mir eine Kopie': 'Envoyez-moi une copie'
+Nachricht: Message
+Abschicken: Envoyer
+'Die folgenden Funktionen stehen dir aktuell auf epilepc.ch zur Verfügung': 'Les fonctions suivantes sont actuellement disponibles sur epilepc.ch'
+'Anfälle dokumentieren': 'Crises de documents'
+'Dokumentiere alle deine Anfälle mit epilepc! So kannst du dir bequem einen Überblick verschaffen, wie es dir während des letzten Monates gegangen ist oder sogar Auffälligkeiten entdecken!': "Documentez toutes vos crises d'épilepsie ! Ainsi, vous pouvez facilement avoir un aperçu de ce que vous avez ressenti au cours du mois écoulé ou même découvrir des anomalies!"
+'Ereignisse notieren': 'Prendre note des événements'
+'Notiere und speichere alle Ereignisse, die dir aufgefallen sind. So kannst du Auffälligkeiten entdecken, Trigger erkennen und definieren. Durch die regelmässige Pflege von Ereignissen in epilepc, kannst du Zusammenhänge entdecken oder Faktoren ausschliessen': "Notez et enregistrez tous les événements que vous avez remarqués. Vous pouvez ainsi découvrir des anomalies, reconnaître et définir des déclencheurs. Grâce à l'entretien régulier des événements de l'épilepsie, vous pouvez découvrir des liens ou exclure des facteurs"
+'Medikation pflegen': 'Maintenir les médicaments'
+'Trage alle deine Medikamente in epilepc ein. So behälst du die Übersicht über sämtliche Details, wann welche Anpassungen vorgenommen worden sind und wann welche Medikamente eingenommen werden müssen': "Entrez tous vos médicaments dans l'épilepsie. C'est ainsi que vous pouvez suivre tous les détails, savoir quand les ajustements ont été faits et quand les médicaments doivent être pris"
+'Tagebuch führen': 'Tenir un journal'
+'Mit der Tagebuchfunktion kannst du hier alle deine Gedanken festhalten und zu einem späteren Zeitpunkt wieder lesen': "La fonction agenda vous permet d'enregistrer toutes vos pensées ici et de les relire ultérieurement"
+'Oftmals sind es die unscheinbaren Kleinigkeiten, die uns helfen uns zu organisieren und wieder zu erinnern': 'Ce sont souvent les petites choses invisibles qui nous aident à nous organiser et à nous souvenir'
+'Übersicht generieren': "Générer une vue d'ensemble"
+'Generiere bequem eine PDF-Datei mit allen Informationen, die du deinem Arzt mitgeben möchtest und bring es mit zur nächsten Sprechstunde!': 'Générez un fichier PDF contenant toutes les informations que vous souhaitez donner à votre médecin et apportez-le avec vous lors de la prochaine consultation!'
+'Mit intuitiven Diagrammen kann dein Arzt schnell sehen, wie sich die letzte Anpassung der Medikation ausgewirkt hat': "Les tableaux intuitifs permettent à votre médecin de voir rapidement l'effet de la dernière adaptation du médicament"
+'Wir arbeiten intensiv daran epilepc mit neuen Funktionen zu erweitern und zu verbessern': "Nous travaillons intensivement pour étendre et améliorer l'épilepsie avec de nouvelles fonctions"
+'Zum Kontaktformular': 'Vers le formulaire de contact'
+'epilepc bietet eine Dokumentations-Plattform für Epilepsie-Betroffene und Nahestehende auf Basis von einfachen und intuitiven Prozessen, weil den behandelnden Ärzten personenbezogene Daten für eine effektive Behandlung oftmals fehlen': "epilepc offre une plateforme de documentation pour les personnes souffrant d'épilepsie et leurs proches, basée sur des processus simples et intuitifs, car les médecins traitants manquent souvent de données personnelles pour un traitement efficace"
+'Diese Informationen können nur wir, die Betroffenen sammeln': 'Ces informations ne peuvent être collectées que par nous, les personnes concernées'
+'Genau dabei unterstützt dich epilepc!': "C'est exactement là où epilepc vous soutient!"
+'Mehr dazu': 'Pour en savoir plus'
+'Wenn es etwas gibt, das wir mit Sicherheit wissen, dann ist es folgendes': "S'il y a une chose dont nous sommes sûrs, c'est que"
+'Hier werden sensible und schützenswerte Daten gespeichert. Und wir sind verpflichtet darauf aufzupassen! <br /> Alle vom epilepc-Benutzer eingegebenen Daten werden ausschliesslich verschlüsselt übermittelt und zusätzlich verschlüsselt in unserer Datenbank gespeichert. <br /> Erst beim Auslesen der Daten durch den Verfasser, werden diese entschlüsselt und in Klartext angezeigt.<br /> Sämtliche Infrastruktur und Daten werden in der Schweiz gespeichert und betrieben': "Les informations sensibles et délicates sont stockées ici. Et nous sommes obligés de nous en occuper ! <br /> Toutes les informations crises par l'utilisateur d'epilepc seront transmises exclusivement cryptées et stockées en plus cryptées dans notre base de informations. <br /> Les informations ne sont décryptées et affichées en texte clair que lorsque l'auteur les lit. <br /> Toutes les infrastructures et les informations sont stockées et exploitées en Suisse"
+'Registriere dich jetzt bei epilepc und unterstütze deine Ärzte mit deinen Informationen': 'Inscrivez-vous à epilepc maintenant et soutenez vos médecins avec vos informations'
+Einloggen: 'Se connecter'
+'Von den vielen Krankheiten und Gebrechen, die einen Menschen heimsuchen können, kann man die Epilepsie wahrscheinlich als eine der heimtückischeren bezeichnen.<br />Oft nicht greifbar und äusserst schwierig zu behandeln kann sie dazu führen, dass sich Betroffene mit der Zeit immer mehr isolieren, was zu einer Verschlimmerung der Beschwerden führen kann': "Parmi les nombreuses maladies et affections qui peuvent affecter une personne, l'épilepsie peut probablement être considérée comme l'une des plus insidieuses.<br /> Souvent intangible et extrêmement difficile à traiter, elle peut conduire à un isolement de plus en plus important au fil du temps, ce qui peut entraîner une aggravation des symptômes"
+'An Epilepsie erkrankte Menschen fühlen sich oftmals hilflos der Krankheit ausgeliefert, da die Therapie vor allem aus einer langfristigen Anfallsprophylaxe besteht. Um mögliche epileptische Anfälle gar nicht erst entstehen zu lassen, beginnen Betroffene oft mögliche Auslösanfaller (Trigger) zu vermeiden. Leider gibt es auch Ausnahmen, bei welchen Anfälle sich nicht bestimmten Triggern zuordnen lassen. Begleitend zu einer medikamentösen Therapie um Anfälle zu unterdrücken, wird den Betroffenen oftmals empfohlen ein Tagebuch zu führen, damit nachvollzogen werden kann, wie die aktuelle Behandlung und Medikation wirken. Mit einem Tagebuch können auch Zusammenhänge zwischen Situationen und dem aktuellen Zustand besser verstanden werden. Auch wenn das Gedächtnis der Betroffenen voll funktionsfähig ist, können mittels Tagebücher längst vergessene Details wiederentdeckt oder sogar ganze Tage rekonstruiert und somit mögliche Auslöser identifiziert werden. Damit dies jedoch gelingt, müssen im Tagebuch sämtliche Anfälle notiert werden, am besten mit genauen Informationen wie Datum, Uhrzeit, Ort und Situation': "Les personnes souffrant d'épilepsie se sentent souvent impuissantes à la merci de la maladie, car la thérapie consiste principalement en une prophylaxie des crises à long terme. Afin d'éviter d'éventuelles crises d'épilepsie, les personnes concernées commencent souvent à éviter les éventuels déclencheurs. Malheureusement, il existe également des exceptions dans lesquelles les crises ne peuvent être attribuées à certains déclencheurs. En plus d'une thérapie médicamenteuse pour supprimer les crises, il est souvent recommandé aux patients de tenir un journal afin de pouvoir voir comment le traitement et les médicaments actuels fonctionnent. Avec un journal intime, les liens entre les situations et l'état actuel peuvent également être mieux compris. Même si la mémoire de la personne affectée est pleinement fonctionnelle, les journaux intimes peuvent aider à redécouvrir des détails oubliés depuis longtemps ou même à reconstituer des journées entières et ainsi identifier les éventuels déclencheurs. Mais pour que cela réussisse, toutes les crises doivent être consignées dans le journal, de préférence avec des informations précises telles que la date, l'heure, le lieu et la situation"
+'Leider kann man den Zeitpunkt eines epileptischen Anfalls nicht planen und genau dann, wenn man das Tagebuch benötigen würde, liegt es nicht in Griffnähe oder kann nicht aufgefunden werden': "Malheureusement, vous ne pouvez pas prévoir le moment d'une crise d'épilepsie et le moment exact où vous auriez besoin de l'agenda, il n'est pas à portée de main ou ne peut être trouvé"
+'Eine weitere Schwierigkeit besteht darin, dass die Sprechstunden und Kontrollen beim Arzt nur alle paar Monate stattfinden und bis dahin viele Zwischenfälle oder wichtige Hinweise vergessen gehen. <br />Ohne diese detaillierten Informationen fällt es den Ärzten sehr schwer, den Patienten befriedigend auf eine neue Medikation einzustellen. Um genauere Details über die epileptischen Anfälle zu erfahren, müssen oft Daueraufenthalte in epileptischen Polikliniken durchgeführt werden, wo Betroffene dauerüberwacht und künstlich auf Schlafentzug gesetzt werden, damit Anfälle provoziert und die benötigten Daten erhoben werden können': "Une autre difficulté est que les consultations et les contrôles au cabinet du médecin n'ont lieu que tous les quelques mois et que de nombreux incidents ou informations importantes sont alors oubliés. <br />Sans ces informations détaillées, il est très difficile pour les médecins d'adapter le patient de manière satisfaisante à un nouveau médicament. Afin d'obtenir plus de détails sur les crises d'épilepsie, il est souvent nécessaire de séjourner en permanence dans des polycliniques épileptiques, où les patients sont surveillés en permanence et artificiellement privés de sommeil afin de pouvoir provoquer des crises et recueillir les informations nécessaires"
+'Ziel von epilepc.ch ist es, betroffenen Personen die für eine effektive Therapie benötigten Werkzeuge zuverlässig und sicher zur Verfügung zu stellen': "L'objectif de epilepc.ch est de fournir aux personnes concernées les outils nécessaires à une thérapie efficace, de manière fiable et sûre"
+'Neue Nachricht vom Kontaktformular auf': 'Nouveau message à partir du formulaire de contact'
+'Neue Nachricht auf': 'Nouveau message'
+Von: De
+Schweiz: Suisse
+'Na? Passwort vergessen?': 'Et bien ? Oublié votre mot de passe?'
+'Nur die Ruhe bewahren. Das ist uns auch viel zu oft passiert.': 'Restez calme. Cela nous est arrivé bien trop souvent.'
+'Wir haben dir ein neues Passwort generiert, mit welchem du dich gleich einloggen kannst': 'Nous avons créé un nouveau mot de passe pour vous, avec lequel vous pouvez vous connecter immédiatement'
+'Wir empfehlen dir nach dem ersten Einloggen, dein Passwort umgehend zu ändern': 'Nous vous recommandons de changer votre mot de passe immédiatement après votre première connexion'
+Willkommen: Bienvenue
+'Vielen Dank für deine Registrierung bei ''epilepc''! Dein Benutzerkonto wurde angelegt und du kannst nun loslegen!': "Merci beaucoup pour votre inscription à ''epilepc'' ! Votre compte d'utilisateur a été créé et vous pouvez commencer dès maintenant!"
+'Bei grossen Ankündigungen oder Anpassungen erlauben wir uns, dir auf die angegebene Email-Adresse Informationsmails zu senden': "En cas d'annonces importantes ou de personnalisation, nous nous permettons de vous envoyer des courriers d'information à l'adresse électronique indiquée"
+'Eine Spamflut ist aber nicht zu erwarten': "Mais il ne faut pas s'attendre à une vague de spam"
+'JETZT EINLOGGEN': 'CONNECTEZ-VOUS MAINTENANT'
+'Hast du eine Idee oder einen Verbesserungsvorschlag? Dann melde dich bei uns': "Vous avez une idée ou une suggestion d'amélioration ? Alors, prenez contact avec nous"
+Frage / Support: Question / Support
+Sorgen: Inquiétudes
+Administratives: Question administrative
+Interesse an weiteren Produkten: "Intérêt pour d'autres produits"
+Interesse an Mitarbeit: Intérêt pour la coopération
+Idee: Idée
