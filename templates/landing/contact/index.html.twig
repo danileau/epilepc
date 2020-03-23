@@ -1,4 +1,4 @@
-{% extends 'landing/base.html.twig' %}
+{% extends 'landing/contact.base.html.twig' %}
 
 {% block body %}
 
@@ -51,6 +51,10 @@
                                     }})
                                 }}
                                 {{ form_row(contactForm.a_password) }}
+                            </div>
+                            <div class="col-12">
+                               <!-- <div class="g-recaptcha" data-sitekey="6LfqdOMUAAAAALHkqTQhNKW6kAb-yjCodkCktg_C"></div>-->
+                                <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_SITEKEY }}"></div>
                             </div>
                             <div class="col-12">
                                 <ul class="actions">
