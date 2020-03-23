@@ -18,7 +18,7 @@
             <link rel="shortcut icon" type="image/png" href="{{ asset('landing/images/favicon.ico') }}"/>
             <noscript><link rel="stylesheet" href="{{ asset('landing/assets/css/noscript.css') }}" /></noscript>
         {% endblock %}
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script src="https://www.google.com/recaptcha/api.js?hl={{ app.request.locale }}" async defer></script>
     </head>
 <body class="is-preload">
 <!-- Wrapper -->
