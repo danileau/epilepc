@@ -33,35 +33,54 @@ class ContactController extends AbstractController
                 # treat as spambot & don't send a Mail and redirect directly
                 return $this->redirectToRoute('contact');
             } else {
-                # process as normal
-                // Generiert und versendet das Email
-                $message = (new \Swift_Message($translator->trans('Neue Kontaktformular-Nachricht auf epilepc.ch erhalten!')))
-                    ->setFrom('no-reply@epilepc.ch');
-                $message->setTo('info@epilepc.ch');
 
-                if ($contactFormData['copy'] == true) {
-                    $message->setCc($contactFormData['from']);
+                # Validate Recaptcha
+                if(isset($_POST['g-recaptcha-response'])){
+                    $captcha=$_POST['g-recaptcha-response'];
                 }
+                if(!$captcha){
+                    # treat as spambot & don't send a Mail and redirect directly
+                    return $this->redirectToRoute('contact');
+                }
+                $secretKey = $_ENV['RECAPTCHA_SECRET'];
+                $ip = $_SERVER['REMOTE_ADDR'];
+                $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
+                $responseKeys = json_decode($response,true);
+                if(intval($responseKeys["success"]) !== 1) {
+                    # treat as spambot & don't send a Mail and redirect directly
+                    return $this->redirectToRoute('contact');
+                } else {
 
-                $message->setBody(
-                    $this->renderView(
-                    // templates/emails/registration.html.twig
-                        'mail/contact.mail.html.twig',
-                        [
-                            'name' => $contactFormData['name'],
-                            'from' => $contactFormData['from'],
-                            'message' => $contactFormData['message'],
-                            'thema' => $contactFormData['thema'],
-                            'copy' => $contactFormData['copy']
-                        ]
-                    ),
-                    'text/html'
-                );
+                    // Generiert und versendet das Email
+                    $message = (new \Swift_Message($translator->trans('Neue Kontaktformular-Nachricht auf epilepc.ch erhalten!')))
+                        ->setFrom('no-reply@epilepc.ch');
+                    $message->setTo('info@epilepc.ch');
 
-                $mailer->send($message);
-                $this->addFlash('success', $translator->trans('Ihre Nachricht wurde erfolgreich versendet!'));
 
-                return $this->redirectToRoute('contact');
+                    if ($contactFormData['copy'] == true) {
+                        $message->setCc($contactFormData['from']);
+                    }
+
+                    $message->setBody(
+                        $this->renderView(
+                        // templates/emails/registration.html.twig
+                            'mail/contact.mail.html.twig',
+                            [
+                                'name' => $contactFormData['name'],
+                                'from' => $contactFormData['from'],
+                                'message' => $contactFormData['message'],
+                                'thema' => $contactFormData['thema'],
+                                'copy' => $contactFormData['copy']
+                            ]
+                        ),
+                        'text/html'
+                    );
+
+                    $mailer->send($message);
+                    $this->addFlash('success', $translator->trans('Ihre Nachricht wurde erfolgreich versendet!'));
+
+                    return $this->redirectToRoute('contact');
+                }
             }
         }
         return $this->render('landing/contact/index.html.twig', [
