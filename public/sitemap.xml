@@ -8,39 +8,139 @@
 
 
     <url>
-        <loc>https://www.epilepc.ch/</loc>
-        <lastmod>2019-05-13T16:19:40+00:00</lastmod>
+        <loc>https://www.epilepc.ch/de/</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
         <priority>1.00</priority>
     </url>
     <url>
-        <loc>https://www.epilepc.ch/login</loc>
-        <lastmod>2019-05-13T16:19:40+00:00</lastmod>
+        <loc>https://www.epilepc.ch/de/login</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>https://www.epilepc.ch/wieso-epilepc</loc>
-        <lastmod>2019-05-13T16:19:40+00:00</lastmod>
+        <loc>https://www.epilepc.ch/de/wieso-epilepc</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>https://www.epilepc.ch/funktionen</loc>
-        <lastmod>2019-05-13T16:19:40+00:00</lastmod>
+        <loc>https://www.epilepc.ch/de/funktionen</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>https://www.epilepc.ch/register</loc>
-        <lastmod>2019-05-13T16:19:40+00:00</lastmod>
+        <loc>https://www.epilepc.ch/de/register</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>https://www.epilepc.ch/contact</loc>
-        <lastmod>2019-05-13T16:19:40+00:00</lastmod>
+        <loc>https://www.epilepc.ch/de/contact</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
         <priority>0.80</priority>
     </url>
     <url>
-        <loc>https://www.epilepc.ch/forgot</loc>
-        <lastmod>2019-05-13T16:19:40+00:00</lastmod>
+        <loc>https://www.epilepc.ch/de/datenschutz</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/de/releasenotes</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/en/</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/it/</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/de/forgot</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
         <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/en/wieso-epilepc</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/it/wieso-epilepc</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/en/funktionen</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/it/funktionen</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/en/contact</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/it/contact</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/en/datenschutz</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/it/datenschutz</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/en/releasenotes</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/it/releasenotes</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/en/login</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/en/register</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/it/login</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/it/register</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.64</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/en/forgot</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.51</priority>
+    </url>
+    <url>
+        <loc>https://www.epilepc.ch/it/forgot</loc>
+        <lastmod>2020-04-08T08:36:53+00:00</lastmod>
+        <priority>0.51</priority>
     </url>
 
 
