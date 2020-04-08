@@ -1,2 +1,3 @@
 User-Agent: *
-Disallow: /app
+Disallow: /*/app
+Sitemap: https://www.epilepc.ch/sitemap.xml
