@@ -1,0 +1,4 @@
+pw.regex: 'Ihr Passwort muss die folgenden Anforderungen erfüllen: Groß- und Kleinschreibung, mindestens 2 Zahlen, mindestens 1 Sonderzeichen und mindestens 8 Zeichen Länge'
+pw.notBlank: 'Wählen Sie ein sicheres Passwort'
+agreeTerms: 'Um unseren Service nutzen zu können, müssen Sie unseren Nutzungsbedingungen zustimmen.'
+

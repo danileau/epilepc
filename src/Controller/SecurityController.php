@@ -56,56 +56,72 @@ class SecurityController extends AbstractController
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator, \Swift_Mailer $mailer, TranslatorInterface $translator)
     {
 
+
         $form = $this->createForm(UserRegistrationFormType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
 
-            /** @var User $user */
-            $user = $form->getData();
-            // Verschlüsselt das eingegebene Passwort und SET ins User Objekt
-            $user->setPassword($passwordEncoder->encodePassword(
-                $user,
-                $form['plainPassword']->getData()
-            ));
+            //print_r($_POST['user_registration_form']['recaptcha_token']);
 
-            $user->setFirstname($user->getFirstname());
-            $user->setLastname($user->getLastname());
-            $user->setEmail($user->getEmail());
-            $user->setDeactivated(0);
+            // reCaptcha Validierung
+            $recaptcha_request = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$_ENV['RECAPTCHA_SECRET'].'&response='.$_POST['user_registration_form']['recaptcha_token']);
 
-            if (true === $form['agreeTerms']->getData()){
-                $user->agreeTerms();
-            }
-            $em = $this->getDoctrine()->getManager();
-            // Daten in Datenbank speichern
-            $em->persist($user);
-            $em->flush();
+            // JSON-Antwort dekodieren
+            $decoded_recaptcha_request = json_decode($recaptcha_request);
 
-            // Build & Versand Registrierungsbestätigung
-            $message = (new \Swift_Message($translator->trans('Ihre Registrierung bei epilepc')))
-                ->setFrom('no-reply@epilepc.ch')
-                ->setTo($user->getEmail())
-                ->setBody(
-                    $this->renderView(
-                        'mail/register.mail.html.twig',
-                        [
-                            'name' => $user->getFirstname(),
-                        ]
-                    ),
-                    'text/html'
+
+            if ($decoded_recaptcha_request->success == true && $decoded_recaptcha_request->score >= $_ENV['RECAPTCHA_SCORE']) {
+                /** @var User $user */
+                $user = $form->getData();
+                // Verschlüsselt das eingegebene Passwort und SET ins User Objekt
+                $user->setPassword($passwordEncoder->encodePassword(
+                    $user,
+                    $form['plainPassword']->getData()
+                ));
+
+                $user->setFirstname($user->getFirstname());
+                $user->setLastname($user->getLastname());
+                $user->setEmail($user->getEmail());
+                $user->setDeactivated(0);
+
+                if (true === $form['agreeTerms']->getData()){
+                    $user->agreeTerms();
+                }
+                $em = $this->getDoctrine()->getManager();
+                // Daten in Datenbank speichern
+                $em->persist($user);
+                $em->flush();
+
+                // Build & Versand Registrierungsbestätigung
+                $message = (new \Swift_Message($translator->trans('Ihre Registrierung bei epilepc')))
+                    ->setFrom('no-reply@epilepc.ch')
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        $this->renderView(
+                            'mail/register.mail.html.twig',
+                            [
+                                'name' => $user->getFirstname(),
+                            ]
+                        ),
+                        'text/html'
+                    );
+
+                $mailer->send($message);
+                $this->addFlash('success', $translator->trans('Herzliche Gratulation! Ihre Registrierung ist abgeschlossen! Falls Sie unsere Bestätigungsmail nicht erhalten haben, prüfen Sie bitte Ihrem Spam-Ordner.'));
+
+                // Nach Erstellung des Users, Login
+                return $guardHandler->authenticateUserAndHandleSuccess(
+                    $user,
+                    $request,
+                    $formAuthenticator,
+                    'main'
                 );
+            } else {
+                return $this->redirectToRoute('app_register', array('status' => 501));
+            }
 
-            $mailer->send($message);
-            $this->addFlash('success', $translator->trans('Herzliche Gratulation! Ihre Registrierung ist abgeschlossen! Falls Sie unsere Bestätigungsmail nicht erhalten haben, prüfen Sie bitte Ihrem Spam-Ordner.'));
 
-            // Nach Erstellung des Users, Login
-            return $guardHandler->authenticateUserAndHandleSuccess(
-                $user,
-                $request,
-                $formAuthenticator,
-                'main'
-            );
         }
 
 

@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -45,20 +46,23 @@ class UserRegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Wähle ein sicheres Passwort aus'
+                        'message' => 'pw.notBlank'
                     ]),
                     new Regex([
                         'pattern' => '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*\d.*\d)(?=.*?[^\w\s]).{8,}$/',
-                        'message' => 'Dein Passwort muss die folgenden Anforderungen erfüllten: Gross-, Kleinschreibung, min. 2 Zahlen, min. 1 Sonderzeichen und Mindestlänge 8 Zeichen'
+                        //'message' => 'Dein Passwort muss die folgenden Anforderungen erfüllten: Gross-, Kleinschreibung, min. 2 Zahlen, min. 1 Sonderzeichen und Mindestlänge 8 Zeichen'
+                        'message' => 'pw.regex'
                     ])
                 ]
             ])
-
+            ->add('recaptcha_token', HiddenType::class, [
+                'mapped' => false,
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'Um unser Service nutzen zu können, musst du unseren Nutzungsbedingungen zustimmen'
+                        'message' => 'agreeTerms'
                     ])
                 ]
             ])
@@ -73,6 +77,13 @@ class UserRegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            // enable/disable CSRF protection for this form
+            'csrf_protection' => true,
+            // the name of the hidden HTML field that stores the token
+            'csrf_field_name' => '_token',
+            // an arbitrary string used to generate the value of the token
+            // using a different string for each form improves its security
+            'csrf_token_id'   => 'contact_item',
         ]);
     }
 }

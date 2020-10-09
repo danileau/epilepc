@@ -34,6 +34,14 @@
 
     {% block javascripts %}
         <!-- Bootstrap core JavaScript-->
+        <script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITEKEY }}"></script>
+        <script>
+          grecaptcha.ready(function() {
+            grecaptcha.execute('{{ RECAPTCHA_SITEKEY }}', {action: 'login'}).then(function(token) {
+              document.getElementById('user_registration_form_recaptcha_token').value = token;
+            });
+          });
+        </script>
         <script src="{{ asset('application/vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('application/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <!-- Core plugin JavaScript-->

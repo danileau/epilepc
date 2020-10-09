@@ -1,0 +1,4 @@
+pw.regex: 'Your password must meet the following requirements: Upper and lower case, min. 2 numbers, min. 1 special character and minimum length 8 characters'
+pw.notBlank: 'Choose a secure password'
+agreeTerms: 'To use our service, you must agree to our terms of use'
+

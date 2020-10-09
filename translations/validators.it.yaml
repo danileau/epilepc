@@ -1,0 +1,4 @@
+pw.regex: 'La password deve soddisfare i seguenti requisiti: Maiuscole e minuscole, almeno 2 numeri, almeno 1 carattere speciale e almeno 8 caratteri di lunghezza'
+pw.notBlank: 'Scegliete una password sicura'
+agreeTerms: 'Per utilizzare il nostro servizio, è necessario accettare le nostre condizioni di utilizzo'
+

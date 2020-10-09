@@ -21,12 +21,14 @@ class UserAdminController extends AbstractController
 
     /**
      * @Route("/admin", name="admin_user_index")
-     * isualisiert die Benutzerübersicht
+     * Visualisiert die Benutzerübersicht
      */
     public function index(UserRepository $userRepository){
+
         return $this->render('user_admin/index.html.twig', [
             'users' => $userRepository->findAll()
         ]);
+
     }
 
     /**

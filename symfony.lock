@@ -96,26 +96,14 @@
     "doctrine/reflection": {
         "version": "v1.0.0"
     },
-    "easycorp/easy-log-handler": {
-        "version": "1.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "1.0",
-            "ref": "70062abc2cd58794d2a90274502f81b55cd9951b"
-        },
-        "files": [
-            "./config/packages/dev/easy_log_handler.yaml"
-        ]
+    "doctrine/sql-formatter": {
+        "version": "1.1.1"
     },
     "egulias/email-validator": {
         "version": "2.1.7"
     },
     "fzaninotto/faker": {
         "version": "v1.8.0"
-    },
-    "jdorn/sql-formatter": {
-        "version": "v1.2.17"
     },
     "knplabs/knp-snappy": {
         "version": "v1.1.0"
@@ -131,6 +119,9 @@
         "files": [
             "./config/packages/knp_snappy.yaml"
         ]
+    },
+    "laminas/laminas-zendframework-bridge": {
+        "version": "1.0.3"
     },
     "michaeldegroot/doctrine-encrypt-bundle": {
         "version": "4.0.1"
@@ -320,6 +311,9 @@
             "./src/Kernel.php"
         ]
     },
+    "symfony/http-client-contracts": {
+        "version": "v2.2.0"
+    },
     "symfony/http-foundation": {
         "version": "v4.2.5"
     },
@@ -367,11 +361,30 @@
     "symfony/orm-pack": {
         "version": "v1.0.6"
     },
+    "symfony/phpunit-bridge": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "3f8a8c93cd47061999316f8d56edd6c2abca9308"
+        },
+        "files": [
+            "./.env.test",
+            "./bin/phpunit",
+            "./config/services_test.yaml",
+            "./phpunit.xml.dist",
+            "./tests/bootstrap.php"
+        ]
+    },
     "symfony/polyfill-intl-icu": {
         "version": "v1.11.0"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.11.0"
+    },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.18.1"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.11.0"
@@ -381,6 +394,9 @@
     },
     "symfony/polyfill-php73": {
         "version": "v1.13.1"
+    },
+    "symfony/polyfill-php80": {
+        "version": "v1.18.1"
     },
     "symfony/process": {
         "version": "v4.2.5"

@@ -79,12 +79,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Ohje! Diese Email konnte nicht gefunden werden!');
+            throw new CustomUserMessageAuthenticationException('user.not.found');
         }
         if ($user->getDeactivated() == true){
 
             // Wenn der User deaktiviert ist, verweigere das Login
-            throw new CustomUserMessageAuthenticationException('Dieser User wurde gesperrt. Bitte kontaktieren Sie einen Administrator über das Kontaktformular!');
+            throw new CustomUserMessageAuthenticationException('user.blocked');
         }
 
 
