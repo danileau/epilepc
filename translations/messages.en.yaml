@@ -267,7 +267,7 @@ Neue Nachricht vom Kontaktformular auf: New message from contact form on
 Neue Nachricht auf: New message on
 Von: From
 Schweiz: Switzerland
-"Vielen Dank für deine Registrierung bei 'epilepc'! Dein Benutzerkonto wurde angelegt und du kannst nun loslegen": Thank you very much for your registration at "epilepc"! Your user account has been created and you can now start
+'Vielen Dank für deine Registrierung bei epilepc! Dein Benutzerkonto wurde angelegt und du kannst nun loslegen': Thank you very much for your registration at "epilepc"! Your user account has been created and you can now start
 Bei grossen Ankündigungen oder Anpassungen erlauben wir uns, dir auf die angegebene Email-Adresse Informationsmails zu senden: In the event of major announcements or adjustments, we take the liberty of sending you information mails to the email address provided
 JETZT EINLOGGEN: LOG IN NOW
 Na? Passwort vergessen?: Huh? Password lost?
@@ -288,6 +288,10 @@ Seite nicht gefunden: Site not found
 'Zurück zum Dashboard': Back to the dashboard
 nutzungs.bedingungen: To use our service, you must agree to our terms of use
 Bitte eine Email-Adresse eingeben: Please enter a valid email
+'application/json/German.json': 'application/json/English.json'
+Fehler: Error
+'Recaptcha Error - Bitte wiederholen Sie den Vorgang': Recaptcha Error - Please repeat the registration process
+
 
 
 
