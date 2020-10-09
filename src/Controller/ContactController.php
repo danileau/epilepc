@@ -34,23 +34,13 @@ class ContactController extends AbstractController
                 return $this->redirectToRoute('contact');
             } else {
 
-                # Validate Recaptcha
-                if(isset($_POST['g-recaptcha-response'])){
-                    $captcha=$_POST['g-recaptcha-response'];
-                }
-                if(!$captcha){
-                    # treat as spambot & don't send a Mail and redirect directly
-                    return $this->redirectToRoute('contact');
-                }
-                $secretKey = $_ENV['RECAPTCHA_SECRET'];
-                $ip = $_SERVER['REMOTE_ADDR'];
-                $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
-                $responseKeys = json_decode($response,true);
-                if(intval($responseKeys["success"]) !== 1) {
-                    # treat as spambot & don't send a Mail and redirect directly
-                    return $this->redirectToRoute('contact');
-                } else {
+                // reCaptcha Validierung
+                $recaptcha_request = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$_ENV['RECAPTCHA_SECRET'].'&response='.$_POST['contact']['recaptcha_token']);
 
+                // JSON-Antwort dekodieren
+                $decoded_recaptcha_request = json_decode($recaptcha_request);
+
+                if ($decoded_recaptcha_request->success == true && $decoded_recaptcha_request->score >= $_ENV['RECAPTCHA_SCORE']) {
                     // Generiert und versendet das Email
                     $message = (new \Swift_Message($translator->trans('Neue Kontaktformular-Nachricht auf epilepc.ch erhalten!')))
                         ->setFrom('no-reply@epilepc.ch');
@@ -80,6 +70,8 @@ class ContactController extends AbstractController
                     $this->addFlash('success', $translator->trans('Ihre Nachricht wurde erfolgreich versendet!'));
 
                     return $this->redirectToRoute('contact');
+                }else{
+                    return $this->redirectToRoute('contact', array('status' => 501));
                 }
             }
         }

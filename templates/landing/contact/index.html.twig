@@ -22,6 +22,11 @@
                     <header class="major">
                         <h2>{% trans %}Kontaktformular{% endtrans %}</h2>
                     </header>
+                    {% if app.request.query.get("status") == 501 %}
+                        <div class="alert alert-failed">
+                            {% trans %}Recaptcha Error - Bitte wiederholen Sie den Vorgang{% endtrans %}
+                        </div>
+                    {% endif %}
                     {% for message in app.flashes('success') %}
                         <div class="alert alert-success">
                             {{ message }}
@@ -51,10 +56,7 @@
                                     }})
                                 }}
                                 {{ form_row(contactForm.a_password) }}
-                            </div>
-                            <div class="col-12">
-                               <!-- <div class="g-recaptcha" data-sitekey="6LfqdOMUAAAAALHkqTQhNKW6kAb-yjCodkCktg_C"></div>-->
-                                <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_SITEKEY }}"></div>
+                                {{ form_row(contactForm.recaptcha_token) }}
                             </div>
                             <div class="col-12">
                                 <ul class="actions">

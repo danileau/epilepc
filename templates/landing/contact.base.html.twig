@@ -61,6 +61,14 @@
     {% trans %}Sprache ändern{% endtrans %}: <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'de'})) }}">{% trans %}Deutsch{% endtrans %}</a> - <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">{% trans %}Englisch{% endtrans %}</a> - <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'it'})) }}">{% trans %}Italienisch{% endtrans %}</a>  <!--a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">{% trans %}Französisch{% endtrans %}</a--></p>
 </footer>
 {% block javascripts %}
+    <script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_SITEKEY }}"></script>
+    <script>
+      grecaptcha.ready(function() {
+        grecaptcha.execute('{{ RECAPTCHA_SITEKEY }}', {action: 'login'}).then(function(token) {
+          document.getElementById('contact_recaptcha_token').value = token;
+        });
+      });
+    </script>
     <script src="{{ asset('landing/assets/js/one-js.min.js') }}"></script>
     <!--<script src="{{ asset('landing/assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('landing/assets/js/jquery.scrollex.min.js') }}"></script>

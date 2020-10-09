@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use function Sodium\add;
@@ -48,6 +49,9 @@ class ContactType extends AbstractType
                 'attr' => ['style' => 'display:none !important', 'tabindex' => '-1', 'autocomplete' => 'nope'],
                 'label' => false,
                 'required' => false
+            ])
+            ->add('recaptcha_token', HiddenType::class, [
+                'mapped' => false
             ])
 
             ->add('copy', CheckboxType::class, [

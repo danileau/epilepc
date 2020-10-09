@@ -1,2 +1,3 @@
 user.not.found: 'Oh my! This email could not be found!'
 user.blocked: 'This user has been blocked. Please contact an administrator via the contact form!'
+msg.recaptcha.failed: 'The message could not be sent - Please try again'
