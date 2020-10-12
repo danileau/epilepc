@@ -14,10 +14,16 @@
         <meta property="og:updated_time" content="1559635102"/>
         <meta property="og:image:alt" content="epilepc"/>
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('landing/assets/css/main.css') }}" />
-            <link rel="shortcut icon" type="image/png" href="{{ asset('landing/images/favicon.ico') }}"/>
-            <noscript><link rel="stylesheet" href="{{ asset('landing/assets/css/noscript.css') }}" /></noscript>
+        <link rel="stylesheet" href="{{ asset('landing/assets/css/main.css') }}" />
+        <link rel="shortcut icon" type="image/png" href="{{ asset('landing/images/favicon.ico') }}"/>
+        <noscript><link rel="stylesheet" href="{{ asset('landing/assets/css/noscript.css') }}" /></noscript>
         {% endblock %}
+        <!-- These two are what you want to use by default -->
+        <link rel="apple-touch-icon" href="{{ asset('landing/images/favicon.ico') }}">
+        <link rel="apple-touch-icon-precomposed" href="{{ asset('landing/images/favicon.ico') }}">
+        
+        <!-- This one works for anything below iOS 4.2 -->
+        <link rel="apple-touch-icon-precomposed apple-touch-icon" href="{{ asset('landing/images/favicon.ico') }}">
 
     </head>
 <body class="is-preload">
