@@ -73,7 +73,8 @@
         $('#dataTable').DataTable( {
             "language": {
                 "url": "{{ asset('application/json/German.json'|trans) }}"
-            }
+            },
+            "order": [[ 2, "desc" ]]
         });
     });
 

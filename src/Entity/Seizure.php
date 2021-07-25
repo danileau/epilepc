@@ -158,12 +158,12 @@ class Seizure
         return $this;
     }
 
-    public function getEmergencyMed(): ?string
+    public function getEmergencyMed(): ?bool
     {
         return $this->emergency_med;
     }
 
-    public function setEmergencyMed(string $EmergencyMed): self
+    public function setEmergencyMed(bool $EmergencyMed): self
     {
         $this->emergency_med = $EmergencyMed;
 

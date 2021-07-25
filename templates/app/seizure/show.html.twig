@@ -35,6 +35,10 @@
                         <label for="SeizureDate">{% trans %}Anfallstyp{% endtrans %}</label>
                         <input type="text" class="form-control" id="SeizureDate" value="{{ seizure.seizuretype.name|trans }}" readonly>
                     </div>
+                    <div class="form-check">
+                        <input type="checkbox" id="seizure_form_emergency_med" name="seizure_form[emergency_med]" class="form-check-input" value="{{ seizure.emergencyMed }}" disabled="disabled" {% if seizure.emergencyMed == 1 %}checked{% else %}{% endif %}>
+                        <label class="form-check-label" for="seizure_form_emergency_med">{% trans %}Notfallmedikament eingenommen?{% endtrans %}</label></div>
+                    <br/>
                     <div class="form-group">
                         <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('seizure_edit', {'id': seizure.id}) }}">{% trans %}Bearbeiten{% endtrans %}</a></button>
                     </div>

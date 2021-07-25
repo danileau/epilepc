@@ -80,11 +80,12 @@
 {% block jsCharts %}
     // Call the dataTables jQuery plugin
     $(document).ready(function() {
-    $('#dataTable').DataTable( {
-    "language": {
-    "url": "{{ asset('application/json/German.json'|trans) }}"
-    }
-    });
+        $('#dataTable').DataTable( {
+            "language": {
+                "url": "{{ asset('application/json/German.json'|trans) }}"
+            },
+            "order": [[ 5, "desc" ]]
+        });
     });
 
 {% endblock %}
