@@ -64,7 +64,7 @@ class DiaryentryRepository extends ServiceEntityRepository
      */
     public function getDiaryLastYearJSON(){
         $months[] = date("Y-m");
-        for ($i = 1; $i <= 12; $i++) {
+        for ($i = 1; $i <= 24; $i++) {
             $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
         }
         return $months;

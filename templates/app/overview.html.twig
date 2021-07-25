@@ -36,7 +36,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-secondary">{% trans %}Deine Übersicht der letzten 12 Monate{% endtrans %}</h6>
+                    <h6 class="m-0 font-weight-bold text-secondary">{% trans %}Deine Übersicht der letzten 2 Jahren{% endtrans %}</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -290,18 +290,18 @@
     drawBorder: false
     },
     ticks: {
+
     autoSkip: false
     }
     }],
     yAxes: [{
     ticks: {
+    beginAtZero: true,
+
     maxTicksLimit: 5,
     padding: 10,
     // Include a dollar sign in the ticks
-    callback: function(value, index, values) {
-    //return '$' + number_format(value);
-    return number_format(value);
-    }
+    callback: function(value) {if (value % 1 === 0) {return value;}}
     },
     gridLines: {
     color: "rgb(234, 236, 244)",
