@@ -273,3 +273,8 @@ Administratives: Question administrative
 Interesse an weiteren Produkten: "Intérêt pour d'autres produits"
 Interesse an Mitarbeit: Intérêt pour la coopération
 Idee: Idée
+'Notfallmedikament': 'Médicaments de urgence'
+'Eingenommen': 'Pris'
+'Keine': 'Non'
+'form.account.diagnose.max.length': 'Max. 250 lettres'
+'form.account.max.length': 'Max. 25 lettres'

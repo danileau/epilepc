@@ -41,6 +41,11 @@ class Seizure
     private $modified_at;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $emergency_med;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="seizures")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -149,6 +154,18 @@ class Seizure
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getEmergencyMed(): ?string
+    {
+        return $this->emergency_med;
+    }
+
+    public function setEmergencyMed(string $EmergencyMed): self
+    {
+        $this->emergency_med = $EmergencyMed;
 
         return $this;
     }

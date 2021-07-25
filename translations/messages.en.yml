@@ -287,3 +287,10 @@ Ereignisübersicht: __Ereignisübersicht
 Test: __Test
 'Vielen Dank für deine Registrierung bei ''epilepc''! Dein Benutzerkonto wurde angelegt und du kannst nun loslegen!': 'Thank you very much for your registration at "epilepc"! Your user account has been created and you can now start'
 nutzungs.bedingungen: 'To use our service, you must agree to our terms of use'
+'Notfallmedikament': 'Emergency medication'
+'Eingenommen': 'Taken'
+'Keine': 'None'
+'form.account.diagnose.max.length': 'Max. 250 characters'
+'form.account.max.length': 'Max. 25 characters'
+'Notfall Medikament': 'Emergency medication'
+'Notfallmedikament eingenommen?': 'Emergency medicine taken?'

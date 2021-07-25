@@ -49,6 +49,7 @@ class MedicationRepository extends ServiceEntityRepository
      */
     public function getDiagramMedicationData($id){
         $month = $this->getMedicationLastYearJSON();
+
         foreach ($month as $key => $value) {
             $data[$value] = $this->getMedicationCountForMonth($id, $value);
         }
@@ -78,17 +79,23 @@ class MedicationRepository extends ServiceEntityRepository
 
         $startDate = date("Y-m-d", strtotime($date[0]."-".$date[1]."-1"));
         $endDate = date("Y-m-t", strtotime($date[0]."-".$date[1]."-1"));
+
+
         $now = new \DateTime($endDate);
+
+
+
         // Jetzt + 1 Tag um einen gerade eben geschriebenen Eintrag, während demselben Tag auf dem Diagramm anzuzeigen;
         // "# <= :now" funktioniert am gleichen Tag nicht wie erwartet
         $now->modify('+1 day');
+
         $delay = new \DateTime($startDate);
 
         return $this->createQueryBuilder('md')
             ->select('count(md.id)')
             ->where('md.user = :val')
-            ->andWhere('md.timestamp_prescription <= :now')
-            ->andWhere('md.timestamp_prescription >= :delay')
+            ->andWhere('md.date_from <= :now')
+            ->andWhere('md.date_to >= :delay')
             ->setParameter('val', $id)
             ->setParameter('now', $now)
             ->setParameter('delay', $delay)

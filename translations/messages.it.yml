@@ -13,7 +13,7 @@ An Epilepsie erkrankte Menschen fühlen sich oftmals hilflos der Krankheit ausge
 'Anfall erstellen': 'Crea una crisi'
 'Anfall löschen': 'Cancella crisi'
 Anfall: Crise
-Anfallsdatum: 'Date della crisi'
+Anfallsdatum: 'Tempo della crisi'
 Anfallstitel: 'Titolo della crisi'
 'Anfallstyp auswählen': 'Selezionare il tipo di crisi'
 Anfallstyp: 'Tipo di crisi'
@@ -286,8 +286,13 @@ Schweiz: __Schweiz
 'Nur die Ruhe bewahren. Das ist uns auch viel zu oft passiert.': '__Nur die Ruhe bewahren. Das ist uns auch viel zu oft passiert.'
 'Wir haben dir ein neues Passwort generiert, mit welchem du dich gleich einloggen kannst': '__Wir haben dir ein neues Passwort generiert, mit welchem du dich gleich einloggen kannst'
 'Wir empfehlen dir nach dem ersten Einloggen, dein Passwort umgehend zu ändern': '__Wir empfehlen dir nach dem ersten Einloggen, dein Passwort umgehend zu ändern'
-Willkommen: __Willkommen
+Willkommen: 'Benvenuti'
 'Vielen Dank für deine Registrierung bei ''epilepc''! Dein Benutzerkonto wurde angelegt und du kannst nun loslegen!': '__Vielen Dank für deine Registrierung bei ''epilepc''! Dein Benutzerkonto wurde angelegt und du kannst nun loslegen!'
 'Bei grossen Ankündigungen oder Anpassungen erlauben wir uns, dir auf die angegebene Email-Adresse Informationsmails zu senden': '__Bei grossen Ankündigungen oder Anpassungen erlauben wir uns, dir auf die angegebene Email-Adresse Informationsmails zu senden'
 'Eine Spamflut ist aber nicht zu erwarten': '__Eine Spamflut ist aber nicht zu erwarten'
 'JETZT EINLOGGEN': '__JETZT EINLOGGEN'
+'Notfallmedikament': 'Farmaci di emergenza'
+'Eingenommen': 'Presa'
+'Keine': 'No'
+'form.account.diagnose.max.length': 'Max. 250 lettere'
+'form.account.max.length': 'Max. 25 lettere'

@@ -27,11 +27,12 @@ class ProfileFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class)
-            ->add('firstname', TextType::class)
-            ->add('lastname', TextType::class)
+            ->add('firstname', TextType::class, ['attr' => ['maxlength' => 25], 'help' => 'form.account.max.length'])
+            ->add('lastname', TextType::class, ['attr' => ['maxlength' => 25],'help' => 'form.account.max.length'])
             ->add('diagnose', TextType::class, [
-                'required' => false
-            ])
+                'required' => false,
+                'attr' => ['maxlength' => 250],
+                'help' => 'form.account.diagnose.max.length'])
             ->add('agreed_terms_at', DateTimeType::class, [
                 'widget' => 'single_text',
                 'disabled' => true

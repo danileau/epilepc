@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Seizure;
+use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -38,7 +40,11 @@ class SeizureFormType extends AbstractType
                 'class' => \App\Entity\Seizuretype::class,
                 'help' => 'Wenn unbekannt, fragen Sie Ihren Arzt nach der auszuwählenden Anfallsart'
             ])
-        ;
+            ->add('emergency_med', CheckboxType::class, [
+                'label'    => 'Notfallmedikament eingenommen?',
+                'required' => false,
+            ]);
+
     }
 
     /*
