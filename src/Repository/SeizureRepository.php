@@ -48,7 +48,7 @@ class SeizureRepository extends ServiceEntityRepository
      * des eingeloggten Users zurück
      */
     public function getDiagramSeizureData($id){
-        $month = $this->getSeizureLastYearJSON();
+        $month = $this->getSeizure2YearsJSON();
         foreach ($month as $key => $value) {
             $data[$value] = $this->getSeizureCountForMonth($id, $value);
         }
@@ -59,6 +59,17 @@ class SeizureRepository extends ServiceEntityRepository
      * @return array von allen Anfällen vom letzten Jahr im JSON-Format
      */
     public function getSeizureLastYearJSON(){
+        $months[] = date("Y-m");
+        for ($i = 1; $i <= 12; $i++) {
+            $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+        }
+        return $months;
+    }
+
+    /**
+     * @return array von allen Anfällen von den 2 letzten Jahren im JSON-Format
+     */
+    public function getSeizure2YearsJSON(){
         $months[] = date("Y-m");
         for ($i = 1; $i <= 24; $i++) {
             $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));

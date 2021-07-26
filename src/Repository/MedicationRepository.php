@@ -48,7 +48,7 @@ class MedicationRepository extends ServiceEntityRepository
      * des eingeloggten Users zurück
      */
     public function getDiagramMedicationData($id){
-        $month = $this->getMedicationLastYearJSON();
+        $month = $this->getMedication2YearsJSON();
 
         foreach ($month as $key => $value) {
             $data[$value] = $this->getMedicationCountForMonth($id, $value);
@@ -60,6 +60,17 @@ class MedicationRepository extends ServiceEntityRepository
      * @return array von allen Medikationen vom letzten Jahr im JSON-Format
      */
     public function getMedicationLastYearJSON(){
+        $months[] = date("Y-m");
+        for ($i = 1; $i <= 12; $i++) {
+            $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+        }
+        return $months;
+    }
+
+    /**
+     * @return array von allen Medikationen vom den letzten 2 Jahren im JSON-Format
+     */
+    public function getMedication2YearsJSON(){
         $months[] = date("Y-m");
         for ($i = 1; $i <= 24; $i++) {
             $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));

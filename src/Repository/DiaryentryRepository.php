@@ -52,17 +52,29 @@ class DiaryentryRepository extends ServiceEntityRepository
      * des eingeloggten Users zurück
      */
     public function getDiagramDiaryData($id){
-        $month = $this->getDiaryLastYearJSON();
+        $month = $this->getDiaryLast2YearsJSON();
         foreach ($month as $key => $value) {
             $data[$value] = $this->getDiaryCountForMonth($id, $value);
         }
         return $data;
     }
 
+
     /**
      * @return array von allen Tagebucheinträgen vom letzten Jahr im JSON-Format
      */
     public function getDiaryLastYearJSON(){
+        $months[] = date("Y-m");
+        for ($i = 1; $i <= 12; $i++) {
+            $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+        }
+        return $months;
+    }
+
+    /**
+     * @return array von allen Tagebucheinträgen von den letzten 2 Jahren im JSON-Format
+     */
+    public function getDiaryLast2YearsJSON(){
         $months[] = date("Y-m");
         for ($i = 1; $i <= 24; $i++) {
             $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));

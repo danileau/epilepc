@@ -49,7 +49,7 @@ class EventRepository extends ServiceEntityRepository
      * des eingeloggten Users zurück
      */
     public function getDiagramEventData($id){
-        $month = $this->getEventLastYearJSON();
+        $month = $this->getEventLast2YearsJSON();
         foreach ($month as $key => $value) {
             $data[$value] = $this->getEventCountForMonth($id, $value);
         }
@@ -57,16 +57,26 @@ class EventRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return array von allen Eregnissen vom letzten Jahr im JSON-Forma
-     */
+ * @return array von allen Eregnissen vom letzten Jahr im JSON-Forma
+ */
     public function getEventLastYearJSON(){
+        $months[] = date("Y-m");
+        for ($i = 1; $i <= 12; $i++) {
+            $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+        }
+        return $months;
+    }
+
+    /**
+     * @return array von allen Eregnissen von den letzten 2 Jahren im JSON-Forma
+     */
+    public function getEventLast2YearsJSON(){
         $months[] = date("Y-m");
         for ($i = 1; $i <= 24; $i++) {
             $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
         }
         return $months;
     }
-
     /**
      * @param $id
      * @param $month
