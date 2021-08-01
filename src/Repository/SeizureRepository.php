@@ -31,12 +31,25 @@ class SeizureRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Seizure[] Returns count from all Seizures for the Dashboard
-     */
+ * @return Seizure[] Returns count from all Seizures for the Dashboard
+ */
     public function countFindAllFromUser($id){
         return $this->createQueryBuilder('s')
             ->select('count(s.id)')
             ->andWhere('s.user = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * @return Seizure[] Returns count from all Seizures for the Dashboard wit emergencyMed = 1
+     */
+    public function countFindAllEMedsFromUser($id){
+        return $this->createQueryBuilder('s')
+            ->select('count(s.id)')
+            ->andWhere('s.user = :val')
+            ->andWhere('s.emergency_med = 1')
             ->setParameter('val', $id)
             ->getQuery()
             ->getSingleScalarResult();
@@ -67,6 +80,19 @@ class SeizureRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param $id
+     * @return mixed liefert ein Array mit allen Summen der gefundenen Anfällen mit Notfallmedikament = true
+     * des eingeloggten Users zurück
+     */
+    public function getDiagramSeizureWithEMeds($id){
+        $month = $this->getSeizureEMeds2YearsJSON();
+        foreach ($month as $key => $value) {
+            $data[$value] = $this->getSeizureEMedCountForMonth($id, $value);
+        }
+        return $data;
+    }
+
+    /**
      * @return array von allen Anfällen von den 2 letzten Jahren im JSON-Format
      */
     public function getSeizure2YearsJSON(){
@@ -76,13 +102,23 @@ class SeizureRepository extends ServiceEntityRepository
         }
         return $months;
     }
+    /**
+     * @return array von allen Anfällen mit Notfallmedikament = true von den 2 letzten Jahren im JSON-Format
+     */
+    public function getSeizureEMeds2YearsJSON(){
+        $months[] = date("Y-m");
+        for ($i = 1; $i <= 24; $i++) {
+            $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+        }
+        return $months;
+    }
 
     /**
-     * @param $id
-     * @param $month
-     * @return mixed mit der Anzahl Anfällen für den abgefragten Monat
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
+ * @param $id
+ * @param $month
+ * @return mixed mit der Anzahl Anfällen für den abgefragten Monat
+ * @throws \Doctrine\ORM\NonUniqueResultException
+ */
     public function getSeizureCountForMonth($id, $month){
         //Year: $date[0], Month: $date[1]
         $date = explode('-', $month);
@@ -100,6 +136,38 @@ class SeizureRepository extends ServiceEntityRepository
             ->where('sd.user = :val')
             ->andWhere('sd.timestamp_when <= :now')
             ->andWhere('sd.timestamp_when >= :delay')
+            ->andWhere('sd.emergency_med != 1')
+            ->setParameter('val', $id)
+            ->setParameter('now', $now)
+            ->setParameter('delay', $delay)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * @param $id
+     * @param $month
+     * @return mixed mit der Anzahl Anfällen mit Notfallmedikamente für den abgefragten Monat
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getSeizureEMedCountForMonth($id, $month){
+        //Year: $date[0], Month: $date[1]
+        $date = explode('-', $month);
+
+        $startDate = date("Y-m-d", strtotime($date[0]."-".$date[1]."-1"));
+        $endDate = date("Y-m-t", strtotime($date[0]."-".$date[1]."-1"));
+        $now = new \DateTime($endDate);
+        // Jetzt + 1 Tag um einen gerade eben geschriebenen Eintrag, während demselben Tag auf dem Diagramm anzuzeigen;
+        // "# <= :now" funktioniert am gleichen Tag nicht wie erwartet
+        $now->modify('+1 day');
+        $delay = new \DateTime($startDate);
+
+        return $this->createQueryBuilder('sd')
+            ->select('count(sd.id)')
+            ->where('sd.user = :val')
+            ->andWhere('sd.timestamp_when <= :now')
+            ->andWhere('sd.timestamp_when >= :delay')
+            ->andWhere('sd.emergency_med = 1')
             ->setParameter('val', $id)
             ->setParameter('now', $now)
             ->setParameter('delay', $delay)
