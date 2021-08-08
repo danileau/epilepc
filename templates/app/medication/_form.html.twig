@@ -10,6 +10,7 @@
     {{ form_row(medicationForm.date_from, {'label': 'Einnahme Start'|trans}) }}
     {{ form_row(medicationForm.date_to, {'label': 'Einnahme Ende'|trans}) }}
     {{ form_row(medicationForm.timestamp_prescription, {'label': 'Verschreibungsdatum'|trans}) }}
+    {{ form_row(medicationForm.emergency_med, {'label': 'Notfallmedikation'|trans}) }}
 
 <button class="btn btn-primary">{{ button_text }}</button>
 {{ form_end(medicationForm) }}

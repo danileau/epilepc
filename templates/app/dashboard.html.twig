@@ -36,8 +36,8 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col col-md-10 mb-2">
-                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">{% trans %}Anfälle mit eingenommener Notfallmedikation{% endtrans %}</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ seizure_emeds_count }}</div>
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">{% trans %}Eingenommene Notfallmedikation{% endtrans %}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-first-aid fa-2x text-gray-300"></i>
@@ -220,21 +220,9 @@
     pointHitRadius: 10,
     pointBorderWidth: 2,
     data: {{ seizure_data|raw }}
-    }, {
-    label: "{% trans %}Notfallmedikament{% endtrans %}",
-    lineTension: 0.3,
-    backgroundColor: "rgba(54, 185, 204, 0.05)",
-    borderColor: "rgba(54, 185, 204, 1)",
-    pointRadius: 3,
-    pointBackgroundColor: "rgba(54, 185, 204, 1)",
-    pointBorderColor: "rgba(54, 185, 204, 1)",
-    pointHoverRadius: 3,
-    pointHoverBackgroundColor: "rgba(54, 185, 204, 1)",
-    pointHoverBorderColor: "rgba(54, 185, 204, 1)",
-    pointHitRadius: 10,
-    pointBorderWidth: 2,
-    data: {{ seizure_emeds_data|raw }}
-    }, {
+    },
+
+    {
     label: "{% trans %}Ereignisse{% endtrans %}",
     lineTension: 0.3,
     backgroundColor: "rgba(28, 200, 138, 0.05)",

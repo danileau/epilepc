@@ -68,6 +68,11 @@ class Medication
      */
     private $modified_at;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $emergency_med;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -177,6 +182,18 @@ class Medication
     public function setModifiedAt(\DateTimeInterface $modified_at): self
     {
         $this->modified_at = $modified_at;
+
+        return $this;
+    }
+
+    public function getEmergencyMed(): ?bool
+    {
+        return $this->emergency_med;
+    }
+
+    public function setEmergencyMed(?bool $emergency_med): self
+    {
+        $this->emergency_med = $emergency_med;
 
         return $this;
     }

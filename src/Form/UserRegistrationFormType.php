@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -30,12 +31,15 @@ class UserRegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', null, [
-                'label' => 'Vorname'
-            ])
-            ->add('lastname', null, [
-                'label' => 'Nachname'
-            ])
+            ->add('firstname', \Symfony\Component\Form\Extension\Core\Type\TextType::class, array(
+                'label' => 'Vorname', 'required' => true,
+                'attr' => ['pattern' => '/^[0-9]{8}$/', 'maxlength' => 25])
+            )
+
+            ->add('lastname', \Symfony\Component\Form\Extension\Core\Type\TextType::class, array(
+                'label' => 'Nachname', 'required' => true,
+                    'attr' => ['pattern' => '/^[0-9]{8}$/', 'maxlength' => 25])
+            )
             ->add('email', EmailType::class)
 
             // Absichtlich ein Feld, welches nicht in der Datenbank existiert,

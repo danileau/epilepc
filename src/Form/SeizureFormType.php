@@ -39,10 +39,6 @@ class SeizureFormType extends AbstractType
                 'placeholder' => 'Anfallstyp auswählen',
                 'class' => \App\Entity\Seizuretype::class,
                 'help' => 'Wenn unbekannt, fragen Sie Ihren Arzt nach der auszuwählenden Anfallsart'
-            ])
-            ->add('emergency_med', CheckboxType::class, [
-                'label'    => 'Notfallmedikament eingenommen?',
-                'required' => false,
             ]);
 
     }

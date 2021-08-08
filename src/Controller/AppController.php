@@ -42,19 +42,8 @@ class AppController extends AbstractController
         $seizureMonthJSON = json_encode($seizureDiagramMonth);
         $seizureValueJSON = json_encode($seizureDiagramCount);
 
-        /**
-         * Anfallsdaten mit Notfallmedikamente für die Diagramme aufbereiten
-         */
-        $seizureEMeds_data = $seizureRepository->getDiagramSeizureWithEMeds($user);
-        foreach ($seizureEMeds_data as $key => $value) {
-            $seizureEMedsDiagramMonth[] = strftime("%B %Y", strtotime($key."-01"));
-            $seizureEMedsDiagramCount[] = $value;
-        }
 
-        $seizureEMedsDiagramMonth = array_reverse($seizureEMedsDiagramMonth);
-        $seizureEMedsDiagramCount = array_reverse($seizureEMedsDiagramCount);
-        $seizureEMedsMonthJSON = json_encode($seizureEMedsDiagramMonth);
-        $seizureEMedsValueJSON = json_encode($seizureEMedsDiagramCount);
+
 
 
         /**
@@ -97,9 +86,9 @@ class AppController extends AbstractController
             'seizure_count' => $seizureRepository->countFindAllFromUser($user),
             'seizure_month' => $seizureMonthJSON,
             'seizure_data' => $seizureValueJSON,
-            'seizure_emeds_count' => $seizureRepository->countFindAllEMedsFromUser($user),
-            'seizure_emeds_month' => $seizureEMedsMonthJSON,
-            'seizure_emeds_data' => $seizureEMedsValueJSON,
+            //'seizure_emeds_count' => $seizureRepository->countFindAllEMedsFromUser($user),
+           // 'seizure_emeds_month' => $seizureEMedsMonthJSON,
+           // 'seizure_emeds_data' => $seizureEMedsValueJSON,
             'diaryentry_count' => $diaryentryRepository->countFindAllFromUser($user),
             'diaryentry_data' => $diaryValueJSON,
             'event_count' => $eventRepository->countFindAllFromUser($user),

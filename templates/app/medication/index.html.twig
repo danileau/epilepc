@@ -26,9 +26,10 @@
                         <th>{% trans %}Medikationsname{% endtrans %}</th>
                         <th>{% trans %}Beschreibung{% endtrans %}</th>
                         <th>{% trans %}Dosierung{% endtrans %}</th>
+                        <th>{% trans %}Notfallmedikament{% endtrans %}</th>
                         <th>{% trans %}Einnahme Start{% endtrans %}</th>
                         <th>{% trans %}Einnahme Ende{% endtrans %}</th>
-                        <th>{% trans %}Verschreibungsdatum{% endtrans %}</th>
+                        <!--<th>{% trans %}Verschreibungsdatum{% endtrans %}</th>-->
                         <th>{% trans %}Zuletzt bearbeitet{% endtrans %}</th>
                         <th>{% trans %}Aktionen{% endtrans %}</th>
                     </tr>
@@ -40,9 +41,10 @@
                             <td data-search="medication.name"><a href="{{ path('medication_show', {'id': medication.id}) }}" class="text-medication" title="{% trans %}Anzeigen{% endtrans %}"><i class="fas fa-fw fa-search"></i> {{ medication.name }}</a></td>
                             <td data-search="medication.description">{{ medication.description }}</td>
                             <td data-search="medication.dosage">{{ medication.dosage }}</td>
+                            <td data-search="medication.emergencyMed">{% if medication.emergencyMed == true %}{% trans %}✓{% endtrans %}{% else %}{% trans %}⨉{% endtrans %}{% endif %}</td>
                             <td data-order="{{ medication.dateFrom|date('U') }}">{{ medication.dateFrom ? medication.dateFrom|date('d.m.Y H:i') }} {% trans %}Uhr{% endtrans %}</td>
                             <td data-order="{{ medication.dateTo|date('U') }}">{{ medication.dateTo ? medication.dateTo|date('d.m.Y H:i') }} {% trans %}Uhr{% endtrans %}</td>
-                            <td data-order="{{ medication.timestampPrescription|date('U') }}">{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y')}}</td>
+                          <!--  <td data-order="{{ medication.timestampPrescription|date('U') }}">{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y')}}</td>-->
                             <td data-order="{{ medication.modifiedAt|date('U') }}">{{ medication.modifiedAt ? medication.modifiedAt|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
                             <td align="center">
                                 <a href="{{ path('medication_edit', {'id': medication.id}) }}" title="{% trans %}Bearbeiten{% endtrans %}" class="text-medication"><i class="fas fa-fw fa-edit" ></i></a>

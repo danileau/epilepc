@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210725124215 extends AbstractMigration
+final class Version20210801135927 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,8 @@ final class Version20210725124215 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE seizure ADD emergency_med TINYINT(1) DEFAULT NULL, CHANGE seizuretype_id seizuretype_id INT DEFAULT NULL, CHANGE modified_at modified_at DATETIME DEFAULT NULL');
+        $this->addSql('ALTER TABLE medication CHANGE emergency_med emergency_med TINYINT(1) DEFAULT NULL');
+        $this->addSql('ALTER TABLE seizure DROP emergency_med, CHANGE seizuretype_id seizuretype_id INT DEFAULT NULL, CHANGE modified_at modified_at DATETIME DEFAULT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +31,7 @@ final class Version20210725124215 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE seizure DROP emergency_med, CHANGE seizuretype_id seizuretype_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE medication CHANGE emergency_med emergency_med TINYINT(1) DEFAULT \'NULL\'');
+        $this->addSql('ALTER TABLE seizure ADD emergency_med TINYINT(1) DEFAULT \'NULL\', CHANGE seizuretype_id seizuretype_id INT DEFAULT NULL, CHANGE modified_at modified_at DATETIME DEFAULT \'NULL\'');
     }
 }

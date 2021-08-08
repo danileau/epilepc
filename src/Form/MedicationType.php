@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Medication;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -42,7 +43,10 @@ class MedicationType extends AbstractType
                 'choice_translation_domain' => true,
                 'help' => 'Ausstelldatum des Rezepts'
             ])
-        ;
+            ->add('emergency_med', CheckboxType::class, [
+                'label'    => 'Notfallmedikament eingenommen?',
+                'required' => false
+            ]);
     }
 
     /*
