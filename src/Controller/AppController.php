@@ -83,6 +83,7 @@ class AppController extends AbstractController
         return $this->render('app/dashboard.html.twig', [
             'medication_count' => $medicationRepository->countFindAllFromUser($user),
             'medication_data' => $medicationValueJSON,
+            'medication_emergency_count' => $medicationRepository->countFindAllEmergencyFromUser($user),
             'seizure_count' => $seizureRepository->countFindAllFromUser($user),
             'seizure_month' => $seizureMonthJSON,
             'seizure_data' => $seizureValueJSON,

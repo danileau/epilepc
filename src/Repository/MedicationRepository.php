@@ -42,6 +42,19 @@ class MedicationRepository extends ServiceEntityRepository
     }
 
     /**
+     * @return Medication[] Returns count from all Medications for the Dashboard
+     */
+    public function countFindAllEmergencyFromUser($id){
+        return $this->createQueryBuilder('m')
+            ->select('count(m.id)')
+            ->andWhere('m.user = :val')
+            ->andWhere('m.emergency_med = 1')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
      * @param $id
      * @return mixed
      * Liefert ein Array mit allen Summen der gefundenen Medikationen
