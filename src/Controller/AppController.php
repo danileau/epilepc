@@ -34,7 +34,7 @@ class AppController extends AbstractController
          */
         $seizure_data = $seizureRepository->getDiagramSeizureData($user);
         foreach ($seizure_data as $key => $value) {
-            $seizureDiagramMonth[] = strftime("%B %Y", strtotime($key."-01"));
+            $seizureDiagramMonth[] = strftime("%B %Y", strtotime($key."-01"));;
             $seizureDiagramCount[] = $value;
         }
         $seizureDiagramMonth = array_reverse($seizureDiagramMonth);
@@ -43,7 +43,13 @@ class AppController extends AbstractController
         $seizureValueJSON = json_encode($seizureDiagramCount);
 
 
-
+        $seizure_m_data = $seizureRepository->getDiagramSeizureMonthData($user);
+        foreach ($seizure_m_data as $key => $value) {
+            $seizure_m_DiagramMonth[] = $key;;
+            $seizure_m_DiagramCount[] = $value;
+        }
+        $seizure_m_MonthJSON = json_encode($seizure_m_DiagramMonth);
+        $seizure_m_ValueJSON = json_encode($seizure_m_DiagramCount);
 
 
         /**
@@ -56,6 +62,11 @@ class AppController extends AbstractController
         $eventDiagramCount = array_reverse($eventDiagramCount);
         $eventValueJSON = json_encode($eventDiagramCount);
 
+        $event_m_data = $eventRepository->getDiagramEventMonthData($user);
+        foreach ($event_m_data as $key => $value) {
+            $event_m_DiagramCount[] = $value;
+        }
+        $event_m_ValueJSON = json_encode($event_m_DiagramCount);
         /**
          * Tagebuchdaten für die Diagramme aufbereiten
          */
@@ -67,6 +78,13 @@ class AppController extends AbstractController
         $diaryDiagramCount = array_reverse($diaryDiagramCount);
         $diaryValueJSON = json_encode($diaryDiagramCount);
 
+        $diary_m_data = $diaryentryRepository->getDiagramDiaryMonthData($user);
+        foreach ($diary_m_data as $key => $value) {
+            $diary_m_DiagramCount[] = $value;
+        }
+
+        $diary_m_ValueJSON = json_encode($diary_m_DiagramCount);
+
         /**
          * Medikamentendaten für die Diagramme aufbereiten
          */
@@ -77,23 +95,35 @@ class AppController extends AbstractController
         $medicationDiagramCount = array_reverse($medicationDiagramCount);
         $medicationValueJSON = json_encode($medicationDiagramCount);
 
-        /*
+        $medication_m_data = $medicationRepository->getDiagramMedicationMonthData($user);
+        foreach ($medication_m_data as $key => $value) {
+            $medication_m_DiagramCount[] = $value;
+        }
+        $medication_m_ValueJSON = json_encode($medication_m_DiagramCount);
+
+
+        /**
          * Twig Template mit allen Variablen rendern
          */
         return $this->render('app/dashboard.html.twig', [
             'medication_count' => $medicationRepository->countFindAllFromUser($user),
             'medication_data' => $medicationValueJSON,
+            'medication_m_data' => $medication_m_ValueJSON,
             'medication_emergency_count' => $medicationRepository->countFindAllEmergencyFromUser($user),
             'seizure_count' => $seizureRepository->countFindAllFromUser($user),
             'seizure_month' => $seizureMonthJSON,
             'seizure_data' => $seizureValueJSON,
+            'seizure_m_month' => $seizure_m_MonthJSON,
+            'seizure_m_data' => $seizure_m_ValueJSON,
             //'seizure_emeds_count' => $seizureRepository->countFindAllEMedsFromUser($user),
            // 'seizure_emeds_month' => $seizureEMedsMonthJSON,
            // 'seizure_emeds_data' => $seizureEMedsValueJSON,
             'diaryentry_count' => $diaryentryRepository->countFindAllFromUser($user),
             'diaryentry_data' => $diaryValueJSON,
+            'diaryentry_m_data' => $diary_m_ValueJSON,
             'event_count' => $eventRepository->countFindAllFromUser($user),
-            'event_data' => $eventValueJSON
+            'event_data' => $eventValueJSON,
+            'event_m_data' => $event_m_ValueJSON
         ]);
     }
 

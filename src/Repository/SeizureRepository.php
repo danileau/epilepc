@@ -31,9 +31,10 @@ class SeizureRepository extends ServiceEntityRepository
     }
 
     /**
- * @return Seizure[] Returns count from all Seizures for the Dashboard
- */
-    public function countFindAllFromUser($id){
+     * @return Seizure[] Returns count from all Seizures for the Dashboard
+     */
+    public function countFindAllFromUser($id)
+    {
         return $this->createQueryBuilder('s')
             ->select('count(s.id)')
             ->andWhere('s.user = :val')
@@ -48,7 +49,8 @@ class SeizureRepository extends ServiceEntityRepository
      * @return mixed liefert ein Array mit allen Summen der gefundenen Anfällen
      * des eingeloggten Users zurück
      */
-    public function getDiagramSeizureData($id){
+    public function getDiagramSeizureData($id)
+    {
         $month = $this->getSeizure2YearsJSON();
         foreach ($month as $key => $value) {
             $data[$value] = $this->getSeizureCountForMonth($id, $value);
@@ -57,40 +59,79 @@ class SeizureRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param $id
+     * @return mixed liefert ein Array mit allen Summen der gefundenen Anfällen des aktuellen Monats
+     * des eingeloggten Users zurück
+     */
+    public function getDiagramSeizureMonthData($id)
+    {
+        $days = $this->getSeizureCurrentMonthJSON();
+
+        foreach ($days as $key => $value) {
+            $data[$value] = $this->getDailySeizuresMonth($id, $value);
+        }
+        return $data;
+    }
+
+
+    /**
      * @return array von allen Anfällen vom letzten Jahr im JSON-Format
      */
-    public function getSeizureLastYearJSON(){
+    public function getSeizureLastYearJSON()
+    {
         $months[] = date("Y-m");
         for ($i = 1; $i <= 12; $i++) {
-            $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+            $months[] = date("Y-m", strtotime(date('Y-m-01') . " -$i months"));
         }
         return $months;
     }
-
 
     /**
      * @return array von allen Anfällen von den 2 letzten Jahren im JSON-Format
      */
-    public function getSeizure2YearsJSON(){
+    public function getSeizure2YearsJSON()
+    {
         $months[] = date("Y-m");
         for ($i = 1; $i <= 24; $i++) {
-            $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
+            $months[] = date("Y-m", strtotime(date('Y-m-01') . " -$i months"));
         }
         return $months;
     }
 
     /**
- * @param $id
- * @param $month
- * @return mixed mit der Anzahl Anfällen für den abgefragten Monat
- * @throws \Doctrine\ORM\NonUniqueResultException
- */
-    public function getSeizureCountForMonth($id, $month){
+     * @return array von allen Anfällen vom aktuellen Monat im JSON-Format
+     */
+    public function getSeizureCurrentMonthJSON()
+    {
+        //$month = "02";
+        $month = date("m");
+        $year = date("Y");
+
+        $start_date = "01-" . $month . "-" . $year;
+        $start_time = strtotime($start_date);
+
+        $end_time = strtotime("+1 month", $start_time);
+
+        for ($i = $start_time; $i < $end_time; $i += 86400) {
+            $list[] = date('Y-m-d', $i);
+        }
+
+        return $list;
+    }
+
+    /**
+     * @param $id
+     * @param $month
+     * @return mixed mit der Anzahl Anfällen für den abgefragten Monat
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getSeizureCountForMonth($id, $month)
+    {
         //Year: $date[0], Month: $date[1]
         $date = explode('-', $month);
 
-        $startDate = date("Y-m-d", strtotime($date[0]."-".$date[1]."-1"));
-        $endDate = date("Y-m-t", strtotime($date[0]."-".$date[1]."-1"));
+        $startDate = date("Y-m-d", strtotime($date[0] . "-" . $date[1] . "-1"));
+        $endDate = date("Y-m-t", strtotime($date[0] . "-" . $date[1] . "-1"));
         $now = new \DateTime($endDate);
         // Jetzt + 1 Tag um einen gerade eben geschriebenen Eintrag, während demselben Tag auf dem Diagramm anzuzeigen;
         // "# <= :now" funktioniert am gleichen Tag nicht wie erwartet
@@ -108,4 +149,28 @@ class SeizureRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    /**
+     * @param $id
+     * @param $month
+     * @return mixed mit der Anzahl Anfällen für den abgefragten Monat
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getDailySeizuresMonth($id, $month)
+    {
+        $startDate = $month." 00:00:00";
+        $endDate = $month." 23:59:59";
+
+        return $this->createQueryBuilder('sd')
+            ->select('count(sd.id)')
+            ->where('sd.user = :val')
+            ->andWhere('sd.timestamp_when >= :morning')
+            ->andWhere('sd.timestamp_when <= :evening')
+            ->setParameter('val', $id)
+            ->setParameter('morning', $startDate)
+            ->setParameter('evening', $endDate)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 }

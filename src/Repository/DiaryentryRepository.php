@@ -59,6 +59,20 @@ class DiaryentryRepository extends ServiceEntityRepository
         return $data;
     }
 
+    /**
+     * @param $id
+     * @return mixed liefert ein Array mit allen Summen der gefundenen Tagebucheinträge des aktuellen Monats
+     * des eingeloggten Users zurück
+     */
+    public function getDiagramDiaryMonthData($id)
+    {
+        $days = $this->getDiaryCurrentMonthJSON();
+
+        foreach ($days as $key => $value) {
+            $data[$value] = $this->getDailyDiaryMonth($id, $value);
+        }
+        return $data;
+    }
 
     /**
      * @return array von allen Tagebucheinträgen vom letzten Jahr im JSON-Format
@@ -80,6 +94,27 @@ class DiaryentryRepository extends ServiceEntityRepository
             $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
         }
         return $months;
+    }
+
+    /**
+     * @return array von allen Tagen des aktuellen Monats
+     */
+    public function getDiaryCurrentMonthJSON()
+    {
+        //$month = "02";
+        $month = date("m");
+        $year = date("Y");
+
+        $start_date = "01-" . $month . "-" . $year;
+        $start_time = strtotime($start_date);
+
+        $end_time = strtotime("+1 month", $start_time);
+
+        for ($i = $start_time; $i < $end_time; $i += 86400) {
+            $list[] = date('Y-m-d', $i);
+        }
+
+        return $list;
     }
 
     /**
@@ -109,6 +144,29 @@ class DiaryentryRepository extends ServiceEntityRepository
             ->setParameter('val', $id)
             ->setParameter('now', $now)
             ->setParameter('delay', $delay)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    /**
+     * @param $id
+     * @param $month
+     * @return mixed mit der Anzahl Tagebucheinträge für den abgefragten Monat
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getDailyDiaryMonth($id, $month)
+    {
+        $startDate = $month." 00:00:00";
+        $endDate = $month." 23:59:59";
+
+        return $this->createQueryBuilder('dd')
+            ->select('count(dd.id)')
+            ->where('dd.user = :val')
+            ->andWhere('dd.timestamp_when >= :morning')
+            ->andWhere('dd.timestamp_when <= :evening')
+            ->setParameter('val', $id)
+            ->setParameter('morning', $startDate)
+            ->setParameter('evening', $endDate)
             ->getQuery()
             ->getSingleScalarResult();
     }

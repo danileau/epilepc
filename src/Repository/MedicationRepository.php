@@ -70,6 +70,21 @@ class MedicationRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param $id
+     * @return mixed liefert ein Array mit allen Summen der gefundenen Medikationen des aktuellen Monats
+     * des eingeloggten Users zurück
+     */
+    public function getDiagramMedicationMonthData($id)
+    {
+        $days = $this->getMedicationCurrentMonthJSON();
+
+        foreach ($days as $key => $value) {
+            $data[$value] = $this->getDailyMedicationMonth($id, $value);
+        }
+        return $data;
+    }
+
+    /**
      * @return array von allen Medikationen vom letzten Jahr im JSON-Format
      */
     public function getMedicationLastYearJSON(){
@@ -89,6 +104,27 @@ class MedicationRepository extends ServiceEntityRepository
             $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
         }
         return $months;
+    }
+
+    /**
+     * @return array von allen Tagen des aktuellen Monats
+     */
+    public function getMedicationCurrentMonthJSON()
+    {
+        //$month = "02";
+        $month = date("m");
+        $year = date("Y");
+
+        $start_date = "01-" . $month . "-" . $year;
+        $start_time = strtotime($start_date);
+
+        $end_time = strtotime("+1 month", $start_time);
+
+        for ($i = $start_time; $i < $end_time; $i += 86400) {
+            $list[] = date('Y-m-d', $i);
+        }
+
+        return $list;
     }
 
     /**
@@ -127,5 +163,27 @@ class MedicationRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * @param $id
+     * @param $month
+     * @return mixed mit der Anzahl Medikationen für den abgefragten Monat
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getDailyMedicationMonth($id, $month)
+    {
+        $startDate = $month." 00:00:00";
+        $endDate = $month." 23:59:59";
+
+        return $this->createQueryBuilder('md')
+            ->select('count(md.id)')
+            ->where('md.user = :val')
+            ->andWhere('md.date_from >= :morning')
+            ->andWhere('md.date_to <= :evening')
+            ->setParameter('val', $id)
+            ->setParameter('morning', $startDate)
+            ->setParameter('evening', $endDate)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 
 }

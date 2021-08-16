@@ -105,6 +105,30 @@
     "fzaninotto/faker": {
         "version": "v1.8.0"
     },
+    "google/recaptcha": {
+        "version": "1.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.1",
+            "ref": "d087df3e087f50da3955f2def05079380da5894b"
+        },
+        "files": [
+            "./config/packages/google_recaptcha.yaml"
+        ]
+    },
+    "karser/karser-recaptcha3-bundle": {
+        "version": "0.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.1",
+            "ref": "d1ac708f630e31e2ff442c05715486b5f7bafb0e"
+        },
+        "files": [
+            "./config/packages/karser_recaptcha3.yaml"
+        ]
+    },
     "knplabs/knp-snappy": {
         "version": "v1.1.0"
     },

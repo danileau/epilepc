@@ -57,6 +57,21 @@ class EventRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param $id
+     * @return mixed liefert ein Array mit allen Summen der gefundenen Ereignisse des aktuellen Monats
+     * des eingeloggten Users zurück
+     */
+    public function getDiagramEventMonthData($id)
+    {
+        $days = $this->getEventCurrentMonthJSON();
+
+        foreach ($days as $key => $value) {
+            $data[$value] = $this->getDailyEventMonth($id, $value);
+        }
+        return $data;
+    }
+
+    /**
  * @return array von allen Eregnissen vom letzten Jahr im JSON-Forma
  */
     public function getEventLastYearJSON(){
@@ -77,6 +92,28 @@ class EventRepository extends ServiceEntityRepository
         }
         return $months;
     }
+
+    /**
+     * @return array von allen Tagen des aktuellen Monats
+     */
+    public function getEventCurrentMonthJSON()
+    {
+        //$month = "02";
+        $month = date("m");
+        $year = date("Y");
+
+        $start_date = "01-" . $month . "-" . $year;
+        $start_time = strtotime($start_date);
+
+        $end_time = strtotime("+1 month", $start_time);
+
+        for ($i = $start_time; $i < $end_time; $i += 86400) {
+            $list[] = date('Y-m-d', $i);
+        }
+
+        return $list;
+    }
+
     /**
      * @param $id
      * @param $month
@@ -107,5 +144,27 @@ class EventRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * @param $id
+     * @param $month
+     * @return mixed mit der Anzahl Ereignisse für den abgefragten Monat
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getDailyEventMonth($id, $month)
+    {
+        $startDate = $month." 00:00:00";
+        $endDate = $month." 23:59:59";
+
+        return $this->createQueryBuilder('ed')
+            ->select('count(ed.id)')
+            ->where('ed.user = :val')
+            ->andWhere('ed.timestamp_when >= :morning')
+            ->andWhere('ed.timestamp_when <= :evening')
+            ->setParameter('val', $id)
+            ->setParameter('morning', $startDate)
+            ->setParameter('evening', $endDate)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 
 }
