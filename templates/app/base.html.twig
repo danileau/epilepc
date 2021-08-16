@@ -43,7 +43,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item{% if app.request.get('_route') == 'app_dashboard' %} active {% endif %}">
                 <a class="nav-link" href="{{ path('app_dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>{% trans %}Dashboard{% endtrans %}</span></a>
@@ -55,8 +55,8 @@
                 {% trans %}Deine Daten{% endtrans %}
             </div>
             <!-- Nav Item - Seizures Collapse Menu -->
-            <li class="nav-item seizure">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeizures" aria-expanded="true" aria-controls="collapseSeizures">
+            <li class="nav-item seizure{% if app.request.get('_route') == 'seizure_index' or app.request.get('_route') == 'seizure_new' %} active {% endif %}">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSeizures" aria-expanded="true" aria-controls="collapseSeizures">
                     <i class="fas fa-fw fa-bolt"></i>
                     <span>{% trans %}Anfälle{% endtrans %}</span>
                 </a>
@@ -70,7 +70,7 @@
             </li>
 
             <!-- Nav Item - Events Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item{% if app.request.get('_route') == 'event_index' or app.request.get('_route') == 'event_new' %} active {% endif %}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEvents" aria-expanded="true" aria-controls="collapseEvents">
                     <i class="fas fa-fw fa-exclamation-triangle"></i>
                     <span>{% trans %}Ereignisse{% endtrans %}</span>
@@ -84,7 +84,7 @@
                 </div>
             </li>
             <!-- Nav Item - Diary Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item{% if app.request.get('_route') == 'diaryentry_index' or app.request.get('_route') == 'diaryentry_new' %} active {% endif %}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDiary" aria-expanded="true" aria-controls="collapseDiary">
                     <i class="fas fa-fw fa-book"></i>
                     <span>{% trans %}Tagebuch{% endtrans %}</span>
@@ -98,7 +98,7 @@
                 </div>
             </li>
             <!-- Nav Item - Medication Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item{% if app.request.get('_route') == 'medication_index' or app.request.get('_route') == 'medication_new' %} active {% endif %}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMeds" aria-expanded="true" aria-controls="collapseDiary">
                     <i class="fas fa-fw fa-prescription-bottle"></i>
                     <span>{% trans %}Medikation{% endtrans %}</span>
@@ -113,7 +113,7 @@
             </li>
 
             <!-- Nav Item - Overview -->
-            <li class="nav-item">
+            <li class="nav-item{% if app.request.get('_route') == 'app_overview' %} active {% endif %}">
                 <a class="nav-link" href="{{ path('app_overview') }}">
                     <i class="fas fa-fw fa-eye"></i>
                     <span>{% trans %}Übersicht{% endtrans %}</span></a>
@@ -126,7 +126,7 @@
                 {% trans %}Benutzer{% endtrans %}
             </div>
             <!-- Nav Item - Diary Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item{% if app.request.get('_route') == 'app_account' %} active {% endif %}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAccount" aria-expanded="true" aria-controls="collapseAccount">
                     <i class="fas fa-fw fa-user"></i>
                     <span>{% trans %}Profil{% endtrans %}</span>
@@ -148,8 +148,8 @@
                 <div class="sidebar-heading">
                     {% trans %}Adminbereich{% endtrans %}
                 </div>
-                <!-- Nav Item - Diary Collapse Menu -->
-                <li class="nav-item">
+                <!-- Nav Item - Admin Collapse Menu -->
+                <li class="nav-item{% if app.request.get('_route') == 'admin_user_index' %} active {% endif %}">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="true" aria-controls="collapseAdmin">
                         <i class="fas fa-fw fa-crown"></i>
                         <span>{% trans %}Adminbereich{% endtrans %}</span>
