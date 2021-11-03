@@ -32,14 +32,11 @@ class UserRegistrationFormType extends AbstractType
     {
         $builder
             ->add('firstname', \Symfony\Component\Form\Extension\Core\Type\TextType::class, array(
-                'label' => 'Vorname', 'required' => true,
-                'attr' => ['pattern' => '/^[a-zA-Z]+$/', 'maxlength' => 25])
-            )
-
+                'label' => 'Vorname', 'required' => true
+            ))
             ->add('lastname', \Symfony\Component\Form\Extension\Core\Type\TextType::class, array(
-                'label' => 'Nachname', 'required' => true,
-                    'attr' => ['pattern' => '/^[a-zA-Z]+$/', 'maxlength' => 25])
-            )
+                'label' => 'Nachname', 'required' => true
+            ))
             ->add('email', EmailType::class)
 
             // Absichtlich ein Feld, welches nicht in der Datenbank existiert,
