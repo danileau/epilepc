@@ -33,12 +33,12 @@ class UserRegistrationFormType extends AbstractType
         $builder
             ->add('firstname', \Symfony\Component\Form\Extension\Core\Type\TextType::class, array(
                 'label' => 'Vorname', 'required' => true,
-                'attr' => ['pattern' => '/^[a-z\']+$/', 'maxlength' => 25])
+                'attr' => ['pattern' => '/^[a-zA-Z]+$/', 'maxlength' => 25])
             )
 
             ->add('lastname', \Symfony\Component\Form\Extension\Core\Type\TextType::class, array(
                 'label' => 'Nachname', 'required' => true,
-                    'attr' => ['pattern' => '/^[a-z\']+$/', 'maxlength' => 25])
+                    'attr' => ['pattern' => '/^[a-zA-Z]+$/', 'maxlength' => 25])
             )
             ->add('email', EmailType::class)
 
