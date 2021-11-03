@@ -151,11 +151,11 @@ class SeizureRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $id
-     * @param $month
-     * @return mixed mit der Anzahl Anfällen für den abgefragten Monat
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
+ * @param $id
+ * @param $month
+ * @return mixed mit der Anzahl Anfällen für den abgefragten Monat
+ * @throws \Doctrine\ORM\NonUniqueResultException
+ */
     public function getDailySeizuresMonth($id, $month)
     {
         $startDate = $month." 00:00:00";

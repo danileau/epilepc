@@ -140,11 +140,7 @@ class MedicationRepository extends ServiceEntityRepository
         $startDate = date("Y-m-d", strtotime($date[0]."-".$date[1]."-1"));
         $endDate = date("Y-m-t", strtotime($date[0]."-".$date[1]."-1"));
 
-
         $now = new \DateTime($endDate);
-
-
-
         // Jetzt + 1 Tag um einen gerade eben geschriebenen Eintrag, während demselben Tag auf dem Diagramm anzuzeigen;
         // "# <= :now" funktioniert am gleichen Tag nicht wie erwartet
         $now->modify('+1 day');
@@ -173,12 +169,12 @@ class MedicationRepository extends ServiceEntityRepository
     {
         $startDate = $month." 00:00:00";
         $endDate = $month." 23:59:59";
-
         return $this->createQueryBuilder('md')
             ->select('count(md.id)')
             ->where('md.user = :val')
             ->andWhere('md.date_from >= :morning')
-            ->andWhere('md.date_to <= :evening')
+            ->andWhere('md.date_from <= :evening')
+            ->andWhere('md.emergency_med = 1')
             ->setParameter('val', $id)
             ->setParameter('morning', $startDate)
             ->setParameter('evening', $endDate)

@@ -94,7 +94,6 @@ class AppController extends AbstractController
         }
         $medicationDiagramCount = array_reverse($medicationDiagramCount);
         $medicationValueJSON = json_encode($medicationDiagramCount);
-
         $medication_m_data = $medicationRepository->getDiagramMedicationMonthData($user);
         foreach ($medication_m_data as $key => $value) {
             $medication_m_DiagramCount[] = $value;
