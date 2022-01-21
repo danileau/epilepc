@@ -6,13 +6,19 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
+        "composer/package-versions-deprecated": "1.11.99.4",
         "defuse/php-encryption": "^2.2",
+        "doctrine/annotations": "^1.0",
+        "doctrine/common": "^2",
+        "doctrine/doctrine-bundle": "^2",
+        "doctrine/doctrine-migrations-bundle": "^2",
+        "doctrine/orm": "^2",
         "knplabs/knp-snappy-bundle": "^1.6",
         "laminas/laminas-code": "^3.4",
         "laminas/laminas-eventmanager": "^3.2",
         "michaeldegroot/doctrine-encrypt-bundle": "^4.0",
+        "phpdocumentor/reflection-docblock": "^5.3",
         "sensio/framework-extra-bundle": "^5.3",
-        "sensiolabs/security-checker": "^5.0",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "4.4.*",
         "symfony/console": "4.4.*",
@@ -21,15 +27,18 @@
         "symfony/form": "4.4.*",
         "symfony/framework-bundle": "4.4.*",
         "symfony/monolog-bundle": "^3.3",
-        "symfony/orm-pack": "^1.0",
+        "symfony/property-access": "4.4.*",
+        "symfony/property-info": "4.4.*",
         "symfony/security-bundle": "4.4.*",
-        "symfony/serializer-pack": "^1.0",
+        "symfony/serializer": "4.4.*",
         "symfony/stopwatch": "4.4.*",
         "symfony/swiftmailer-bundle": "^3.2",
         "symfony/translation": "4.4.*",
         "symfony/twig-bundle": "4.4.*",
         "symfony/validator": "4.4.*",
-        "symfony/yaml": "4.4.*"
+        "symfony/web-server-bundle": "4.4.*",
+        "symfony/yaml": "4.4.*",
+        "thibautselingue/local-php-security-checker-installer": "^1.0"
     },
     "config": {
         "preferred-install": {
@@ -58,8 +67,7 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd",
-            "security-checker security:check": "script"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"
@@ -83,7 +91,7 @@
         "symfony/debug-bundle": "*",
         "symfony/maker-bundle": "^1.11",
         "symfony/phpunit-bridge": "^5.0",
-        "symfony/profiler-pack": "*",
-        "symfony/var-dumper": "*"
+        "symfony/var-dumper": "*",
+        "symfony/web-profiler-bundle": "^4.4"
     }
 }

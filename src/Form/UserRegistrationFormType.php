@@ -32,8 +32,9 @@ class UserRegistrationFormType extends AbstractType
     {
         $builder
             ->add('firstname', \Symfony\Component\Form\Extension\Core\Type\TextType::class, array(
-                'label' => 'Vorname', 'required' => true
+                'label' => 'Vorname', 'required' => true,
             ))
+
             ->add('lastname', \Symfony\Component\Form\Extension\Core\Type\TextType::class, array(
                 'label' => 'Nachname', 'required' => true
             ))
