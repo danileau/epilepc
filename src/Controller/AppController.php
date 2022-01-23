@@ -10,10 +10,11 @@ use App\Repository\EventRepository;
 use App\Repository\MedicationRepository;
 use App\Repository\SeizureRepository;
 use App\Repository\UserRepository;
-use Dompdf\Dompdf;
-use Dompdf\Options;
+use DateTime;
+use DateTimeImmutable;
 use Knp\Snappy\Pdf;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,14 +28,14 @@ class AppController extends AbstractController
      * @IsGranted("ROLE_USER")
      * Dashboard mit allen queries für die Counts und Diagramme
      */
-    public function index(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user)
+    public function index(Request $request, MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user, UserRepository $usr)
     {
         /**
          * Anfallsdaten für die Diagramme aufbereiten
          */
         $seizure_data = $seizureRepository->getDiagramSeizureData($user);
         foreach ($seizure_data as $key => $value) {
-            $seizureDiagramMonth[] = strftime("%B %Y", strtotime($key."-01"));;
+            $seizureDiagramMonth[] = $usr->translateMonth(strftime("%B", strtotime($key."-01")), $request->getLocale())." ".strftime("%Y", strtotime($key."-01"));
             $seizureDiagramCount[] = $value;
         }
         $seizureDiagramMonth = array_reverse($seizureDiagramMonth);
@@ -131,7 +132,7 @@ class AppController extends AbstractController
      * @Route("/app/overview", name="app_overview")
      * Übersicht mit allen Werten generieren
      */
-    public function overview(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user)
+    public function overview(Request $request,MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserRepository $usr, UserInterface $user)
     {
         /** @var $user User */
         $diagnose = $user->getDiagnose();
@@ -140,13 +141,16 @@ class AppController extends AbstractController
          */
         $seizure_data = $seizureRepository->getDiagramSeizureData($user);
         foreach ($seizure_data as $key => $value) {
-            $seizureDiagramMonth[] = strftime("%B %Y", strtotime($key."-01"));
+            $seizureDiagramMonth[] = $usr->translateMonth(strftime("%B", strtotime($key."-01")), $request->getLocale())." ".strftime("%Y", strtotime($key."-01"));
             $seizureDiagramCount[] = $value;
+
         }
+
         $seizureDiagramMonth = array_reverse($seizureDiagramMonth);
         $seizureDiagramCount = array_reverse($seizureDiagramCount);
         $seizureMonthJSON = json_encode($seizureDiagramMonth);
         $seizureMonthJSON12Month= json_encode(array_slice($seizureDiagramMonth,12));
+
         $seizureValueJSON = json_encode($seizureDiagramCount);
         $seizureValueJSON12Month = json_encode(array_slice($seizureDiagramCount,12));
         $seizures = $seizureRepository->findAllFromUser($user);
