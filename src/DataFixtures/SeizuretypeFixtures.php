@@ -14,7 +14,7 @@ class SeizuretypeFixtures extends BaseFixtures
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(10, 'main_seizuretype', function($count) use ($manager) {
+        $this->createMany(30, 'main_seizuretype', function($count) use ($manager) {
             $seizuretype = new Seizuretype();
             $seizuretype->setName($this->faker->text);
             $seizuretype->setDescription($this->faker->text);

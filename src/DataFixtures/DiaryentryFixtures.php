@@ -22,7 +22,7 @@ class DiaryentryFixtures extends BaseFixtures implements DependentFixtureInterfa
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(10, 'main_diaryentry', function($count) use ($manager) {
+        $this->createMany(100, 'main_diaryentry', function($count) use ($manager) {
             $entry = new Diaryentry();
             $entry->setTitle($this->faker->text);
             $entry->setContent($this->faker->text);

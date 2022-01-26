@@ -14,11 +14,11 @@ class SeizureFixtures extends BaseFixtures implements DependentFixtureInterface
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(50, 'main_seizure', function($count) use ($manager) {
+        $this->createMany(200, 'main_seizure', function($count) use ($manager) {
             $seizure = new Seizure();
             $seizure->setTitle($this->faker->text);
             $seizure->setDescription($this->faker->text);
-            $seizure->setTimestampWhen($this->faker->dateTime->setDate(2019, 04, 22));
+            $seizure->setTimestampWhen($this->faker->dateTime->setDate(2022, 01, 22));
             $seizure->setCreatedAt($this->faker->dateTime);
             $seizure->setModifiedAt($this->faker->dateTime);
             $seizure->setUser($this->getRandomReference('main_users'));

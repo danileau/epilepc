@@ -21,7 +21,7 @@ class EventFixtures extends BaseFixtures implements DependentFixtureInterface
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(10, 'main_event', function ($count) use ($manager) {
+        $this->createMany(100, 'main_event', function ($count) use ($manager) {
             $entry = new Event();
             $entry->setName($this->faker->text);
             $entry->setDescription($this->faker->text);

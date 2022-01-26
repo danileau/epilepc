@@ -1,0 +1,302 @@
+'Dashboard von': 'Dashboard from'
+'Alle anzeigen': 'Show all'
+'Deine Daten': 'Your data'
+'Zurück zur Übersicht': 'Back to the overview'
+Zurück: Back
+'Erfasste Daten': 'Data recorded'
+bearbeiten: modify
+Speichern: Save
+'Wenn unbekannt, fragen Sie Ihren Arzt nach der auszuwählenden Anfallsart': 'If unknown, ask your doctor about the seizure type to be selected'
+'Untenstehend findest du alle deine erfassten': 'Below you will find all your created'
+'Zusätzlich kannst du auf das Pluszeichen': 'Additionally you can click on the plus sign'
+Anfall: Seizure
+Anfälle: Seizures
+'Anfall Funktionen': 'Seizure functions'
+Anfallstitel: 'Seizure title'
+Anfallsübersicht: 'Seizure overview'
+'Neuer Anfall': 'New seizure'
+'Anfall bearbeiten': 'Modify seizure'
+'Zuletzt bearbeitet': 'Last modified'
+'Neuer Anfall erstellen': 'Create a new seizure'
+Anfallsdatum: 'Date of seizure'
+'Keine Anfälle vorhanden': 'No seizures available'
+'Anfall erstellen': 'Create a seizure'
+'Anfall löschen': 'Delete seizure'
+Anfallstyp: Seizuretype
+'Anfallstyp auswählen': 'Select seizuretype'
+'Anfall anzeigen': 'Show seizure'
+'Erfasste Anfälle': 'Seizures recorded'
+Anfallszeitpunkt: 'Time of seizure'
+'Bist du sicher, dass du diesen Anfall löschen willst?': 'Are you sure you want to delete this seizure?'
+'klicken, um einen neuen Anfall zu erstellen': 'to create a new seizure'
+'Zeitpunkt des Anfalls im Format TT.MM.YYYY HH:MM': 'Time of seizure in format ''TT.MM.YYYY HH:MM'''
+'Anfall erfolgreich erstellt!': 'Seizure successfully created!'
+'Anfall erfolgreich bearbeitet!': 'Seizure successfully modified!'
+Ereignis: Event
+'Ereignis - Übersicht': 'Event - Overview'
+Ereignisse: Events
+'Ereignisse notieren': 'Note events'
+'Ereignis Funktionen': 'Event functions'
+'Neues Ereignis': 'New event'
+'Neues Ereignis erstellen': 'Create a new event'
+'Ereignis erstellen': 'Create an event'
+Ereignisname: Eventname
+Ereignisdatum: 'Date of event'
+'Keine Ereignisse vorhanden': 'No events available'
+'Erfasste Ereignisse': 'Events recorded'
+'klicken, um ein neues Ereignis zu erstellen': 'to create a new event'
+'Hier einpaar Beispiele für mögliche Ereignisse': 'Here are a few examples of possible events'
+'Schlafmangel, Menstruation, Drogen- & Alkoholkonsum, Stress, tiefer Blutzucker, Krankheiten oder temporäres Unwohlsein': 'sleep deprivation, menstruation, drug & alcohol use, stress, low blood sugar, illness or temporary discomfort'
+'Zeitpunkt des Ereignisses im Format TT.MM.YYYY HH:MM': 'Time of the event in format TT.MM.YYYY HH:MM'
+'Ereignis erfolgreich erstellt!': 'Event successfully created!'
+'Ereignis erfolgreich bearbeitet!': 'Event successfully modified!'
+'Bist du sicher, dass du dieses Ereignis löschen willst?': 'Are you sure you want to delete this event?'
+'Ereignis löschen': 'Delete event'
+Tagebuch: Diary
+Tagebucheinträge: 'Diary entries'
+Tagebucheintrag: 'Diary entry'
+'Tagebuch Funktionen': 'Diary functions'
+'Erfasste Tagebucheinträge': 'Diary entries recorded'
+Tagebuchübersicht: 'Diary overview'
+'klicken, um einen neuen Tagebucheintrag zu erstellen': 'click to create a new diary entry'
+'Neuer Tagebucheintrag erstellen': 'Create a new diary entry'
+'Neuer Tagebucheintrag': 'New diaryentry'
+'Tagebucheintrag erstellen': 'Create a diary entry'
+'Tagebucheintrag anzeigen': 'Show diary entry'
+'Tagebucheintrag bearbeiten': 'Modify diary entry'
+Eintragstitel: 'Entry title'
+Eintragsdatum: 'Date of entry'
+'Keine Tagebucheinträge vorhanden': 'No Diary entries available'
+'Tagebucheintrag erfolgreich erstellt!': 'Diary entry successfully created!'
+'Tagebucheintrag erfolgreich bearbeitet!': 'Diary entry successfully edited!'
+Inhalt: Content
+'Datum des Tagebucheintrags im Format TT.MM.YYYY HH:MM': 'Date of the diary entry in format TT.MM.YYYY HH:MM'
+'Tagebucheintrag löschen': 'Delete diary entry'
+'Bist du sicher, dass du diesen Tagebucheintrag löschen willst?': 'Are you sure you want to delete this diary entry?'
+Medikation: Medication
+Medikationen: Medications
+'Medikation Funktionen': 'Medication functions'
+'Medikation pflegen': 'Maintaining medication'
+'Medikation bearbeiten': 'Modify medication'
+'Medikation anzeigen': 'Show medication'
+'Medikation löschen': 'Delete medication'
+'Neue Medikation': 'New medication'
+'Neue Medikation erstellen': 'Create a new medication'
+'Erfasste Medikationen': 'Medication recorded'
+'Dosierung in mg. z. B. 3x15mg pro Tag': 'Dosage in mg. e.g. 3x15mg per day'
+'Start Medikamenteneinnahme im Format TT.MM.YYYY HH:MM': 'Start of medication intake in format TT.MM.YYYY HH:MM'
+'Ende Medikamenteneinnahme im Format TT.MM.YYYY HH:MM': 'End of medication intake in format TT.MM.YYYY HH:MM'
+Dosierung: Dosage
+Medikationsübersicht: 'Medication overview'
+'Medikation - Übersicht': 'Medication - Overview'
+'klicken, um eine neue Medikation zu erstellen': 'click to create a new medication'
+Medikationsname: Medicationname
+'Einnahme Start': 'Start of medication intake'
+'Einnahme Ende': 'End of medication intake'
+Verschreibungsdatum: 'Prescription date'
+'Ausstelldatum des Rezepts': 'Prescription date of the recipe'
+'Keine Medikationen vorhanden': 'No medication available'
+'Medikation erstellen': 'Create a medication'
+'Bist du sicher, dass du diese Medikation löschen willst?': 'Are you sure you want to delete this medication?'
+'Medikation erfolgreich bearbeitet!': 'Medication successfully edited!'
+'Medikation erfolgreich erstellt!': 'Medication successfully created!'
+'Dein Profil': 'Your profile'
+'Profilübersicht von': 'Profile overview of'
+'Hier findest du alle Informationen über dein Profil und kannst Sie gleich bearbeiten': 'Here you can find all information about your profile and edit it immediately'
+Profilinformationen: 'Profile information'
+Vorname: Firstname
+Nachname: Lastname
+Email-Adresse: Email
+'Registriert am': 'Register date'
+'Profil erfolgreich bearbeitet!': 'Profile successfully edited!'
+'Um dein Passwort zu ändern, trage unten dein aktuelles und dein neues Passwort ein': 'To change your password, enter your current and new password in the form below'
+'Um die Sicherheit deiner Daten gewährleisten zu können, muss dein Passwort die folgenden Anforderungen erfüllen': 'To ensure the security of your data, your password must satisfy the following requirements'
+'Gross- und Kleinschreibung': 'Upper and lower case'
+'Mindestens 2 Zahlen': 'At least 2 numbers'
+'Mindestens 1 Sonderzeichen (z.b. $#*)': 'At least 1 special character (e.g. $#*)'
+'Mindestlänge des Passworts - 8 Zeichen': 'Minimum password length - 8 characters'
+'Aktuelles Passwort': 'Current password'
+'Neues Passwort': 'New password'
+'Neues Passwort wiederholen': 'Repeat the new password'
+'Deine Übersicht der letzten 12 Monate': 'Your overview of the last 12 months'
+'Deine Übersicht der letzten 2 Jahren': 'Your overview of the last 2 years'
+'Was wurde wie oft erfasst?': 'What was recorded how often?'
+Dashboard: Dashboard
+Übersicht: Overview
+Benutzer: User
+Profil: Profile
+Benutzeraccount: Useraccount
+'Profil anzeigen': 'Show profile'
+'Passwort ändern': 'Change password'
+Ausloggen: Logout
+Login: Login
+Adminbereich: 'Admin area'
+'Administrator Funktionen': 'Administrator functions'
+Benutzerverwaltung: 'User administration'
+'Anfallstypen pflegen': 'Manage seizure types'
+'Profil anzeigen & bearbeiten': 'Show & edit profile'
+'Fertig?': 'Finished?'
+'Wähle "Ausloggen" aus, wenn du bereit bist, die aktuelle Sitzung zu beenden': 'Select "Logout" when you are ready to end the current session.'
+Abbrechen: Cancel
+Registrieren: Register
+Einloggen: 'Log in'
+'Übersicht vom': 'Overview from'
+Hinweis: Note
+'Die folgenden Funktionen stehen dir aktuell auf epilepc.ch zur Verfügung': 'The following functions are currently available on epilepc.ch'
+'Notiere und speichere alle Ereignisse, die dir aufgefallen sind. So kannst du Auffälligkeiten entdecken, Trigger erkennen und definieren. Durch die regelmässige Pflege von Ereignissen in epilepc, kannst du Zusammenhänge entdecken oder Faktoren ausschliessen': 'Write down and save all events that you have noticed. This way you can discover anomalies, recognize and define triggers. Through the regular maintenance of events in epilepc, you can discover connections or exclude factors'
+'Trage alle deine Medikamente in epilepc ein. So behälst du die Übersicht über sämtliche Details, wann welche Anpassungen vorgenommen worden sind und wann welche Medikamente eingenommen werden müssen': 'Enter all your medication into epilepc. In this way you can keep track of all details, when which adjustments have been made and when which medication has to be taken'
+'Im generierten PDF werden die Tagebucheinträge nicht angezeigt.': 'The diary entries are not displayed in the generated PDF.'
+'Das PDF wurde für eine Anzeige an einem Bildschirm optimiert.': 'The PDF has been optimized for display on a screen.'
+'PDF generieren': 'Generate PDF'
+'Mit einem Klick auf die jeweilige Legende können Linien aus- und eingeblendet werden.': 'The lines can be hidden with a simple click on the corresponding legendentry.'
+'Sämtliche erfassten Daten': 'All data collected'
+Datum: Date
+Titel: Title
+Typ: Type
+Aktionen: Actions
+Anzeigen: Show
+anzeigen: show
+Bearbeiten: Modify
+Beschreibung: Description
+Erstellen: Create
+Updaten: Update
+Diagnose: Diagnosis
+Uhr: 'o''clock'
+German: English
+application/vendor/bootstrap/js/i18n/bootstrap-datepicker.de.js: application/vendor/bootstrap/js/i18n/bootstrap-datepicker.en.js
+'Sprache ändern': 'Change language'
+Deutsch: German
+Englisch: English
+Italienisch: Italian
+Französisch: French
+de: en
+'Nimm die Kontrolle über dein Leben wieder in die Hand': 'Take control over your life again'
+'Hilf dir bei Epilepsie!': 'Help yourself with epilepsy!'
+'Bei epilepc.ch findest du sämtliche Werkzeuge und Tools, welche du benötigst um deine Epilepsie-Behandlung effektiv und sicher zu begleiten!': 'Here at epilepc.ch you will find all the tools you need to effectively and safely manage your epilepsy treatment!'
+'Über uns': 'About us'
+'Fenster schliessen': 'Close window'
+'Der Startschuss von epilepc wurde während meiner Abschlussarbeit zum dipl. Techniker Informatik HF gelegt.': 'The starting signal for epilepc was given during my diploma thesis to become a computer science technician HF.'
+'Erklärtes Ziel ist es für Personen die unter Epilepsie (Zukünftig auch weitere chronische Krankheiten) leiden, eine sichere Dokumentationsplattform zur Verfügung zu stellen.': 'The goal is to provide a secure documentation platform for people suffering from epilepsy (in the future other chronic diseases will follow).'
+'Dieses Werkzeug soll dabei helfen, selbständig das Ruder wieder in die Hand zu nehmen und die eigene "Genesung" aktiv zu unterstützen.': 'This tool should help you to take the controls back into your own hands and actively support your own "recovery".'
+'epilepc bietet eine Dokumentations-Plattform für Epilepsie-Betroffene und Nahestehende auf Basis von einfachen und intuitiven Prozessen, weil den behandelnden Ärzten personenbezogene Daten für eine effektive Behandlung oftmals fehlen': 'epilepc offers a documentation platform for people with epilepsy and people close to them based on simple and intuitive processes, because the treating physicians often lack personal data for effective treatment'
+'Diese Informationen können nur wir, die Betroffenen sammeln': 'This information can only be collected by us, the affected individuals'
+'Genau dabei unterstützt dich epilepc!': 'This is exactly where epilepc supports you!'
+'Dokumentiere alle deine Anfälle mit epilepc! So kannst du dir bequem einen Überblick verschaffen, wie es dir während des letzten Monates gegangen ist oder sogar Auffälligkeiten entdecken!': 'Document all your seizures in epilepc! This way you can easily get an overview of how you have been feeling during the last month or even discover any particularities!'
+'Mit der Tagebuchfunktion kannst du hier alle deine Gedanken festhalten und zu einem späteren Zeitpunkt wieder lesen': 'With the diary function you can record all your thoughts here and read them again at a later date'
+'Oftmals sind es die unscheinbaren Kleinigkeiten, die uns helfen uns zu organisieren und wieder zu erinnern': 'Often it is the inconspicuous little things that help us to organize and to remember again'
+'Generiere bequem eine PDF-Datei mit allen Informationen, die du deinem Arzt mitgeben möchtest und bring es mit zur nächsten Sprechstunde!': 'Easily generate a PDF file with all the information you want to give your doctor and bring it with you to your next consultation!'
+'Mit intuitiven Diagrammen kann dein Arzt schnell sehen, wie sich die letzte Anpassung der Medikation ausgewirkt hat': 'Intuitive charts allow your doctor to quickly see what effect the last adjustment of medication had'
+'Wenn es etwas gibt, das wir mit Sicherheit wissen, dann ist es folgendes': 'If there is one thing we know for sure, it is this'
+'Von den vielen Krankheiten und Gebrechen, die einen Menschen heimsuchen können, kann man die Epilepsie wahrscheinlich als eine der heimtückischeren bezeichnen.<br />Oft nicht greifbar und äusserst schwierig zu behandeln kann sie dazu führen, dass sich Betroffene mit der Zeit immer mehr isolieren, was zu einer Verschlimmerung der Beschwerden führen kann': 'Of the many diseases and handicaps that can afflict a person, epilepsy can probably be considered one of the more insidious.<br />Often intangible and extremely difficult to treat, epilepsy can cause sufferers to become increasingly isolated over time, which can lead to a worsening of the symptoms'
+'An Epilepsie erkrankte Menschen fühlen sich oftmals hilflos der Krankheit ausgeliefert, da die Therapie vor allem aus einer langfristigen Anfallsprophylaxe besteht. Um mögliche epileptische Anfälle gar nicht erst entstehen zu lassen, beginnen Betroffene oft mögliche Auslösanfaller (Trigger) zu vermeiden. Leider gibt es auch Ausnahmen, bei welchen Anfälle sich nicht bestimmten Triggern zuordnen lassen. Begleitend zu einer medikamentösen Therapie um Anfälle zu unterdrücken, wird den Betroffenen oftmals empfohlen ein Tagebuch zu führen, damit nachvollzogen werden kann, wie die aktuelle Behandlung und Medikation wirken. Mit einem Tagebuch können auch Zusammenhänge zwischen Situationen und dem aktuellen Zustand besser verstanden werden. Auch wenn das Gedächtnis der Betroffenen voll funktionsfähig ist, können mittels Tagebücher längst vergessene Details wiederentdeckt oder sogar ganze Tage rekonstruiert und somit mögliche Auslöser identifiziert werden. Damit dies jedoch gelingt, müssen im Tagebuch sämtliche Anfälle notiert werden, am besten mit genauen Informationen wie Datum, Uhrzeit, Ort und Situation': 'People suffering from epilepsy often feel helplessly at the mercy of the disease, as the therapy consists mainly of long-term seizure prophylaxis. In order to prevent possible epileptic seizures from occurring in the first place, those affected often begin to avoid possible triggers. Unfortunately, there are also exceptions in which seizures cannot be assigned to certain triggers. In addition to a drug therapy to suppress seizures, it is often recommended that patients keep a diary so that they can see how the current treatment and medication are working. With a diary, connections between situations and the current condition can also be better understood. Even if the memory of the affected person is fully functional, diaries can help to rediscover long forgotten details or even reconstruct whole days and thus identify possible triggers. In order for this to succeed, however, all seizures must be recorded in the diary, preferably with precise information such as date, time, place and situation'
+'Leider kann man den Zeitpunkt eines epileptischen Anfalls nicht planen und genau dann, wenn man das Tagebuch benötigen würde, liegt es nicht in Griffnähe oder kann nicht aufgefunden werden': 'Unfortunately it is not possible to plan the time of an epileptic seizure and exactly when one would need the diary, it is not within reach or cannot be found'
+'Eine weitere Schwierigkeit besteht darin, dass die Sprechstunden und Kontrollen beim Arzt nur alle paar Monate stattfinden und bis dahin viele Zwischenfälle oder wichtige Hinweise vergessen gehen. <br />Ohne diese detaillierten Informationen fällt es den Ärzten sehr schwer, den Patienten befriedigend auf eine neue Medikation einzustellen. Um genauere Details über die epileptischen Anfälle zu erfahren, müssen oft Daueraufenthalte in epileptischen Polikliniken durchgeführt werden, wo Betroffene dauerüberwacht und künstlich auf Schlafentzug gesetzt werden, damit Anfälle provoziert und die benötigten Daten erhoben werden können': 'A further difficulty is that the consultations and checks at the doctor''s office only take place every few months and by then many incidents or important details have been forgotten. <br />Without this detailed information it is very difficult for the doctors to adjust the patient satisfyingly to a new medication. In order to find out more details about epileptic seizures, it is often necessary to have permanent stays in epileptic polyclinics, where patients are permanently monitored and artificially put on sleep deprivation so that seizures can be provoked and the necessary data collected'
+'Ziel von epilepc.ch ist es, betroffenen Personen die für eine effektive Therapie benötigten Werkzeuge zuverlässig und sicher zur Verfügung zu stellen': 'The goal of epilepc.ch is to provide affected persons with the tools they need for effective therapy in a reliable and safe manner'
+'Hier werden sensible und schützenswerte Daten gespeichert. Und wir sind verpflichtet darauf aufzupassen! <br /> Alle vom epilepc-Benutzer eingegebenen Daten werden ausschliesslich verschlüsselt übermittelt und zusätzlich verschlüsselt in unserer Datenbank gespeichert. <br /> Erst beim Auslesen der Daten durch den Verfasser, werden diese entschlüsselt und in Klartext angezeigt.<br /> Sämtliche Infrastruktur und Daten werden in der Schweiz gespeichert und betrieben': 'This is where sensitive data worthy of protection is stored. And we are obliged to take care of it! <br />All data entered by the epilepc user will be transmitted exclusively encrypted and additionally stored encrypted in our database. <br />Only when the data is read out by the author it gets decoded and displayed in plain text.<br />All infrastructure and data are stored and operated in Switzerland'
+'Registriere dich jetzt bei epilepc und unterstütze deine Ärzte mit deinen Informationen': 'Register with epilepc now and support your doctors with your information'
+'Wir arbeiten intensiv daran epilepc mit neuen Funktionen zu erweitern und zu verbessern': 'We work intensively on improving and expanding epilepc with new functions'
+'Hast du eine Idee oder einen Verbesserungsvorschlag? Dann melde dich bei uns': 'Do you have an idea or a suggestion for improvement? Then get in touch with us'
+'Unterstützer und Sponsoren': 'Supporter and Sponsors'
+'Haben Sie Fragen? Möchten Sie unser Produkt unterstützen oder Sponsor werden?': 'Do you have any questions? Would you like to support our product or become a sponsor?'
+'Dann schreiben Sie uns eine Email an': 'Then send us an email to'
+'oder benutzen Sie unser': 'or use our'
+Kontaktformular: 'Contact form'
+'Zum Kontaktformular': 'To the contact form'
+'oder unterstützen Sie uns auf': 'or support us on'
+Datenschutzerklärung: 'Privacy policy'
+Releasenotes: Releasenotes
+'Wieso epilepc': 'Why epilepc'
+Funktionen: Functions
+Sicherheit: Security
+'Los geht''s': 'Get started'
+'Mehr dazu': 'Learn more'
+'Anfälle dokumentieren': 'Documenting seizures'
+'Tagebuch führen': 'Keep a diary'
+'Übersicht generieren': 'Generate overview'
+'Und noch vieles mehr!': 'And much more!'
+'Fokaler Anfall': 'Focal seizure'
+'PDF-Übersicht vom': 'PDF overview from'
+'Deine Übersicht vom letzten Jahr': 'Your overview of the last year'
+Absencen: Absences
+Aura: Aura
+'Fokale Anfälle': 'Focal seizure'
+'Komplex fokale Anfälle': 'Complex focal seizures'
+Reflex-Anfälle: 'Reflect seizure'
+'Myoklonische Anfälle': 'Myclonic seizures'
+'Status epilepticus': 'Status epilepticus'
+'Tonisch‐klonische Anfälle': 'Tonic-clonic seizures'
+'Unilaterale Anfälle': 'Unilateral seizures'
+'Willkommen zurück': 'Welcome back'
+Willkommen: Welcome
+'Email Adresse': 'Email address'
+'Eingeloggt bleiben': 'Stay logged in'
+'Jetzt registrieren': 'Register now'
+'Passwort vergessen': 'Forgot password'
+'Ich stimme den': 'I agree to the'
+Nutzungsbedingungen: 'terms of use'
+'von epilepc.ch zu': 'of epilepc.ch'
+Passwort: Password
+'Account bereits erstellt? Log dich jetzt ein': 'Account already created? Log in now'
+Ou: Damn
+'Kein Problem, das passiert den Besten von uns. Trage einfach deine Email Adresse ins untenstehende Feld ein und wir schicken dir eine Mail zum Zurücksetzen deines Passworts': 'No problem, it happens to the best of us. Just enter your email address in the field below and we will send you an email to reset your password'
+'Passwort zurücksetzen': 'Reset password'
+'Registriere dich': 'Sign up'
+'Registriere dich jetzt': 'Sign up now'
+'Ihre Registrierung bei epilepc': 'Your registration at epilepc'
+'Herzliche Gratulation! Ihre Registrierung ist abgeschlossen! Falls Sie unsere Bestätigungsmail nicht erhalten haben, prüfen Sie bitte Ihrem Spam-Ordner.': 'Congratulations! Your registration is complete! If you have not received our confirmation mail, please check your spam folder.'
+'epilepc - Ihr Passwort wurde zurückgesetzt': 'epilepc - Your password has been reset'
+'Passwort erfolgreich zurückgesetzt & versendet!': 'Password successfully reset & sent!'
+'Die angegebene Email-Adresse ist nicht registriert': 'The given email address is not registered'
+'Frage / Support': 'Question / Support'
+Sorgen: Worries
+Administratives: 'Administrative question'
+'Interesse an weiteren Produkten': 'Interest in further products'
+'Interesse an Mitarbeit': 'Interest in cooperation'
+Idee: Idea
+'Habt Ihr Fragen? Anregungen? Unklarheiten? Möchtet euch sonst einbisschen unterhalten?<br/>Dann schreibt uns!': 'Do you have any questions? suggestions? Ambiguities? Would you like to talk a little bit otherwise?<br/>Then write us!'
+Name: Name
+Email: Email
+Thema: Topic
+'Schick mir eine Kopie': 'Send me a copy'
+Nachricht: Message
+Abschicken: Send
+'Neue Kontaktformular-Nachricht auf epilepc.ch erhalten!': 'New contact form message received on epilepc.ch!'
+'Ihre Nachricht wurde erfolgreich versendet!': 'Your message was successfully sent!'
+'Nutzungsbedingungen - epilepc': 'Terms of use - epilepc'
+datenschutzerklärung_part: '<h2>Data protection</h2><p>Responsible body in terms of data protection laws, in particular the EU General Data Protection Regulation (GDPR), is:</p><br><p>Epilepc <br>3018 Bern - Switzerland</p><p>Email: <a href="mailto:info@epilepc.ch">info@epilepc.ch</a><br> Website: <a href="https://www.epilepc.ch/">https://www.epilepc.ch</a></p><p>&nbsp;</p><h2>General remark</h2> <p>Based on Article 13 of the Swiss Federal Constitution and the data protection provisions of the Confederation (Data Protection Act, DSG <!--DSG-->), every person is entitled to protection of their privacy and protection against misuse of their personal data. The operators of these pages take the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with the statutory data protection regulations and this data protection declaration.</p><p>In cooperation with our hosting providers, we strive to protect the databases as well as possible from outside access, loss, misuse or counterfeiting.</p><p>We would like to point out that data transmission over the Internet (e.g. when communicating by email) can have security gaps. It is not possible to completely protect data from third-party access.</p><p>By using this website, you agree to the collection, processing and use of data as described below. This website can generally be visited without registration. Data such as pages viewed or the name of the file accessed, date and time are stored on the server for statistical purposes without this data being directly related to you. Personal data, in particular name, address or email address, are collected on a voluntary basis as far as possible. Without your consent, the data will not be passed on to third parties.</p><p>&nbsp;</p><h2>Processing of personal data</h2> <p>Personal data is all information that relates to a specific or identifiable person. A data subject is a person who is used to process personal data. Processing includes all handling of personal data, regardless of the means and procedures used, in particular the storage, disclosure, procurement, deletion, storage, modification, destruction and use of personal data.</p> <p>We process personal data in accordance with Swiss data protection law. In addition, we process - insofar as and insofar as the EU GDPR is applicable - personal data in accordance with the following legal bases in connection with Art. 6 Para. 1 GDPR <!--DSGVO-->:</p> <ul> <li>lit. a) Processing of personal data with the consent of the data subject.</li> <li>lit. b) Processing of personal data to fulfill a contract with the data subject and to carry out corresponding pre-contractual measures.</li> <li>lit. c) Processing of personal data to fulfill a legal obligation to which we are subject in accordance with any applicable EU law or in accordance with any applicable law of a country in which the GDPR is <!--DSGVO-->fully or partially applicable.</li> <li>lit. d) Processing of personal data in order to protect the vital interests of the data subject or another natural person.</li> <li>lit. f) Processing of personal data in order to safeguard the legitimate interests of us or third parties, provided that the fundamental freedoms and fundamental rights as well as the interests of the data subject do not prevail. Legitimate interests are in particular our business interest in being able to provide our website, information security, the enforcement of our own legal claims and compliance with Swiss law.</li> </ul> <p>We process personal data for the duration that is necessary for the respective purpose or purposes. In the case of longer-term storage obligations due to legal and other obligations to which we are subject, we restrict processing accordingly.</p><p>&nbsp;</p><h2>Privacy policy for cookies</h2><p>This site uses cookies. These are small text files that make it possible to store specific, user-related information on the user''s device while using the website. Cookies make it possible, in particular, to determine the frequency of use and number of users of the pages, to analyze behavior of the page usage, but also to make our offer more customer-friendly. <!--Allg.Cookies-->Cookies remain stored at the end of a browser session and can be called up again when you visit the site again. If you do not want this, you should set your internet browser so that it refuses to accept cookies.</p> <p></p><p>A general objection to the use of cookies used for online marketing purposes can be found on a large number of services, especially in the case of tracking, via the US website <a href="http://www.aboutads.info/choices/" target="_blank" rel="noopener">http://www.aboutads.info/choices/</a> or the EU website <a href="http://www.youronlinechoices.com/" target="_blank" rel="noopener">http://www.youronlinechoices.com/ be</a> explained. Furthermore, cookies can be saved by switching them off in the browser settings. Please note that not all functions of this online offer can then be used.</p> <p>&nbsp;</p><h2>Data protection declaration for SSL encryption</h2><p>This website uses SSL encryption for security reasons and to protect the transmission of confidential content, such as inquiries that you send to us as the website operator. You can recognize an encrypted connection by the fact that the address line of the browser changes from "http: //" to "https: //" and by the lock symbol in your browser line.</p> <p>If SSL encryption is activated, the data that you transmit to us cannot be read by third parties.</p><p>&nbsp;</p><h2>Data protection declaration for server log files</h2><p>The provider of this website automatically collects and stores information in so-called server log files, which your browser automatically transmits to us. These are:</p> <ul> <li>Browser type and version</li> <li>Operating system used</li> <li>Referrer URL</li> <li>Host name of the accessing computer</li> <li>Time of the server request</li> </ul> <p>This data cannot be assigned to specific people. This data is not merged with other data sources. We reserve the right to check this data retrospectively if we become aware of specific indications of illegal use.</p><p>&nbsp;</p><h2>Third party services</h2> <p>This website uses Google Maps for embedding maps, Google Invisible reCAPTCHA for protection against bots and spam and YouTube for embedding videos.</p><p>These services of the American Google LLC use cookies, among other things, and as a result, data is transferred to Google in the United States, whereby we assume that no personal tracking takes place in this context solely through the use of our website.</p><p>Google is committed to ensuring adequate data protection in accordance with the American-European and American-Swiss Privacy Shield.</p><p>Further information can be found in <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener" style="color: inherit;">Google''s data protection declaration</a> .</p><p>&nbsp;</p><h2>Data protection declaration for contact form</h2><p>If you send us inquiries using the contact form, your details from the inquiry form, including the contact details you provided there, will be stored by us for the purpose of processing the inquiry and in the event of follow-up questions. We will not pass on this data without your consent.</p><p>&nbsp;</p><h2>Data protection declaration for right to information, deletion, blocking</h2><p>You have the right to free information about your stored personal data, its origin and recipient and the purpose of data processing as well as a right to correction, blocking or deletion of this data at any time. You can contact us at any time at the address given in the imprint if you have any further questions on the subject of personal data.</p><p>&nbsp;</p> <h2>Data protection declaration for objection to advertising mails</h2><p>We hereby object to the use of contact data published within the framework of the imprint obligation for sending unsolicited advertising and information material. The operators of the pages expressly reserve the right to take legal action in the event of unsolicited sending of advertising information, such as spam e-mails.</p><p>&nbsp;</p><h2>Data protection declaration for Google Analytics</h2><p>This website uses Google Analytics, a web analytics service provided by Google Inc., 1600 Amphitheater Parkway, Mountain View, CA 94043, USA. To deactivate Google Analytics, Google provides <a href="https://tools.google.com/dlpage/gaoptout?hl=de" target="_blank" style="color: inherit;">https://tools.google.com/dlpage/gaoptout?hl=de</a>a browser plug-in is available. Google Analytics uses cookies. These are small text files that make it possible to store specific, user-related information on the user''s device. These enable an analysis of the use of our website by Google. The information collected by the cookie about the use of our website (including your IP address) is usually transferred to a Google server in the USA and stored there. We would like to point out that Google Analytics has been expanded on this website by the code "gat._anonymizeIp ();" to include anonymous recording of IP addresses (so-called IP masking<!--SwissAnwalt-->) to ensure. If anonymization is active, Google shortens IP addresses within member states of the European Union or in other contracting states of the Agreement on the European Economic Area, which is why no conclusions can be drawn about your identity. The full IP address is only transferred to a Google server in the USA and abbreviated there in exceptional cases. Google complies with the data protection provisions of the "Privacy Shield" agreement and is registered with the "Privacy Shield" program of the US Department of Commerce and uses the information collected to evaluate the use of our websites, to write reports for us in this regard and other related services to us to provide. Find out more at <a href="https://support.google.com/analytics/answer/6004245?hl=de" target="_blank" style="color: inherit;">https://support.google.com/analytics/answer/6004245?hl=de</a> .</p><p>&nbsp;</p><h2>Data protection declaration for the use of Google Web Fonts</h2><p>This website uses so-called web fonts, which are provided by Google, for the uniform display of fonts. When you call up a page, your browser loads the required web fonts into your browser cache in order to display texts and fonts correctly. If your browser does not support web fonts, a standard font will be used by your computer.</p><p>Further information on Google Web Fonts can be found at <a href="https://developers.google.com/fonts/faq" target="_blank" style="color: inherit;">https://developers.google.com/fonts/faq</a> and in Google''s data protection declaration: <a href="https://www.google.com/policies/privacy/" target="_blank" style="color: inherit;">https://www.google.com/policies/privacy/</a></p><p>&nbsp;</p><h2>copyrights</h2> <p>The copyright and all other rights to content, images, photos or other files on the website belong exclusively to the operator of this website or the specifically named rights holders. The written consent of the copyright holder must be obtained in advance for the reproduction of all files.</p><p>Anyone who commits a copyright infringement without the consent of the respective rights holder can be punished and liable for damages if necessary.</p><p>&nbsp;</p><h2>General disclaimer</h2> <p>All information on this website has been carefully checked. We endeavor to offer our information in a current, correct and complete manner. Nevertheless, the occurrence of errors cannot be completely ruled out, which means that we cannot guarantee the completeness, accuracy and timeliness of information, including journalistic and editorial content. Liability claims based on material or immaterial damage caused by the use of the information offered are excluded, unless there is evidence of willful or grossly negligent fault.</p><p>The publisher can change or delete texts at his own discretion and without notice and is not obliged to update the content of this website. Use or access to this website is at the visitor''s own risk. The publisher, his clients or partners are not responsible for damage, such as direct, indirect, accidental, to be determined in advance or consequential damage, which allegedly resulted from visiting this website and are therefore not liable for this.</p><p>The publisher also assumes no responsibility and liability for the content and availability of third-party websites that can be reached via external links on this website. The operators of the linked pages are solely responsible for their content. The publisher thus expressly distances himself from all third-party content that may be relevant under criminal law or liability law or that violates common decency.</p><p>&nbsp;</p><h2>amendments</h2><p>We can change this privacy policy at any time without notice. The current version published on our website applies. Insofar as the data protection declaration is part of an agreement with you, we will inform you of the change by email or in another suitable way in the event of an update.</p><p>&nbsp;</p><h2>Questions to the data protection officer</h2> <p>If you have any questions about data protection, please send us an email or contact the person responsible for data protection at the beginning of the data protection declaration in our organization.</p><p>&nbsp;</p><p>Bern,<a href="https://www.swissanwalt.ch/" target="_blank" rel="noopener"> May 7, 2019 </a>Source:<a href="https://www.swissanwalt.ch/" target="_blank" rel="noopener"> SwissAnwalt </a> <!--ACHTUNG: Wenn Sie die Quelle ohne Erlaubnis von SwissAnwalt entfernen, dann begehen Sie eine Urheberrechtsverletzung welche in jedem Fall unter Kostenfolge geahndet wird.-->'
+'Neue Nachricht vom Kontaktformular auf': 'New message from contact form on'
+'Neue Nachricht auf': 'New message on'
+Von: From
+Schweiz: Switzerland
+'Vielen Dank für deine Registrierung bei epilepc! Dein Benutzerkonto wurde angelegt und du kannst nun loslegen': 'Thank you very much for your registration at "epilepc"! Your user account has been created and you can now start'
+'Bei grossen Ankündigungen oder Anpassungen erlauben wir uns, dir auf die angegebene Email-Adresse Informationsmails zu senden': 'In the event of major announcements or adjustments, we take the liberty of sending you information mails to the email address provided'
+'JETZT EINLOGGEN': 'LOG IN NOW'
+'Na? Passwort vergessen?': 'Huh? Password lost?'
+'Nur die Ruhe bewahren. Das ist uns auch viel zu oft passiert.': 'Just stay calm. This has happened to us far too often.'
+'Wir haben dir ein neues Passwort generiert, mit welchem du dich gleich einloggen kannst': 'We have generated a new password for you, with which you can log in immediately'
+'Wir empfehlen dir nach dem ersten Einloggen, dein Passwort umgehend zu ändern': 'We recommend that you change your password immediately after your first login'
+'Account erstellen': 'Create Account'
+'Eine Spamflut ist aber nicht zu erwarten': 'However, a flood of spam will not be a problem'
+'Die neuen Passwörter stimmen nicht überein': 'The new passwords do not match'
+'Passwort erfolgreich geändert!': 'Password changed successfully!'
+'Passwort nicht korrekt': 'Password not correct'
+'Zugriff verweigert': 'Access denied'
+'Um unser Service nutzen zu können, musst du unseren Nutzungsbedingungen zustimmen': 'To use our service, you must agree to our terms of use'
+'Ereignis bearbeiten': '__Ereignis bearbeiten'
+Ereignisübersicht: __Ereignisübersicht
+'Ereignis anzeigen': '__Ereignis anzeigen'
+Test: __Test
+'Vielen Dank für deine Registrierung bei ''epilepc''! Dein Benutzerkonto wurde angelegt und du kannst nun loslegen!': 'Thank you very much for your registration at "epilepc"! Your user account has been created and you can now start'
+nutzungs.bedingungen: 'To use our service, you must agree to our terms of use'
+'Notfallmedikament': 'Emergency medication'
+'Eingenommen': 'Taken'
+'Keine': 'None'
+'form.account.diagnose.max.length': 'Max. 250 characters'
+'form.account.max.length': 'Max. 25 characters'
+'Notfall Medikament': 'Emergency medication'
+'Notfallmedikament eingenommen?': 'Emergency medicine taken?'
+'Eingenommene Notfallmedikation': 'Emergency medication taken'
+'Deine Übersicht des aktuellen Monats': 'Your overview of the current month'
+'Notfall Medikationen': 'Emergency medication'
+'Notfallmedikationen': 'Emergency medication'
+

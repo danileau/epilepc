@@ -22,7 +22,7 @@ class MedicationFixtures extends BaseFixtures implements DependentFixtureInterfa
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(10, 'main_medication', function ($count) use ($manager) {
+        $this->createMany(100, 'main_medication', function ($count) use ($manager) {
             $entry = new Medication();
             $entry->setName($this->faker->text);
             $entry->setDescription($this->faker->text);

@@ -1,139 +1,198 @@
-Abbrechen: Cancella
-Adminbereich: 'Area amministrativa'
+"An Epilepsie erkrankte Menschen fühlen sich oftmals hilflos der Krankheit ausgeliefert, da die Therapie vor allem aus einer langfristigen Anfallsprophylaxe besteht. Um mögliche epileptische Anfälle gar nicht erst entstehen zu lassen, beginnen Betroffene oft mögliche Auslösanfaller (Trigger) zu vermeiden. Leider gibt es auch Ausnahmen, bei welchen Anfälle sich nicht bestimmten Triggern zuordnen lassen. Begleitend zu einer medikamentösen Therapie um Anfälle zu unterdrücken, wird den Betroffenen oftmals empfohlen ein Tagebuch zu führen, damit nachvollzogen werden kann, wie die aktuelle Behandlung und Medikation wirken. Mit einem Tagebuch können auch Zusammenhänge zwischen Situationen und dem aktuellen Zustand besser verstanden werden. Auch wenn das Gedächtnis der Betroffenen voll funktionsfähig ist, können mittels Tagebücher längst vergessene Details wiederentdeckt oder sogar ganze Tage rekonstruiert und somit mögliche Auslöser identifiziert werden. Damit dies jedoch gelingt, müssen im Tagebuch sämtliche Anfälle notiert werden, am besten mit genauen Informationen wie Datum, Uhrzeit, Ort und Situation": "Le persone che soffrono di epilessia spesso si sentono impotenti alla mercé della malattia, poiché la terapia consiste principalmente nella profilassi convulsiva a lungo termine. Al fine di prevenire possibili crisi epilettiche, le persone colpite spesso iniziano ad evitare i possibili fattori scatenanti. Purtroppo esistono anche eccezioni in cui i sequestri non possono essere assegnati a determinati trigger. Oltre a una terapia farmacologica per sopprimere le convulsioni, spesso si raccomanda ai pazienti di tenere un diario in modo da poter vedere come funzionano il trattamento e i farmaci attuali. Con un diario si possono comprendere meglio anche le connessioni tra le situazioni e la condizione attuale. Anche se la memoria della persona colpita è pienamente funzionale, i diari possono aiutare a riscoprire dettagli dimenticati da tempo o addirittura a ricostruire intere giornate e quindi a individuare possibili fattori scatenanti. Affinché ciò avvenga, tuttavia, tutti gli attacchi epilettici devono essere registrati nel diario, preferibilmente con informazioni precise come la data, l'ora, il luogo e la situazione"
+"Bei epilepc.ch findest du sämtliche Werkzeuge und Tools, welche du benötigst um deine Epilepsie-Behandlung effektiv und sicher zu begleiten!": "Su epilepc.ch trovi tutti gli strumenti necessari per accompagnare in modo efficace e sicuro il vostro trattamento dell'epilessia!"
+"Los geht's": 'Iniziamo'
+"Vielen Dank für deine Registrierung bei 'epilepc'! Dein Benutzerkonto wurde angelegt und du kannst nun loslegen!": "Grazie per esserti registrata su 'epilepc'! Il tuo account è stato creato e ora puoi iniziare!"
+'Abbrechen': 'Cancella'
+'Abschicken': 'Invia'
+'Absencen': 'Assenze'
+'Account bereits erstellt? Log dich jetzt ein': 'Conto già creato? Effettua il login ora'
+'Account erstellen': 'Creare un account'
+'Adminbereich': 'Area amministrativa'
+'Administratives': 'Questione amministrativa'
 'Administrator Funktionen': 'Funzioni di amministratore'
-Aktionen: Azioni
+'Aktionen': 'Azioni'
 'Aktuelles Passwort': 'Password attuale'
 'Alle anzeigen': 'Mostra tutti'
-'Anfall Funktionen': 'Funzioni di crisi'
-An Epilepsie erkrankte Menschen fühlen sich oftmals hilflos der Krankheit ausgeliefert, da die Therapie vor allem aus einer langfristigen Anfallsprophylaxe besteht. Um mögliche epileptische Anfälle gar nicht erst entstehen zu lassen, beginnen Betroffene oft mögliche Auslösanfaller (Trigger) zu vermeiden. Leider gibt es auch Ausnahmen, bei welchen Anfälle sich nicht bestimmten Triggern zuordnen lassen. Begleitend zu einer medikamentösen Therapie um Anfälle zu unterdrücken, wird den Betroffenen oftmals empfohlen ein Tagebuch zu führen, damit nachvollzogen werden kann, wie die aktuelle Behandlung und Medikation wirken. Mit einem Tagebuch können auch Zusammenhänge zwischen Situationen und dem aktuellen Zustand besser verstanden werden. Auch wenn das Gedächtnis der Betroffenen voll funktionsfähig ist, können mittels Tagebücher längst vergessene Details wiederentdeckt oder sogar ganze Tage rekonstruiert und somit mögliche Auslöser identifiziert werden. Damit dies jedoch gelingt, müssen im Tagebuch sämtliche Anfälle notiert werden, am besten mit genauen Informationen wie Datum, Uhrzeit, Ort und Situation: "Le persone che soffrono di epilessia spesso si sentono impotenti alla mercé della malattia, poiché la terapia consiste principalmente nella profilassi convulsiva a lungo termine. Al fine di prevenire possibili crisi epilettiche, le persone colpite spesso iniziano ad evitare i possibili fattori scatenanti. Purtroppo esistono anche eccezioni in cui i sequestri non possono essere assegnati a determinati trigger. Oltre a una terapia farmacologica per sopprimere le convulsioni, spesso si raccomanda ai pazienti di tenere un diario in modo da poter vedere come funzionano il trattamento e i farmaci attuali. Con un diario si possono comprendere meglio anche le connessioni tra le situazioni e la condizione attuale. Anche se la memoria della persona colpita è pienamente funzionale, i diari possono aiutare a riscoprire dettagli dimenticati da tempo o addirittura a ricostruire intere giornate e quindi a individuare possibili fattori scatenanti. Affinché ciò avvenga, tuttavia, tutti gli attacchi epilettici devono essere registrati nel diario, preferibilmente con informazioni precise come la data, l'ora, il luogo e la situazione"
 'Anfall anzeigen': 'Mostra crisi'
 'Anfall bearbeiten': 'Modifica crisi'
 'Anfall erfolgreich bearbeitet!': 'Crisi modificata con successo!'
 'Anfall erfolgreich erstellt!': 'Crisi creata con successo!'
 'Anfall erstellen': 'Crea una crisi'
+'Anfall Funktionen': 'Funzioni di crisi'
 'Anfall löschen': 'Cancella crisi'
-Anfall: Crise
-Anfallsdatum: 'Tempo della crisi'
-Anfallstitel: 'Titolo della crisi'
+'Anfall': 'Crise'
+'Anfallsdatum': 'Tempo della crisi'
+'Anfallstitel': 'Titolo della crisi'
 'Anfallstyp auswählen': 'Selezionare il tipo di crisi'
-Anfallstyp: 'Tipo di crisi'
+'Anfallstyp': 'Tipo di crisi'
+'Anfallstyp unbekannt': 'Tipo di crisi sconosciuto'
 'Anfallstypen pflegen': 'Gestire i tipi di crisi'
-Anfallszeitpunkt: 'Ora della crisi'
-Anfallsübersicht: 'Panoramica delle crisi'
+'Anfallszeitpunkt': 'Ora della crisi'
+'Anfallsübersicht': 'Panoramica delle crisi'
 'Anfälle dokumentieren': 'Documentazione delle crisi'
-Anfälle: Crisi
-Anzeigen: Mostra
-Ausloggen: Logout
+'Anfälle': 'Crisi'
+'Anzeigen': 'Mostra'
+'anzeigen': 'mostra'
+'application/json/German.json': 'application/json/Italian.json'
+'application/vendor/bootstrap/js/i18n/bootstrap-datepicker.de.js': 'application/vendor/bootstrap/js/i18n/bootstrap-datepicker.it.js'
+'Aura': 'Aura'
+'Ausloggen': 'Logout'
 'Ausstelldatum des Rezepts': 'Data di prescrizione della ricetta'
-Bearbeiten: Modifica
-'Bei epilepc.ch findest du sämtliche Werkzeuge und Tools, welche du benötigst um deine Epilepsie-Behandlung effektiv und sicher zu begleiten!': 'Su epilepc.ch trovi tutti gli strumenti necessari per accompagnare in modo efficace e sicuro il vostro trattamento dell''epilessia!'
-Benutzer: Utente
-Benutzeraccount: 'Conto utente'
-Benutzerverwaltung: 'Amministrazione utente'
-Beschreibung: Descrizione
+'Bearbeiten': 'Modifica'
+'bearbeiten': 'modifica'
+'Bei grossen Ankündigungen oder Anpassungen erlauben wir uns, dir auf die angegebene Email-Adresse Informationsmails zu senden': "In caso di annunci o modifiche importanti, ci prenderemo la libertà di inviarvi e-mail informative all'indirizzo e-mail fornito."
+'Benutzer': 'Utente'
+'Benutzeraccount': 'Conto utente'
+'Benutzerverwaltung': 'Amministrazione utente'
+'Beschreibung': 'Descrizione'
 'Bist du sicher, dass du diese Medikation löschen willst?': 'Sicuro di voler cancellare quel farmaco?'
 'Bist du sicher, dass du diesen Anfall löschen willst?': 'Sicuro di voler cancellare questa crisi?'
 'Bist du sicher, dass du diesen Tagebucheintrag löschen willst?': 'Sicuro di voler cancellare questa paggina del diario?'
 'Bist du sicher, dass du dieses Ereignis löschen willst?': 'Sicuro di voler cancellare questo evento?'
-'Dann schreiben Sie uns eine Email an': 'Poi, per favore, inviateci un''e-mail a'
+'Dann schreiben Sie uns eine Email an': "Poi, per favore, inviateci un'e-mail a"
 'Das PDF wurde für eine Anzeige an einem Bildschirm optimiert.': 'Il PDF è stato ottimizzato per la visualizzazione su schermo.'
+'Das sind nicht die Droiden, nach denen Sie suchen': "Questi non sono i droidi che state cercando"
 'Dashboard von': 'Cruscotto di'
-Dashboard: Cruscotto
-Datenschutzerklärung: 'Informativa sulla privacy'
+'Dashboard': 'Cruscotto'
+'Datenschutzerklärung': 'Informativa sulla privacy'
+'datenschutzerklärung_part': "<h2>Protezione dati</h2><p>L'organismo responsabile in termini di leggi sulla protezione dei dati, in particolare il regolamento generale sulla protezione dei dati (GDPR), è:</p><br><p>epilepc <br>3018 Berna</p><p>Email: <a href=\"mailto:info@epilepc.ch\">info@epilepc.ch</a><br> Sito web: <a href=\"https://www.epilepc.ch/\">https://www.epilepc.ch</a></p><p>&nbsp;</p><h2>Osservazione generale</h2> <p>In base all'articolo 13 della Costituzione federale svizzera e alle disposizioni sulla protezione dei dati della Confederazione (DSG <!--DSG-->), ogni persona ha diritto alla protezione della propria privacy e alla protezione contro l'uso improprio dei propri dati personali . La protezione dei dati personali dell'utente. Trattiamo i tuoi dati personali in modo confidenziale e in conformità con le disposizioni legali sulla protezione dei dati e questa dichiarazione sulla protezione dei dati.</p><p>In collaborazione con i nostri fornitori di hosting, ci impegniamo a proteggere il database nel miglior modo possibile da accesso esterno, perdita, uso improprio o contraffazione.</p><p>Vorremmo sottolineare che la trasmissione di dati su Internet (ad es. Quando si comunica via e-mail) può presentare lacune nella sicurezza. Non è possibile proteggere completamente i dati dall'accesso di regole parti.</p><p>Secondo questo sito Web, l'utente accetta la raccolta, l'utente e l'uso dei dati vengono descritti di seguito. Questo sito Web può essere generalmente visitato senza registrazione. Dati come pagine inviati o nome del file a cui si accede, dati e ora sono memorizzati sul server a fini statistici senza che questi dati siano collegati all'utente. I dati personali, in particolare nome, indirizzo o indirizzo e-mail, sono raccolti su base volontaria per quanto possibile. Senza il tuo consenso, i dati non saranno trasmessi a terzi.</p><p>&nbsp;</p><h2>Trattamento dei dati personali</h2> <p>I dati personali sono tutte le informazioni relative a una persona specifica o identificabile. Una persona interessata è una persona che viene utilizzata per i dati personali. Il trattamento comprende tutto il trattamento dei dati personali, richiesto dai mezzi e dalle procedure gestite, in particolare l'archiviazione, la divulgazione, l'approvvigionamento, la rimozione, l'archiviazione, la modifica, la distruzione e l'uso dei dati personali .</p> <p>Elaboriamo i dati personali in conformità con la legge svizzera sulla protezione dei dati. Inoltre, trattiamo - nella misura e nella misura in cui è applicabile il GDPR dell'Unione - i dati personali in conformità con le seguenti basi legali in relazione all'art. 6 par. 1 GDPR <!--DSGVO-->:</p> <ul> <li>Illuminato. a) Trattamento dei dati personali con il consenso dell'interessato.</li> <li>Illuminato. b) Trattamento dei dati personali per adempiere a un contratto con l'interessato e per attuare le misure precontrattuali definite.</li> <li>Illuminato. c) Trattamento dei Dati Personali per adempiere a un Obbligo legale al Quale siamo soggetti in conformita con Qualsiasi legge UE APPLICABILE o in conformita con Qualsiasi legge APPLICABILE di un paese in cui il GDPR E <!--DSGVO-->totalmente o Parzialmente APPLICABILE.</li> <li>Illuminato. d) Trattamento di dati personali al fine di proteggere gli interessi vitali dell'interessato o di un'altra persona fisica.</li> <li>illuminato. f) Trattamento di dati personali al fine di salvaguardare gli interessi legittimi di noi o di terzi, a condizione che non prevalgano le libertà e i diritti fondamentali, nonché gli interessi dell'interessato. I legittimi interessi sono in particolare i nostri interessi commerciali nel poter fornire il nostro sito Web, la sicurezza delle informazioni, l'applicazione delle nostre rivendicazioni legali e il rispetto della legge svizzera.</li> </ul> <p>Elaboriamo i dati personali per la durata necessaria per i rispettivi scopi o scopi. Nel caso di obblighi di conservazione a lungo termine dovuti a obblighi legali e di altra natura a cui siamo soggetti, limitiamo l'elaborazione di conseguenza.</p><p>&nbsp;</p><h2>Informativa sulla privacy per i cookie</h2><p>Questo sito utilizza i cookie. Si tratta di piccoli file di testo che consentono di archiviare informazioni specifiche relative all'utente sul dispositivo dell'utente durante l'utilizzo del sito Web. I cookie consentono, in particolare, di determinare la frequenza di utilizzo e il numero di utenti delle pagine, di analizzare il comportamento dell'utilizzo della pagina, ma anche di rendere la nostra offerta più user-friendly. <!--Allg.Cookies-->I cookie rimangono memorizzati al termine di una sessione del browser e possono essere richiamati nuovamente quando si visita nuovamente il sito. Se non lo si desidera, è necessario impostare il browser Internet in modo che rifiuti di accettare i cookie.</p> <p></p><p>Un'obiezione generale all'uso dei cookie utilizzati a fini di marketing online può essere trovata su un gran numero di servizi, in particolare in caso di tracciamento, tramite il sito Web statunitense <a href=\"http://www.aboutads.info/choices/\" target=\"_blank\" rel=\"noopener\">http://www.aboutads.info/choices/</a> o il sito Web dell'UE <a href=\"http://www.youronlinechoices.com/\" target=\"_blank\" rel=\"noopener\">http://www.youronlinechoices.com/ essere</a> spiegato. Inoltre, i cookie possono essere salvati disattivandoli nelle impostazioni del browser. Si noti che non è possibile utilizzare tutte le funzioni di questa offerta online.</p> <p>&nbsp;</p><h2>Dichiarazione sulla protezione dei dati per la crittografia SSL</h2><p>Questo sito Web utilizza la crittografia SSL per motivi di sicurezza e per proteggere la trasmissione di contenuti riservati, come le richieste che ci invii come operatore del sito Web. È possibile riconoscere una connessione crittografata dal fatto che la riga dell'indirizzo del browser cambia da \"http: //\" a \"https: //\" e dal simbolo di blocco nella riga del browser.</p> <p>Se la crittografia SSL è attivata, i dati che ci trasmettete non possono essere letti da terzi.</p><p>&nbsp;</p><h2>Dichiarazione sulla protezione dei dati per i file di registro del server</h2><p>Il fornitore di questo sito Web raccoglie e archivia automaticamente le informazioni nei cosiddetti file di registro del server, che il browser ci trasmette automaticamente. Questi sono:</p> <ul> <li>Tipo e versione del browser</li> <li>Sistema operativo utilizzato</li> <li>URL referrer</li> <li>Nome host del computer che accede</li> <li>Ora della richiesta del server</li> </ul> <p>Questi dati non possono essere assegnati a persone specifiche. Questi dati non vengono uniti ad altre origini dati. Ci riserviamo il diritto di controllare questi dati in modo retrospettivo se veniamo a conoscenza di indicazioni specifiche di uso illegale.</p><p>&nbsp;</p><h2>Servizi di terzi</h2> <p>Questo sito Web utilizza Google Maps per incorporare mappe, Google Invisible reCAPTCHA per la protezione da bot e spam e YouTube per incorporare video.</p><p>Questi servizi dell'American Google LLC utilizzano i cookie, tra le altre cose e, di conseguenza, i dati vengono trasferiti a Google negli Stati Uniti, per cui si presume che nessun tracciamento personale avvenga in questo contesto esclusivamente attraverso l'uso del nostro sito Web.</p><p>Google si impegna a garantire un'adeguata protezione dei dati in conformità con lo scudo per la privacy americano-europeo e americano-svizzero.</p><p>Ulteriori informazioni sono disponibili nella <a href=\"https://policies.google.com/privacy?hl=de\" target=\"_blank\" rel=\"noopener\" style=\"color: inherit;\">dichiarazione sulla protezione dei dati di Google</a> .</p><p>&nbsp;</p><h2>Dichiarazione sulla protezione dei dati per modulo di contatto</h2><p>Se ci invii richieste utilizzando il modulo di contatto, i tuoi dati dal modulo di richiesta, inclusi i dettagli di contatto che ci hai fornito, verranno archiviati da noi allo scopo di elaborare la richiesta e in caso di domande di follow-up. Non trasmetteremo questi dati senza il tuo consenso.</p><p>&nbsp;</p><h2>Dichiarazione sulla protezione dei dati per diritto all'informazione, cancellazione, blocco</h2><p>Hai il diritto di liberare informazioni sui tuoi dati personali memorizzati, la loro origine e il destinatario e lo scopo del trattamento dei dati, nonché il diritto di correggere, bloccare o cancellare questi dati in qualsiasi momento. Puoi contattarci in qualsiasi momento all'indirizzo indicato nell'impronta se hai ulteriori domande sull'argomento dei dati personali.</p><p>&nbsp;</p> <h2>Dichiarazione sulla protezione dei dati per opposizione a messaggi pubblicitari</h2><p>Con la presente ci opponiamo all'uso dei dati di contatto pubblicati nell'ambito dell'obbligo di stampa per l'invio di materiale pubblicitario e informativo non richiesto. Gli operatori delle pagine si riservano espressamente il diritto di intraprendere azioni legali in caso di invio non richiesto di informazioni pubblicitarie, come e-mail di spam.</p><p>&nbsp;</p><h2>Dichiarazione sulla protezione dei dati per Google Analytics</h2><p>Questo sito Web utilizza Google Analytics, un servizio di analisi web fornito da Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. Per disattivare Google Analytics, Google fornisce <a href=\"https://tools.google.com/dlpage/gaoptout?hl=de\" target=\"_blank\" style=\"color: inherit;\">https://tools.google.com/dlpage/gaoptout?hl=de</a>è disponibile un plug-in del browser. Google Analytics utilizza i cookie. Si tratta di piccoli file di testo che consentono di archiviare informazioni specifiche relative all'utente sul dispositivo dell'utente. Questi consentono un'analisi dell'utilizzo del nostro sito Web da parte di Google. Le informazioni raccolte dal cookie sull'uso del nostro sito Web (incluso il tuo indirizzo IP) vengono generalmente trasferite su un server di Google negli Stati Uniti e ivi memorizzate. Desideriamo sottolineare che Google Analytics è stato ampliato su questo sito Web con il codice \"gat._anonymizeIp ();\" includere la registrazione anonima di indirizzi IP (il cosiddetto mascheramento IP<!--SwissAnwalt-->) per garantire. Se l'anonimizzazione è attiva, Google accorcia gli indirizzi IP all'interno degli Stati membri dell'Unione Europea o in altri stati contraenti dell'Accordo sullo Spazio economico europeo, motivo per cui non è possibile trarre conclusioni sulla tua identità. L'indirizzo IP completo viene trasferito su un server di Google negli Stati Uniti e lì abbreviato in casi eccezionali. Google rispetta le disposizioni sulla protezione dei dati dell'accordo \"Privacy Shield\" ed è registrato con il programma \"Privacy Shield\" del Dipartimento del Commercio degli Stati Uniti e utilizza le informazioni raccolte per valutare l'uso dei nostri siti Web, per scrivere rapporti per noi in questo Cordiali saluti e altri servizi correlati da noi forniti. Scopri di più su <a href=\"https://support.google.com/analytics/answer/6004245?hl=de\" target=\"_blank\" style=\"color: inherit;\">https://support.google.com/analytics/answer/6004245?hl=de</a> .</p><p>&nbsp;</p><h2>Dichiarazione sulla protezione dei dati per l'utilizzo di Google Web Fonts</h2><p>Questo sito Web utilizza i cosiddetti caratteri Web, forniti da Google, per la visualizzazione uniforme dei caratteri. Quando si richiama una pagina, il browser carica i caratteri Web richiesti nella cache del browser per visualizzare correttamente testi e caratteri. Se il tuo browser non supporta i caratteri web, verrà utilizzato un carattere standard dal tuo computer.</p><p>Ulteriori informazioni su Google Web Fonts sono disponibili all'indirizzo <a href=\"https://developers.google.com/fonts/faq\" target=\"_blank\" style=\"color: inherit;\">https://developers.google.com/fonts/faq</a> e nella dichiarazione sulla protezione dei dati di Google: <a href=\"https://www.google.com/policies/privacy/\" target=\"_blank\" style=\"color: inherit;\">https://www.google.com/policies/privacy/</a></p><p>&nbsp;</p><h2>i diritti d'autore</h2> <p>Il copyright e tutti gli altri diritti su contenuti, immagini, foto o altri file sul sito Web appartengono esclusivamente al gestore di questo sito Web o ai titolari dei diritti specificatamente indicati. Il consenso scritto del detentore del copyright deve essere ottenuto in anticipo per la riproduzione di tutti i file.</p><p>Chiunque commetta una violazione del copyright senza il consenso del rispettivo titolare dei diritti può essere punito e responsabile per danni, se necessario.</p><p>&nbsp;</p><h2>Dichiarazione di non responsabilità generale</h2> <p>Tutte le informazioni su questo sito Web sono state attentamente controllate. Ci sforziamo di offrire le nostre informazioni in modo attuale, corretto e completo. Tuttavia, il verificarsi di errori non può essere completamente escluso, il che significa che non possiamo garantire la completezza, l'accuratezza e la tempestività delle informazioni, compresi i contenuti giornalistici ed editoriali. Sono escluse le pretese di responsabilità basate su danni materiali o immateriali causati dall'uso delle informazioni offerte, a meno che non vi siano prove di colpa intenzionale o gravemente negligente.</p><p>L'editore può modificare o eliminare testi a propria discrezione e senza preavviso e non è obbligato ad aggiornare il contenuto di questo sito Web. L'uso o l'accesso a questo sito Web è a rischio e pericolo del visitatore. L'editore, i suoi clienti o partner non sono responsabili per danni, come diretti, indiretti, accidentali, da determinare in anticipo o danni consequenziali, che presumibilmente derivano dalla visita di questo sito Web e pertanto non sono responsabili per questo.</p><p>L'editore non si assume inoltre alcuna responsabilità per il contenuto e la disponibilità di siti Web di terzi che possono essere raggiunti tramite collegamenti esterni su questo sito Web. Gli operatori delle pagine collegate sono gli unici responsabili del loro contenuto. L'editore prende quindi espressamente le distanze da tutti i contenuti di terze parti che potrebbero essere rilevanti ai sensi del diritto penale o della legge sulla responsabilità o che violano la decenza comune.</p><p>&nbsp;</p><h2>modifiche</h2><p>Possiamo modificare questa politica sulla privacy in qualsiasi momento senza preavviso. Si applica la versione corrente pubblicata sul nostro sito Web. Nella misura in cui la dichiarazione sulla protezione dei dati è parte di un accordo con te, ti informeremo della modifica via e-mail o in altro modo adeguato in caso di aggiornamento.</p><p>&nbsp;</p><h2>Domande al responsabile della protezione dei dati</h2> <p>In caso di domande sulla protezione dei dati, si prega di inviare una e-mail o contattare la persona responsabile della protezione dei dati all'inizio della dichiarazione sulla protezione dei dati nella nostra organizzazione.</p><p>&nbsp;</p><p>Berna, <a href=\"https://www.swissanwalt.ch/\" target=\"_blank\" rel=\"noopener\">7 maggio 2019</a> Fonte: <a href=\"https://www.swissanwalt.ch/\" target=\"_blank\" rel=\"noopener\">SwissAnwalt</a><!--ACHTUNG: Wenn Sie die Quelle ohne Erlaubnis von SwissAnwalt entfernen, dann begehen Sie eine Urheberrechtsverletzung welche in jedem Fall unter Kostenfolge geahndet wird.-->"
 'Datum des Tagebucheintrags im Format TT.MM.YYYY HH:MM': 'Data di inserimento della paggina del diario nel formato TT.MM.YYYY HH:MM'
-Datum: Data
+'Datum': 'Data'
+'de': 'it'
 'Dein Profil': 'Il tuo profilo'
 'Deine Daten': 'I tuoi dati'
 'Deine Übersicht der letzten 12 Monate': 'La vostra panoramica degli ultimi 12 mesi'
 'Deine Übersicht der letzten 2 Jahren': 'La tua panoramica degli ultimi 2 anni'
-'Deine Übersicht vom letzten Jahr': 'La vostra panoramica dell''ultimo anno'
+'Deine Übersicht des aktuellen Monats': 'La tua panoramica del mese in corso'
+'Deine Übersicht vom letzten Jahr': "La vostra panoramica dell'ultimo anno"
 'Der Startschuss von epilepc wurde während meiner Abschlussarbeit zum dipl. Techniker Informatik HF gelegt.': 'Il segnale di partenza di epilepc è stato dato durante la mia tesi di laurea al Dipl. tecnico informatico HF.'
-Deutsch: Tedesco
-Diagnose: Diagnosi
+'Deutsch': 'Tedesco'
+'Diagnose': 'Diagnosi'
+'Die angegebene Email-Adresse ist nicht registriert': "L'indirizzo e-mail indicato non è registrato"
 'Die folgenden Funktionen stehen dir aktuell auf epilepc.ch zur Verfügung': 'Le seguenti funzioni sono attualmente disponibili su epilepc.ch'
+'Die neuen Passwörter stimmen nicht überein': 'I password nuove non corrispondono'
 'Diese Informationen können nur wir, die Betroffenen sammeln': 'Queste informazioni possono essere raccolte solo da noi, le persone colpite'
 'Dieses Werkzeug soll dabei helfen, selbständig das Ruder wieder in die Hand zu nehmen und die eigene "Genesung" aktiv zu unterstützen.': 'Questo strumento dovrebbe aiutarvi a riprendere il timone in modo indipendente e a sostenere attivamente il vostro "recupero".'
-'Dokumentiere alle deine Anfälle mit epilepc! So kannst du dir bequem einen Überblick verschaffen, wie es dir während des letzten Monates gegangen ist oder sogar Auffälligkeiten entdecken!': 'Documentate tutte le vostre crisi epilettiche con epilepc! In questo modo potrete facilmente avere una panoramica di come vi siete sentiti nell''ultimo mese o addirittura scoprire eventuali particolarità!'
+'Dokumentiere alle deine Anfälle mit epilepc! So kannst du dir bequem einen Überblick verschaffen, wie es dir während des letzten Monates gegangen ist oder sogar Auffälligkeiten entdecken!': "Documentate tutte le vostre crisi epilettiche con epilepc! In questo modo potrete facilmente avere una panoramica di come vi siete sentiti nell'ultimo mese o addirittura scoprire eventuali particolarità!"
 'Dosierung in mg. z. B. 3x15mg pro Tag': 'Dosaggio in mg. per esempio 3x15mg al giorno'
-Dosierung: Dosaggio
-'Eine weitere Schwierigkeit besteht darin, dass die Sprechstunden und Kontrollen beim Arzt nur alle paar Monate stattfinden und bis dahin viele Zwischenfälle oder wichtige Hinweise vergessen gehen. <br />Ohne diese detaillierten Informationen fällt es den Ärzten sehr schwer, den Patienten befriedigend auf eine neue Medikation einzustellen. Um genauere Details über die epileptischen Anfälle zu erfahren, müssen oft Daueraufenthalte in epileptischen Polikliniken durchgeführt werden, wo Betroffene dauerüberwacht und künstlich auf Schlafentzug gesetzt werden, damit Anfälle provoziert und die benötigten Daten erhoben werden können': 'Un''ulteriore difficoltà è che i consulti e i controlli presso lo studio medico avvengono solo ogni pochi mesi e per allora molti incidenti o consigli importanti vengono dimenticati. <br />Senza queste informazioni dettagliate è molto difficile per i medici adattare il paziente in modo soddisfacente a un nuovo farmaco. Per scoprire maggiori dettagli sulle crisi epilettiche, spesso è necessario effettuare soggiorni permanenti in policlinici epilettici, dove i pazienti vengono costantemente monitorati e sottoposti a deprivazione del sonno in modo da provocare crisi epilettiche e raccogliere i dati necessari'
-Einloggen: Accedi
-'Einnahme Ende': 'Fine dell''assunzione di farmaci'
-'Einnahme Start': 'Inizio dell''assunzione di farmaci'
-Eintragsdatum: 'Data di entrata'
-Eintragstitel: 'titolo di iscrizione'
-Email-Adresse: 'Indirizzo e-mail'
-'Ende Medikamenteneinnahme im Format TT.MM.YYYY HH:MM': 'Fine dell''assunzione di farmaci in formato TT.MM.YYYY HH:MM'
-Englisch: Inglese
+'Dosierung': 'Dosaggio'
+'Ein schwerwiegender Fehler ist aufgetreten. Wir arbeiten an der Behebung des Problems': "Si è verificato un grave errore. Stiamo lavorando per correggere il problema"
+'Eine Spamflut ist aber nicht zu erwarten': "Ma non c'è da aspettarsi una marea di spam"
+'Eine weitere Schwierigkeit besteht darin, dass die Sprechstunden und Kontrollen beim Arzt nur alle paar Monate stattfinden und bis dahin viele Zwischenfälle oder wichtige Hinweise vergessen gehen. <br />Ohne diese detaillierten Informationen fällt es den Ärzten sehr schwer, den Patienten befriedigend auf eine neue Medikation einzustellen. Um genauere Details über die epileptischen Anfälle zu erfahren, müssen oft Daueraufenthalte in epileptischen Polikliniken durchgeführt werden, wo Betroffene dauerüberwacht und künstlich auf Schlafentzug gesetzt werden, damit Anfälle provoziert und die benötigten Daten erhoben werden können': "Un'ulteriore difficoltà è che i consulti e i controlli presso lo studio medico avvengono solo ogni pochi mesi e per allora molti incidenti o consigli importanti vengono dimenticati. <br />Senza queste informazioni dettagliate è molto difficile per i medici adattare il paziente in modo soddisfacente a un nuovo farmaco. Per scoprire maggiori dettagli sulle crisi epilettiche, spesso è necessario effettuare soggiorni permanenti in policlinici epilettici, dove i pazienti vengono costantemente monitorati e sottoposti a deprivazione del sonno in modo da provocare crisi epilettiche e raccogliere i dati necessari"
+'Eingeloggt bleiben': 'Rimani collegato'
+'Eingenommen': 'Presa'
+'Eingenommene Notfallmedikation': 'Farmaci di soccorso presi'
+'Einloggen': 'Accedi'
+'Einnahme Ende': "Fine dell'assunzione di farmaci"
+'Einnahme Start': "Inizio dell'assunzione di farmaci"
+'Eintragsdatum': 'Data di entrata'
+'Eintragstitel': 'Titolo di iscrizione'
+'Email Adresse': 'Indirizzo e-mail'
+'Email': 'Email'
+'Email-Adresse': 'Indirizzo e-mail'
+'Ende Medikamenteneinnahme im Format TT.MM.YYYY HH:MM': "Fine dell'assunzione di farmaci in formato TT.MM.YYYY HH:MM"
+'Englisch': 'Inglese'
+'epilepc - Ihr Passwort wurde zurückgesetzt': 'epilepc - La tua password è stata reimpostata'
+'epilepc bietet eine Dokumentations-Plattform für Epilepsie-Betroffene und Nahestehende auf Basis von einfachen und intuitiven Prozessen, weil den behandelnden Ärzten personenbezogene Daten für eine effektive Behandlung oftmals fehlen': 'epilepc offre una piattaforma di documentazione per le persone affette da epilessia e per le persone a loro vicine basata su processi semplici e intuitivi, perché i medici curanti spesso non dispongono di dati personali per un trattamento efficace'
 'Ereignis - Übersicht': 'Evento - Panoramica'
-'Ereignis Funktionen': 'Funzioni dei eventi'
+'Ereignis anzeigen': 'Mostra evento'
+'Ereignis bearbeiten': 'Modifica evento'
 'Ereignis erfolgreich bearbeitet!': 'Evento modificato con successo!'
 'Ereignis erfolgreich erstellt!': 'Evento creato con successo!'
 'Ereignis erstellen': 'Creare un evento'
+'Ereignis Funktionen': 'Funzioni dei eventi'
 'Ereignis löschen': 'Cancella evento'
-Ereignis: Evento
-Ereignisdatum: 'Data dell''evento'
-Ereignisname: 'Nome dell''evento'
+'Ereignis': 'Evento'
+'Ereignisdatum': "Data dell'evento"
+'Ereignisname': "Nome dell'evento"
 'Ereignisse notieren': 'Nota eventi'
-Ereignisse: Eventi
+'Ereignisse': 'Eventi'
+'Ereignisübersicht': 'Panoramica degli eventi'
 'Erfasste Anfälle': 'Crisi registrati'
 'Erfasste Daten': 'Dati registrati'
 'Erfasste Ereignisse': 'Eventi registrati'
 'Erfasste Medikationen': 'Farmaci registrati'
 'Erfasste Tagebucheinträge': 'Pagine di diario registrati'
-'Erklärtes Ziel ist es für Personen die unter Epilepsie (Zukünftig auch weitere chronische Krankheiten) leiden, eine sichere Dokumentationsplattform zur Verfügung zu stellen.': 'L''obiettivo dichiarato è quello di fornire una piattaforma di documentazione sicura per le persone che soffrono di epilessia (in futuro anche altre malattie croniche).'
-Erstellen: Crea
+'Erklärtes Ziel ist es für Personen die unter Epilepsie (Zukünftig auch weitere chronische Krankheiten) leiden, eine sichere Dokumentationsplattform zur Verfügung zu stellen.': "L'obiettivo dichiarato è quello di fornire una piattaforma di documentazione sicura per le persone che soffrono di epilessia (in futuro anche altre malattie croniche)."
+'Erstellen': 'Crea'
 'Fenster schliessen': 'Chiudere la finestra'
 'Fertig?': 'Finito?'
+'Fokale Anfälle': 'Convulsioni focali'
 'Fokaler Anfall': 'Attacco focale'
-Französisch: Francese
-Funktionen: Funzioni
+'form.account.diagnose.max.length': 'Max. 250 lettere'
+'form.account.max.length': 'Max. 25 lettere'
+'Frage / Support': 'Domanda / Supporto'
+'Französisch': 'Francese'
+'Funktionen': 'Funzioni'
 'Genau dabei unterstützt dich epilepc!': 'È proprio qui che epilepc ti sostiene!'
 'Generiere bequem eine PDF-Datei mit allen Informationen, die du deinem Arzt mitgeben möchtest und bring es mit zur nächsten Sprechstunde!': 'Genera facilmente un file PDF con tutte le informazioni che vuoi dare al tuo medico e portalo con te al tuo prossimo consulto!'
-German: Italian
-'application/json/German.json': 'application/json/Italian.json'
+'German': 'Italian'
 'Gross- und Kleinschreibung': 'Maiuscolo e minuscolo'
 'Haben Sie Fragen? Möchten Sie unser Produkt unterstützen oder Sponsor werden?': 'Avete domande? Vuoi sostenere il nostro prodotto o diventare uno sponsor?'
-'Hast du eine Idee oder einen Verbesserungsvorschlag? Dann melde dich bei uns': 'Avete un''idea o un suggerimento per migliorare? Allora contattaci'
+'Habt Ihr Fragen? Anregungen? Unklarheiten? Möchtet euch sonst einbisschen unterhalten?<br/>Dann schreibt uns!': "Avete domande? suggerimenti? Ambiguità? Volete parlare un po' altrimenti? Scriveteci!"
+'Hast du eine Idee oder einen Verbesserungsvorschlag? Dann melde dich bei uns': "Avete un'idea o un suggerimento per migliorare? Allora contattaci"
+'Herzliche Gratulation! Ihre Registrierung ist abgeschlossen! Falls Sie unsere Bestätigungsmail nicht erhalten haben, prüfen Sie bitte Ihrem Spam-Ordner.': 'Congratulazioni! La tua registrazione è completa! Se non avete ricevuto la nostra mail di conferma, controllate la vostra cartella spam.'
 'Hier einpaar Beispiele für mögliche Ereignisse': 'Ecco alcuni esempi di possibili eventi'
 'Hier findest du alle Informationen über dein Profil und kannst Sie gleich bearbeiten': 'Qui potete trovare tutte le informazioni sul vostro profilo e modificarle immediatamente'
-'Hier werden sensible und schützenswerte Daten gespeichert. Und wir sind verpflichtet darauf aufzupassen! <br /> Alle vom epilepc-Benutzer eingegebenen Daten werden ausschliesslich verschlüsselt übermittelt und zusätzlich verschlüsselt in unserer Datenbank gespeichert. <br /> Erst beim Auslesen der Daten durch den Verfasser, werden diese entschlüsselt und in Klartext angezeigt.<br /> Sämtliche Infrastruktur und Daten werden in der Schweiz gespeichert und betrieben': 'Qui vengono memorizzati dati sensibili degni di protezione. E noi siamo obbligati ad occuparcene! <br /> Tutti i dati inseriti dall''utente saranno trasmessi esclusivamente cifrati e inoltre memorizzati criptati nel nostro database. <br /> Solo quando i dati vengono letti dall''autore vengono decifrati e visualizzati in chiaro.<br /> Tutte le infrastrutture e i dati vengono memorizzati e gestiti in Svizzera'
-'Hilf dir bei Epilepsie!': 'Aiutati con l''epilessia!'
-Hinweis: Nota
+'Hier werden sensible und schützenswerte Daten gespeichert. Und wir sind verpflichtet darauf aufzupassen! <br /> Alle vom epilepc-Benutzer eingegebenen Daten werden ausschliesslich verschlüsselt übermittelt und zusätzlich verschlüsselt in unserer Datenbank gespeichert. <br /> Erst beim Auslesen der Daten durch den Verfasser, werden diese entschlüsselt und in Klartext angezeigt.<br /> Sämtliche Infrastruktur und Daten werden in der Schweiz gespeichert und betrieben': "Qui vengono memorizzati dati sensibili degni di protezione. E noi siamo obbligati ad occuparcene! <br /> Tutti i dati inseriti dall'utente saranno trasmessi esclusivamente cifrati e inoltre memorizzati criptati nel nostro database. <br /> Solo quando i dati vengono letti dall'autore vengono decifrati e visualizzati in chiaro.<br /> Tutte le infrastrutture e i dati vengono memorizzati e gestiti in Svizzera"
+'Hilf dir bei Epilepsie!': "Aiutati con l'epilessia!"
+'Hinweis': 'Avviso'
+'Ich stimme den': "Sono d'accordo con le"
+'Idee': 'Idea'
+'Ihre Nachricht wurde erfolgreich versendet!': 'Il tuo messaggio è stato inviato con successo!'
+'Ihre Registrierung bei epilepc': 'La tua iscrizione da epilepc'
 'Im generierten PDF werden die Tagebucheinträge nicht angezeigt.': 'Le voci del diario non vengono visualizzate nel PDF generato.'
-Inhalt: Contenuto
-Italienisch: Italiano
+'Inhalt': 'Contenuto'
+'Interesse an Mitarbeit': 'Interesse per la cooperazione'
+'Interesse an weiteren Produkten': 'Interesse per altri prodotti'
+'Interner Serverfehler': 'Errore interno del server'
+'Italienisch': 'Italiano'
+'JETZT EINLOGGEN': 'LOG IN ORA'
+'Jetzt registrieren': 'Registrati ora'
+'Kein Problem, das passiert den Besten von uns. Trage einfach deine Email Adresse ins untenstehende Feld ein und wir schicken dir eine Mail zum Zurücksetzen deines Passworts': 'Nessun problema, succede ai migliori di noi. Basta inserire il tuo indirizzo e-mail nel campo sottostante e ti invieremo una e-mail per reimpostare la password'
 'Keine Anfälle vorhanden': 'Nessun attacco disponibile'
 'Keine Ereignisse vorhanden': 'Nessun evento disponibile'
 'Keine Medikationen vorhanden': 'Nessun farmaco disponibile'
 'Keine Tagebucheinträge vorhanden': 'Nessuna paggina di diario disponibile'
-Kontaktformular: 'Modulo di contatto'
+'Keine': 'Nessuna'
+'klicken, um ein neues Ereignis zu erstellen': 'clicca per creare un nuovo evento'
+'klicken, um eine neue Medikation zu erstellen': 'clicca per creare un nuovo farmaco'
+'klicken, um einen neuen Anfall zu erstellen': 'clicca per creare una nuova crisi'
+'klicken, um einen neuen Tagebucheintrag zu erstellen': 'clicca per creare una nuova paggina di diario'
+'Komplex fokale Anfälle': 'Convulsioni focali complessi'
+'Kontaktformular': 'Modulo di contatto'
 'Leider kann man den Zeitpunkt eines epileptischen Anfalls nicht planen und genau dann, wenn man das Tagebuch benötigen würde, liegt es nicht in Griffnähe oder kann nicht aufgefunden werden': 'Purtroppo non è possibile pianificare il momento di un attacco epilettico e quando esattamente si avrebbe bisogno del diario, non è a portata di mano o non può essere trovato'
-Login: Login
-'Los geht''s': 'Eccoci qua'
+'Login': 'Login'
 'Medikation - Übersicht': 'Farmaci - Panoramica'
-'Medikation Funktionen': 'Funzioni dei farmaci functions'
 'Medikation anzeigen': 'Mostra i farmaci'
 'Medikation bearbeiten': 'Modificare i farmaci'
 'Medikation erfolgreich bearbeitet!': 'Farmaci modificati con successo!'
 'Medikation erfolgreich erstellt!': 'Farmaci create con successo!'
 'Medikation erstellen': 'Create un farmaco'
+'Medikation Funktionen': 'Funzioni dei farmaci functions'
 'Medikation löschen': 'Cancellare i farmaci'
 'Medikation pflegen': 'Mantenere i farmaci'
-Medikation: Farmaco
-Medikationen: Farmaci
-Medikationsname: 'Nome del darmaco'
-Medikationsübersicht: 'Panoramica dei farmaci'
+'Medikation': 'Farmaco'
+'Medikationen': 'Farmaci'
+'Medikationsname': 'Nome del farmaco'
+'Medikationsübersicht': 'Panoramica dei farmaci'
 'Mehr dazu': 'Per saperne di più'
 'Mindestens 1 Sonderzeichen (z.b. $#*)': 'Almeno 1 carattere speciale (ad es. $#*)'
 'Mindestens 2 Zahlen': 'Almeno 2 numeri'
 'Mindestlänge des Passworts - 8 Zeichen': 'Lunghezza minima della password - 8 caratteri'
 'Mit der Tagebuchfunktion kannst du hier alle deine Gedanken festhalten und zu einem späteren Zeitpunkt wieder lesen': 'Con la funzione diario potete registrare qui tutti i vostri pensieri e rileggerli in un secondo momento'
 'Mit einem Klick auf die jeweilige Legende können Linien aus- und eingeblendet werden.': 'Con un clic sulle rispettive linee di legenda possono essere nascoste o mostrate.'
-'Mit intuitiven Diagrammen kann dein Arzt schnell sehen, wie sich die letzte Anpassung der Medikation ausgewirkt hat': 'Con grafici intuitivi, il vostro medico può vedere rapidamente come l''ultima regolazione dei farmaci vi ha influenzato'
-Nachname: Cognome
+'Mit intuitiven Diagrammen kann dein Arzt schnell sehen, wie sich die letzte Anpassung der Medikation ausgewirkt hat': "Con grafici intuitivi, il vostro medico può vedere rapidamente come l'ultima regolazione dei farmaci vi ha influenzato"
+'Myoklonische Anfälle': 'Convulsioni miocloniche'
+'Na? Passwort vergessen?': 'Hai dimenticato la password?'
+'Nachname': 'Cognome'
+'Nachricht': 'Messaggio'
+'Name': 'Nome'
+'Neue Kontaktformular-Nachricht auf epilepc.ch erhalten!': 'Nuovo messaggio del modulo di contatto ricevuto su epilepc.ch!'
 'Neue Medikation erstellen': 'Creare un nuovo farmaco'
 'Neue Medikation': 'Nuovo farmaco'
+'Neue Nachricht auf': 'Nuovo messaggio su'
+'Neue Nachricht vom Kontaktformular auf': 'Nuovo messaggio dal modulo di contatto su'
 'Neuer Anfall erstellen': 'Creare una nuova crisi'
 'Neuer Anfall': 'Nuova crisi'
 'Neuer Tagebucheintrag erstellen': 'Creare una nuova pagina nel diario'
@@ -143,161 +202,104 @@ Nachname: Cognome
 'Neues Passwort wiederholen': 'Ripeti la nuova password'
 'Neues Passwort': 'Nuova password'
 'Nimm die Kontrolle über dein Leben wieder in die Hand': 'Riprendi il controllo della tua vita'
+'Notfall Medikationen': 'Farmaci di soccorso'
+'Notfallmedikament': 'Farmaci di emergenza'
+'Notfallmedikationen': 'Farmaco di soccorso'
+'Notfallmedikation': 'Farmaco di soccorso'
 'Notiere und speichere alle Ereignisse, die dir aufgefallen sind. So kannst du Auffälligkeiten entdecken, Trigger erkennen und definieren. Durch die regelmässige Pflege von Ereignissen in epilepc, kannst du Zusammenhänge entdecken oder Faktoren ausschliessen': 'Scrivi e salva tutti gli eventi che hai notato. In questo modo è possibile scoprire le anomalie, riconoscere e definire i trigger. Attraverso la regolare manutenzione degli eventi in epilepc, è possibile scoprire le connessioni o escludere i fattori'
+'Nur die Ruhe bewahren. Das ist uns auch viel zu oft passiert.': 'Calma, succede ai migliori'
+'Nutzungsbedingungen - epilepc': 'Condizioni di utilizzo - epilepc'
+'Nutzungsbedingungen': 'condizioni di utilizzo'
+'oder benutzen Sie unser': 'o utilizza il nostro'
+'oder unterstützen Sie uns auf': 'o sostenerci su'
 'Oftmals sind es die unscheinbaren Kleinigkeiten, die uns helfen uns zu organisieren und wieder zu erinnern': 'Spesso sono le piccole cose poco appariscenti che ci aiutano a organizzarci e a ricordare di nuovo'
+'Ou': 'Dannazione'
+'Passwort erfolgreich geändert!': 'Password cambiata con successo!'
+'Passwort erfolgreich zurückgesetzt & versendet!': 'Password resettata e inviata con successo'
+'Passwort nicht korrekt': 'Password non corretta'
+'Passwort vergessen': 'Password dimenticata'
+'Passwort zurücksetzen': 'Reimposta la password'
+'Passwort ändern': 'Cambiare la password'
+'Passwort': 'Password'
 'PDF generieren': 'Genera PDF'
 'PDF-Übersicht vom': 'Panoramica PDF -'
-'Passwort ändern': 'Cambiare la password'
 'Profil anzeigen & bearbeiten': 'Mostra e modifica il profilo'
 'Profil anzeigen': 'Mostra profilo'
 'Profil erfolgreich bearbeitet!': 'Profilo midificato con successo'
-Profil: Profilo
-Profilinformationen: 'Informazioni sul profilo'
+'Profil': 'Profilo'
+'Profilinformationen': 'Informazioni sul profilo'
 'Profilübersicht von': 'Panoramica del profilo di'
+'Reflex-Anfälle': 'Attacchi di riflesso'
 'Registriere dich jetzt bei epilepc und unterstütze deine Ärzte mit deinen Informationen': 'Registratevi subito presso epilepc e aiutate i vostri medici con le vostre informazioni'
-Registrieren: Registrati
+'Registriere dich jetzt': 'Registrati ora'
+'Registriere dich': Registrati
+'Registrieren': 'Registrati'
 'Registriert am': 'Data di registrazione'
-Releasenotes: 'Note di rilascio'
+'Releasenotes': 'Note di rilascio'
+'Scheint als hättest du einen Fehler in der Matrix gefunden': 'Sembra che tu abbia trovato un difetto nella matrice'
+'Schick mir eine Kopie': 'Inviami una copia'
 'Schlafmangel, Menstruation, Drogen- & Alkoholkonsum, Stress, tiefer Blutzucker, Krankheiten oder temporäres Unwohlsein': 'Privazione del sonno, mestruazioni, uso di droghe e alcol, stress, basso livello di zucchero nel sangue, malattia o disagio temporaneo'
-Sicherheit: Sicurezza
-Speichern: Salva
+'Schweiz': 'Svizzera'
+'Seite nicht gefunden': 'Pagina non trovata'
+'Sicherheit': 'Sicurezza'
+'Sorgen': 'Preoccupazioni'
+'Speichern': 'Salva'
 'Sprache ändern': 'Cambia lingua'
-'Start Medikamenteneinnahme im Format TT.MM.YYYY HH:MM': 'Inizio dell''assunzione di farmaci in formato TT.MM.YYYY HH:MM'
+'Start Medikamenteneinnahme im Format TT.MM.YYYY HH:MM': "Inizio dell'assunzione di farmaci in formato TT.MM.YYYY HH:MM"
+'Status epilepticus': 'Stato epilettico'
 'Sämtliche erfassten Daten': 'Tutti i dati raccolti'
 'Tagebuch Funktionen': 'Funzioni del diario'
 'Tagebuch führen': 'Tieni un diario'
-Tagebuch: Diario
+'Tagebuch': 'Diario'
 'Tagebucheintrag anzeigen': 'Mostra la paggina del diario'
 'Tagebucheintrag bearbeiten': 'Modifica la paggina del diario'
+'Tagebucheintrag erfolgreich bearbeitet!': 'Voce del diario modificata con successo!'
+'Tagebucheintrag erfolgreich erstellt!': 'Voce del diario creata con successo!'
 'Tagebucheintrag erstellen': 'Creare una paggina del diario'
 'Tagebucheintrag löschen': 'Cancella la paggina del diario'
-Tagebucheintrag: 'Paggina del diario'
-Tagebucheinträge: 'Paggine del diario'
-Tagebuchübersicht: 'Panoramica del diario'
-Titel: Titolo
+'Tagebucheintrag': 'Paggina del diario'
+'Tagebucheinträge': 'Paggine del diario'
+'Tagebuchübersicht': 'Panoramica del diario'
+'Test': 'Test'
+'Thema': 'Argomento'
+'Titel': 'Titolo'
+'Tonisch-klonische Anfälle': 'Convulsioni tonico-cloniche'
 'Trage alle deine Medikamente in epilepc ein. So behälst du die Übersicht über sämtliche Details, wann welche Anpassungen vorgenommen worden sind und wann welche Medikamente eingenommen werden müssen': 'Inserite tutti i vostri farmaci in epilepc.ch. In questo modo, è possibile tenere traccia di tutti i dettagli, quando sono stati effettuati gli aggiustamenti e quando devono essere presi i farmaci'
-Typ: Tipo
-Uhr: ''
+'Typ': 'Tipo'
+'Uhr': ''
 'Um dein Passwort zu ändern, trage unten dein aktuelles und dein neues Passwort ein': 'Per modificare la password, inserisci qui sotto la tua attuale e la nuova password'
 'Um die Sicherheit deiner Daten gewährleisten zu können, muss dein Passwort die folgenden Anforderungen erfüllen': 'Per garantire la sicurezza dei vostri dati, la vostra password deve soddisfare i seguenti requisiti'
 'Und noch vieles mehr!': 'E molto di più'
+'Unilaterale Anfälle': 'Convulsioni unilaterali'
 'Untenstehend findest du alle deine erfassten': 'Qui sotto troverete tutti i vostri creati'
 'Unterstützer und Sponsoren': 'Sostenitori e sponsor'
-Updaten: Aggiorna
-Verschreibungsdatum: 'Data di prescrizione'
-'Von den vielen Krankheiten und Gebrechen, die einen Menschen heimsuchen können, kann man die Epilepsie wahrscheinlich als eine der heimtückischeren bezeichnen.<br />Oft nicht greifbar und äusserst schwierig zu behandeln kann sie dazu führen, dass sich Betroffene mit der Zeit immer mehr isolieren, was zu einer Verschlimmerung der Beschwerden führen kann': 'Tra le tante malattie e disturbi che possono affliggere una persona, l''epilessia può probabilmente essere considerata una delle più insidiose.<br /> Spesso intangibile ed estremamente difficile da curare, può indurre chi ne soffre ad isolarsi sempre più nel tempo, il che può portare ad un peggioramento dei sintomi'
-Vorname: Nome
+'Updaten': 'Aggiorna'
+'Verschreibungsdatum': 'Data di prescrizione'
+'Von den vielen Krankheiten und Gebrechen, die einen Menschen heimsuchen können, kann man die Epilepsie wahrscheinlich als eine der heimtückischeren bezeichnen.<br />Oft nicht greifbar und äusserst schwierig zu behandeln kann sie dazu führen, dass sich Betroffene mit der Zeit immer mehr isolieren, was zu einer Verschlimmerung der Beschwerden führen kann': "Tra le tante malattie e disturbi che possono affliggere una persona, l'epilessia può probabilmente essere considerata una delle più insidiose.<br /> Spesso intangibile ed estremamente difficile da curare, può indurre chi ne soffre ad isolarsi sempre più nel tempo, il che può portare ad un peggioramento dei sintomi"
+'von epilepc.ch zu': 'di epilepc.ch'
+'Von': 'Da'
+'Vorname': 'Nome'
 'Was wurde wie oft erfasst?': 'Quante volte è stato registrato cosa?'
-'Wenn es etwas gibt, das wir mit Sicherheit wissen, dann ist es folgendes': 'Se c''è una cosa che sappiamo per certo, è questa'
+'Wenn es etwas gibt, das wir mit Sicherheit wissen, dann ist es folgendes': "Se c'è una cosa che sappiamo per certo, è questa"
 'Wenn unbekannt, fragen Sie Ihren Arzt nach der auszuwählenden Anfallsart': 'Se sconosciuto, chiedete al vostro medico il tipo di sequestro da selezionare'
 'Wieso epilepc': 'Perché epilepc'
+'Willkommen zurück': 'Bentornato'
+'Willkommen': 'Benvenuti'
 'Wir arbeiten intensiv daran epilepc mit neuen Funktionen zu erweitern und zu verbessern': 'Stiamo lavorando intensamente per estendere e migliorare epilepc con nuove funzioni'
+'Wir empfehlen dir nach dem ersten Einloggen, dein Passwort umgehend zu ändern': 'Ti raccomandiamo di cambiare la tua password immediatamente dopo aver effettuato il primo accesso.'
+'Wir haben dir ein neues Passwort generiert, mit welchem du dich gleich einloggen kannst': 'Abbiamo generato una nuova password per te, che puoi usare per accedere subito'
 'Wähle "Ausloggen" aus, wenn du bereit bist, die aktuelle Sitzung zu beenden': 'Selezionare "Disconnettiti" quando si è pronti a terminare la sessione corrente'
-'Zeitpunkt des Anfalls im Format TT.MM.YYYY HH:MM': 'Ora della crisi nel formato ''TT.MM.YYYY HH:MM'''
-'Zeitpunkt des Ereignisses im Format TT.MM.YYYY HH:MM': 'Ora del evento nel formato TT.MM.YYYY HH:MM'
-'Ziel von epilepc.ch ist es, betroffenen Personen die für eine effektive Therapie benötigten Werkzeuge zuverlässig und sicher zur Verfügung zu stellen': 'L''obiettivo di epilepc.ch è quello di fornire alle persone colpite gli strumenti necessari per una terapia efficace in modo affidabile e sicuro'
+'Zeitpunkt des Anfalls im Format TT.MM.YYYY HH:MM': "Ora della crisi nel formato 'TT.MM.YYYY HH:MM'"
+'Zeitpunkt des Ereignisses im Format TT.MM.YYYY HH:MM': "Ora del evento nel formato 'TT.MM.YYYY HH:MM'"
+'Ziel von epilepc.ch ist es, betroffenen Personen die für eine effektive Therapie benötigten Werkzeuge zuverlässig und sicher zur Verfügung zu stellen': "L'obiettivo di epilepc.ch è quello di fornire alle persone colpite gli strumenti necessari per una terapia efficace in modo affidabile e sicuro"
+'Zugriff verweigert': 'Accesso rifiutato'
 'Zuletzt bearbeitet': 'Ultima modifica'
 'Zum Kontaktformular': 'Al modulo di contatto'
+'Zurück zum Dashboard': 'Torna al cruscotto'
 'Zurück zur Übersicht': 'Torna alla panoramica'
-Zurück: Indietro
-'Zurück zum Dashboard': Torna al cruscotto
+'Zurück': 'Indietro'
 'Zusätzlich kannst du auf das Pluszeichen': 'Inoltre è possibile cliccare sul segno più'
-anzeigen: mostra
-application/vendor/bootstrap/js/i18n/bootstrap-datepicker.de.js: application/vendor/bootstrap/js/i18n/bootstrap-datepicker.it.js
-bearbeiten: modifica
-de: it
-'epilepc bietet eine Dokumentations-Plattform für Epilepsie-Betroffene und Nahestehende auf Basis von einfachen und intuitiven Prozessen, weil den behandelnden Ärzten personenbezogene Daten für eine effektive Behandlung oftmals fehlen': 'epilepc offre una piattaforma di documentazione per le persone affette da epilessia e per le persone a loro vicine basata su processi semplici e intuitivi, perché i medici curanti spesso non dispongono di dati personali per un trattamento efficace'
-'klicken, um ein neues Ereignis zu erstellen': 'clicca per creare un nuovo evento'
-'klicken, um eine neue Medikation zu erstellen': 'clicca per creare un nuovo farmaco'
-'klicken, um einen neuen Anfall zu erstellen': 'clicca per creare una nuova crisi'
-'klicken, um einen neuen Tagebucheintrag zu erstellen': 'clicca per creare una nuova paggina di diario'
-'oder benutzen Sie unser': 'o utilizza il nostro'
-'oder unterstützen Sie uns auf': 'o sostenerci su'
 'Über uns': 'Chi siamo'
 'Übersicht generieren': 'Generare una panoramica'
 'Übersicht vom': 'Panoramica dal'
-Übersicht: Panoramica
-Absencen: Assenze
-Aura: Aura
-'Fokale Anfälle': 'Convulsioni focali'
-'Komplex fokale Anfälle': 'Convulsioni focali complessi'
-Reflex-Anfälle: 'Attacchi di riflesso'
-'Myoklonische Anfälle': 'Convulsioni miocloniche'
-'Status epilepticus': 'Stato epilettico'
-'Tonisch‐klonische Anfälle': 'Convulsioni tonico-cloniche'
-'Unilaterale Anfälle': 'Convulsioni unilaterali'
-'Willkommen zurück': Bentornato
-'Email Adresse': 'Indirizzo e-mail'
-'Eingeloggt bleiben': 'Rimani collegato'
-'Jetzt registrieren': 'Registrati ora'
-'Passwort vergessen': 'Password dimenticata'
-'Ich stimme den': 'Sono d''accordo con le'
-Nutzungsbedingungen: 'condizioni di utilizzo'
-'von epilepc.ch zu': 'di epilepc.ch'
-Passwort: Password
-'Account bereits erstellt? Log dich jetzt ein': 'Conto già creato? Effettua il login ora'
-Ou: Dannazione
-'Kein Problem, das passiert den Besten von uns. Trage einfach deine Email Adresse ins untenstehende Feld ein und wir schicken dir eine Mail zum Zurücksetzen deines Passworts': 'Nessun problema, succede ai migliori di noi. Basta inserire il tuo indirizzo e-mail nel campo sottostante e ti invieremo una e-mail per reimpostare la password'
-'Passwort zurücksetzen': 'Reimposta la password'
-'Registriere dich': Registrati
-'Registriere dich jetzt': 'Registrati ora'
-'Ihre Registrierung bei epilepc': 'La tua iscrizione da epilepc'
-'Herzliche Gratulation! Ihre Registrierung ist abgeschlossen! Falls Sie unsere Bestätigungsmail nicht erhalten haben, prüfen Sie bitte Ihrem Spam-Ordner.': 'Congratulazioni! La tua registrazione è completa! Se non avete ricevuto la nostra mail di conferma, controllate la vostra cartella spam.'
-'epilepc - Ihr Passwort wurde zurückgesetzt': 'epilepc - La tua password è stata reimpostata'
-'Passwort erfolgreich zurückgesetzt & versendet!': 'Password resettata e inviata con successo'
-'Die angegebene Email-Adresse ist nicht registriert': 'L''indirizzo e-mail indicato non è registrato'
-'Frage / Support': 'Domanda / Supporto'
-Sorgen: Preoccupazioni
-Administratives: 'Questione amministrativa'
-'Interesse an weiteren Produkten': 'Interesse per altri prodotti'
-'Interesse an Mitarbeit': 'Interesse per la cooperazione'
-Idee: Idea
-'Habt Ihr Fragen? Anregungen? Unklarheiten? Möchtet euch sonst einbisschen unterhalten?<br/>Dann schreibt uns!': 'Avete domande? suggerimenti? Ambiguità? Volete parlare un po'' altrimenti? Scriveteci!'
-Name: Nome
-Email: Email
-Thema: Argomento
-'Schick mir eine Kopie': 'Inviami una copia'
-Nachricht: Messaggio
-Abschicken: Invia
-'Neue Kontaktformular-Nachricht auf epilepc.ch erhalten!': 'Nuovo messaggio del modulo di contatto ricevuto su epilepc.ch!'
-'Ihre Nachricht wurde erfolgreich versendet!': 'Il tuo messaggio è stato inviato con successo!'
-'Nutzungsbedingungen - epilepc': 'Condizioni di utilizzo - epilepc'
-datenschutzerklärung_part: "<h2>Protezione dati</h2><p>L'organismo responsabile in termini di leggi sulla protezione dei dati, in particolare il regolamento generale sulla protezione dei dati (GDPR), è:</p><br><p>epilepc <br>3018 Berna</p><p>Email: <a href=\"mailto:info@epilepc.ch\">info@epilepc.ch</a><br> Sito web: <a href=\"https://www.epilepc.ch/\">https://www.epilepc.ch</a></p><p>&nbsp;</p><h2>Osservazione generale</h2> <p>In base all'articolo 13 della Costituzione federale svizzera e alle disposizioni sulla protezione dei dati della Confederazione (DSG <!--DSG-->), ogni persona ha diritto alla protezione della propria privacy e alla protezione contro l'uso improprio dei propri dati personali . La protezione dei dati personali dell'utente. Trattiamo i tuoi dati personali in modo confidenziale e in conformità con le disposizioni legali sulla protezione dei dati e questa dichiarazione sulla protezione dei dati.</p><p>In collaborazione con i nostri fornitori di hosting, ci impegniamo a proteggere il database nel miglior modo possibile da accesso esterno, perdita, uso improprio o contraffazione.</p><p>Vorremmo sottolineare che la trasmissione di dati su Internet (ad es. Quando si comunica via e-mail) può presentare lacune nella sicurezza. Non è possibile proteggere completamente i dati dall'accesso di regole parti.</p><p>Secondo questo sito Web, l'utente accetta la raccolta, l'utente e l'uso dei dati vengono descritti di seguito. Questo sito Web può essere generalmente visitato senza registrazione. Dati come pagine inviati o nome del file a cui si accede, dati e ora sono memorizzati sul server a fini statistici senza che questi dati siano collegati all'utente. I dati personali, in particolare nome, indirizzo o indirizzo e-mail, sono raccolti su base volontaria per quanto possibile. Senza il tuo consenso, i dati non saranno trasmessi a terzi.</p><p>&nbsp;</p><h2>Trattamento dei dati personali</h2> <p>I dati personali sono tutte le informazioni relative a una persona specifica o identificabile. Una persona interessata è una persona che viene utilizzata per i dati personali. Il trattamento comprende tutto il trattamento dei dati personali, richiesto dai mezzi e dalle procedure gestite, in particolare l'archiviazione, la divulgazione, l'approvvigionamento, la rimozione, l'archiviazione, la modifica, la distruzione e l'uso dei dati personali .</p> <p>Elaboriamo i dati personali in conformità con la legge svizzera sulla protezione dei dati. Inoltre, trattiamo - nella misura e nella misura in cui è applicabile il GDPR dell'Unione - i dati personali in conformità con le seguenti basi legali in relazione all'art. 6 par. 1 GDPR <!--DSGVO-->:</p> <ul> <li>Illuminato. a) Trattamento dei dati personali con il consenso dell'interessato.</li> <li>Illuminato. b) Trattamento dei dati personali per adempiere a un contratto con l'interessato e per attuare le misure precontrattuali definite.</li> <li>Illuminato. c) Trattamento dei Dati Personali per adempiere a un Obbligo legale al Quale siamo soggetti in conformita con Qualsiasi legge UE APPLICABILE o in conformita con Qualsiasi legge APPLICABILE di un paese in cui il GDPR E <!--DSGVO-->totalmente o Parzialmente APPLICABILE.</li> <li>Illuminato. d) Trattamento di dati personali al fine di proteggere gli interessi vitali dell'interessato o di un'altra persona fisica.</li> <li>illuminato. f) Trattamento di dati personali al fine di salvaguardare gli interessi legittimi di noi o di terzi, a condizione che non prevalgano le libertà e i diritti fondamentali, nonché gli interessi dell'interessato. I legittimi interessi sono in particolare i nostri interessi commerciali nel poter fornire il nostro sito Web, la sicurezza delle informazioni, l'applicazione delle nostre rivendicazioni legali e il rispetto della legge svizzera.</li> </ul> <p>Elaboriamo i dati personali per la durata necessaria per i rispettivi scopi o scopi. Nel caso di obblighi di conservazione a lungo termine dovuti a obblighi legali e di altra natura a cui siamo soggetti, limitiamo l'elaborazione di conseguenza.</p><p>&nbsp;</p><h2>Informativa sulla privacy per i cookie</h2><p>Questo sito utilizza i cookie. Si tratta di piccoli file di testo che consentono di archiviare informazioni specifiche relative all'utente sul dispositivo dell'utente durante l'utilizzo del sito Web. I cookie consentono, in particolare, di determinare la frequenza di utilizzo e il numero di utenti delle pagine, di analizzare il comportamento dell'utilizzo della pagina, ma anche di rendere la nostra offerta più user-friendly. <!--Allg.Cookies-->I cookie rimangono memorizzati al termine di una sessione del browser e possono essere richiamati nuovamente quando si visita nuovamente il sito. Se non lo si desidera, è necessario impostare il browser Internet in modo che rifiuti di accettare i cookie.</p> <p></p><p>Un'obiezione generale all'uso dei cookie utilizzati a fini di marketing online può essere trovata su un gran numero di servizi, in particolare in caso di tracciamento, tramite il sito Web statunitense <a href=\"http://www.aboutads.info/choices/\" target=\"_blank\" rel=\"noopener\">http://www.aboutads.info/choices/</a> o il sito Web dell'UE <a href=\"http://www.youronlinechoices.com/\" target=\"_blank\" rel=\"noopener\">http://www.youronlinechoices.com/ essere</a> spiegato. Inoltre, i cookie possono essere salvati disattivandoli nelle impostazioni del browser. Si noti che non è possibile utilizzare tutte le funzioni di questa offerta online.</p> <p>&nbsp;</p><h2>Dichiarazione sulla protezione dei dati per la crittografia SSL</h2><p>Questo sito Web utilizza la crittografia SSL per motivi di sicurezza e per proteggere la trasmissione di contenuti riservati, come le richieste che ci invii come operatore del sito Web. È possibile riconoscere una connessione crittografata dal fatto che la riga dell'indirizzo del browser cambia da \"http: //\" a \"https: //\" e dal simbolo di blocco nella riga del browser.</p> <p>Se la crittografia SSL è attivata, i dati che ci trasmettete non possono essere letti da terzi.</p><p>&nbsp;</p><h2>Dichiarazione sulla protezione dei dati per i file di registro del server</h2><p>Il fornitore di questo sito Web raccoglie e archivia automaticamente le informazioni nei cosiddetti file di registro del server, che il browser ci trasmette automaticamente. Questi sono:</p> <ul> <li>Tipo e versione del browser</li> <li>Sistema operativo utilizzato</li> <li>URL referrer</li> <li>Nome host del computer che accede</li> <li>Ora della richiesta del server</li> </ul> <p>Questi dati non possono essere assegnati a persone specifiche. Questi dati non vengono uniti ad altre origini dati. Ci riserviamo il diritto di controllare questi dati in modo retrospettivo se veniamo a conoscenza di indicazioni specifiche di uso illegale.</p><p>&nbsp;</p><h2>Servizi di terzi</h2> <p>Questo sito Web utilizza Google Maps per incorporare mappe, Google Invisible reCAPTCHA per la protezione da bot e spam e YouTube per incorporare video.</p><p>Questi servizi dell'American Google LLC utilizzano i cookie, tra le altre cose e, di conseguenza, i dati vengono trasferiti a Google negli Stati Uniti, per cui si presume che nessun tracciamento personale avvenga in questo contesto esclusivamente attraverso l'uso del nostro sito Web.</p><p>Google si impegna a garantire un'adeguata protezione dei dati in conformità con lo scudo per la privacy americano-europeo e americano-svizzero.</p><p>Ulteriori informazioni sono disponibili nella <a href=\"https://policies.google.com/privacy?hl=de\" target=\"_blank\" rel=\"noopener\" style=\"color: inherit;\">dichiarazione sulla protezione dei dati di Google</a> .</p><p>&nbsp;</p><h2>Dichiarazione sulla protezione dei dati per modulo di contatto</h2><p>Se ci invii richieste utilizzando il modulo di contatto, i tuoi dati dal modulo di richiesta, inclusi i dettagli di contatto che ci hai fornito, verranno archiviati da noi allo scopo di elaborare la richiesta e in caso di domande di follow-up. Non trasmetteremo questi dati senza il tuo consenso.</p><p>&nbsp;</p><h2>Dichiarazione sulla protezione dei dati per diritto all'informazione, cancellazione, blocco</h2><p>Hai il diritto di liberare informazioni sui tuoi dati personali memorizzati, la loro origine e il destinatario e lo scopo del trattamento dei dati, nonché il diritto di correggere, bloccare o cancellare questi dati in qualsiasi momento. Puoi contattarci in qualsiasi momento all'indirizzo indicato nell'impronta se hai ulteriori domande sull'argomento dei dati personali.</p><p>&nbsp;</p> <h2>Dichiarazione sulla protezione dei dati per opposizione a messaggi pubblicitari</h2><p>Con la presente ci opponiamo all'uso dei dati di contatto pubblicati nell'ambito dell'obbligo di stampa per l'invio di materiale pubblicitario e informativo non richiesto. Gli operatori delle pagine si riservano espressamente il diritto di intraprendere azioni legali in caso di invio non richiesto di informazioni pubblicitarie, come e-mail di spam.</p><p>&nbsp;</p><h2>Dichiarazione sulla protezione dei dati per Google Analytics</h2><p>Questo sito Web utilizza Google Analytics, un servizio di analisi web fornito da Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. Per disattivare Google Analytics, Google fornisce <a href=\"https://tools.google.com/dlpage/gaoptout?hl=de\" target=\"_blank\" style=\"color: inherit;\">https://tools.google.com/dlpage/gaoptout?hl=de</a>è disponibile un plug-in del browser. Google Analytics utilizza i cookie. Si tratta di piccoli file di testo che consentono di archiviare informazioni specifiche relative all'utente sul dispositivo dell'utente. Questi consentono un'analisi dell'utilizzo del nostro sito Web da parte di Google. Le informazioni raccolte dal cookie sull'uso del nostro sito Web (incluso il tuo indirizzo IP) vengono generalmente trasferite su un server di Google negli Stati Uniti e ivi memorizzate. Desideriamo sottolineare che Google Analytics è stato ampliato su questo sito Web con il codice \"gat._anonymizeIp ();\" includere la registrazione anonima di indirizzi IP (il cosiddetto mascheramento IP<!--SwissAnwalt-->) per garantire. Se l'anonimizzazione è attiva, Google accorcia gli indirizzi IP all'interno degli Stati membri dell'Unione Europea o in altri stati contraenti dell'Accordo sullo Spazio economico europeo, motivo per cui non è possibile trarre conclusioni sulla tua identità. L'indirizzo IP completo viene trasferito su un server di Google negli Stati Uniti e lì abbreviato in casi eccezionali. Google rispetta le disposizioni sulla protezione dei dati dell'accordo \"Privacy Shield\" ed è registrato con il programma \"Privacy Shield\" del Dipartimento del Commercio degli Stati Uniti e utilizza le informazioni raccolte per valutare l'uso dei nostri siti Web, per scrivere rapporti per noi in questo Cordiali saluti e altri servizi correlati da noi forniti. Scopri di più su <a href=\"https://support.google.com/analytics/answer/6004245?hl=de\" target=\"_blank\" style=\"color: inherit;\">https://support.google.com/analytics/answer/6004245?hl=de</a> .</p><p>&nbsp;</p><h2>Dichiarazione sulla protezione dei dati per l'utilizzo di Google Web Fonts</h2><p>Questo sito Web utilizza i cosiddetti caratteri Web, forniti da Google, per la visualizzazione uniforme dei caratteri. Quando si richiama una pagina, il browser carica i caratteri Web richiesti nella cache del browser per visualizzare correttamente testi e caratteri. Se il tuo browser non supporta i caratteri web, verrà utilizzato un carattere standard dal tuo computer.</p><p>Ulteriori informazioni su Google Web Fonts sono disponibili all'indirizzo <a href=\"https://developers.google.com/fonts/faq\" target=\"_blank\" style=\"color: inherit;\">https://developers.google.com/fonts/faq</a> e nella dichiarazione sulla protezione dei dati di Google: <a href=\"https://www.google.com/policies/privacy/\" target=\"_blank\" style=\"color: inherit;\">https://www.google.com/policies/privacy/</a></p><p>&nbsp;</p><h2>i diritti d'autore</h2> <p>Il copyright e tutti gli altri diritti su contenuti, immagini, foto o altri file sul sito Web appartengono esclusivamente al gestore di questo sito Web o ai titolari dei diritti specificatamente indicati. Il consenso scritto del detentore del copyright deve essere ottenuto in anticipo per la riproduzione di tutti i file.</p><p>Chiunque commetta una violazione del copyright senza il consenso del rispettivo titolare dei diritti può essere punito e responsabile per danni, se necessario.</p><p>&nbsp;</p><h2>Dichiarazione di non responsabilità generale</h2> <p>Tutte le informazioni su questo sito Web sono state attentamente controllate. Ci sforziamo di offrire le nostre informazioni in modo attuale, corretto e completo. Tuttavia, il verificarsi di errori non può essere completamente escluso, il che significa che non possiamo garantire la completezza, l'accuratezza e la tempestività delle informazioni, compresi i contenuti giornalistici ed editoriali. Sono escluse le pretese di responsabilità basate su danni materiali o immateriali causati dall'uso delle informazioni offerte, a meno che non vi siano prove di colpa intenzionale o gravemente negligente.</p><p>L'editore può modificare o eliminare testi a propria discrezione e senza preavviso e non è obbligato ad aggiornare il contenuto di questo sito Web. L'uso o l'accesso a questo sito Web è a rischio e pericolo del visitatore. L'editore, i suoi clienti o partner non sono responsabili per danni, come diretti, indiretti, accidentali, da determinare in anticipo o danni consequenziali, che presumibilmente derivano dalla visita di questo sito Web e pertanto non sono responsabili per questo.</p><p>L'editore non si assume inoltre alcuna responsabilità per il contenuto e la disponibilità di siti Web di terzi che possono essere raggiunti tramite collegamenti esterni su questo sito Web. Gli operatori delle pagine collegate sono gli unici responsabili del loro contenuto. L'editore prende quindi espressamente le distanze da tutti i contenuti di terze parti che potrebbero essere rilevanti ai sensi del diritto penale o della legge sulla responsabilità o che violano la decenza comune.</p><p>&nbsp;</p><h2>modifiche</h2><p>Possiamo modificare questa politica sulla privacy in qualsiasi momento senza preavviso. Si applica la versione corrente pubblicata sul nostro sito Web. Nella misura in cui la dichiarazione sulla protezione dei dati è parte di un accordo con te, ti informeremo della modifica via e-mail o in altro modo adeguato in caso di aggiornamento.</p><p>&nbsp;</p><h2>Domande al responsabile della protezione dei dati</h2> <p>In caso di domande sulla protezione dei dati, si prega di inviare una e-mail o contattare la persona responsabile della protezione dei dati all'inizio della dichiarazione sulla protezione dei dati nella nostra organizzazione.</p><p>&nbsp;</p><p>Berna, <a href=\"https://www.swissanwalt.ch/\" target=\"_blank\" rel=\"noopener\">7 maggio 2019</a> Fonte: <a href=\"https://www.swissanwalt.ch/\" target=\"_blank\" rel=\"noopener\">SwissAnwalt</a><!--ACHTUNG: Wenn Sie die Quelle ohne Erlaubnis von SwissAnwalt entfernen, dann begehen Sie eine Urheberrechtsverletzung welche in jedem Fall unter Kostenfolge geahndet wird.-->"
-'Die neuen Passwörter stimmen nicht überein': '__Die neuen Passwörter stimmen nicht überein'
-'Passwort erfolgreich geändert!': '__Passwort erfolgreich geändert!'
-'Passwort nicht korrekt': '__Passwort nicht korrekt'
-'Tagebucheintrag erfolgreich erstellt!': '__Tagebucheintrag erfolgreich erstellt!'
-'Zugriff verweigert': 'Accesso rifiutato'
-'Seite nicht gefunden': 'Pagina non trovata'
-'Scheint als hättest du einen Fehler in der Matrix gefunden': 'Sembra che tu abbia trovato un difetto nella matrice'
-'Das sind nicht die Droiden, nach denen Sie suchen': "Questi non sono i droidi che state cercando"
-'Interner Serverfehler': 'Errore interno del server'
-'Ein schwerwiegender Fehler ist aufgetreten. Wir arbeiten an der Behebung des Problems': "Si è verificato un grave errore. Stiamo lavorando per correggere il problema"
-'Tagebucheintrag erfolgreich bearbeitet!': '__Tagebucheintrag erfolgreich bearbeitet!'
-'Account erstellen': '__Account erstellen'
-'Ereignis bearbeiten': '__Ereignis bearbeiten'
-Ereignisübersicht: __Ereignisübersicht
-'Ereignis anzeigen': '__Ereignis anzeigen'
-Test: __Test
-'Neue Nachricht vom Kontaktformular auf': '__Neue Nachricht vom Kontaktformular auf'
-'Neue Nachricht auf': '__Neue Nachricht auf'
-Von: __Von
-Schweiz: __Schweiz
-'Na? Passwort vergessen?': '__Na? Passwort vergessen?'
-'Nur die Ruhe bewahren. Das ist uns auch viel zu oft passiert.': '__Nur die Ruhe bewahren. Das ist uns auch viel zu oft passiert.'
-'Wir haben dir ein neues Passwort generiert, mit welchem du dich gleich einloggen kannst': '__Wir haben dir ein neues Passwort generiert, mit welchem du dich gleich einloggen kannst'
-'Wir empfehlen dir nach dem ersten Einloggen, dein Passwort umgehend zu ändern': '__Wir empfehlen dir nach dem ersten Einloggen, dein Passwort umgehend zu ändern'
-Willkommen: 'Benvenuti'
-'Vielen Dank für deine Registrierung bei ''epilepc''! Dein Benutzerkonto wurde angelegt und du kannst nun loslegen!': '__Vielen Dank für deine Registrierung bei ''epilepc''! Dein Benutzerkonto wurde angelegt und du kannst nun loslegen!'
-'Bei grossen Ankündigungen oder Anpassungen erlauben wir uns, dir auf die angegebene Email-Adresse Informationsmails zu senden': '__Bei grossen Ankündigungen oder Anpassungen erlauben wir uns, dir auf die angegebene Email-Adresse Informationsmails zu senden'
-'Eine Spamflut ist aber nicht zu erwarten': '__Eine Spamflut ist aber nicht zu erwarten'
-'JETZT EINLOGGEN': 'LOG IN NOW'
-'Notfallmedikament': 'Farmaci di emergenza'
-'Eingenommen': 'Presa'
-'Keine': 'No'
-'form.account.diagnose.max.length': 'Max. 250 lettere'
-'form.account.max.length': 'Max. 25 lettere'
-'Eingenommene Notfallmedikation': 'Farmaci di soccorso presi'
-'Deine Übersicht des aktuellen Monats': 'La tua panoramica del mese in corso'
-'Notfall Medikationen': 'Farmaci di soccorso'
-'Notfallmedikationen': 'Farmaco di soccorso'
+'Übersicht': 'Panoramica'

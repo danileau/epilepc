@@ -20,7 +20,7 @@ class UserFixtures extends BaseFixtures
 
     protected function loadData(ObjectManager $manager)
     {
-        $this->createMany(10, 'main_users', function($i) use ($manager) {
+        $this->createMany(20, 'main_users', function($i) use ($manager) {
             $user = new User();
             $user->setEmail($this->faker->email);
             $user->setFirstname($this->faker->firstName);

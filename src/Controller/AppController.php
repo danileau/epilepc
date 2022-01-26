@@ -19,17 +19,33 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
+
 
 class AppController extends AbstractController
 {
+
+    /**
+     * @var HttpClientInterface
+     */
+    private $client;
+
+    public function __construct(HttpClientInterface $client, Request $request)
+    {
+        $this->client = $client;
+
+    }
 
     /**
      * @Route("/app", name="app_dashboard")
      * @IsGranted("ROLE_USER")
      * Dashboard mit allen queries für die Counts und Diagramme
      */
-    public function index(Request $request, MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user, UserRepository $usr)
+    public function index(Request $request, MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserRepository $usr)
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $this->getUser();
         /**
          * Anfallsdaten für die Diagramme aufbereiten
          */
@@ -130,10 +146,12 @@ class AppController extends AbstractController
 
     /**
      * @Route("/app/overview", name="app_overview")
+     * @IsGranted("ROLE_USER")
      * Übersicht mit allen Werten generieren
      */
-    public function overview(Request $request,MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserRepository $usr, UserInterface $user)
+    public function overview(Request $request,MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserRepository $usr)
     {
+        $user = $this->getUser();
         /** @var $user User */
         $diagnose = $user->getDiagnose();
         /**
@@ -221,6 +239,7 @@ class AppController extends AbstractController
 
     /**
      * @Route("/app/overview/pdf", name="app_overview_pdf")
+     * @IsGranted("ROLE_USER")
      * PDF generieren
      */
     public function pdfAction(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user, Pdf $snappy)
