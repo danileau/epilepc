@@ -102,6 +102,9 @@
     "egulias/email-validator": {
         "version": "2.1.7"
     },
+    "firebase/php-jwt": {
+        "version": "v6.1.0"
+    },
     "fzaninotto/faker": {
         "version": "v1.8.0"
     },
@@ -316,6 +319,18 @@
     },
     "symfony/intl": {
         "version": "v4.2.7"
+    },
+    "symfony/mailer": {
+        "version": "4.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "4.3",
+            "ref": "97a61eabb351d7f6cb7702039bcfe07fe9d7e03c"
+        },
+        "files": [
+            "./config/packages/mailer.yaml"
+        ]
     },
     "symfony/maker-bundle": {
         "version": "1.0",

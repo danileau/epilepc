@@ -13,6 +13,7 @@
         "doctrine/doctrine-bundle": "^2",
         "doctrine/doctrine-migrations-bundle": "^2",
         "doctrine/orm": "^2",
+        "firebase/php-jwt": "^6.1",
         "knplabs/knp-snappy-bundle": "^1.6",
         "laminas/laminas-code": "^3.4",
         "laminas/laminas-eventmanager": "^3.2",
@@ -27,6 +28,7 @@
         "symfony/form": "4.4.*",
         "symfony/framework-bundle": "4.4.*",
         "symfony/http-client": "4.4.*",
+        "symfony/mailer": "4.4.*",
         "symfony/monolog-bundle": "^3.3",
         "symfony/property-access": "4.4.*",
         "symfony/property-info": "4.4.*",
@@ -42,6 +44,9 @@
         "thibautselingue/local-php-security-checker-installer": "^1.0"
     },
     "config": {
+        "github-oauth": {
+            "github.com": "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"
+        },
         "preferred-install": {
             "*": "dist"
         },
@@ -83,7 +88,8 @@
     "extra": {
         "symfony": {
             "allow-contrib": true,
-            "require": "4.4.*"
+            "require": "4.4.*",
+            "docker": false
         }
     },
     "require-dev": {
