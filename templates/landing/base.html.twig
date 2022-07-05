@@ -70,6 +70,7 @@
     </script>
 
 
+
     <p class="copyright">&copy; {{ "now"|date("Y") }} - epilepc <br> <a href="{{ path('app_landingpage_datenschutz') }}">{% trans %}Datenschutzerklärung{% endtrans %}</a> - <a href="{{ path('app_landingpage_releasenotes') }}">{% trans %}Releasenotes{% endtrans %}</a><br/>
     {% trans %}Sprache ändern{% endtrans %}: <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'de'})) }}">{% trans %}Deutsch{% endtrans %}</a> - <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">{% trans %}Englisch{% endtrans %}</a> - <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'it'})) }}">{% trans %}Italienisch{% endtrans %}</a> - <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">{% trans %}Französisch{% endtrans %}</a></p>
 </footer>
