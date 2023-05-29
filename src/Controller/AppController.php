@@ -151,6 +151,7 @@ class AppController extends AbstractController
      */
     public function overview(Request $request,MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserRepository $usr)
     {
+        set_time_limit(300);
         $user = $this->getUser();
         /** @var $user User */
         $diagnose = $user->getDiagnose();
@@ -244,6 +245,7 @@ class AppController extends AbstractController
      */
     public function pdfAction(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user, Pdf $snappy)
     {
+        set_time_limit(300);
         /** @var $user User */
         $diagnose = $user->getDiagnose();
         /**

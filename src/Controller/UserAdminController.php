@@ -24,9 +24,18 @@ class UserAdminController extends AbstractController
      * Visualisiert die Benutzerübersicht
      */
     public function index(UserRepository $userRepository){
+
         set_time_limit(300);
+        #$em = $this->getDoctrine()->getManager();
+        #$query = $em->createQuery('SELECT u FROM App\Entity\User u')
+        #    ->setCacheable(true)
+        #    ->setCacheMode('NORMAL');
+    
+        #$users = $query->getResult();
+        
         return $this->render('user_admin/index.html.twig', [
             'users' => $userRepository->findAll()
+        #    'users' => $users
         ]);
 
     }

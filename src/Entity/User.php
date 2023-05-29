@@ -14,6 +14,9 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Table(name="user", indexes={
+ *     @ORM\Index(name="user_index", columns={"email", "firstname", "lastname", "roles"}, options={"lengths": {"38", "225", "225", "14"}})
+ * })
  * @UniqueEntity(
  *     fields={"email"},
  *     message="Du hast dich doch bereits registriert?"
