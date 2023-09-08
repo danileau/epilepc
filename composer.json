@@ -14,7 +14,7 @@
         "doctrine/doctrine-migrations-bundle": "^2",
         "doctrine/orm": "^2.15.1",
         "firebase/php-jwt": "^6.1",
-        "knplabs/knp-snappy": "1.4.2",
+        "knplabs/knp-snappy": "1.4.3",
         "knplabs/knp-snappy-bundle": "^1.6",
         "laminas/laminas-code": "^4.11",
         "laminas/laminas-eventmanager": "^3.10",
