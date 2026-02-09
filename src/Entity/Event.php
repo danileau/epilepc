@@ -6,6 +6,7 @@ use Ambta\DoctrineEncryptBundle\Configuration\Encrypted;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EventRepository")
@@ -23,6 +24,7 @@ class Event
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      * @Encrypted
      */
     private $name;
@@ -41,6 +43,7 @@ class Event
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
      */
     private $timestamp_when;
 

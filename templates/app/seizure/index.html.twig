@@ -47,6 +47,18 @@
 
                     </tbody>
                 </table>
+                {# Server-side pagination #}
+                <div class="pagination">
+                    {% if currentPage > 1 %}
+                        <a href="{{ path('seizure_index', {'page': currentPage - 1}) }}">Previous </a>
+                    {% endif %}
+
+                    <span> - Page {{ currentPage }} of {{ totalPages }} - </span>
+
+                    {% if currentPage < totalPages %}
+                        <a href="{{ path('seizure_index', {'page': currentPage + 1}) }}">Next </a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
@@ -75,6 +87,9 @@
     // Call the dataTables jQuery plugin
     $(document).ready(function() {
         $('#dataTable').DataTable( {
+            "paging": false,
+            "info": false,
+            "searching": false,
             "language": {
                 "url": "{{ asset('application/json/German.json'|trans) }}"
             },

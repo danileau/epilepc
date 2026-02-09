@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Ambta\DoctrineEncryptBundle\Configuration\Encrypted;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DiaryentryRepository")
@@ -21,6 +22,7 @@ class Diaryentry
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      * @Encrypted
      */
     private $title;
@@ -34,6 +36,7 @@ class Diaryentry
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank()
      */
     private $timestamp_when;
 

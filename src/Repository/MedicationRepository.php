@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Medication;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * @method Medication|null find($id, $lockMode = null, $lockVersion = null)
@@ -61,10 +62,17 @@ class MedicationRepository extends ServiceEntityRepository
      * des eingeloggten Users zurück
      */
     public function getDiagramMedicationData($id){
-        $month = $this->getMedication2YearsJSON();
+        $months = $this->getMedication2YearsJSON();
 
-        foreach ($month as $key => $value) {
-            $data[$value] = $this->getMedicationCountForMonth($id, $value);
+        $startDate = new \DateTime(end($months) . '-01');
+        $endDate = new \DateTime(reset($months) . '-01');
+        $endDate->modify('+1 month');
+
+        $batchCounts = $this->getMonthlyCountsBatch($id, $startDate, $endDate);
+
+        $data = [];
+        foreach ($months as $month) {
+            $data[$month] = $batchCounts[$month] ?? 0;
         }
         return $data;
     }
@@ -78,8 +86,14 @@ class MedicationRepository extends ServiceEntityRepository
     {
         $days = $this->getMedicationCurrentMonthJSON();
 
-        foreach ($days as $key => $value) {
-            $data[$value] = $this->getDailyMedicationMonth($id, $value);
+        $startDate = reset($days) . ' 00:00:00';
+        $endDate = end($days) . ' 23:59:59';
+
+        $batchCounts = $this->getDailyCountsBatch($id, $startDate, $endDate);
+
+        $data = [];
+        foreach ($days as $day) {
+            $data[$day] = $batchCounts[$day] ?? 0;
         }
         return $data;
     }
@@ -111,20 +125,82 @@ class MedicationRepository extends ServiceEntityRepository
      */
     public function getMedicationCurrentMonthJSON()
     {
-        //$month = "02";
-        $month = date("m");
-        $year = date("Y");
+        $date = new \DateTime(date('Y-m-01'));
+        $endDate = clone $date;
+        $endDate->modify('+1 month');
 
-        $start_date = "01-" . $month . "-" . $year;
-        $start_time = strtotime($start_date);
-
-        $end_time = strtotime("+1 month", $start_time);
-
-        for ($i = $start_time; $i < $end_time; $i += 86400) {
-            $list[] = date('Y-m-d', $i);
+        $list = [];
+        while ($date < $endDate) {
+            $list[] = $date->format('Y-m-d');
+            $date->modify('+1 day');
         }
 
         return $list;
+    }
+
+    /**
+     * Get all monthly counts in a single query.
+     * Medications use date_from/date_to range overlap, so we query once
+     * and count overlaps per month in PHP.
+     */
+    public function getMonthlyCountsBatch($userId, \DateTime $startDate, \DateTime $endDate): array
+    {
+        $medications = $this->createQueryBuilder('m')
+            ->select('m.date_from, m.date_to')
+            ->where('m.user = :userId')
+            ->andWhere('m.date_from < :end')
+            ->andWhere('m.date_to >= :start')
+            ->setParameter('userId', $userId)
+            ->setParameter('start', $startDate)
+            ->setParameter('end', $endDate)
+            ->getQuery()
+            ->getResult();
+
+        $counts = [];
+        $current = clone $startDate;
+        while ($current < $endDate) {
+            $key = $current->format('Y-m');
+            $monthStart = clone $current;
+            $monthEnd = clone $current;
+            $monthEnd->modify('last day of this month')->modify('+1 day');
+
+            $count = 0;
+            foreach ($medications as $med) {
+                $from = $med['date_from'];
+                $to = $med['date_to'];
+                if ($from < $monthEnd && $to >= $monthStart) {
+                    $count++;
+                }
+            }
+            $counts[$key] = $count;
+            $current->modify('+1 month');
+        }
+        return $counts;
+    }
+
+    /**
+     * Get all daily emergency medication counts in a single query.
+     */
+    public function getDailyCountsBatch($userId, string $startDate, string $endDate): array
+    {
+        $results = $this->createQueryBuilder('m')
+            ->select('SUBSTRING(m.date_from, 1, 10) as day, COUNT(m.id) as cnt')
+            ->where('m.user = :userId')
+            ->andWhere('m.date_from >= :start')
+            ->andWhere('m.date_from <= :end')
+            ->andWhere('m.emergency_med = 1')
+            ->setParameter('userId', $userId)
+            ->setParameter('start', $startDate)
+            ->setParameter('end', $endDate)
+            ->groupBy('day')
+            ->getQuery()
+            ->getResult();
+
+        $counts = [];
+        foreach ($results as $row) {
+            $counts[$row['day']] = (int)$row['cnt'];
+        }
+        return $counts;
     }
 
     /**
@@ -182,4 +258,20 @@ class MedicationRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * Paginate Medications for a specific user.
+     *
+     * @return Paginator
+     */
+    public function paginateByUser(int $userId, int $page, int $limit = 10): Paginator
+    {
+        $qb = $this->createQueryBuilder('m')
+            ->where('m.user = :userId')
+            ->setParameter('userId', $userId)
+            ->orderBy('m.modified_at', 'DESC')
+            ->setFirstResult(($page - 1) * $limit)  // offset
+            ->setMaxResults($limit);
+
+        return new Paginator($qb);
+    }    
 }

@@ -6,22 +6,23 @@ use App\Entity\Seizuretype;
 use App\Form\SeizuretypeFormType;
 use App\Repository\SeizuretypeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @Route("/admin/seizuretype")
- * @IsGranted("ROLE_ADMIN")
  * Anfallsarten dürfen nur Administratoren pflegen
  */
+#[Route('/admin/seizuretype')]    
+#[IsGranted('ROLE_ADMIN')]
 class SeizuretypeController extends AbstractController
 {
     /**
-     * @Route("/", name="seizuretype_index", methods={"GET"})
      * Anfallsarten anzeigen
      */
+    #[Route('/', name:'seizuretype_index', methods: ['GET'])]    
     public function index(SeizuretypeRepository $seizuretypeRepository): Response
     {
         return $this->render('app/seizuretype/index.html.twig', [
@@ -30,10 +31,10 @@ class SeizuretypeController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="seizuretype_new", methods={"GET","POST"})
      * Neue Anfallsart erstellen
      */
-    public function new(Request $request): Response
+    #[Route('/new', name:'seizuretype_new', methods: ['GET', 'POST'])]    
+    public function new(Request $request, TranslatorInterface $translator): Response
     {
         // Generiert das Formular wie in SeizuretypeFormType definiert.
         // Wenn das Formular ausgefüllt worden ist, wird der Inhalt in die Datenbank geschrieben
@@ -48,7 +49,7 @@ class SeizuretypeController extends AbstractController
             $entityManager->persist($seizuretype);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Anfallart erfolgreich erstellt!');
+            $this->addFlash('success', $translator->trans('Anfallart erfolgreich erstellt!'));
             return $this->redirectToRoute('seizuretype_index');
         }
 
@@ -58,9 +59,9 @@ class SeizuretypeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="seizuretype_show", methods={"GET"})
      * Anfallsart anzeigen
      */
+    #[Route('/{id}', name:'seizuretype_show', methods: ['GET'])]    
     public function show(Request $request, Seizuretype $seizuretype): Response
     {
         $form = $this->createForm(SeizuretypeFormType::class, $seizuretype);
@@ -73,9 +74,9 @@ class SeizuretypeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="seizuretype_edit", methods={"GET","POST"})
      * Anfallsart bearbeiten
      */
+    #[Route('/{id}/edit', name:'seizuretype_edit', methods: ['GET', 'POST'])]    
     public function edit(Request $request, Seizuretype $seizuretype): Response
     {
         $form = $this->createForm(SeizuretypeFormType::class, $seizuretype);
@@ -96,9 +97,9 @@ class SeizuretypeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="seizuretype_delete", methods={"DELETE"})
      * Anfallsart löschen
      */
+    #[Route('/{id}', name:'seizuretype_delete', methods: ['DELETE'])]    
     public function delete(Request $request, Seizuretype $seizuretype): Response
     {
         if ($this->isCsrfTokenValid('delete'.$seizuretype->getId(), $request->request->get('_token'))) {

@@ -233,6 +233,8 @@ class UserRepository extends ServiceEntityRepository
                         break;
                 }
                 break;
+            default:
+                return $month_name;
         }
     }
 }

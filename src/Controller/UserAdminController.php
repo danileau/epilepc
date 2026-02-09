@@ -5,46 +5,38 @@ use App\Entity\User;
 use App\Form\UserAdminType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @IsGranted("ROLE_ADMIN")
- * Benutzer dürfen nur durch Administratoren gepflegt werden
+ * Benutzer dürfen nur durch Administratoren visualisiert und gepflegt werden
  */
+#[IsGranted('ROLE_ADMIN')]
 class UserAdminController extends AbstractController
 {
 
     /**
-     * @Route("/admin", name="admin_user_index")
      * Visualisiert die Benutzerübersicht
      */
+    #[Route('/admin', name: 'admin_user_index')]   
     public function index(UserRepository $userRepository){
 
-        set_time_limit(300);
-        #$em = $this->getDoctrine()->getManager();
-        #$query = $em->createQuery('SELECT u FROM App\Entity\User u')
-        #    ->setCacheable(true)
-        #    ->setCacheMode('NORMAL');
-    
-        #$users = $query->getResult();
-        
         return $this->render('user_admin/index.html.twig', [
             'users' => $userRepository->findAll()
-        #    'users' => $users
         ]);
 
     }
 
     /**
-     * @Route("/admin/user/new", name="admin_user_new")
      * Neuer Benutzer erstellen
      */
-    public function new(EntityManagerInterface $em, Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    #[Route('/admin/user/new', name: 'admin_user_new')]   
+    public function new(EntityManagerInterface $em, Request $request, UserPasswordEncoderInterface $passwordEncoder, TranslatorInterface $translator)
     {
         $form = $this->createForm(UserAdminType::class);
         $form->handleRequest($request);
@@ -60,7 +52,7 @@ class UserAdminController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            $this->addFlash('success', "Neuer Benutzer wurde erstellt");
+            $this->addFlash('success', $translator->trans("Neuer Benutzer wurde erstellt"));
 
             return $this->redirectToRoute('admin_user_index');
         }
@@ -74,6 +66,7 @@ class UserAdminController extends AbstractController
      * @Route("/admin/user/{id}", name="admin_user_show")
      * Benutzer anzeigen
      */
+    #[Route('/admin/user/new', name: 'admin_user_new')]   
     public function show(User $user){
         return $this->render('user_admin/show.html.twig', [
             'user' => $user,
@@ -84,9 +77,9 @@ class UserAdminController extends AbstractController
      * @Route("/admin/user/{id}/edit", name="admin_user_edit")
      * Benutzer editieren
      */
-    public function edit(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder): Response
+    #[Route('/admin/user/new', name: 'admin_user_new')]   
+    public function edit(Request $request, User $user, UserPasswordEncoderInterface $passwordEncoder, TranslatorInterface $translator): Response
     {
-
         $form = $this->createForm(UserAdminType::class, $user);
 
         $form->handleRequest($request);
@@ -99,7 +92,7 @@ class UserAdminController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', 'Benutzer erfolgreich bearbeitet!');
+            $this->addFlash('success', $translator->trans('Benutzer erfolgreich bearbeitet!'));
 
             return $this->redirectToRoute('admin_user_index', [
                 'id' => $user->getId(),
@@ -113,14 +106,14 @@ class UserAdminController extends AbstractController
 
     }
 
-
     /**
      * @Route("/admin/user/{id}/makeAdmin", name="admin_user_make_admin")
      * Rolle "ROLE_ADMIN" dem Benutzer zuteilen
      */
-    public function makeAdmin(Request $request, User $user){
+    #[Route('/admin/user/new', name: 'admin_user_new')]   
+    public function makeAdmin(Request $request, User $user, TranslatorInterface $translator){
         //$userRepository->makeAdmin($user);
-        $this->addFlash('success', "Adminrechte wurden vergeben");
+        $this->addFlash('success', $translator->trans("Adminrechte wurden vergeben"));
         $roles = ["ROLE_ADMIN"];
         $user->setRoles($roles);
         $entityManager = $this->getDoctrine()->getManager();
@@ -133,9 +126,10 @@ class UserAdminController extends AbstractController
      * @Route("/admin/user/{id}/removeAdmin", name="admin_user_remove_admin")
      * Rolle "ROLE_ADMIN" entfernen
      */
-    public function removeAdmin(Request $request, UserRepository $userRepository, User $user){
+    #[Route('/admin/user/new', name: 'admin_user_new')]   
+    public function removeAdmin(Request $request, User $user, TranslatorInterface $translator){
         //$userRepository->makeAdmin($user);
-        $this->addFlash('success', "Adminrechte wurden entfernt");
+        $this->addFlash('success', $translator->trans("Adminrechte wurden entfernt"));
         $roles = [];
         $user->setRoles($roles);
         $entityManager = $this->getDoctrine()->getManager();
@@ -148,9 +142,10 @@ class UserAdminController extends AbstractController
      * @Route("/admin/user/{id}/makeDeactivated", name="admin_user_make_deactivated")
      * Benutzer deaktivieren
      */
-    public function makeDeactivated(Request $request, User $user){
+    #[Route('/admin/user/new', name: 'admin_user_new')]   
+    public function makeDeactivated(Request $request, User $user, TranslatorInterface $translator){
 
-        $this->addFlash('success', "Benutzer wurde deaktiviert");
+        $this->addFlash('success', $translator->trans("Benutzer wurde deaktiviert"));
         $user->setDeactivated(1);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
@@ -159,12 +154,12 @@ class UserAdminController extends AbstractController
     }
 
     /**
-     * @Route("/admin/user/{id}/removeDeactivated", name="admin_user_remove_deactivated")
      * Benutzer aktivieren
      */
-    public function removeDeactivated(Request $request, UserRepository $userRepository, User $user){
+    #[Route('/admin/user/{id}/removeDeactivated', name: 'admin_user_remove_deactivated')]   
+    public function removeDeactivated(Request $request, User $user, TranslatorInterface $translator){
 
-        $this->addFlash('success', "Benutzer wurde reaktiviert");
+        $this->addFlash('success', $translator->trans("Benutzer wurde reaktiviert"));
         $user->setDeactivated(0);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Seizure;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 
 /**
@@ -51,9 +52,17 @@ class SeizureRepository extends ServiceEntityRepository
      */
     public function getDiagramSeizureData($id)
     {
-        $month = $this->getSeizure2YearsJSON();
-        foreach ($month as $key => $value) {
-            $data[$value] = $this->getSeizureCountForMonth($id, $value);
+        $months = $this->getSeizure2YearsJSON();
+
+        $startDate = new \DateTime(end($months) . '-01');
+        $endDate = new \DateTime(reset($months) . '-01');
+        $endDate->modify('+1 month');
+
+        $batchCounts = $this->getMonthlyCountsBatch($id, $startDate, $endDate);
+
+        $data = [];
+        foreach ($months as $month) {
+            $data[$month] = $batchCounts[$month] ?? 0;
         }
         return $data;
     }
@@ -67,8 +76,14 @@ class SeizureRepository extends ServiceEntityRepository
     {
         $days = $this->getSeizureCurrentMonthJSON();
 
-        foreach ($days as $key => $value) {
-            $data[$value] = $this->getDailySeizuresMonth($id, $value);
+        $startDate = reset($days) . ' 00:00:00';
+        $endDate = end($days) . ' 23:59:59';
+
+        $batchCounts = $this->getDailyCountsBatch($id, $startDate, $endDate);
+
+        $data = [];
+        foreach ($days as $day) {
+            $data[$day] = $batchCounts[$day] ?? 0;
         }
         return $data;
     }
@@ -103,20 +118,66 @@ class SeizureRepository extends ServiceEntityRepository
      */
     public function getSeizureCurrentMonthJSON()
     {
-        //$month = "02";
-        $month = date("m");
-        $year = date("Y");
+        $date = new \DateTime(date('Y-m-01'));
+        $endDate = clone $date;
+        $endDate->modify('+1 month');
 
-        $start_date = "01-" . $month . "-" . $year;
-        $start_time = strtotime($start_date);
-
-        $end_time = strtotime("+1 month", $start_time);
-
-        for ($i = $start_time; $i < $end_time; $i += 86400) {
-            $list[] = date('Y-m-d', $i);
+        $list = [];
+        while ($date < $endDate) {
+            $list[] = $date->format('Y-m-d');
+            $date->modify('+1 day');
         }
 
         return $list;
+    }
+
+    /**
+     * Get all monthly counts in a single query using GROUP BY.
+     */
+    public function getMonthlyCountsBatch($userId, \DateTime $startDate, \DateTime $endDate): array
+    {
+        $results = $this->createQueryBuilder('s')
+            ->select('YEAR(s.timestamp_when) as yr, MONTH(s.timestamp_when) as mo, COUNT(s.id) as cnt')
+            ->where('s.user = :userId')
+            ->andWhere('s.timestamp_when >= :start')
+            ->andWhere('s.timestamp_when < :end')
+            ->setParameter('userId', $userId)
+            ->setParameter('start', $startDate)
+            ->setParameter('end', $endDate)
+            ->groupBy('yr, mo')
+            ->getQuery()
+            ->getResult();
+
+        $counts = [];
+        foreach ($results as $row) {
+            $key = sprintf('%04d-%02d', $row['yr'], $row['mo']);
+            $counts[$key] = (int)$row['cnt'];
+        }
+        return $counts;
+    }
+
+    /**
+     * Get all daily counts for a date range in a single query.
+     */
+    public function getDailyCountsBatch($userId, string $startDate, string $endDate): array
+    {
+        $results = $this->createQueryBuilder('s')
+            ->select('SUBSTRING(s.timestamp_when, 1, 10) as day, COUNT(s.id) as cnt')
+            ->where('s.user = :userId')
+            ->andWhere('s.timestamp_when >= :start')
+            ->andWhere('s.timestamp_when <= :end')
+            ->setParameter('userId', $userId)
+            ->setParameter('start', $startDate)
+            ->setParameter('end', $endDate)
+            ->groupBy('day')
+            ->getQuery()
+            ->getResult();
+
+        $counts = [];
+        foreach ($results as $row) {
+            $counts[$row['day']] = (int)$row['cnt'];
+        }
+        return $counts;
     }
 
     /**
@@ -173,4 +234,20 @@ class SeizureRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * Paginate Seizures for a specific user.
+     *
+     * @return Paginator
+     */
+    public function paginateByUser(int $userId, int $page, int $limit = 15): Paginator
+    {
+        $qb = $this->createQueryBuilder('s')
+            ->where('s.user = :userId')
+            ->setParameter('userId', $userId)
+            ->orderBy('s.timestamp_when', 'DESC')
+            ->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit);
+
+        return new Paginator($qb);
+    }
 }

@@ -11,9 +11,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ContactController extends AbstractController
 {
     // Kontaktformular erstellen und Mailing Logik
-    /**
-     * @Route("/contact", name="contact")
-     */
+    #[Route('/contact', name: 'contact')]
     public function index(Request $request, \Swift_Mailer $mailer, TranslatorInterface $translator)
     {
         // Erstellt das Kontaktformular
@@ -53,7 +51,6 @@ class ContactController extends AbstractController
 
                     $message->setBody(
                         $this->renderView(
-                        // templates/emails/registration.html.twig
                             'mail/contact.mail.html.twig',
                             [
                                 'name' => $contactFormData['name'],

@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\PasswordChangeType;
 use App\Form\ProfileFormType;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,17 +17,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 
 /**
- * @IsGranted("ROLE_USER")
  * Schränkt den Zugriff auf alle Routen in diesem Controller ein. Die Rolle "ROLE_USER" wird benötigt
  */
-
+#[IsGranted('ROLE_USER')]  
 class AccountController extends AbstractController
 {
 
     /**
-     * @Route("/app/account", name="app_account")
      * Profilübersicht
      */
+    #[Route('/app/account', name: 'app_account')]
     public function index(Request $request, UserInterface $user, TranslatorInterface $translator)
     {
         // Erstellt das Formular Profile
@@ -55,9 +54,9 @@ class AccountController extends AbstractController
 
 
     /**
-     * @Route("/api/account", name="api_account")
      * Stellt die User Informationen als JSON String zur Verfügung
      */
+    #[Route('/api/account', name: 'api_account')]
     public function accountApi()
     {
         $user = $this->getUser();
@@ -68,9 +67,9 @@ class AccountController extends AbstractController
 
 
     /**
-     * @Route("/app/account/changePassword", name="app_change_password")
      * Passwort ändern
      */
+    #[Route('/app/account/changePassword', name: 'app_change_password')]
     public function change_user_password(Request $request, UserPasswordEncoderInterface $passwordEncoder, TranslatorInterface $translator){
         $form = $this->createForm(PasswordChangeType::class);
         $em = $this->getDoctrine()->getManager();

@@ -107,7 +107,6 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->created_at = new ArrayCollection();
         $this->seizures = new ArrayCollection();
         $this->diaryentries = new ArrayCollection();
         $this->medications = new ArrayCollection();

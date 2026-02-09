@@ -11,15 +11,13 @@ use App\Repository\MedicationRepository;
 use App\Repository\SeizureRepository;
 use App\Repository\UserRepository;
 use DateTime;
-use DateTimeImmutable;
 use Knp\Snappy\Pdf;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 
@@ -38,10 +36,10 @@ class AppController extends AbstractController
     }
 
     /**
-     * @Route("/app", name="app_dashboard")
-     * @IsGranted("ROLE_USER")
      * Dashboard mit allen queries für die Counts und Diagramme
      */
+    #[Route('/app', name: 'app_dashboard')]
+    #[IsGranted('ROLE_USER')]
     public function index(Request $request, MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserRepository $usr)
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -131,9 +129,6 @@ class AppController extends AbstractController
             'seizure_data' => $seizureValueJSON,
             'seizure_m_month' => $seizure_m_MonthJSON,
             'seizure_m_data' => $seizure_m_ValueJSON,
-            //'seizure_emeds_count' => $seizureRepository->countFindAllEMedsFromUser($user),
-           // 'seizure_emeds_month' => $seizureEMedsMonthJSON,
-           // 'seizure_emeds_data' => $seizureEMedsValueJSON,
             'diaryentry_count' => $diaryentryRepository->countFindAllFromUser($user),
             'diaryentry_data' => $diaryValueJSON,
             'diaryentry_m_data' => $diary_m_ValueJSON,
@@ -145,13 +140,12 @@ class AppController extends AbstractController
 
 
     /**
-     * @Route("/app/overview", name="app_overview")
-     * @IsGranted("ROLE_USER")
      * Übersicht mit allen Werten generieren
      */
+    #[Route('/app/overview', name: 'app_overview')]
+    #[IsGranted('ROLE_USER')]    
     public function overview(Request $request,MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserRepository $usr)
     {
-        set_time_limit(300);
         $user = $this->getUser();
         /** @var $user User */
         $diagnose = $user->getDiagnose();
@@ -239,13 +233,12 @@ class AppController extends AbstractController
 
 
     /**
-     * @Route("/app/overview/pdf", name="app_overview_pdf")
-     * @IsGranted("ROLE_USER")
      * PDF generieren
      */
-    public function pdfAction(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user, Pdf $snappy)
+    #[Route('/app/overview/pdf', name: 'app_overview_pdf')]
+    #[IsGranted('ROLE_USER')]    
+    public function pdfAction(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserRepository $user, Pdf $snappy)
     {
-        set_time_limit(300);
         /** @var $user User */
         $diagnose = $user->getDiagnose();
         /**

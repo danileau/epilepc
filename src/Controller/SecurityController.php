@@ -8,9 +8,8 @@ use App\Form\PasswordForgotType;
 use App\Form\UserRegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
-use Doctrine\ORM\EntityManager;
 use Psr\Log\LoggerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,9 +25,7 @@ class SecurityController extends AbstractController
 {
 
     // Loginfunktion
-    /**
-     * @Route("/login", name="app_login")
-     */
+    #[Route('/login', name:'app_login')]    
     public function login(AuthenticationUtils $authenticationUtils, LoggerInterface $logger): Response
     {
         // Falls bereits eingeloggt, reditect zu /app
@@ -51,19 +48,13 @@ class SecurityController extends AbstractController
     }
 
     // Registrierungsfunktion mit Mailversand
-    /**
-     * @Route("/register", name="app_register")
-     */
+    #[Route('/register', name:'app_register')]    
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $formAuthenticator, \Swift_Mailer $mailer, TranslatorInterface $translator)
     {
-
-
         $form = $this->createForm(UserRegistrationFormType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
-
-            //print_r($_POST['user_registration_form']['recaptcha_token']);
 
             // reCaptcha Validierung
             $recaptcha_request = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$_ENV['RECAPTCHA_SECRET'].'&response='.$_POST['user_registration_form']['recaptcha_token']);
@@ -81,9 +72,6 @@ class SecurityController extends AbstractController
                     $form['plainPassword']->getData()
                 ));
 
-                $user->setFirstname($user->getFirstname());
-                $user->setLastname($user->getLastname());
-                $user->setEmail($user->getEmail());
                 $user->setDeactivated(0);
 
                 if (true === $form['agreeTerms']->getData()){
@@ -121,10 +109,7 @@ class SecurityController extends AbstractController
             } else {
                 return $this->redirectToRoute('app_register', array('status' => 501));
             }
-
-
         }
-
 
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirectToRoute('app_dashboard');
@@ -134,10 +119,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-
-    /**
-     * @Route("/forgot", name="app_forgot-password")
-     */
+    #[Route('/forgot', name:'app_forgot_password')]
     public function forgot(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer, TranslatorInterface $translator){
         $form = $this->createForm(PasswordForgotType::class);
         $em = $this->getDoctrine()->getManager();
@@ -184,11 +166,8 @@ class SecurityController extends AbstractController
         ]);
     }
 
-
-    /**
-     * @Route("/logout", name="app_logout")
-     * @IsGranted("ROLE_USER")
-     */
+    #[Route('/logout', name:'app_logout')]
+    #[IsGranted('ROLE_USER')]
     public function logout()
     {
     }

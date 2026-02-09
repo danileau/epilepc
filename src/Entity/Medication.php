@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Ambta\DoctrineEncryptBundle\Configuration\Encrypted;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MedicationRepository")
@@ -21,6 +22,7 @@ class Medication
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      * @Encrypted
      */
     private $name;
@@ -38,7 +40,7 @@ class Medication
     private $dosage;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\user", inversedBy="medications")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="medications")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -49,7 +51,7 @@ class Medication
     private $date_from;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $date_to;
 
@@ -114,12 +116,12 @@ class Medication
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 

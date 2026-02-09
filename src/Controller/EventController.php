@@ -5,7 +5,8 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\Form\EventType;
 use App\Repository\EventRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use App\Repository\UserRepository;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,27 +14,31 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Route("/app/event")
- * @IsGranted("ROLE_USER")
- */
+#[Route('/app/event')]
+#[IsGranted('ROLE_USER')]
 class EventController extends AbstractController
 {
     // Übersicht generieren und anzeigen
-    /**
-     * @Route("/", name="event_index", methods={"GET"})
-     */
-    public function index(EventRepository $eventRepository, UserInterface $user): Response
+    #[Route('/', name:'event_index', methods: ['GET'])]
+    public function index(Request $request, EventRepository $eventRepository, UserInterface $user): Response
     {
+        $page = $request->query->getInt('page', 1);
+        $limit = 15;
+
+        $paginator = $eventRepository->paginateByUser($user->getId(), $page, $limit);
+
+        $totalItems = count($paginator);
+        $totalPages = ceil($totalItems / $limit);
+
         return $this->render('app/event/index.html.twig', [
-            'events' => $eventRepository->findAllFromUser($user->getId()),
+            'events' => $paginator,
+            'currentPage' => $page,
+            'totalPages'  => $totalPages,
         ]);
     }
 
     // Neues Ereignis erstellen
-    /**
-     * @Route("/new", name="event_new", methods={"GET","POST"})
-     */
+    #[Route('/new', name:'event_new', methods: ['GET', 'POST'])]    
     public function new(Request $request, UserInterface $user, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(EventType::class);
@@ -61,10 +66,8 @@ class EventController extends AbstractController
     }
 
     // Bestehendes Ereignis anzeigen
-    /**
-     * @Route("/{id}", name="event_show", methods={"GET"})
-     * @IsGranted("MANAGE", subject="event")
-     */
+    #[Route('/{id}', name:'event_show', methods: ['GET'])]
+    #[IsGranted('MANAGE', subject: 'event')]    
     public function show(Event $event): Response
     {
         return $this->render('app/event/show.html.twig', [
@@ -73,10 +76,8 @@ class EventController extends AbstractController
     }
 
     // Bestehendes Ereignis bearbeiten
-    /**
-     * @Route("/{id}/edit", name="event_edit", methods={"GET","POST"})
-     * @IsGranted("MANAGE", subject="event")
-     */
+    #[Route('/{id}/edit', name:'event_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('MANAGE', subject: 'event')]    
     public function edit(Request $request, Event $event, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(EventType::class, $event);
@@ -85,16 +86,13 @@ class EventController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $event = $form->getData();
-            date_default_timezone_set('Europe/Zurich');
-            $event->setModifiedAt(new \DateTime("now"));
+            $event->setModifiedAt(new \DateTime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($event);
             $entityManager->flush();
 
             $this->addFlash('success', $translator->trans('Ereignis erfolgreich bearbeitet!'));
-            return $this->redirectToRoute('event_index', [
-                'id' => $event->getId(),
-            ]);
+            return $this->redirectToRoute('event_index');
         }
 
         return $this->render('app/event/edit.html.twig', [
@@ -106,10 +104,8 @@ class EventController extends AbstractController
     }
 
     // Bestehendes Ereignis löschen
-    /**
-     * @Route("/{id}", name="event_delete", methods={"DELETE"})
-     * @IsGranted("MANAGE", subject="event")
-     */
+    #[Route('/{id}', name:'event_delete', methods: ['DELETE'])]
+    #[IsGranted('MANAGE', subject: 'event')]    
     public function delete(Request $request, Event $event): Response
     {
         if ($this->isCsrfTokenValid('delete'.$event->getId(), $request->request->get('_token'))) {

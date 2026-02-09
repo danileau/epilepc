@@ -7,38 +7,43 @@ use App\Entity\User;
 use App\Form\SeizureFormType;
 use App\Repository\SeizureRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @Route("/app/seizure")
- * @IsGranted("ROLE_USER")
- */
+#[Route('/app/seizure')]
+#[IsGranted('ROLE_USER')]
 class SeizureController extends AbstractController
 {
     /**
-     * @Route("/", name="seizure_index", methods={"GET"})
-     * Übersicht generieren und alle anfälle anzeigen
+     * Übersicht generieren und alle Anfälle anzeigen
      */
-    public function index(SeizureRepository $seizureRepository, UserInterface $user): Response
+    #[Route('/', name:'seizure_index', methods: ['GET'])]
+    public function index(Request $request, SeizureRepository $seizureRepository, UserInterface $user): Response
     {
-        return $this->render('app/seizure/index.html.twig', [
-            'seizures' => $seizureRepository->findAllFromUser($user->getId())
-        ]);
+        $page = $request->query->getInt('page', 1);
+        $limit = 15;
 
+        $paginator = $seizureRepository->paginateByUser($user->getId(), $page, $limit);
+
+        $totalItems = count($paginator);
+        $totalPages = ceil($totalItems / $limit);
+
+        return $this->render('app/seizure/index.html.twig', [
+            'seizures' => $paginator,
+            'currentPage' => $page,
+            'totalPages'  => $totalPages,
+        ]);
     }
 
-
     /**
-     * @Route("/new", name="seizure_new", methods={"GET","POST"})
      * Neuer Anfall erstellen
      */
+    #[Route('/new', name:'seizure_new', methods: ['GET', 'POST'])]    
     public function new(Request $request, UserInterface $user, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(SeizureFormType::class);
@@ -66,13 +71,10 @@ class SeizureController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="seizure_show", methods={"GET"})
-     * @IsGranted("MANAGE", subject="seizure")
-     * Anfall anzeigen - Eingeschränkt auf Owner
-     */
     // Die IsGranted "MANAGE" Annotation prüft den Security Voter und führt Ihn aus. Dort wird geprüft ob die User_id
     // vom DB-Objekt, mit dem aktuellen User übereinstimmt.
+    #[Route('/{id}', name:'seizure_show', methods: ['GET'])]    
+    #[IsGranted('MANAGE', subject: 'seizure')]    
     public function show(Request $request, Seizure $seizure): Response
     {
         $form = $this->createForm(SeizureFormType::class, $seizure);
@@ -84,10 +86,8 @@ class SeizureController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="seizure_edit", methods={"GET","POST"})
-     * @IsGranted("MANAGE", subject="seizure")
-     */
+    #[Route('/{id}/edit', name:'seizure_edit', methods: ['GET', 'POST'])]    
+    #[IsGranted('MANAGE', subject: 'seizure')]        
     public function edit(Request $request, Seizure $seizure, TranslatorInterface $translator): Response
     {
         $form = $this->createForm(SeizureFormType::class, $seizure);
@@ -115,10 +115,8 @@ class SeizureController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="seizure_delete", methods={"DELETE"})
-     * @IsGranted("MANAGE", subject="seizure")
-     */
+    #[Route('/{id}', name:'seizure_delete', methods: ['DELETE'])]    
+    #[IsGranted('MANAGE', subject: 'seizure')]    
     public function delete(Request $request, Seizure $seizure): Response
     {
         if ($this->isCsrfTokenValid('delete'.$seizure->getId(), $request->request->get('_token'))) {
