@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use Defuse\Crypto\Crypto;
-use Defuse\Crypto\Key;
 
 /**
  * Lightweight single-field decryptor that works with raw DB values
@@ -12,16 +11,20 @@ use Defuse\Crypto\Key;
  * The doctrine-encrypt-bundle decrypts ALL @Encrypted fields via postLoad,
  * even fields the template never uses. This service decrypts only the
  * fields you explicitly pass to it.
+ *
+ * Uses password-based Defuse API (decryptWithPassword) to match the
+ * doctrine-encrypt-bundle's DefuseEncryptor, which stores a hex
+ * password string — NOT a Defuse Key object.
  */
 class FieldDecryptor
 {
     private const ENC_SUFFIX = '<ENC>';
-    private Key $key;
+    private string $password;
 
     public function __construct(string $projectDir)
     {
         $keyPath = $projectDir . '/.Defuse.key';
-        $this->key = Key::loadFromAsciiSafeString(trim(file_get_contents($keyPath)));
+        $this->password = trim(file_get_contents($keyPath));
     }
 
     public function decrypt(?string $value): ?string
@@ -31,7 +34,7 @@ class FieldDecryptor
         }
         $ciphertext = substr($value, 0, -strlen(self::ENC_SUFFIX));
         try {
-            return Crypto::decrypt($ciphertext, $this->key);
+            return Crypto::decryptWithPassword($ciphertext, $this->password);
         } catch (\Exception $e) {
             return '[decrypt error]';
         }
