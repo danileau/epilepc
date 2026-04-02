@@ -20,10 +20,17 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecurityController extends AbstractController
 {
+    private HttpClientInterface $httpClient;
+
+    public function __construct(HttpClientInterface $httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
 
     // Loginfunktion
     /**
@@ -63,13 +70,15 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
 
-            //print_r($_POST['user_registration_form']['recaptcha_token']);
-
             // reCaptcha Validierung
-            $recaptcha_request = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$_ENV['RECAPTCHA_SECRET'].'&response='.$_POST['user_registration_form']['recaptcha_token']);
-
-            // JSON-Antwort dekodieren
-            $decoded_recaptcha_request = json_decode($recaptcha_request);
+            $recaptchaToken = $request->request->all('user_registration_form')['recaptcha_token'] ?? '';
+            $recaptchaResponse = $this->httpClient->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
+                'body' => [
+                    'secret'   => $_ENV['RECAPTCHA_SECRET'],
+                    'response' => $recaptchaToken,
+                ],
+            ]);
+            $decoded_recaptcha_request = json_decode($recaptchaResponse->getContent(false));
 
 
             if ($decoded_recaptcha_request->success == true && $decoded_recaptcha_request->score >= $_ENV['RECAPTCHA_SCORE']) {

@@ -6,10 +6,18 @@ use App\Form\ContactType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ContactController extends AbstractController
 {
+    private HttpClientInterface $httpClient;
+
+    public function __construct(HttpClientInterface $httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
     // Kontaktformular erstellen und Mailing Logik
     /**
      * @Route("/contact", name="contact")
@@ -35,10 +43,14 @@ class ContactController extends AbstractController
             } else {
 
                 // reCaptcha Validierung
-                $recaptcha_request = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$_ENV['RECAPTCHA_SECRET'].'&response='.$_POST['contact']['recaptcha_token']);
-
-                // JSON-Antwort dekodieren
-                $decoded_recaptcha_request = json_decode($recaptcha_request);
+                $recaptchaToken = $request->request->all('contact')['recaptcha_token'] ?? '';
+                $recaptchaResponse = $this->httpClient->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
+                    'body' => [
+                        'secret'   => $_ENV['RECAPTCHA_SECRET'],
+                        'response' => $recaptchaToken,
+                    ],
+                ]);
+                $decoded_recaptcha_request = json_decode($recaptchaResponse->getContent(false));
 
                 if ($decoded_recaptcha_request->success == true && $decoded_recaptcha_request->score >= $_ENV['RECAPTCHA_SCORE']) {
                     // Generiert und versendet das Email
