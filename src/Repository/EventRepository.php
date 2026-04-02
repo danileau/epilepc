@@ -11,8 +11,6 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Event|null findOneBy(array $criteria, array $orderBy = null)
  * @method Event[]    findAll()
  * @method Event[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- * In den Repositories sind wiederverwendbare Funktionen definiert, welche ein bestimmtes Doctrine-Query ausführen
- * und die Response retournieren
  */
 class EventRepository extends ServiceEntityRepository
 {
@@ -21,19 +19,13 @@ class EventRepository extends ServiceEntityRepository
         parent::__construct($registry, Event::class);
     }
 
-
-    /**
-     * @return Event[] Returns all Events ordered by the newest Timestamp
-     */
     public function findAllFromUser($id)
     {
         return $this->findBy(array('user' => $id), array('timestamp_when' => 'DESC'));
     }
 
-    /**
-     * @return Event[] Returns count from all Events for the Dashboard
-     */
-    public function countFindAllFromUser($id){
+    public function countFindAllFromUser($id)
+    {
         return $this->createQueryBuilder('e')
             ->select('count(e.id)')
             ->andWhere('e.user = :val')
@@ -43,128 +35,76 @@ class EventRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $id
-     * @return mixed
-     * Ruft countFindAllFromUser() auf und liefert ein Array mit allen Summen der gefundenen Ereignisse
-     * des eingeloggten Users zurück
+     * Monthly counts for the last 24 months — single GROUP BY query.
      */
-    public function getDiagramEventData($id){
-        $month = $this->getEventLast2YearsJSON();
-        foreach ($month as $key => $value) {
-            $data[$value] = $this->getEventCountForMonth($id, $value);
+    public function getDiagramEventData($user)
+    {
+        $months = $this->generateMonthRange(24);
+        $start = new \DateTime(end($months) . '-01');
+
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT DATE_FORMAT(timestamp_when, '%Y-%m') AS m, COUNT(*) AS c
+                FROM event
+                WHERE user_id = :uid AND timestamp_when >= :start
+                GROUP BY m";
+        $rows = $conn->executeQuery($sql, [
+            'uid' => is_object($user) ? $user->getId() : $user,
+            'start' => $start->format('Y-m-d'),
+        ])->fetchAllAssociative();
+
+        $counts = array_column($rows, 'c', 'm');
+        $data = [];
+        foreach ($months as $m) {
+            $data[$m] = (int)($counts[$m] ?? 0);
         }
         return $data;
     }
 
     /**
-     * @param $id
-     * @return mixed liefert ein Array mit allen Summen der gefundenen Ereignisse des aktuellen Monats
-     * des eingeloggten Users zurück
+     * Daily counts for the current month — single GROUP BY query.
      */
-    public function getDiagramEventMonthData($id)
+    public function getDiagramEventMonthData($user)
     {
-        $days = $this->getEventCurrentMonthJSON();
+        $days = $this->generateDayRange();
+        $monthStart = reset($days) . ' 00:00:00';
+        $monthEnd = end($days) . ' 23:59:59';
 
-        foreach ($days as $key => $value) {
-            $data[$value] = $this->getDailyEventMonth($id, $value);
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT DATE_FORMAT(timestamp_when, '%Y-%m-%d') AS d, COUNT(*) AS c
+                FROM event
+                WHERE user_id = :uid AND timestamp_when >= :start AND timestamp_when <= :end
+                GROUP BY d";
+        $rows = $conn->executeQuery($sql, [
+            'uid' => is_object($user) ? $user->getId() : $user,
+            'start' => $monthStart,
+            'end' => $monthEnd,
+        ])->fetchAllAssociative();
+
+        $counts = array_column($rows, 'c', 'd');
+        $data = [];
+        foreach ($days as $d) {
+            $data[$d] = (int)($counts[$d] ?? 0);
         }
         return $data;
     }
 
-    /**
- * @return array von allen Eregnissen vom letzten Jahr im JSON-Forma
- */
-    public function getEventLastYearJSON(){
-        $months[] = date("Y-m");
-        for ($i = 1; $i <= 12; $i++) {
-            $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
-        }
-        return $months;
-    }
-
-    /**
-     * @return array von allen Eregnissen von den letzten 2 Jahren im JSON-Forma
-     */
-    public function getEventLast2YearsJSON(){
-        $months[] = date("Y-m");
-        for ($i = 1; $i <= 24; $i++) {
-            $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
-        }
-        return $months;
-    }
-
-    /**
-     * @return array von allen Tagen des aktuellen Monats
-     */
-    public function getEventCurrentMonthJSON()
+    private function generateMonthRange(int $months): array
     {
-        //$month = "02";
-        $month = date("m");
-        $year = date("Y");
-
-        $start_date = "01-" . $month . "-" . $year;
-        $start_time = strtotime($start_date);
-
-        $end_time = strtotime("+1 month", $start_time);
-
-        for ($i = $start_time; $i < $end_time; $i += 86400) {
-            $list[] = date('Y-m-d', $i);
+        $list = [date("Y-m")];
+        for ($i = 1; $i <= $months; $i++) {
+            $list[] = date("Y-m", strtotime(date('Y-m-01') . " -$i months"));
         }
-
         return $list;
     }
 
-    /**
-     * @param $id
-     * @param $month
-     * @return mixed mit der Anzahl Ereignissen für den abgefragten Monat
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
-    public function getEventCountForMonth($id, $month){
-        //Year: $date[0], Month: $date[1]
-        $date = explode('-', $month);
-
-        $startDate = date("Y-m-d", strtotime($date[0]."-".$date[1]."-1"));
-        $endDate = date("Y-m-t", strtotime($date[0]."-".$date[1]."-1"));
-        $now = new \DateTime($endDate);
-        // Jetzt + 1 Tag um einen gerade eben geschriebenen Eintrag, während demselben Tag auf dem Diagramm anzuzeigen;
-        // "# <= :now" funktioniert am gleichen Tag nicht wie erwartet
-        $now->modify('+1 day');
-        $delay = new \DateTime($startDate);
-
-        return $this->createQueryBuilder('ed')
-            ->select('count(ed.id)')
-            ->where('ed.user = :val')
-            ->andWhere('ed.timestamp_when <= :now')
-            ->andWhere('ed.timestamp_when >= :delay')
-            ->setParameter('val', $id)
-            ->setParameter('now', $now)
-            ->setParameter('delay', $delay)
-            ->getQuery()
-            ->getSingleScalarResult();
-    }
-
-    /**
-     * @param $id
-     * @param $month
-     * @return mixed mit der Anzahl Ereignisse für den abgefragten Monat
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
-    public function getDailyEventMonth($id, $month)
+    private function generateDayRange(): array
     {
-        $startDate = $month." 00:00:00";
-        $endDate = $month." 23:59:59";
-
-        return $this->createQueryBuilder('ed')
-            ->select('count(ed.id)')
-            ->where('ed.user = :val')
-            ->andWhere('ed.timestamp_when >= :morning')
-            ->andWhere('ed.timestamp_when <= :evening')
-            ->setParameter('val', $id)
-            ->setParameter('morning', $startDate)
-            ->setParameter('evening', $endDate)
-            ->getQuery()
-            ->getSingleScalarResult();
+        $start = strtotime(date('Y-m-01'));
+        $end = strtotime("+1 month", $start);
+        $list = [];
+        for ($i = $start; $i < $end; $i += 86400) {
+            $list[] = date('Y-m-d', $i);
+        }
+        return $list;
     }
-
 }

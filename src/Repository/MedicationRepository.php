@@ -11,8 +11,6 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Medication|null findOneBy(array $criteria, array $orderBy = null)
  * @method Medication[]    findAll()
  * @method Medication[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- * In den Repositories sind wiederverwendbare Funktionen definiert, welche ein bestimmtes Doctrine-Query ausführen
- * und die Response retournieren
  */
 class MedicationRepository extends ServiceEntityRepository
 {
@@ -21,18 +19,13 @@ class MedicationRepository extends ServiceEntityRepository
         parent::__construct($registry, Medication::class);
     }
 
-    /**
-     * @return Medication[] Returns all Medications ordered by the newest Timestamp
-     */
     public function findAllFromUser($id)
     {
         return $this->findBy(array('user' => $id), array('timestamp_prescription' => 'DESC'));
     }
 
-    /**
-     * @return Medication[] Returns count from all Medications for the Dashboard
-     */
-    public function countFindAllFromUser($id){
+    public function countFindAllFromUser($id)
+    {
         return $this->createQueryBuilder('m')
             ->select('count(m.id)')
             ->andWhere('m.user = :val')
@@ -41,10 +34,8 @@ class MedicationRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
-    /**
-     * @return Medication[] Returns count from all Medications for the Dashboard
-     */
-    public function countFindAllEmergencyFromUser($id){
+    public function countFindAllEmergencyFromUser($id)
+    {
         return $this->createQueryBuilder('m')
             ->select('count(m.id)')
             ->andWhere('m.user = :val')
@@ -55,131 +46,85 @@ class MedicationRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $id
-     * @return mixed
-     * Liefert ein Array mit allen Summen der gefundenen Medikationen
-     * des eingeloggten Users zurück
+     * Monthly active medication counts for the last 24 months.
+     * A medication is "active" in a month if its date range overlaps:
+     *   date_from <= month_end AND date_to >= month_start
+     *
+     * Uses a single query to fetch all medication date ranges, then
+     * computes overlap in PHP (1 query instead of 25).
      */
-    public function getDiagramMedicationData($id){
-        $month = $this->getMedication2YearsJSON();
+    public function getDiagramMedicationData($user)
+    {
+        $months = $this->generateMonthRange(24);
+        $uid = is_object($user) ? $user->getId() : $user;
 
-        foreach ($month as $key => $value) {
-            $data[$value] = $this->getMedicationCountForMonth($id, $value);
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT id, date_from, date_to FROM medication WHERE user_id = :uid";
+        $ranges = $conn->executeQuery($sql, ['uid' => $uid])->fetchAllAssociative();
+
+        $data = [];
+        foreach ($months as $m) {
+            $monthStart = new \DateTime($m . '-01');
+            $monthEnd = (clone $monthStart)->modify('last day of this month')->setTime(23, 59, 59);
+            $count = 0;
+            foreach ($ranges as $r) {
+                $from = new \DateTime($r['date_from']);
+                $to = new \DateTime($r['date_to']);
+                if ($from <= $monthEnd && $to >= $monthStart) {
+                    $count++;
+                }
+            }
+            $data[$m] = $count;
         }
         return $data;
     }
 
     /**
-     * @param $id
-     * @return mixed liefert ein Array mit allen Summen der gefundenen Medikationen des aktuellen Monats
-     * des eingeloggten Users zurück
+     * Daily emergency medication counts for the current month — single GROUP BY.
      */
-    public function getDiagramMedicationMonthData($id)
+    public function getDiagramMedicationMonthData($user)
     {
-        $days = $this->getMedicationCurrentMonthJSON();
+        $days = $this->generateDayRange();
+        $monthStart = reset($days) . ' 00:00:00';
+        $monthEnd = end($days) . ' 23:59:59';
 
-        foreach ($days as $key => $value) {
-            $data[$value] = $this->getDailyMedicationMonth($id, $value);
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT DATE_FORMAT(date_from, '%Y-%m-%d') AS d, COUNT(*) AS c
+                FROM medication
+                WHERE user_id = :uid AND date_from >= :start AND date_from <= :end
+                  AND emergency_med = 1
+                GROUP BY d";
+        $rows = $conn->executeQuery($sql, [
+            'uid' => is_object($user) ? $user->getId() : $user,
+            'start' => $monthStart,
+            'end' => $monthEnd,
+        ])->fetchAllAssociative();
+
+        $counts = array_column($rows, 'c', 'd');
+        $data = [];
+        foreach ($days as $d) {
+            $data[$d] = (int)($counts[$d] ?? 0);
         }
         return $data;
     }
 
-    /**
-     * @return array von allen Medikationen vom letzten Jahr im JSON-Format
-     */
-    public function getMedicationLastYearJSON(){
-        $months[] = date("Y-m");
-        for ($i = 1; $i <= 12; $i++) {
-            $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
-        }
-        return $months;
-    }
-
-    /**
-     * @return array von allen Medikationen vom den letzten 2 Jahren im JSON-Format
-     */
-    public function getMedication2YearsJSON(){
-        $months[] = date("Y-m");
-        for ($i = 1; $i <= 24; $i++) {
-            $months[] = date("Y-m", strtotime( date( 'Y-m-01' )." -$i months"));
-        }
-        return $months;
-    }
-
-    /**
-     * @return array von allen Tagen des aktuellen Monats
-     */
-    public function getMedicationCurrentMonthJSON()
+    private function generateMonthRange(int $months): array
     {
-        //$month = "02";
-        $month = date("m");
-        $year = date("Y");
-
-        $start_date = "01-" . $month . "-" . $year;
-        $start_time = strtotime($start_date);
-
-        $end_time = strtotime("+1 month", $start_time);
-
-        for ($i = $start_time; $i < $end_time; $i += 86400) {
-            $list[] = date('Y-m-d', $i);
+        $list = [date("Y-m")];
+        for ($i = 1; $i <= $months; $i++) {
+            $list[] = date("Y-m", strtotime(date('Y-m-01') . " -$i months"));
         }
-
         return $list;
     }
 
-    /**
-     * @param $id
-     * @param $month
-     * @return mixed mit der Anzahl Medikationen für den abgefragten Monat
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
-    public function getMedicationCountForMonth($id, $month){
-        //Year: $date[0], Month: $date[1]
-        $date = explode('-', $month);
-
-        $startDate = date("Y-m-d", strtotime($date[0]."-".$date[1]."-1"));
-        $endDate = date("Y-m-t", strtotime($date[0]."-".$date[1]."-1"));
-
-        $now = new \DateTime($endDate);
-        // Jetzt + 1 Tag um einen gerade eben geschriebenen Eintrag, während demselben Tag auf dem Diagramm anzuzeigen;
-        // "# <= :now" funktioniert am gleichen Tag nicht wie erwartet
-        $now->modify('+1 day');
-
-        $delay = new \DateTime($startDate);
-
-        return $this->createQueryBuilder('md')
-            ->select('count(md.id)')
-            ->where('md.user = :val')
-            ->andWhere('md.date_from <= :now')
-            ->andWhere('md.date_to >= :delay')
-            ->setParameter('val', $id)
-            ->setParameter('now', $now)
-            ->setParameter('delay', $delay)
-            ->getQuery()
-            ->getSingleScalarResult();
-    }
-
-    /**
-     * @param $id
-     * @param $month
-     * @return mixed mit der Anzahl Medikationen für den abgefragten Monat
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     */
-    public function getDailyMedicationMonth($id, $month)
+    private function generateDayRange(): array
     {
-        $startDate = $month." 00:00:00";
-        $endDate = $month." 23:59:59";
-        return $this->createQueryBuilder('md')
-            ->select('count(md.id)')
-            ->where('md.user = :val')
-            ->andWhere('md.date_from >= :morning')
-            ->andWhere('md.date_from <= :evening')
-            ->andWhere('md.emergency_med = 1')
-            ->setParameter('val', $id)
-            ->setParameter('morning', $startDate)
-            ->setParameter('evening', $endDate)
-            ->getQuery()
-            ->getSingleScalarResult();
+        $start = strtotime(date('Y-m-01'));
+        $end = strtotime("+1 month", $start);
+        $list = [];
+        for ($i = $start; $i < $end; $i += 86400) {
+            $list[] = date('Y-m-d', $i);
+        }
+        return $list;
     }
-
 }
