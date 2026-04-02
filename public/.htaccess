@@ -4,7 +4,7 @@
 # start page (path "/") because otherwise Apache will apply the rewriting rules
 # to each configured DirectoryIndex file (e.g. index.php, index.html, index.pl).
 DirectoryIndex index.php
-AddHandler application/x-httpd-php74 .php
+AddHandler application/x-httpd-php81 .php
 # By default, Apache does not evaluate symbolic links if you did not enable this
 # feature in your server configuration. Uncomment the following line if you
 # install assets as symlinks or if you experience problems related to symlinks
@@ -19,7 +19,7 @@ Header always set x-frame-options "SAMEORIGIN"
 
 RewriteEngine On
 RewriteCond %{HTTP_HOST} !^www.epilepc.ch$
-RewriteRule ^(.*)$ http://www.epilepc.ch/$1 [R=301,L]
+RewriteRule ^(.*)$ https://www.epilepc.ch/$1 [R=301,L]
 
 # compress text, html, javascript, css, xml:
 AddOutputFilterByType DEFLATE text/plain

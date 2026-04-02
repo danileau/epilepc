@@ -50,18 +50,30 @@
                             </td>
                             <td data-order="{{ user.agreedTermsAt|date('U') }}">{{ user.agreedTermsAt|date('d.m.Y') }} um {{ user.agreedTermsAt|date('H:i') }} Uhr</td>
                             <td>
-                                {# Link anzeigen zum Adminrolle vergeben und wenn vorhanden, zum entfernen. #}
+                                {# Adminrolle vergeben / entfernen #}
                                 {% if user.roles.0 != 'ROLE_ADMIN' %}
-                                    <a class="text-danger" href="{{ path('admin_user_make_admin', {'id': user.id}) }}">Adminrechte vergeben</a>
+                                    <form method="post" action="{{ path('admin_user_make_admin', {'id': user.id}) }}" style="display:inline" onsubmit="return confirm('Adminrechte vergeben?')">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('admin_action' ~ user.id) }}">
+                                        <button type="submit" class="btn btn-link text-danger p-0">Adminrechte vergeben</button>
+                                    </form>
                                 {% else %}
-                                    <a class="text-success" href="{{ path('admin_user_remove_admin', {'id': user.id}) }}">Adminrechte entfernen</a>
+                                    <form method="post" action="{{ path('admin_user_remove_admin', {'id': user.id}) }}" style="display:inline" onsubmit="return confirm('Adminrechte entfernen?')">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('admin_action' ~ user.id) }}">
+                                        <button type="submit" class="btn btn-link text-success p-0">Adminrechte entfernen</button>
+                                    </form>
                                 {% endif %}
-                                </br>
-                                {# Link anzeigen zum Benutzer sperren / entsperren #}
+                                <br>
+                                {# Benutzer sperren / entsperren #}
                                 {% if user.deactivated == false %}
-                                    <a class="text-danger" href="{{ path('admin_user_make_deactivated', {'id': user.id}) }}">Benutzer sperren</a>
+                                    <form method="post" action="{{ path('admin_user_make_deactivated', {'id': user.id}) }}" style="display:inline" onsubmit="return confirm('Benutzer sperren?')">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('admin_action' ~ user.id) }}">
+                                        <button type="submit" class="btn btn-link text-danger p-0">Benutzer sperren</button>
+                                    </form>
                                 {% else %}
-                                    <a class="text-success" href="{{ path('admin_user_remove_deactivated', {'id': user.id}) }}">Benutzer entsperren</a>
+                                    <form method="post" action="{{ path('admin_user_remove_deactivated', {'id': user.id}) }}" style="display:inline" onsubmit="return confirm('Benutzer entsperren?')">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('admin_action' ~ user.id) }}">
+                                        <button type="submit" class="btn btn-link text-success p-0">Benutzer entsperren</button>
+                                    </form>
                                 {% endif %}
                             </td>
                         </tr>

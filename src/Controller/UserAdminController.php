@@ -115,60 +115,62 @@ class UserAdminController extends AbstractController
 
 
     /**
-     * @Route("/admin/user/{id}/makeAdmin", name="admin_user_make_admin")
+     * @Route("/admin/user/{id}/makeAdmin", name="admin_user_make_admin", methods={"POST"})
      * Rolle "ROLE_ADMIN" dem Benutzer zuteilen
      */
     public function makeAdmin(Request $request, User $user){
-        //$userRepository->makeAdmin($user);
-        $this->addFlash('success', "Adminrechte wurden vergeben");
-        $roles = ["ROLE_ADMIN"];
-        $user->setRoles($roles);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        $entityManager->flush();
+        if ($this->isCsrfTokenValid('admin_action'.$user->getId(), $request->request->get('_token'))) {
+            $this->addFlash('success', "Adminrechte wurden vergeben");
+            $user->setRoles(["ROLE_ADMIN"]);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+        }
         return $this->redirectToRoute('admin_user_index');
     }
 
     /**
-     * @Route("/admin/user/{id}/removeAdmin", name="admin_user_remove_admin")
+     * @Route("/admin/user/{id}/removeAdmin", name="admin_user_remove_admin", methods={"POST"})
      * Rolle "ROLE_ADMIN" entfernen
      */
-    public function removeAdmin(Request $request, UserRepository $userRepository, User $user){
-        //$userRepository->makeAdmin($user);
-        $this->addFlash('success', "Adminrechte wurden entfernt");
-        $roles = [];
-        $user->setRoles($roles);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        $entityManager->flush();
+    public function removeAdmin(Request $request, User $user){
+        if ($this->isCsrfTokenValid('admin_action'.$user->getId(), $request->request->get('_token'))) {
+            $this->addFlash('success', "Adminrechte wurden entfernt");
+            $user->setRoles([]);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+        }
         return $this->redirectToRoute('admin_user_index');
     }
 
     /**
-     * @Route("/admin/user/{id}/makeDeactivated", name="admin_user_make_deactivated")
+     * @Route("/admin/user/{id}/makeDeactivated", name="admin_user_make_deactivated", methods={"POST"})
      * Benutzer deaktivieren
      */
     public function makeDeactivated(Request $request, User $user){
-
-        $this->addFlash('success', "Benutzer wurde deaktiviert");
-        $user->setDeactivated(1);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        $entityManager->flush();
+        if ($this->isCsrfTokenValid('admin_action'.$user->getId(), $request->request->get('_token'))) {
+            $this->addFlash('success', "Benutzer wurde deaktiviert");
+            $user->setDeactivated(1);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+        }
         return $this->redirectToRoute('admin_user_index');
     }
 
     /**
-     * @Route("/admin/user/{id}/removeDeactivated", name="admin_user_remove_deactivated")
+     * @Route("/admin/user/{id}/removeDeactivated", name="admin_user_remove_deactivated", methods={"POST"})
      * Benutzer aktivieren
      */
-    public function removeDeactivated(Request $request, UserRepository $userRepository, User $user){
-
-        $this->addFlash('success', "Benutzer wurde reaktiviert");
-        $user->setDeactivated(0);
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        $entityManager->flush();
+    public function removeDeactivated(Request $request, User $user){
+        if ($this->isCsrfTokenValid('admin_action'.$user->getId(), $request->request->get('_token'))) {
+            $this->addFlash('success', "Benutzer wurde reaktiviert");
+            $user->setDeactivated(0);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+        }
         return $this->redirectToRoute('admin_user_index');
     }
 }
