@@ -19,7 +19,7 @@ class SeizureRepository extends ServiceEntityRepository
         parent::__construct($registry, Seizure::class);
     }
 
-    public function findAllFromUser($id, int $limit = 200)
+    public function findAllFromUser($id, int $limit = 50)
     {
         return $this->findBy(
             array('user' => $id),
