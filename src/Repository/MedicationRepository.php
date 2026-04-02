@@ -19,7 +19,7 @@ class MedicationRepository extends ServiceEntityRepository
         parent::__construct($registry, Medication::class);
     }
 
-    public function findAllFromUser($id, int $limit = 50, int $offset = 0)
+    public function findAllFromUser($id, int $limit = 25, int $offset = 0)
     {
         return $this->findBy(
             array('user' => $id),

@@ -31,10 +31,25 @@ class AppController extends AbstractController
      */
     private $client;
 
+    private const MONTH_NAMES = [
+        'de' => ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
+        'fr' => ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+        'it' => ['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
+        'en' => ['January','February','March','April','May','June','July','August','September','October','November','December'],
+    ];
+
     public function __construct(HttpClientInterface $client, Request $request)
     {
         $this->client = $client;
+    }
 
+    private function formatMonthLabel(string $yearMonth, string $locale): string
+    {
+        $parts = explode('-', $yearMonth);
+        $monthIndex = (int)$parts[1] - 1;
+        $lang = substr($locale, 0, 2);
+        $names = self::MONTH_NAMES[$lang] ?? self::MONTH_NAMES['de'];
+        return $names[$monthIndex] . ' ' . $parts[0];
     }
 
     /**
@@ -51,7 +66,7 @@ class AppController extends AbstractController
          */
         $seizure_data = $seizureRepository->getDiagramSeizureData($user);
         foreach ($seizure_data as $key => $value) {
-            $seizureDiagramMonth[] = $usr->translateMonth(strftime("%B", strtotime($key."-01")), $request->getLocale())." ".strftime("%Y", strtotime($key."-01"));
+            $seizureDiagramMonth[] = $this->formatMonthLabel($key, $request->getLocale());
             $seizureDiagramCount[] = $value;
         }
         $seizureDiagramMonth = array_reverse($seizureDiagramMonth);
@@ -159,7 +174,7 @@ class AppController extends AbstractController
          */
         $seizure_data = $seizureRepository->getDiagramSeizureData($user);
         foreach ($seizure_data as $key => $value) {
-            $seizureDiagramMonth[] = $usr->translateMonth(strftime("%B", strtotime($key."-01")), $request->getLocale())." ".strftime("%Y", strtotime($key."-01"));
+            $seizureDiagramMonth[] = $this->formatMonthLabel($key, $request->getLocale());
             $seizureDiagramCount[] = $value;
 
         }
