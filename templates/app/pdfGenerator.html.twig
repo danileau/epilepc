@@ -39,9 +39,10 @@
     {# Off-screen canvases — 2x resolution for crisp PDF output #}
     <div class="chart-render-area">
         <canvas id="chart1Year" width="1400" height="600"></canvas>
-        <canvas id="chartPie" width="600" height="600"></canvas>
         <canvas id="chart2Years" width="1400" height="600"></canvas>
     </div>
+    {# Hidden logo for embedding in PDF #}
+    <img id="logoImg" src="{{ asset('application/img/epilepc-color.png') }}" style="display:none" crossorigin="anonymous" />
 
     <script src="{{ asset('application/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('application/vendor/chart.js/Chart.min.js') }}"></script>
@@ -51,7 +52,7 @@
     <script type="text/javascript">
     (function() {
         var chartsReady = 0;
-        var totalCharts = 3;
+        var totalCharts = 2;
 
         function setProgress(pct, text) {
             document.getElementById('progressBar').style.width = pct + '%';
@@ -132,21 +133,6 @@
             }
         });
 
-        // Pie Chart
-        new Chart(document.getElementById("chartPie").getContext('2d'), {
-            type: 'doughnut',
-            data: {
-                labels: ["{% trans %}Anfälle{% endtrans %}", "{% trans %}Ereignisse{% endtrans %}", "{% trans %}Medikationen{% endtrans %}"],
-                datasets: [{ data: [{{ seizure_count }}, {{ event_count }}, {{ medication_count }}], backgroundColor: ['#e74a3b', '#1cc88a', '#f6c23e'] }]
-            },
-            options: {
-                responsive: false, animation: animOpts, maintainAspectRatio: false,
-                legend: { display: true, position: 'bottom', labels: { fontColor: '#5a5c69', fontSize: 12, padding: 15 } },
-                tooltips: { enabled: false },
-                cutoutPercentage: 65
-            }
-        });
-
         // ── PDF builder — matches webapp card-based UI ─────────────
 
         // Brand colors from sb-admin-2 / overview page
@@ -204,26 +190,33 @@
             doc.setFillColor.apply(doc, C.pageBg);
             doc.rect(0, 0, pageW, pageH, 'F');
 
-            // ── Header ────────────────────────────────────────────
+            // ── Header with logo ──────────────────────────────────
 
-            doc.setFontSize(20);
-            doc.setFont('helvetica', 'bold');
-            doc.setTextColor.apply(doc, C.primary);
-            doc.text('epilepc', m, y + 7);
+            var logoEl = document.getElementById('logoImg');
+            var logoCanvas = document.createElement('canvas');
+            logoCanvas.width = logoEl.naturalWidth;
+            logoCanvas.height = logoEl.naturalHeight;
+            logoCanvas.getContext('2d').drawImage(logoEl, 0, 0);
+            var logoData = logoCanvas.toDataURL('image/png');
 
+            var logoH = 12;
+            var logoW = logoH * (logoEl.naturalWidth / logoEl.naturalHeight);
+            doc.addImage(logoData, 'PNG', m, y, logoW, logoH);
+
+            var textX = m + logoW + 4;
             doc.setFontSize(10);
             doc.setFont('helvetica', 'normal');
             doc.setTextColor.apply(doc, C.gray600);
-            doc.text('{% trans %}PDF-Übersicht vom{% endtrans %} {{ date }}', m + 33, y + 4);
-            doc.text('{{ app.user.firstname|e('js') }} {{ app.user.lastname|e('js') }}', m + 33, y + 9);
+            doc.text('{% trans %}PDF-Übersicht vom{% endtrans %} {{ date }}', textX, y + 5);
+            doc.text('{{ app.user.firstname|e('js') }} {{ app.user.lastname|e('js') }}', textX, y + 10);
 
             {% if diagnose is not null %}
             doc.setFontSize(9);
             doc.setTextColor.apply(doc, C.gray800);
-            doc.text('{% trans %}Diagnose{% endtrans %}: {{ diagnose|e('js') }}', m, y + 16);
-            y += 22;
+            doc.text('{% trans %}Diagnose{% endtrans %}: {{ diagnose|e('js') }}', m, y + 18);
+            y += 24;
             {% else %}
-            y += 14;
+            y += 16;
             {% endif %}
 
             // Divider
@@ -232,32 +225,19 @@
             doc.line(m, y, m + cw, y);
             y += 6;
 
-            // ── 1-Year Chart Card (left, ~65% width) ──────────────
+            // ── 1-Year Chart Card (full width) ───────────────────
 
             setProgress(70, '{% trans %}Diagramme werden eingebettet{% endtrans %}...');
 
-            var chartCardW = cw * 0.64;
-            var chartCardH = 72;
-            drawCard(doc, m, y, chartCardW, chartCardH);
-            drawCardHeader(doc, m, y, chartCardW, '{% trans %}Deine Übersicht der letzten 12 Monate{% endtrans %}');
+            var chartCardH = 78;
+            var imgPad = 3;
+            drawCard(doc, m, y, cw, chartCardH);
+            drawCardHeader(doc, m, y, cw, '{% trans %}Deine Übersicht der letzten 12 Monate{% endtrans %}');
 
             var chart1Img = document.getElementById('chart1Year').toDataURL('image/png');
-            var imgPad = 3;
-            var imgW = chartCardW - imgPad * 2;
-            var imgH = chartCardH - 9 - imgPad * 2; // subtract header + padding
+            var imgW = cw - imgPad * 2;
+            var imgH = chartCardH - 9 - imgPad * 2;
             doc.addImage(chart1Img, 'PNG', m + imgPad, y + 9 + imgPad, imgW, imgH);
-
-            // ── Pie Chart Card (right, ~33% width) ────────────────
-
-            var pieX = m + chartCardW + cw * 0.02;
-            var pieCardW = cw - chartCardW - cw * 0.02;
-            drawCard(doc, pieX, y, pieCardW, chartCardH);
-            drawCardHeader(doc, pieX, y, pieCardW, '{% trans %}Was wurde wie oft erfasst?{% endtrans %}');
-
-            var pieImg = document.getElementById('chartPie').toDataURL('image/png');
-            var pieSide = Math.min(pieCardW - imgPad * 2, chartCardH - 9 - imgPad * 2);
-            var pieOffX = pieX + (pieCardW - pieSide) / 2;
-            doc.addImage(pieImg, 'PNG', pieOffX, y + 9 + imgPad, pieSide, pieSide);
 
             y += chartCardH + 6;
 
@@ -402,9 +382,19 @@
                 }
             });
 
-            // ── Footer on every page ──────────────────────────────
+            // ── Remove trailing blank page if autoTable created one ─
 
             var totalPages = doc.internal.getNumberOfPages();
+            var tableEnd = doc.autoTable.previous ? doc.autoTable.previous.finalY : 0;
+            // autoTable sometimes adds a page when the last row lands near the bottom.
+            // If the table's finalY on the current page is at/near the top margin,
+            // the last page is empty — delete it.
+            if (totalPages > 2 && tableEnd <= m + 2) {
+                doc.deletePage(totalPages);
+                totalPages = doc.internal.getNumberOfPages();
+            }
+
+            // ── Footer on every page ──────────────────────────────
             for (var p = 1; p <= totalPages; p++) {
                 doc.setPage(p);
                 // Footer divider
