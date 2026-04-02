@@ -4,32 +4,14 @@
     <meta charset="UTF-8">
     <title>PDF-Übersicht vom {{ date }} - {{ app.user.firstname }} {{ app.user.lastname }}</title>
     <link href="{{ asset('application/vendor/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="{{ asset('application/css/sb-admin-2.css') }}" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="{{ asset('landing/images/favicon.ico') }}"/>
     <style>
-        body {
-            background: #f8f9fc;
-            font-family: 'Nunito', sans-serif;
-        }
-        .status-wrap {
-            max-width: 800px;
-            margin: 60px auto;
-            text-align: center;
-        }
-        .progress-text {
-            color: #858796;
-            font-size: 0.95rem;
-            margin-top: 12px;
-        }
-        .chart-render-area {
-            position: absolute;
-            left: -9999px;
-            top: 0;
-        }
-        .chart-render-area canvas {
-            display: block;
-        }
+        body { background: #f8f9fc; font-family: 'Nunito', -apple-system, sans-serif; }
+        .status-wrap { max-width: 800px; margin: 60px auto; text-align: center; }
+        .progress-text { color: #858796; font-size: 0.95rem; margin-top: 12px; }
+        .chart-render-area { position: absolute; left: -9999px; top: 0; }
+        .chart-render-area canvas { display: block; }
         .done-area { display: none; }
     </style>
 </head>
@@ -54,11 +36,11 @@
         </div>
     </div>
 
-    {# Off-screen area where Chart.js renders — never visible to user #}
+    {# Off-screen canvases — 2x resolution for crisp PDF output #}
     <div class="chart-render-area">
-        <canvas id="chart1Year" width="1600" height="500"></canvas>
-        <canvas id="chartPie" width="800" height="500"></canvas>
-        <canvas id="chart2Years" width="1600" height="500"></canvas>
+        <canvas id="chart1Year" width="1400" height="600"></canvas>
+        <canvas id="chartPie" width="600" height="600"></canvas>
+        <canvas id="chart2Years" width="1400" height="600"></canvas>
     </div>
 
     <script src="{{ asset('application/vendor/jquery/jquery.min.js') }}"></script>
@@ -81,37 +63,28 @@
             chartsReady++;
             var pct = Math.round((chartsReady / totalCharts) * 60);
             setProgress(pct, chartsReady + ' / ' + totalCharts + ' {% trans %}Diagramme fertig{% endtrans %}');
-
             if (chartsReady === totalCharts) {
                 setTimeout(buildPDF, 200);
             }
         }
 
-        // ── Chart.js configuration ─────────────────────────────────
+        // ── Chart.js shared config ────────────────────────────────
 
-        var animOpts = {
-            duration: 600,
-            onComplete: onChartComplete
-        };
+        var animOpts = { duration: 600, onComplete: onChartComplete };
 
-        var lineChartOptions = {
-            responsive: false,
-            animation: animOpts,
-            maintainAspectRatio: false,
-            layout: { padding: { left: 10, right: 25, top: 25, bottom: 0 } },
-            scales: {
-                xAxes: [{ gridLines: { display: false, drawBorder: false }, ticks: { maxTicksLimit: 7 } }],
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true, maxTicksLimit: 5, padding: 10,
-                        callback: function(v) { if (v % 1 === 0) return v; }
-                    },
-                    gridLines: { color: "rgb(234,236,244)", zeroLineColor: "rgb(234,236,244)", drawBorder: false, borderDash: [2], zeroLineBorderDash: [2] }
-                }]
+        var yAxesConfig = [{
+            ticks: {
+                beginAtZero: true, maxTicksLimit: 5, padding: 10,
+                callback: function(v) { if (v % 1 === 0) return v; }
             },
-            legend: { display: true, position: 'bottom', labels: { fontColor: 'black', fontSize: 13 } },
-            tooltips: { enabled: false }
-        };
+            gridLines: { color: "rgb(234,236,244)", zeroLineColor: "rgb(234,236,244)", drawBorder: false, borderDash: [2], zeroLineBorderDash: [2] }
+        }];
+
+        var seizureStyle  = { label: "{% trans %}Anfälle{% endtrans %}",      lineTension: 0.3, backgroundColor: "rgba(231,74,59,0.05)",  borderColor: "rgba(231,74,59,1)",  pointRadius: 3, pointBackgroundColor: "rgba(231,74,59,1)",  pointBorderColor: "rgba(231,74,59,1)",  pointBorderWidth: 2 };
+        var eventStyle     = { label: "{% trans %}Ereignisse{% endtrans %}",   lineTension: 0.3, backgroundColor: "rgba(28,200,138,0.05)", borderColor: "rgba(28,200,138,1)", pointRadius: 3, pointBackgroundColor: "rgba(28,200,138,1)", pointBorderColor: "rgba(28,200,138,1)", pointBorderWidth: 2 };
+        var medicationStyle = { label: "{% trans %}Medikationen{% endtrans %}", lineTension: 0.3, backgroundColor: "rgba(246,194,62,0.05)", borderColor: "rgba(246,194,62,1)", pointRadius: 3, pointBackgroundColor: "rgba(246,194,62,1)", pointBorderColor: "rgba(246,194,62,1)", pointBorderWidth: 2 };
+
+        function ds(style, data) { var o = {}; for (var k in style) o[k] = style[k]; o.data = data; return o; }
 
         // 1-Year Chart
         new Chart(document.getElementById("chart1Year").getContext('2d'), {
@@ -119,12 +92,21 @@
             data: {
                 labels: {{ seizure_month_1|raw }},
                 datasets: [
-                    { label: "{% trans %}Anfälle{% endtrans %}", lineTension: 0.3, backgroundColor: "rgba(231,74,59,0.05)", borderColor: "rgba(231,74,59,1)", pointRadius: 3, pointBackgroundColor: "rgba(231,74,59,1)", pointBorderColor: "rgba(231,74,59,1)", pointBorderWidth: 2, data: {{ seizure_data_1|raw }} },
-                    { label: "{% trans %}Ereignisse{% endtrans %}", lineTension: 0.3, backgroundColor: "rgba(28,200,138,0.05)", borderColor: "rgba(28,200,138,1)", pointRadius: 3, pointBackgroundColor: "rgba(28,200,138,1)", pointBorderColor: "rgba(28,200,138,1)", pointBorderWidth: 2, data: {{ event_data_1|raw }} },
-                    { label: "{% trans %}Medikationen{% endtrans %}", lineTension: 0.3, backgroundColor: "rgba(246,194,62,0.05)", borderColor: "rgba(246,194,62,1)", pointRadius: 3, pointBackgroundColor: "rgba(246,194,62,1)", pointBorderColor: "rgba(246,194,62,1)", pointBorderWidth: 2, data: {{ medication_data_1|raw }} }
+                    ds(seizureStyle, {{ seizure_data_1|raw }}),
+                    ds(eventStyle, {{ event_data_1|raw }}),
+                    ds(medicationStyle, {{ medication_data_1|raw }})
                 ]
             },
-            options: lineChartOptions
+            options: {
+                responsive: false, animation: animOpts, maintainAspectRatio: false,
+                layout: { padding: { left: 15, right: 30, top: 20, bottom: 10 } },
+                scales: {
+                    xAxes: [{ gridLines: { display: false, drawBorder: false }, ticks: { maxTicksLimit: 12, fontSize: 11, fontColor: '#858796' } }],
+                    yAxes: yAxesConfig
+                },
+                legend: { display: true, position: 'bottom', labels: { fontColor: '#5a5c69', fontSize: 12, padding: 20 } },
+                tooltips: { enabled: false }
+            }
         });
 
         // 2-Year Chart
@@ -133,27 +115,19 @@
             data: {
                 labels: {{ seizure_month|raw }},
                 datasets: [
-                    { label: "{% trans %}Anfälle{% endtrans %}", lineTension: 0.3, backgroundColor: "rgba(231,74,59,0.05)", borderColor: "rgba(231,74,59,1)", pointRadius: 3, pointBackgroundColor: "rgba(231,74,59,1)", pointBorderColor: "rgba(231,74,59,1)", pointBorderWidth: 2, data: {{ seizure_data|raw }} },
-                    { label: "{% trans %}Ereignisse{% endtrans %}", lineTension: 0.3, backgroundColor: "rgba(28,200,138,0.05)", borderColor: "rgba(28,200,138,1)", pointRadius: 3, pointBackgroundColor: "rgba(28,200,138,1)", pointBorderColor: "rgba(28,200,138,1)", pointBorderWidth: 2, data: {{ event_data|raw }} },
-                    { label: "{% trans %}Medikationen{% endtrans %}", lineTension: 0.3, backgroundColor: "rgba(246,194,62,0.05)", borderColor: "rgba(246,194,62,1)", pointRadius: 3, pointBackgroundColor: "rgba(246,194,62,1)", pointBorderColor: "rgba(246,194,62,1)", pointBorderWidth: 2, data: {{ medication_data|raw }} }
+                    ds(seizureStyle, {{ seizure_data|raw }}),
+                    ds(eventStyle, {{ event_data|raw }}),
+                    ds(medicationStyle, {{ medication_data|raw }})
                 ]
             },
             options: {
-                responsive: false,
-                animation: animOpts,
-                maintainAspectRatio: false,
-                layout: { padding: { left: 10, right: 25, top: 25, bottom: 0 } },
+                responsive: false, animation: animOpts, maintainAspectRatio: false,
+                layout: { padding: { left: 15, right: 30, top: 20, bottom: 10 } },
                 scales: {
-                    xAxes: [{ gridLines: { display: false, drawBorder: false }, ticks: { autoSkip: true, maxTicksLimit: 12 } }],
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true, maxTicksLimit: 5, padding: 10,
-                            callback: function(v) { if (v % 1 === 0) return v; }
-                        },
-                        gridLines: { color: "rgb(234,236,244)", zeroLineColor: "rgb(234,236,244)", drawBorder: false, borderDash: [2], zeroLineBorderDash: [2] }
-                    }]
+                    xAxes: [{ gridLines: { display: false, drawBorder: false }, ticks: { autoSkip: true, maxTicksLimit: 12, fontSize: 11, fontColor: '#858796' } }],
+                    yAxes: yAxesConfig
                 },
-                legend: { display: true, position: 'bottom', labels: { fontColor: 'black', fontSize: 13 } },
+                legend: { display: true, position: 'bottom', labels: { fontColor: '#5a5c69', fontSize: 12, padding: 20 } },
                 tooltips: { enabled: false }
             }
         });
@@ -162,20 +136,58 @@
         new Chart(document.getElementById("chartPie").getContext('2d'), {
             type: 'doughnut',
             data: {
-                labels: ["{% trans %}Ereignisse{% endtrans %}", "{% trans %}Anfälle{% endtrans %}", "{% trans %}Medikationen{% endtrans %}"],
-                datasets: [{ data: [{{ event_count }}, {{ seizure_count }}, {{ medication_count }}], backgroundColor: ['#1cc88a', '#e74a3b', '#f6c23e'] }]
+                labels: ["{% trans %}Anfälle{% endtrans %}", "{% trans %}Ereignisse{% endtrans %}", "{% trans %}Medikationen{% endtrans %}"],
+                datasets: [{ data: [{{ seizure_count }}, {{ event_count }}, {{ medication_count }}], backgroundColor: ['#e74a3b', '#1cc88a', '#f6c23e'] }]
             },
             options: {
-                responsive: false,
-                animation: animOpts,
-                maintainAspectRatio: false,
-                legend: { display: true, position: 'bottom', labels: { fontColor: 'black', fontSize: 13 } },
+                responsive: false, animation: animOpts, maintainAspectRatio: false,
+                legend: { display: true, position: 'bottom', labels: { fontColor: '#5a5c69', fontSize: 12, padding: 15 } },
                 tooltips: { enabled: false },
                 cutoutPercentage: 65
             }
         });
 
-        // ── PDF builder ────────────────────────────────────────────
+        // ── PDF builder — matches webapp card-based UI ─────────────
+
+        // Brand colors from sb-admin-2 / overview page
+        var C = {
+            primary: [78, 115, 223],
+            danger:  [231, 74, 59],
+            success: [28, 200, 138],
+            warning: [246, 194, 62],
+            gray800: [90, 92, 105],
+            gray600: [133, 135, 150],
+            gray300: [221, 223, 235],
+            cardBg:  [255, 255, 255],
+            pageBg:  [248, 249, 252],
+            headerBg: [247, 247, 247]
+        };
+
+        function drawCard(doc, x, y, w, h) {
+            // Shadow
+            doc.setFillColor(200, 200, 210);
+            doc.roundedRect(x + 0.5, y + 0.5, w, h, 1.5, 1.5, 'F');
+            // Card body
+            doc.setFillColor.apply(doc, C.cardBg);
+            doc.roundedRect(x, y, w, h, 1.5, 1.5, 'F');
+        }
+
+        function drawCardHeader(doc, x, y, w, title) {
+            doc.setFillColor(247, 247, 247);
+            doc.roundedRect(x, y, w, 9, 1.5, 1.5, 'F');
+            // Fill bottom corners (header is only top-rounded)
+            doc.rect(x, y + 5, w, 4, 'F');
+            // Bottom border
+            doc.setDrawColor(230, 230, 230);
+            doc.setLineWidth(0.2);
+            doc.line(x, y + 9, x + w, y + 9);
+            // Title text
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor.apply(doc, C.gray600);
+            doc.text(title, x + 4, y + 6);
+            doc.setFont('helvetica', 'normal');
+        }
 
         function buildPDF() {
             setProgress(65, '{% trans %}PDF wird zusammengesetzt{% endtrans %}...');
@@ -184,150 +196,233 @@
             var doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
             var pageW = doc.internal.pageSize.getWidth();
             var pageH = doc.internal.pageSize.getHeight();
-            var margin = 15;
-            var contentW = pageW - margin * 2;
-            var y = margin;
+            var m = 12; // margin
+            var cw = pageW - m * 2; // content width
+            var y = m;
 
-            // ── Page 1: Header + 1-Year Chart + Pie Chart ──────────
+            // Page background
+            doc.setFillColor.apply(doc, C.pageBg);
+            doc.rect(0, 0, pageW, pageH, 'F');
 
-            doc.setFontSize(18);
-            doc.setTextColor(60, 60, 60);
-            doc.text('epilepc', margin, y + 6);
+            // ── Header ────────────────────────────────────────────
+
+            doc.setFontSize(20);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor.apply(doc, C.primary);
+            doc.text('epilepc', m, y + 7);
+
             doc.setFontSize(10);
-            doc.setTextColor(130, 130, 130);
-            doc.text('{% trans %}PDF-Übersicht vom{% endtrans %} {{ date }}', margin, y + 13);
-            doc.text('{{ app.user.firstname|e('js') }} {{ app.user.lastname|e('js') }}', margin, y + 18);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor.apply(doc, C.gray600);
+            doc.text('{% trans %}PDF-Übersicht vom{% endtrans %} {{ date }}', m + 33, y + 4);
+            doc.text('{{ app.user.firstname|e('js') }} {{ app.user.lastname|e('js') }}', m + 33, y + 9);
 
             {% if diagnose is not null %}
-            doc.setFontSize(10);
-            doc.setTextColor(80, 80, 80);
-            doc.text('{% trans %}Diagnose{% endtrans %}: {{ diagnose|e('js') }}', margin, y + 25);
-            y += 32;
+            doc.setFontSize(9);
+            doc.setTextColor.apply(doc, C.gray800);
+            doc.text('{% trans %}Diagnose{% endtrans %}: {{ diagnose|e('js') }}', m, y + 16);
+            y += 22;
             {% else %}
-            y += 24;
+            y += 14;
             {% endif %}
 
-            // 1-Year chart
+            // Divider
+            doc.setDrawColor.apply(doc, C.gray300);
+            doc.setLineWidth(0.3);
+            doc.line(m, y, m + cw, y);
+            y += 6;
+
+            // ── 1-Year Chart Card (left, ~65% width) ──────────────
+
             setProgress(70, '{% trans %}Diagramme werden eingebettet{% endtrans %}...');
-            doc.setFontSize(12);
-            doc.setTextColor(60, 60, 60);
-            doc.text('{% trans %}Deine Übersicht vom letzten Jahr{% endtrans %}', margin, y);
-            y += 3;
+
+            var chartCardW = cw * 0.64;
+            var chartCardH = 72;
+            drawCard(doc, m, y, chartCardW, chartCardH);
+            drawCardHeader(doc, m, y, chartCardW, '{% trans %}Deine Übersicht der letzten 12 Monate{% endtrans %}');
+
             var chart1Img = document.getElementById('chart1Year').toDataURL('image/png');
-            var chart1H = (contentW / 1600) * 500;
-            doc.addImage(chart1Img, 'PNG', margin, y, contentW, chart1H);
-            y += chart1H + 8;
+            var imgPad = 3;
+            var imgW = chartCardW - imgPad * 2;
+            var imgH = chartCardH - 9 - imgPad * 2; // subtract header + padding
+            doc.addImage(chart1Img, 'PNG', m + imgPad, y + 9 + imgPad, imgW, imgH);
 
-            // Pie chart
-            doc.setFontSize(12);
-            doc.text('{% trans %}Was wurde wie oft erfasst?{% endtrans %}', margin, y);
-            y += 3;
+            // ── Pie Chart Card (right, ~33% width) ────────────────
+
+            var pieX = m + chartCardW + cw * 0.02;
+            var pieCardW = cw - chartCardW - cw * 0.02;
+            drawCard(doc, pieX, y, pieCardW, chartCardH);
+            drawCardHeader(doc, pieX, y, pieCardW, '{% trans %}Was wurde wie oft erfasst?{% endtrans %}');
+
             var pieImg = document.getElementById('chartPie').toDataURL('image/png');
-            var pieW = contentW * 0.5;
-            var pieH = (pieW / 800) * 500;
-            doc.addImage(pieImg, 'PNG', margin + (contentW - pieW) / 2, y, pieW, pieH);
+            var pieSide = Math.min(pieCardW - imgPad * 2, chartCardH - 9 - imgPad * 2);
+            var pieOffX = pieX + (pieCardW - pieSide) / 2;
+            doc.addImage(pieImg, 'PNG', pieOffX, y + 9 + imgPad, pieSide, pieSide);
 
-            // ── Page 2: 2-Year Chart ───────────────────────────────
+            y += chartCardH + 6;
+
+            // ── 2-Year Chart Card (full width) ────────────────────
 
             setProgress(80, '{% trans %}Diagramme werden eingebettet{% endtrans %}...');
-            doc.addPage();
-            y = margin;
-            doc.setFontSize(12);
-            doc.setTextColor(60, 60, 60);
-            doc.text('{% trans %}Deine Übersicht der letzten 2 Jahren{% endtrans %}', margin, y);
-            y += 3;
-            var chart2Img = document.getElementById('chart2Years').toDataURL('image/png');
-            var chart2H = (contentW / 1600) * 500;
-            doc.addImage(chart2Img, 'PNG', margin, y, contentW, chart2H);
 
-            // ── Page 3+: Data Table ────────────────────────────────
+            var chart2H = 72;
+            drawCard(doc, m, y, cw, chart2H);
+            drawCardHeader(doc, m, y, cw, '{% trans %}Deine Übersicht der letzten 2 Jahren{% endtrans %}');
+
+            var chart2Img = document.getElementById('chart2Years').toDataURL('image/png');
+            var img2W = cw - imgPad * 2;
+            var img2H = chart2H - 9 - imgPad * 2;
+            doc.addImage(chart2Img, 'PNG', m + imgPad, y + 9 + imgPad, img2W, img2H);
+
+            y += chart2H + 6;
+
+            // ── Summary counts (like the pie chart legend) ────────
+
+            doc.setFontSize(8);
+            var summaryY = y + 2;
+            var items = [
+                { label: '{% trans %}Anfälle{% endtrans %}', count: {{ seizure_count }}, color: C.danger },
+                { label: '{% trans %}Ereignisse{% endtrans %}', count: {{ event_count }}, color: C.success },
+                { label: '{% trans %}Medikationen{% endtrans %}', count: {{ medication_count }}, color: C.warning }
+            ];
+            var sx = m;
+            for (var i = 0; i < items.length; i++) {
+                doc.setFillColor.apply(doc, items[i].color);
+                doc.circle(sx + 1.5, summaryY - 1, 1.5, 'F');
+                doc.setTextColor.apply(doc, C.gray800);
+                doc.text(items[i].label + ': ' + items[i].count, sx + 5, summaryY);
+                sx += 45;
+            }
+
+            // ── Page 2+: Data Table ───────────────────────────────
 
             setProgress(90, '{% trans %}Tabelle wird erstellt{% endtrans %}...');
             doc.addPage();
 
+            // Page background
+            doc.setFillColor.apply(doc, C.pageBg);
+            doc.rect(0, 0, pageW, pageH, 'F');
+
+            // Section header
             doc.setFontSize(12);
-            doc.setTextColor(60, 60, 60);
-            doc.text('{% trans %}Erfasste Daten{% endtrans %}', margin, margin);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor.apply(doc, C.gray800);
+            doc.text('{% trans %}Erfasste Daten{% endtrans %}', m, m + 5);
+            doc.setFont('helvetica', 'normal');
 
             var tableRows = [];
             {% for seizure in seizures %}
-            tableRows.push([
-                '{{ seizure.timestamp_when|date('d.m.Y H:i') }}',
-                '{{ seizure.title|e('js') }}{% if seizure.seizuretype_name %} - {{ seizure.seizuretype_name|e('js') }}{% endif %}',
-                '{% trans %}Anfall{% endtrans %}'
-            ]);
+            tableRows.push({
+                date: '{{ seizure.timestamp_when|date('d.m.Y H:i') }}',
+                title: '{{ seizure.title|e('js') }}{% if seizure.seizuretype_name %} - {{ seizure.seizuretype_name|e('js') }}{% endif %}',
+                type: '{% trans %}Anfall{% endtrans %}',
+                typeColor: [231, 74, 59],
+                rowTint: [253, 243, 242]
+            });
             {% endfor %}
             {% for event in events %}
-            tableRows.push([
-                '{{ event.timestamp_when|date('d.m.Y H:i') }}',
-                '{{ event.name|e('js') }}',
-                '{% trans %}Ereignis{% endtrans %}'
-            ]);
+            tableRows.push({
+                date: '{{ event.timestamp_when|date('d.m.Y H:i') }}',
+                title: '{{ event.name|e('js') }}',
+                type: '{% trans %}Ereignis{% endtrans %}',
+                typeColor: [28, 200, 138],
+                rowTint: [240, 252, 247]
+            });
             {% endfor %}
             {% for medication in medications %}
-            tableRows.push([
-                '{{ medication.timestamp_prescription|date('d.m.Y H:i') }}',
-                '{{ medication.name|e('js') }}',
-                '{% trans %}Medikation{% endtrans %}'
-            ]);
+            tableRows.push({
+                date: '{{ medication.timestamp_prescription|date('d.m.Y H:i') }}',
+                title: '{{ medication.name|e('js') }}',
+                type: '{% trans %}Medikation{% endtrans %}',
+                typeColor: [246, 194, 62],
+                rowTint: [255, 251, 239]
+            });
             {% endfor %}
 
             // Sort by date descending
             tableRows.sort(function(a, b) {
-                var pa = a[0].split(/[.\s:]/), pb = b[0].split(/[.\s:]/);
+                var pa = a.date.split(/[.\s:]/), pb = b.date.split(/[.\s:]/);
                 var da = new Date(pa[2], pa[1]-1, pa[0], pa[3]||0, pa[4]||0);
                 var db = new Date(pb[2], pb[1]-1, pb[0], pb[3]||0, pb[4]||0);
                 return db - da;
             });
 
+            // Convert to autoTable format, keep metadata for styling
+            var bodyRows = [];
+            var rowMeta = [];
+            for (var r = 0; r < tableRows.length; r++) {
+                bodyRows.push([tableRows[r].date, tableRows[r].title, tableRows[r].type]);
+                rowMeta.push(tableRows[r]);
+            }
+
             doc.autoTable({
-                startY: margin + 5,
-                margin: { left: margin, right: margin },
-                head: [['{% trans %}Datum{% endtrans %}', '{% trans %}Beschreibung{% endtrans %}', '{% trans %}Typ{% endtrans %}']],
-                body: tableRows,
+                startY: m + 10,
+                margin: { left: m, right: m },
+                head: [['{% trans %}Datum{% endtrans %}', '{% trans %}Titel{% endtrans %}', '{% trans %}Typ{% endtrans %}']],
+                body: bodyRows,
                 styles: {
                     fontSize: 8,
-                    cellPadding: 2,
+                    cellPadding: { top: 2.5, right: 3, bottom: 2.5, left: 3 },
                     overflow: 'linebreak',
-                    font: 'helvetica'
+                    font: 'helvetica',
+                    textColor: [90, 92, 105],
+                    lineColor: [221, 223, 235],
+                    lineWidth: 0.15
                 },
                 headStyles: {
                     fillColor: [78, 115, 223],
                     textColor: 255,
-                    fontStyle: 'bold'
-                },
-                alternateRowStyles: {
-                    fillColor: [245, 247, 250]
+                    fontStyle: 'bold',
+                    fontSize: 8.5
                 },
                 columnStyles: {
-                    0: { cellWidth: 35 },
-                    2: { cellWidth: 28 }
+                    0: { cellWidth: 32, fontStyle: 'normal' },
+                    1: { cellWidth: 'auto' },
+                    2: { cellWidth: 26, halign: 'center', fontStyle: 'bold' }
                 },
                 didParseCell: function(data) {
-                    if (data.section === 'body' && data.column.index === 2) {
-                        var typ = data.cell.raw;
-                        if (typ === '{% trans %}Anfall{% endtrans %}') data.cell.styles.textColor = [231, 74, 59];
-                        else if (typ === '{% trans %}Ereignis{% endtrans %}') data.cell.styles.textColor = [28, 200, 138];
-                        else if (typ === '{% trans %}Medikation{% endtrans %}') data.cell.styles.textColor = [246, 194, 62];
+                    if (data.section === 'body') {
+                        var meta = rowMeta[data.row.index];
+                        if (meta) {
+                            // Light tinted row background matching entity color
+                            data.cell.styles.fillColor = meta.rowTint;
+                            // Type column gets the bold entity color
+                            if (data.column.index === 2) {
+                                data.cell.styles.textColor = meta.typeColor;
+                            }
+                        }
+                    }
+                },
+                didDrawPage: function(data) {
+                    // Re-draw page background for continuation pages
+                    if (data.pageNumber > 1) {
+                        doc.setFillColor.apply(doc, C.pageBg);
+                        doc.rect(0, 0, pageW, pageH, 'F');
                     }
                 }
             });
 
-            // ── Footer on every page ───────────────────────────────
+            // ── Footer on every page ──────────────────────────────
 
             var totalPages = doc.internal.getNumberOfPages();
-            for (var i = 1; i <= totalPages; i++) {
-                doc.setPage(i);
-                doc.setFontSize(8);
-                doc.setTextColor(180, 180, 180);
+            for (var p = 1; p <= totalPages; p++) {
+                doc.setPage(p);
+                // Footer divider
+                doc.setDrawColor.apply(doc, C.gray300);
+                doc.setLineWidth(0.2);
+                doc.line(m, pageH - 12, m + cw, pageH - 12);
+                // Footer text
+                doc.setFontSize(7.5);
+                doc.setTextColor.apply(doc, C.gray600);
+                doc.text('epilepc.ch', m, pageH - 8);
                 doc.text(
-                    'epilepc.ch — {% trans %}Seite{% endtrans %} ' + i + ' / ' + totalPages,
-                    pageW / 2, pageH - 8,
-                    { align: 'center' }
+                    '{% trans %}Seite{% endtrans %} ' + p + ' / ' + totalPages,
+                    pageW - m, pageH - 8,
+                    { align: 'right' }
                 );
             }
 
-            // ── Save ───────────────────────────────────────────────
+            // ── Save ──────────────────────────────────────────────
 
             setProgress(100, '{% trans %}PDF wird heruntergeladen{% endtrans %}...');
 
@@ -337,12 +432,10 @@
 
             doc.save(filename);
 
-            // Show completion UI
             document.getElementById('progressArea').style.display = 'none';
             document.getElementById('doneArea').style.display = 'block';
         }
 
-        // Wire up done-area buttons
         document.getElementById('btnRetry').addEventListener('click', function() {
             document.getElementById('doneArea').style.display = 'none';
             document.getElementById('progressArea').style.display = 'block';
