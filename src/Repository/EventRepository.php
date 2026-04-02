@@ -29,6 +29,20 @@ class EventRepository extends ServiceEntityRepository
         );
     }
 
+    public function findForOverview($user, int $limit = 15): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT id, name, timestamp_when
+                FROM event
+                WHERE user_id = :uid
+                ORDER BY timestamp_when DESC
+                LIMIT :lim";
+        return $conn->executeQuery($sql, [
+            'uid' => is_object($user) ? $user->getId() : $user,
+            'lim' => $limit,
+        ], ['lim' => \PDO::PARAM_INT])->fetchAllAssociative();
+    }
+
     public function countFindAllFromUser($id)
     {
         return $this->createQueryBuilder('e')

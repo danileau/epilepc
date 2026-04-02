@@ -10,6 +10,7 @@ use App\Repository\EventRepository;
 use App\Repository\MedicationRepository;
 use App\Repository\SeizureRepository;
 use App\Repository\UserRepository;
+use App\Service\FieldDecryptor;
 use DateTime;
 use DateTimeImmutable;
 use Knp\Snappy\Pdf;
@@ -164,69 +165,62 @@ class AppController extends AbstractController
      * @IsGranted("ROLE_USER")
      * Übersicht mit allen Werten generieren
      */
-    public function overview(Request $request,MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserRepository $usr)
+    public function overview(Request $request, MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserRepository $usr, FieldDecryptor $decryptor)
     {
         $user = $this->getUser();
         /** @var $user User */
         $diagnose = $user->getDiagnose();
-        /**
-         * Anfallsdaten für die Übersicht aufbereiten
-         */
+
         $seizure_data = $seizureRepository->getDiagramSeizureData($user);
         foreach ($seizure_data as $key => $value) {
             $seizureDiagramMonth[] = $this->formatMonthLabel($key, $request->getLocale());
             $seizureDiagramCount[] = $value;
-
         }
 
         $seizureDiagramMonth = array_reverse($seizureDiagramMonth);
         $seizureDiagramCount = array_reverse($seizureDiagramCount);
         $seizureMonthJSON = json_encode($seizureDiagramMonth);
-        $seizureMonthJSON12Month= json_encode(array_slice($seizureDiagramMonth,12));
-
+        $seizureMonthJSON12Month = json_encode(array_slice($seizureDiagramMonth, 12));
         $seizureValueJSON = json_encode($seizureDiagramCount);
-        $seizureValueJSON12Month = json_encode(array_slice($seizureDiagramCount,12));
-        $seizures = $seizureRepository->findAllFromUser($user);
+        $seizureValueJSON12Month = json_encode(array_slice($seizureDiagramCount, 12));
 
-        /**
-         * Ereignisdaten für die Diagramme aufbereiten
-         */
         $event_data = $eventRepository->getDiagramEventData($user);
         foreach ($event_data as $key => $value) {
             $eventDiagramCount[] = $value;
         }
         $eventDiagramCount = array_reverse($eventDiagramCount);
         $eventValueJSON = json_encode($eventDiagramCount);
-        $eventValueJSON12Month = json_encode(array_slice($eventDiagramCount,12));
-        $events = $eventRepository->findAllFromUser($user);
+        $eventValueJSON12Month = json_encode(array_slice($eventDiagramCount, 12));
 
-        /**
-         * Tagebuchdaten für die Diagramme aufbereiten
-         */
         $diary_data = $diaryentryRepository->getDiagramDiaryData($user);
         foreach ($diary_data as $key => $value) {
             $diaryDiagramCount[] = $value;
         }
         $diaryDiagramCount = array_reverse($diaryDiagramCount);
         $diaryValueJSON = json_encode($diaryDiagramCount);
-        $diaryValueJSON12Month = json_encode(array_slice($diaryDiagramCount,12));
-        $diaryentrys = $diaryentryRepository->findAllFromUser($user);
+        $diaryValueJSON12Month = json_encode(array_slice($diaryDiagramCount, 12));
 
-        /**
-         * Medikamentendaten für die Diagramme aufbereiten
-         */
         $medication_data = $medicationRepository->getDiagramMedicationData($user);
         foreach ($medication_data as $key => $value) {
             $medicationDiagramCount[] = $value;
         }
         $medicationDiagramCount = array_reverse($medicationDiagramCount);
         $medicationValueJSON = json_encode($medicationDiagramCount);
-        $medicationValueJSON12Month = json_encode(array_slice($medicationDiagramCount,12));
-        $medications = $medicationRepository->findAllFromUser($user);
+        $medicationValueJSON12Month = json_encode(array_slice($medicationDiagramCount, 12));
 
-        /*
-         * Twig Template mit allen Variablen rendern
-         */
+        // Data table: lightweight raw SQL + manual decrypt of display fields only
+        $seizures = $seizureRepository->findForOverview($user);
+        $decryptor->decryptColumn($seizures, 'title');
+
+        $events = $eventRepository->findForOverview($user);
+        $decryptor->decryptColumn($events, 'name');
+
+        $medications = $medicationRepository->findForOverview($user);
+        $decryptor->decryptColumn($medications, 'name');
+
+        $diaryentrys = $diaryentryRepository->findForOverview($user);
+        $decryptor->decryptColumn($diaryentrys, 'title');
+
         return $this->render('app/overview.html.twig', [
             'medication_count' => $medicationRepository->countFindAllFromUser($user),
             'medication_data' => $medicationValueJSON,
@@ -257,65 +251,49 @@ class AppController extends AbstractController
      * @IsGranted("ROLE_USER")
      * PDF generieren
      */
-    public function pdfAction(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user, Pdf $snappy)
+    public function pdfAction(MedicationRepository $medicationRepository, EventRepository $eventRepository, SeizureRepository $seizureRepository, DiaryentryRepository $diaryentryRepository, UserInterface $user, Pdf $snappy, FieldDecryptor $decryptor)
     {
         /** @var $user User */
         $diagnose = $user->getDiagnose();
-        /**
-         * Anfallsdaten für die Übersicht aufbereiten
-         */
+
         $seizure_data = $seizureRepository->getDiagramSeizureData($user);
         foreach ($seizure_data as $key => $value) {
-            $seizureDiagramMonth[] = strftime("%B %Y", strtotime($key."-01"));
+            $seizureDiagramMonth[] = $this->formatMonthLabel($key, 'de');
             $seizureDiagramCount[] = $value;
         }
         $seizureDiagramMonth = array_reverse($seizureDiagramMonth);
         $seizureDiagramCount = array_reverse($seizureDiagramCount);
         $seizureMonthJSON = json_encode($seizureDiagramMonth);
-        $seizureMonthJSON12Month= json_encode(array_slice($seizureDiagramMonth,12));
+        $seizureMonthJSON12Month = json_encode(array_slice($seizureDiagramMonth, 12));
         $seizureValueJSON = json_encode($seizureDiagramCount);
-        $seizureValueJSON12Month = json_encode(array_slice($seizureDiagramCount,12));
-        $seizures = $seizureRepository->findAllFromUser($user);
+        $seizureValueJSON12Month = json_encode(array_slice($seizureDiagramCount, 12));
 
-        /**
-         * Ereignisdaten für die Diagramme aufbereiten
-         */
         $event_data = $eventRepository->getDiagramEventData($user);
         foreach ($event_data as $key => $value) {
             $eventDiagramCount[] = $value;
         }
         $eventDiagramCount = array_reverse($eventDiagramCount);
         $eventValueJSON = json_encode($eventDiagramCount);
-        $eventValueJSON12Month = json_encode(array_slice($eventDiagramCount,12));
-        $events = $eventRepository->findAllFromUser($user);
+        $eventValueJSON12Month = json_encode(array_slice($eventDiagramCount, 12));
 
-        /**
-         * Tagebuchdaten für die Diagramme aufbereiten
-         */
-        $diary_data = $diaryentryRepository->getDiagramDiaryData($user);
-        foreach ($diary_data as $key => $value) {
-            $diaryDiagramCount[] = $value;
-        }
-        $diaryDiagramCount = array_reverse($diaryDiagramCount);
-        $diaryValueJSON = json_encode($diaryDiagramCount);
-        $diaryValueJSON12Month = json_encode(array_slice($diaryDiagramCount,12));
-        $diaryentrys = $diaryentryRepository->findAllFromUser($user);
-
-        /**
-         * Medikamentendaten für die Diagramme aufbereiten
-         */
         $medication_data = $medicationRepository->getDiagramMedicationData($user);
         foreach ($medication_data as $key => $value) {
             $medicationDiagramCount[] = $value;
         }
         $medicationDiagramCount = array_reverse($medicationDiagramCount);
         $medicationValueJSON = json_encode($medicationDiagramCount);
-        $medicationValueJSON12Month = json_encode(array_slice($medicationDiagramCount,12));
-        $medications = $medicationRepository->findAllFromUser($user);
+        $medicationValueJSON12Month = json_encode(array_slice($medicationDiagramCount, 12));
 
-        /**
-         * PDF Twig Template mit Variablen rendern
-         */
+        // Data table: lightweight raw SQL + manual decrypt
+        $seizures = $seizureRepository->findForOverview($user);
+        $decryptor->decryptColumn($seizures, 'title');
+
+        $events = $eventRepository->findForOverview($user);
+        $decryptor->decryptColumn($events, 'name');
+
+        $medications = $medicationRepository->findForOverview($user);
+        $decryptor->decryptColumn($medications, 'name');
+
         return $this->render('app/pdfGenerator.html.twig', [
             'medication_count' => $medicationRepository->countFindAllFromUser($user),
             'medication_data' => $medicationValueJSON,
@@ -327,9 +305,6 @@ class AppController extends AbstractController
             'seizure_data' => $seizureValueJSON,
             'seizure_data_1' => $seizureValueJSON12Month,
             'seizures' => $seizures,
-            //'diaryentry_count' => $diaryentryRepository->countFindAllFromUser($user),
-            //'diaryentry_data' => $diaryValueJSON,
-            //'diaryentrys' => $diaryentrys,
             'event_count' => $eventRepository->countFindAllFromUser($user),
             'event_data' => $eventValueJSON,
             'event_data_1' => $eventValueJSON12Month,
@@ -337,7 +312,6 @@ class AppController extends AbstractController
             'date' => date("d.m.Y"),
             'diagnose' => $diagnose
         ]);
-
     }
 
 

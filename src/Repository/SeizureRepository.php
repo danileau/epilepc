@@ -29,6 +29,26 @@ class SeizureRepository extends ServiceEntityRepository
         );
     }
 
+    /**
+     * Lightweight query for overview/PDF table — returns raw arrays,
+     * bypasses entity hydration and postLoad decrypt.
+     * Caller must decrypt 'title' manually via FieldDecryptor.
+     */
+    public function findForOverview($user, int $limit = 15): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT s.id, s.title, s.timestamp_when, st.name AS seizuretype_name
+                FROM seizure s
+                LEFT JOIN seizuretype st ON s.seizuretype_id = st.id
+                WHERE s.user_id = :uid
+                ORDER BY s.timestamp_when DESC
+                LIMIT :lim";
+        return $conn->executeQuery($sql, [
+            'uid' => is_object($user) ? $user->getId() : $user,
+            'lim' => $limit,
+        ], ['lim' => \PDO::PARAM_INT])->fetchAllAssociative();
+    }
+
     public function countFindAllFromUser($id)
     {
         return $this->createQueryBuilder('s')

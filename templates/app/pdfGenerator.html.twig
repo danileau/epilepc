@@ -238,21 +238,21 @@
             var tableRows = [];
             {% for seizure in seizures %}
             tableRows.push([
-                '{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }}',
-                '{{ seizure.title|e('js') }}{% if seizure.seizuretype %} - {{ seizure.seizuretype|e('js') }}{% endif %}',
+                '{{ seizure.timestamp_when|date('d.m.Y H:i') }}',
+                '{{ seizure.title|e('js') }}{% if seizure.seizuretype_name %} - {{ seizure.seizuretype_name|e('js') }}{% endif %}',
                 '{% trans %}Anfall{% endtrans %}'
             ]);
             {% endfor %}
             {% for event in events %}
             tableRows.push([
-                '{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y H:i') : '' }}',
+                '{{ event.timestamp_when|date('d.m.Y H:i') }}',
                 '{{ event.name|e('js') }}',
                 '{% trans %}Ereignis{% endtrans %}'
             ]);
             {% endfor %}
             {% for medication in medications %}
             tableRows.push([
-                '{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y H:i') : '' }}',
+                '{{ medication.timestamp_prescription|date('d.m.Y H:i') }}',
                 '{{ medication.name|e('js') }}',
                 '{% trans %}Medikation{% endtrans %}'
             ]);

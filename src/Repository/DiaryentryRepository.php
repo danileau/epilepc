@@ -29,6 +29,20 @@ class DiaryentryRepository extends ServiceEntityRepository
         );
     }
 
+    public function findForOverview($user, int $limit = 15): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = "SELECT id, title, timestamp_when
+                FROM diaryentry
+                WHERE user_id = :uid
+                ORDER BY timestamp_when DESC
+                LIMIT :lim";
+        return $conn->executeQuery($sql, [
+            'uid' => is_object($user) ? $user->getId() : $user,
+            'lim' => $limit,
+        ], ['lim' => \PDO::PARAM_INT])->fetchAllAssociative();
+    }
+
     public function countFindAllFromUser($id)
     {
         return $this->createQueryBuilder('d')
