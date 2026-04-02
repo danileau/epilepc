@@ -19,9 +19,13 @@ class DiaryentryRepository extends ServiceEntityRepository
         parent::__construct($registry, Diaryentry::class);
     }
 
-    public function findAllFromUser($id)
+    public function findAllFromUser($id, int $limit = 200)
     {
-        return $this->findBy(array('user' => $id), array('timestamp_when' => 'DESC'));
+        return $this->findBy(
+            array('user' => $id),
+            array('timestamp_when' => 'DESC'),
+            $limit
+        );
     }
 
     public function countFindAllFromUser($id)
