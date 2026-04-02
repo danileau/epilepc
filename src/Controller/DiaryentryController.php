@@ -24,14 +24,17 @@ class DiaryentryController extends AbstractController
     /**
      * @Route("/", name="diaryentry_index", methods={"GET"})
      */
-    public function index(DiaryentryRepository $diaryentryRepository, UserInterface $user): Response
+    public function index(Request $request, DiaryentryRepository $diaryentryRepository, UserInterface $user): Response
     {
-        /*
-         * ->findAllFromUser erstellt ein Query, welches nur die Einträge mit der mitgegebenen User-ID aus der DB ausliest
-         * Die Werte werden dann mit diaryentries übergeben und mit dem twig Template gerendert
-         */
+        $page = max(1, $request->query->getInt('page', 1));
+        $limit = 50;
+        $offset = ($page - 1) * $limit;
+        $total = $diaryentryRepository->countFindAllFromUser($user);
+
         return $this->render('app/diaryentry/index.html.twig', [
-            'diaryentries' => $diaryentryRepository->findAllFromUser($user->getId()),
+            'diaryentries' => $diaryentryRepository->findAllFromUser($user->getId(), $limit, $offset),
+            'page' => $page,
+            'totalPages' => max(1, (int)ceil($total / $limit)),
         ]);
     }
 

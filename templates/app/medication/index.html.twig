@@ -7,7 +7,7 @@
     <div class="mb-5">
         <div class="text-center">
             <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Medikation - Übersicht{% endtrans %}</h1>
-            <p class="mb-4">{% trans %}Untenstehend findest du deine letzten 50 erfassten{% endtrans %} {% trans %}Medikationen{% endtrans %}. <br />{% trans %}Zusätzlich kannst du auf das Pluszeichen{% endtrans %} <i class="fas fa-plus-circle"></i> {% trans %}klicken, um eine neue Medikation zu erstellen{% endtrans %}</p>
+            <p class="mb-4">{% trans %}Untenstehend findest du alle deine erfassten{% endtrans %} {% trans %}Medikationen{% endtrans %}. <br />{% trans %}Zusätzlich kannst du auf das Pluszeichen{% endtrans %} <i class="fas fa-plus-circle"></i> {% trans %}klicken, um eine neue Medikation zu erstellen{% endtrans %}</p>
 
             <a href="{{ path('medication_new') }}" title="{% trans %}Neue Medikation erstellen{% endtrans %}"><i class="fas fa-plus-circle fa-3x text-medication"></i></a>
         </div>
@@ -58,6 +58,7 @@
                     </tbody>
                 </table>
             </div>
+            {{ include('app/_pagination.html.twig') }}
         </div>
     </div>
 {% endblock %}
@@ -86,7 +87,9 @@
             "language": {
                 "url": "{{ asset('application/json/German.json'|trans) }}"
             },
-            "order": [[ 5, "desc" ]]
+            "order": [[ 5, "desc" ]],
+            "paging": false,
+            "lengthChange": false
         });
     });
 

@@ -23,10 +23,17 @@ class EventController extends AbstractController
     /**
      * @Route("/", name="event_index", methods={"GET"})
      */
-    public function index(EventRepository $eventRepository, UserInterface $user): Response
+    public function index(Request $request, EventRepository $eventRepository, UserInterface $user): Response
     {
+        $page = max(1, $request->query->getInt('page', 1));
+        $limit = 50;
+        $offset = ($page - 1) * $limit;
+        $total = $eventRepository->countFindAllFromUser($user);
+
         return $this->render('app/event/index.html.twig', [
-            'events' => $eventRepository->findAllFromUser($user->getId()),
+            'events' => $eventRepository->findAllFromUser($user->getId(), $limit, $offset),
+            'page' => $page,
+            'totalPages' => max(1, (int)ceil($total / $limit)),
         ]);
     }
 

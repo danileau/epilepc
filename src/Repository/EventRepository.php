@@ -19,12 +19,13 @@ class EventRepository extends ServiceEntityRepository
         parent::__construct($registry, Event::class);
     }
 
-    public function findAllFromUser($id, int $limit = 50)
+    public function findAllFromUser($id, int $limit = 50, int $offset = 0)
     {
         return $this->findBy(
             array('user' => $id),
             array('timestamp_when' => 'DESC'),
-            $limit
+            $limit,
+            $offset
         );
     }
 

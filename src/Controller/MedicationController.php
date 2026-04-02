@@ -25,10 +25,17 @@ class MedicationController extends AbstractController
      * @Route("/", name="medication_index", methods={"GET"})
      * Übersicht generieren und anzeigen
      */
-    public function index(MedicationRepository $medicationRepository, UserInterface $user): Response
+    public function index(Request $request, MedicationRepository $medicationRepository, UserInterface $user): Response
     {
+        $page = max(1, $request->query->getInt('page', 1));
+        $limit = 50;
+        $offset = ($page - 1) * $limit;
+        $total = $medicationRepository->countFindAllFromUser($user);
+
         return $this->render('app/medication/index.html.twig', [
-            'medications' => $medicationRepository->findAllFromUser($user->getId())
+            'medications' => $medicationRepository->findAllFromUser($user->getId(), $limit, $offset),
+            'page' => $page,
+            'totalPages' => max(1, (int)ceil($total / $limit)),
         ]);
     }
 

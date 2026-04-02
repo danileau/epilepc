@@ -26,12 +26,18 @@ class SeizureController extends AbstractController
      * @Route("/", name="seizure_index", methods={"GET"})
      * Übersicht generieren und alle anfälle anzeigen
      */
-    public function index(SeizureRepository $seizureRepository, UserInterface $user): Response
+    public function index(Request $request, SeizureRepository $seizureRepository, UserInterface $user): Response
     {
-        return $this->render('app/seizure/index.html.twig', [
-            'seizures' => $seizureRepository->findAllFromUser($user->getId())
-        ]);
+        $page = max(1, $request->query->getInt('page', 1));
+        $limit = 50;
+        $offset = ($page - 1) * $limit;
+        $total = $seizureRepository->countFindAllFromUser($user);
 
+        return $this->render('app/seizure/index.html.twig', [
+            'seizures' => $seizureRepository->findAllFromUser($user->getId(), $limit, $offset),
+            'page' => $page,
+            'totalPages' => max(1, (int)ceil($total / $limit)),
+        ]);
     }
 
 
