@@ -14,6 +14,7 @@ services:
         bind:
             $locales: '%app_locales%'
             $defaultLocale: '%locale%'
+            $projectDir: '%kernel.project_dir%'
 
     Symfony\Component\HttpClient\HttpClient: '@http.client'
     Symfony\Component\HttpFoundation\Request:
