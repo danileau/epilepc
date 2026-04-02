@@ -3,615 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <title>PDF-Übersicht vom {{ date }} - {{ app.user.firstname }} {{ app.user.lastname }}</title>
-    <!-- Custom fonts for this template-->
     <link href="{{ asset('application/vendor/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <!-- Custom styles for this template-->
     <link href="{{ asset('application/css/sb-admin-2.css') }}" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="{{ asset('landing/images/favicon.ico') }}"/>
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css" />
-    <link href="{{ asset('application/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
-    <link href="https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .hidden{
-            display: none;
+        body {
+            background: #f8f9fc;
+            font-family: 'Nunito', sans-serif;
         }
-        .print-wrap {
-
-            margin: auto;
-            color: #fff;
-            padding: 15px;
-            margin-bottom: 30px;
+        .status-wrap {
+            max-width: 800px;
+            margin: 60px auto;
+            text-align: center;
         }
-        .table {
-            width: 100%;
-            margin-bottom: 1rem;
-            color: #000000;
+        .progress-text {
+            color: #858796;
+            font-size: 0.95rem;
+            margin-top: 12px;
         }
-        .text-secondary {
-            color: #2f3031!important;
+        .chart-render-area {
+            position: absolute;
+            left: -9999px;
+            top: 0;
         }
+        .chart-render-area canvas {
+            display: block;
+        }
+        .done-area { display: none; }
     </style>
-
-    <script>
-
-        function getPDF(){
-            $("#downloadbtn").hide();
-            $("#genmsg").show();
-            var HTML_Width = $(".canvas_div_pdf").width();
-            var HTML_Height = $(".canvas_div_pdf").height();
-            var top_left_margin = 15;
-            var PDF_Width = HTML_Width+(top_left_margin*2);
-            var PDF_Height = (PDF_Width*1.2)+(top_left_margin*2);
-            var canvas_image_width = HTML_Width;
-            var canvas_image_height = HTML_Height;
-
-            var totalPDFPages = Math.ceil(HTML_Height/PDF_Height)-1;
-
-
-            html2canvas($(".canvas_div_pdf")[0],{allowTaint:true}).then(function(canvas) {
-                canvas.getContext('2d');
-
-                console.log(canvas.height+"  "+canvas.width);
-
-                var imgData = canvas.toDataURL("image/jpeg", 1.0);
-                var pdf = new jsPDF('p', 'pt',  [PDF_Width, PDF_Height]);
-                pdf.setFont('helvetica');
-                pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);
-
-
-                for (var i = 1; i <= totalPDFPages; i++) {
-                    pdf.addPage(PDF_Width, PDF_Height);
-                    pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
-                }
-
-                var d = moment().format("DD-MM-YYYY");
-                var pdfTitle = "epilepc-"+"export-{{ app.user.firstname }}-{{ app.user.lastname }}-"+d+".pdf"
-
-                pdf.save(pdfTitle);
-
-                setTimeout(function(){
-                $("#downloadbtn").show();
-                $("#genmsg").hide();
-              }, 0);
-
-            });
-        };
-
-
-    </script>
-
 </head>
 <body>
-    <div class="canvas_div_pdf">
-        <!--Add HTML content you want to convert to PDF-->
-        <div id="content">
-            <div class="print-wrap" >
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                    <img src="{{ asset('application/img/epilepc-color.png') }}" style="width: 500px  "/>
-                </a>
-                <!-- Page Heading -->
-                <div class="pt-5 mb-5">
-                    <div class="text-center">
-                        <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2">{% trans %}PDF-Übersicht vom{% endtrans %} {{ date }} - {{ app.user.firstname }} {{ app.user.lastname }}</h1>
-                    </div>
-                </div>
-                <!--<div class="mt-2 text-center">
-                    <button id="closeWindow" class="btn btn-primary mb-5"><b>{% trans %}Fenster schliessen{% endtrans %}</b></button>
-                </div>
--->
 
+    <div class="status-wrap" id="statusArea">
+        <img src="{{ asset('application/img/epilepc-color.png') }}" style="width: 300px; margin-bottom: 30px;" />
 
-                <div class="row">
-                    <!-- Area Chart -->
-                    <div class="col-xl-12 col-lg-7" >
-                        <div class="card shadow mb-4" id="AreaChart">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-secondary">{% trans %}Deine Übersicht vom letzten Jahr{% endtrans %}</h6>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body" style="color:black">
-                                {% if diagnose != null %}
-                                    <p><b>{% trans %}Diagnose{% endtrans %}:</b> {{ diagnose }} </p>
-                                {% endif %}
-                                <div class="chart-area">
-                                    <canvas id="my1YearChart"></canvas>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div id="progressArea">
+            <h4 class="text-gray-800">{% trans %}PDF wird generiert{% endtrans %}...</h4>
+            <div class="progress mt-4" style="height: 24px;">
+                <div class="progress-bar bg-primary" id="progressBar" role="progressbar" style="width: 0%;">0%</div>
             </div>
-            <div class="print-wrap">
-                <div class="row">
-                    <!-- Pie Chart -->
-                    <div class="col-xl-12 col-lg-5">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-secondary">{% trans %}Was wurde wie oft erfasst?{% endtrans %}</h6>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <div class="chart-pie pt-4 pb-2">
-                                    <canvas id="myPieChart"></canvas>
-                                </div>
-                                <div class="mt-4 text-center small" style="color:black">
-                                <span class="mr-2">
-                                  <i class="fas fa-circle text-danger"></i> {% trans %}Anfälle{% endtrans %}
-                                </span>
-                                    <span class="mr-2">
-                                  <i class="fas fa-circle text-success"></i> {% trans %}Ereignisse{% endtrans %}
-                                </span>
-                                <!--<span class="mr-2">
-                                  <i class="fas fa-circle text-primary"></i> Tagebucheinträge
-                                </span>-->
-                                    <span class="mr-2">
-                                  <i class="fas fa-circle text-warning"></i> {% trans %}Medikationen{% endtrans %}
-                                </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="print-wrap">
-                <div class="row">
-                    <!-- Area Chart -->
-                    <div class="col-xl-12 col-lg-5" id="2YearsChart">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-secondary">{% trans %}Deine Übersicht der letzten 2 Jahren{% endtrans %}</h6>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <div class="chart-area">
-                                    <canvas id="my2YearsChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="print-wrap">
-                <div class="col-xl-12 col-lg-5">
-                    <div class="card shadow mb-4">
-                        <!-- Card Header - Dropdown -->
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-secondary">{% trans %}Erfasste Daten{% endtrans %}</h6>
-                        </div>
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" data-sort-name="date" data-sort-order="desc">
-                                    <thead>
-                                    <tr>
-                                        <th data-field="date">{% trans %}Datum{% endtrans %}</th>
-                                        <th data-field="title">{% trans %}Beschreibung{% endtrans %}</th>
-                                        <th>{% trans %}Typ{% endtrans %}</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for seizure in seizures %}
-                                        <tr class="tr-seizure">
-                                            <td data-order="{{ seizure.timestampWhen|date('U') }}">{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
-                                            <td>{{ seizure.title}} - {{ seizure.seizuretype }}</td>
-                                            <td>{% trans %}Anfall{% endtrans %}</td>
-                                        </tr>
-                                    {% endfor %}
-                                    {% for event in events %}
-                                        <tr class="tr-event">
-                                            <td data-order="{{ event.timestampWhen|date('U') }}">{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
-                                            <td>{{ event.name}}</td>
-                                            <td>{% trans %}Ereignis{% endtrans %}</td>
-                                        </tr>
-                                    {% endfor %}
-                                    {% for medication in medications %}
-                                        <tr class="tr-medication">
-                                            <td data-order="{{ medication.timestampPrescription|date('U') }}">{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
-                                            <td>{{ medication.name}}</td>
-                                            <td>{% trans %}Medikation{% endtrans %}</td>
-                                        </tr>
-                                    {% endfor %}
-                                    {#{% for diaryentry in diaryentrys %}
-                                        <tr class="tr-diaryentry">
-                                            <td><span class="hidden">{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('Y/m/d') : '' }}</span>{{ diaryentry.timestampWhen ? diaryentry.timestampWhen|date('d.m.Y H:i') : '' }} Uhr</td>
-                                            <td>{{ diaryentry.title }}</td>
-                                            <td>Tagebucheintrag</td>
-                                        </tr>
-                                    {% endfor %}#}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <p class="progress-text" id="progressText">{% trans %}Diagramme werden gerendert{% endtrans %}...</p>
         </div>
 
-    <!-- Bootstrap core JavaScript-->
+        <div id="doneArea" class="done-area">
+            <h4 class="text-success"><i class="fas fa-check-circle"></i> {% trans %}PDF wurde erstellt{% endtrans %}!</h4>
+            <p class="progress-text">{% trans %}Die Datei wurde heruntergeladen{% endtrans %}.</p>
+            <button class="btn btn-primary mt-3" id="btnRetry">{% trans %}Erneut herunterladen{% endtrans %}</button>
+            <button class="btn btn-secondary mt-3" id="btnClose">{% trans %}Fenster schliessen{% endtrans %}</button>
+        </div>
+    </div>
+
+    {# Off-screen area where Chart.js renders — never visible to user #}
+    <div class="chart-render-area">
+        <canvas id="chart1Year" width="1600" height="500"></canvas>
+        <canvas id="chartPie" width="800" height="500"></canvas>
+        <canvas id="chart2Years" width="1600" height="500"></canvas>
+    </div>
+
     <script src="{{ asset('application/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('application/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('application/vendor/jquery-ui/jquery-ui.js') }}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{ asset('application/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="{{ asset('application/js/sb-admin-2.js') }}"></script>
-
-    <script src="{{ asset('application/js/html2canvas.min.js') }}"></script>
-
-    <script type="text/javascript" src="{{ asset('application/js/jsPDF/dist/jspdf.min.js') }}"></script>
-    <!-- Page level plugins -->
     <script src="{{ asset('application/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js"></script>
 
     <script type="text/javascript">
-        // Set new default font family and font color to mimic Bootstrap's default styling
-        //Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-        //Chart.defaults.global.defaultFontColor = '#858796';
+    (function() {
+        var chartsReady = 0;
+        var totalCharts = 3;
 
-        function number_format(number, decimals, dec_point, thousands_sep) {
-            // *     example: number_format(1234.56, 2, ',', ' ');
-            // *     return: '1 234,56'
-            number = (number + '').replace(',', '').replace(' ', '');
-            var n = !isFinite(+number) ? 0 : +number,
-                prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-                sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-                dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-                s = '',
-                toFixedFix = function(n, prec) {
-                    var k = Math.pow(10, prec);
-                    return '' + Math.round(n * k) / k;
-                };
-            // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-            s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-            if (s[0].length > 3) {
-                s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-            }
-            if ((s[1] || '').length < prec) {
-                s[1] = s[1] || '';
-                s[1] += new Array(prec - s[1].length + 1).join('0');
-            }
-            return s.join(dec);
+        function setProgress(pct, text) {
+            document.getElementById('progressBar').style.width = pct + '%';
+            document.getElementById('progressBar').textContent = pct + '%';
+            if (text) document.getElementById('progressText').textContent = text;
         }
 
-        // Set new default font family and font color to mimic Bootstrap's default styling
-        //Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-        //Chart.defaults.global.defaultFontColor = 'black';
-        // Area Chart
-        var ctx = document.getElementById("my1YearChart");
-        var myLineChart = new Chart(ctx, {
+        function onChartComplete() {
+            chartsReady++;
+            var pct = Math.round((chartsReady / totalCharts) * 60);
+            setProgress(pct, chartsReady + ' / ' + totalCharts + ' {% trans %}Diagramme fertig{% endtrans %}');
+
+            if (chartsReady === totalCharts) {
+                setTimeout(buildPDF, 200);
+            }
+        }
+
+        // ── Chart.js configuration ─────────────────────────────────
+
+        var animOpts = {
+            duration: 600,
+            onComplete: onChartComplete
+        };
+
+        var lineChartOptions = {
+            responsive: false,
+            animation: animOpts,
+            maintainAspectRatio: false,
+            layout: { padding: { left: 10, right: 25, top: 25, bottom: 0 } },
+            scales: {
+                xAxes: [{ gridLines: { display: false, drawBorder: false }, ticks: { maxTicksLimit: 7 } }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true, maxTicksLimit: 5, padding: 10,
+                        callback: function(v) { if (v % 1 === 0) return v; }
+                    },
+                    gridLines: { color: "rgb(234,236,244)", zeroLineColor: "rgb(234,236,244)", drawBorder: false, borderDash: [2], zeroLineBorderDash: [2] }
+                }]
+            },
+            legend: { display: true, position: 'bottom', labels: { fontColor: 'black', fontSize: 13 } },
+            tooltips: { enabled: false }
+        };
+
+        // 1-Year Chart
+        new Chart(document.getElementById("chart1Year").getContext('2d'), {
             type: 'line',
             data: {
                 labels: {{ seizure_month_1|raw }},
-                datasets: [{
-                    label: "{% trans %}Anfälle{% endtrans %}",
-                    lineTension: 0.3,
-                    backgroundColor: "rgba(231, 74, 59, 0.05)",
-                    borderColor: "rgba(231, 74, 59, 1)",
-                    pointRadius: 3,
-                    pointBackgroundColor: "rgba(231, 74, 59, 1)",
-                    pointBorderColor: "rgba(231, 74, 59, 1)",
-                    pointHoverRadius: 3,
-                    pointHoverBackgroundColor: "rgba(231, 74, 59, 1)",
-                    pointHoverBorderColor: "rgba(231, 74, 59, 1)",
-                    pointHitRadius: 10,
-                    pointBorderWidth: 2,
-                    data: {{ seizure_data_1|raw }}
-                },{
-                    label: "{% trans %}Ereignisse{% endtrans %}",
-                    lineTension: 0.3,
-                    backgroundColor: "rgba(28, 200, 138, 0.05)",
-                    borderColor: "rgba(28, 200, 138, 1)",
-                    pointRadius: 3,
-                    pointBackgroundColor: "rgba(28, 200, 138, 1)",
-                    pointBorderColor: "rgba(28, 200, 138, 1)",
-                    pointHoverRadius: 3,
-                    pointHoverBackgroundColor: "rgba(28, 200, 138, 1)",
-                    pointHoverBorderColor: "rgba(28, 200, 138, 1)",
-                    pointHitRadius: 10,
-                    pointBorderWidth: 2,
-                    data: {{ event_data_1|raw }}
-                },
-                /*{
-                    label: "Tagebucheinträge",
-                    lineTension: 0.3,
-                    backgroundColor: "rgba(78, 115, 223, 0.05)",
-                    borderColor: "rgba(78, 115, 223, 1)",
-                    pointRadius: 3,
-                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointBorderColor: "rgba(78, 115, 223, 1)",
-                    pointHoverRadius: 3,
-                    pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                    pointHitRadius: 10,
-                    pointBorderWidth: 2,
-                    data:  diaryentry_data_1|raw
-                },*/
-                {
-                    label: "{% trans %}Medikationen{% endtrans %}",
-                    lineTension: 0.3,
-                    backgroundColor: "rgba(246, 194, 62, 0.05)",
-                    borderColor: "rgba(246, 194, 62, 1)",
-                    pointRadius: 3,
-                    pointBackgroundColor: "rgba(246, 194, 62, 1)",
-                    pointBorderColor: "rgba(246, 194, 62, 1)",
-                    pointHoverRadius: 3,
-                    pointHoverBackgroundColor: "rgba(246, 194, 62, 1)",
-                    pointHoverBorderColor: "rgba(246, 194, 62, 1)",
-                    pointHitRadius: 10,
-                    pointBorderWidth: 2,
-                    data: {{ medication_data_1|raw }}
-                }
-                ],
+                datasets: [
+                    { label: "{% trans %}Anfälle{% endtrans %}", lineTension: 0.3, backgroundColor: "rgba(231,74,59,0.05)", borderColor: "rgba(231,74,59,1)", pointRadius: 3, pointBackgroundColor: "rgba(231,74,59,1)", pointBorderColor: "rgba(231,74,59,1)", pointBorderWidth: 2, data: {{ seizure_data_1|raw }} },
+                    { label: "{% trans %}Ereignisse{% endtrans %}", lineTension: 0.3, backgroundColor: "rgba(28,200,138,0.05)", borderColor: "rgba(28,200,138,1)", pointRadius: 3, pointBackgroundColor: "rgba(28,200,138,1)", pointBorderColor: "rgba(28,200,138,1)", pointBorderWidth: 2, data: {{ event_data_1|raw }} },
+                    { label: "{% trans %}Medikationen{% endtrans %}", lineTension: 0.3, backgroundColor: "rgba(246,194,62,0.05)", borderColor: "rgba(246,194,62,1)", pointRadius: 3, pointBackgroundColor: "rgba(246,194,62,1)", pointBorderColor: "rgba(246,194,62,1)", pointBorderWidth: 2, data: {{ medication_data_1|raw }} }
+                ]
             },
-            options: {
-                maintainAspectRatio: false,
-                layout: {
-                    padding: {
-                        left: 10,
-                        right: 25,
-                        top: 25,
-                        bottom: 0
-                    }
-                },
-                scales: {
-                    xAxes: [{
-                        time: {
-                            unit: 'date'
-                        },
-                        gridLines: {
-                            display: false,
-                            drawBorder: false
-                        },
-                        ticks: {
-                            maxTicksLimit: 7
-                        }
-                    }],
-                    yAxes: [{
-                        ticks: {
-                            maxTicksLimit: 5,
-                            padding: 10,
-                            // Include a dollar sign in the ticks
-                            callback: function(value, index, values) {
-                                //return '$' + number_format(value);
-                                return number_format(value);
-                            }
-                        },
-                        gridLines: {
-                            color: "rgb(234, 236, 244)",
-                            zeroLineColor: "rgb(234, 236, 244)",
-                            drawBorder: false,
-                            borderDash: [2],
-                            zeroLineBorderDash: [2]
-                        }
-                    }],
-                },
-                legend: {
-                    display: true,
-                    position: 'bottom',
-                    labels: {
-                        fontColor: 'black'
-                    }
-                },
-                tooltips: {
-                    backgroundColor: "rgb(255,255,255)",
-                    bodyFontColor: "#858796",
-                    titleMarginBottom: 10,
-                    titleFontColor: '#6e707e',
-                    titleFontSize: 14,
-                    borderColor: '#dddfeb',
-                    borderWidth: 1,
-                    xPadding: 15,
-                    yPadding: 15,
-                    displayColors: false,
-                    intersect: false,
-                    mode: 'index',
-                    caretPadding: 10,
-                    callbacks: {
-                        label: function(tooltipItem, chart) {
-                            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                            return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
-                        }
-                    }
-                }
-            }
-        });
-        // Area Chart
-        var ctx = document.getElementById("my2YearsChart");
-        var myLineChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: {{ seizure_month|raw }},
-            datasets: [{
-              label: "{% trans %}Anfälle{% endtrans %}",
-              lineTension: 0.3,
-              backgroundColor: "rgba(231, 74, 59, 0.05)",
-              borderColor: "rgba(231, 74, 59, 1)",
-              pointRadius: 3,
-              pointBackgroundColor: "rgba(231, 74, 59, 1)",
-              pointBorderColor: "rgba(231, 74, 59, 1)",
-              pointHoverRadius: 3,
-              pointHoverBackgroundColor: "rgba(231, 74, 59, 1)",
-              pointHoverBorderColor: "rgba(231, 74, 59, 1)",
-              pointHitRadius: 10,
-              pointBorderWidth: 2,
-              data: {{ seizure_data|raw }}
-            },{
-              label: "{% trans %}Ereignisse{% endtrans %}",
-              lineTension: 0.3,
-              backgroundColor: "rgba(28, 200, 138, 0.05)",
-              borderColor: "rgba(28, 200, 138, 1)",
-              pointRadius: 3,
-              pointBackgroundColor: "rgba(28, 200, 138, 1)",
-              pointBorderColor: "rgba(28, 200, 138, 1)",
-              pointHoverRadius: 3,
-              pointHoverBackgroundColor: "rgba(28, 200, 138, 1)",
-              pointHoverBorderColor: "rgba(28, 200, 138, 1)",
-              pointHitRadius: 10,
-              pointBorderWidth: 2,
-              data: {{ event_data|raw }}
-            },
-              {
-                label: "{% trans %}Medikationen{% endtrans %}",
-                lineTension: 0.3,
-                backgroundColor: "rgba(246, 194, 62, 0.05)",
-                borderColor: "rgba(246, 194, 62, 1)",
-                pointRadius: 3,
-                pointBackgroundColor: "rgba(246, 194, 62, 1)",
-                pointBorderColor: "rgba(246, 194, 62, 1)",
-                pointHoverRadius: 3,
-                pointHoverBackgroundColor: "rgba(246, 194, 62, 1)",
-                pointHoverBorderColor: "rgba(246, 194, 62, 1)",
-                pointHitRadius: 10,
-                pointBorderWidth: 2,
-                data: {{ medication_data|raw }}
-              }
-            ],
-          },
-          options: {
-            maintainAspectRatio: false,
-            layout: {
-              padding: {
-                left: 10,
-                right: 25,
-                top: 25,
-                bottom: 0
-              }
-            },
-            scales: {
-              xAxes: [{
-                time: {
-                  unit: 'date'
-                },
-                gridLines: {
-                  display: false,
-                  drawBorder: false
-                },
-                ticks: {
-
-                  autoSkip: false
-                }
-              }],
-              yAxes: [{
-                ticks: {
-                  beginAtZero: true,
-
-                  maxTicksLimit: 5,
-                  padding: 10,
-                  // Include a dollar sign in the ticks
-                  callback: function(value) {if (value % 1 === 0) {return value;}}
-                },
-                gridLines: {
-                  color: "rgb(234, 236, 244)",
-                  zeroLineColor: "rgb(234, 236, 244)",
-                  drawBorder: false,
-                  borderDash: [2],
-                  zeroLineBorderDash: [2]
-                }
-              }],
-            },
-            legend: {
-              display: true,
-              position: 'bottom'
-            },
-            tooltips: {
-              backgroundColor: "rgb(255,255,255)",
-              bodyFontColor: "#858796",
-              titleMarginBottom: 10,
-              titleFontColor: '#6e707e',
-              titleFontSize: 14,
-              borderColor: '#dddfeb',
-              borderWidth: 1,
-              xPadding: 15,
-              yPadding: 15,
-              displayColors: false,
-              intersect: false,
-              mode: 'index',
-              caretPadding: 10,
-              callbacks: {
-                label: function(tooltipItem, chart) {
-                  var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                  return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
-                }
-              }
-            }
-          }
+            options: lineChartOptions
         });
 
+        // 2-Year Chart
+        var twoYearOpts = JSON.parse(JSON.stringify(lineChartOptions));
+        twoYearOpts.scales.xAxes[0].ticks = { autoSkip: true, maxTicksLimit: 12 };
+        twoYearOpts.animation = animOpts;
+        new Chart(document.getElementById("chart2Years").getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: {{ seizure_month|raw }},
+                datasets: [
+                    { label: "{% trans %}Anfälle{% endtrans %}", lineTension: 0.3, backgroundColor: "rgba(231,74,59,0.05)", borderColor: "rgba(231,74,59,1)", pointRadius: 3, pointBackgroundColor: "rgba(231,74,59,1)", pointBorderColor: "rgba(231,74,59,1)", pointBorderWidth: 2, data: {{ seizure_data|raw }} },
+                    { label: "{% trans %}Ereignisse{% endtrans %}", lineTension: 0.3, backgroundColor: "rgba(28,200,138,0.05)", borderColor: "rgba(28,200,138,1)", pointRadius: 3, pointBackgroundColor: "rgba(28,200,138,1)", pointBorderColor: "rgba(28,200,138,1)", pointBorderWidth: 2, data: {{ event_data|raw }} },
+                    { label: "{% trans %}Medikationen{% endtrans %}", lineTension: 0.3, backgroundColor: "rgba(246,194,62,0.05)", borderColor: "rgba(246,194,62,1)", pointRadius: 3, pointBackgroundColor: "rgba(246,194,62,1)", pointBorderColor: "rgba(246,194,62,1)", pointBorderWidth: 2, data: {{ medication_data|raw }} }
+                ]
+            },
+            options: twoYearOpts
+        });
 
         // Pie Chart
-        var ctx = document.getElementById("myPieChart");
-        var myPieChart = new Chart(ctx, {
+        new Chart(document.getElementById("chartPie").getContext('2d'), {
             type: 'doughnut',
             data: {
                 labels: ["{% trans %}Ereignisse{% endtrans %}", "{% trans %}Anfälle{% endtrans %}", "{% trans %}Medikationen{% endtrans %}"],
-                datasets: [{
-                    data: [ {{ event_count }}, {{ seizure_count }}, {{ medication_count }}],
-                    backgroundColor: ['#1cc88a', '#e74a3b', '#f6c23e'],
-                    hoverBackgroundColor: ['#17a673', '#be2617', '#dda20a'],
-                    hoverBorderColor: "rgba(234, 236, 244, 1)",
-                }],
+                datasets: [{ data: [{{ event_count }}, {{ seizure_count }}, {{ medication_count }}], backgroundColor: ['#1cc88a', '#e74a3b', '#f6c23e'] }]
             },
             options: {
+                responsive: false,
+                animation: animOpts,
                 maintainAspectRatio: false,
-                tooltips: {
-                    backgroundColor: "rgb(255,255,255)",
-                    bodyFontColor: "#858796",
-                    borderColor: '#dddfeb',
-                    borderWidth: 1,
-                    xPadding: 15,
-                    yPadding: 15,
-                    displayColors: false,
-                    caretPadding: 10,
+                legend: { display: true, position: 'bottom', labels: { fontColor: 'black', fontSize: 13 } },
+                tooltips: { enabled: false },
+                cutoutPercentage: 65
+            }
+        });
 
+        // ── PDF builder ────────────────────────────────────────────
+
+        function buildPDF() {
+            setProgress(65, '{% trans %}PDF wird zusammengesetzt{% endtrans %}...');
+
+            var jsPDF = window.jspdf.jsPDF;
+            var doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+            var pageW = doc.internal.pageSize.getWidth();
+            var pageH = doc.internal.pageSize.getHeight();
+            var margin = 15;
+            var contentW = pageW - margin * 2;
+            var y = margin;
+
+            // ── Page 1: Header + 1-Year Chart + Pie Chart ──────────
+
+            doc.setFontSize(18);
+            doc.setTextColor(60, 60, 60);
+            doc.text('epilepc', margin, y + 6);
+            doc.setFontSize(10);
+            doc.setTextColor(130, 130, 130);
+            doc.text('{% trans %}PDF-Übersicht vom{% endtrans %} {{ date }}', margin, y + 13);
+            doc.text('{{ app.user.firstname|e('js') }} {{ app.user.lastname|e('js') }}', margin, y + 18);
+
+            {% if diagnose is not null %}
+            doc.setFontSize(10);
+            doc.setTextColor(80, 80, 80);
+            doc.text('{% trans %}Diagnose{% endtrans %}: {{ diagnose|e('js') }}', margin, y + 25);
+            y += 32;
+            {% else %}
+            y += 24;
+            {% endif %}
+
+            // 1-Year chart
+            setProgress(70, '{% trans %}Diagramme werden eingebettet{% endtrans %}...');
+            doc.setFontSize(12);
+            doc.setTextColor(60, 60, 60);
+            doc.text('{% trans %}Deine Übersicht vom letzten Jahr{% endtrans %}', margin, y);
+            y += 3;
+            var chart1Img = document.getElementById('chart1Year').toDataURL('image/png');
+            var chart1H = (contentW / 1600) * 500;
+            doc.addImage(chart1Img, 'PNG', margin, y, contentW, chart1H);
+            y += chart1H + 8;
+
+            // Pie chart
+            doc.setFontSize(12);
+            doc.text('{% trans %}Was wurde wie oft erfasst?{% endtrans %}', margin, y);
+            y += 3;
+            var pieImg = document.getElementById('chartPie').toDataURL('image/png');
+            var pieW = contentW * 0.5;
+            var pieH = (pieW / 800) * 500;
+            doc.addImage(pieImg, 'PNG', margin + (contentW - pieW) / 2, y, pieW, pieH);
+
+            // ── Page 2: 2-Year Chart ───────────────────────────────
+
+            setProgress(80, '{% trans %}Diagramme werden eingebettet{% endtrans %}...');
+            doc.addPage();
+            y = margin;
+            doc.setFontSize(12);
+            doc.setTextColor(60, 60, 60);
+            doc.text('{% trans %}Deine Übersicht der letzten 2 Jahren{% endtrans %}', margin, y);
+            y += 3;
+            var chart2Img = document.getElementById('chart2Years').toDataURL('image/png');
+            var chart2H = (contentW / 1600) * 500;
+            doc.addImage(chart2Img, 'PNG', margin, y, contentW, chart2H);
+
+            // ── Page 3+: Data Table ────────────────────────────────
+
+            setProgress(90, '{% trans %}Tabelle wird erstellt{% endtrans %}...');
+            doc.addPage();
+
+            doc.setFontSize(12);
+            doc.setTextColor(60, 60, 60);
+            doc.text('{% trans %}Erfasste Daten{% endtrans %}', margin, margin);
+
+            var tableRows = [];
+            {% for seizure in seizures %}
+            tableRows.push([
+                '{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }}',
+                '{{ seizure.title|e('js') }}{% if seizure.seizuretype %} - {{ seizure.seizuretype|e('js') }}{% endif %}',
+                '{% trans %}Anfall{% endtrans %}'
+            ]);
+            {% endfor %}
+            {% for event in events %}
+            tableRows.push([
+                '{{ event.timestampWhen ? event.timestampWhen|date('d.m.Y H:i') : '' }}',
+                '{{ event.name|e('js') }}',
+                '{% trans %}Ereignis{% endtrans %}'
+            ]);
+            {% endfor %}
+            {% for medication in medications %}
+            tableRows.push([
+                '{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y H:i') : '' }}',
+                '{{ medication.name|e('js') }}',
+                '{% trans %}Medikation{% endtrans %}'
+            ]);
+            {% endfor %}
+
+            // Sort by date descending
+            tableRows.sort(function(a, b) {
+                var pa = a[0].split(/[.\s:]/), pb = b[0].split(/[.\s:]/);
+                var da = new Date(pa[2], pa[1]-1, pa[0], pa[3]||0, pa[4]||0);
+                var db = new Date(pb[2], pb[1]-1, pb[0], pb[3]||0, pb[4]||0);
+                return db - da;
+            });
+
+            doc.autoTable({
+                startY: margin + 5,
+                margin: { left: margin, right: margin },
+                head: [['{% trans %}Datum{% endtrans %}', '{% trans %}Beschreibung{% endtrans %}', '{% trans %}Typ{% endtrans %}']],
+                body: tableRows,
+                styles: {
+                    fontSize: 8,
+                    cellPadding: 2,
+                    overflow: 'linebreak',
+                    font: 'helvetica'
                 },
-                legend: {
-                    display: false,
-                    labels: {
-                        fontColor: 'black'
+                headStyles: {
+                    fillColor: [78, 115, 223],
+                    textColor: 255,
+                    fontStyle: 'bold'
+                },
+                alternateRowStyles: {
+                    fillColor: [245, 247, 250]
+                },
+                columnStyles: {
+                    0: { cellWidth: 35 },
+                    2: { cellWidth: 28 }
+                },
+                didParseCell: function(data) {
+                    if (data.section === 'body' && data.column.index === 2) {
+                        var typ = data.cell.raw;
+                        if (typ === '{% trans %}Anfall{% endtrans %}') data.cell.styles.textColor = [231, 74, 59];
+                        else if (typ === '{% trans %}Ereignis{% endtrans %}') data.cell.styles.textColor = [28, 200, 138];
+                        else if (typ === '{% trans %}Medikation{% endtrans %}') data.cell.styles.textColor = [246, 194, 62];
                     }
-                },
-                cutoutPercentage: 75,
-            },
-        });
+                }
+            });
 
+            // ── Footer on every page ───────────────────────────────
 
-        // Call the dataTables jQuery plugin
-        $(document).ready(function() {
-          $('#dataTable').DataTable( {
-            "language": {
-              "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/{% trans %}German{% endtrans %}.json"
-            },
-            "order": [[ 0, "desc" ]],
-            "searching": false,
-            "paging": false,
+            var totalPages = doc.internal.getNumberOfPages();
+            for (var i = 1; i <= totalPages; i++) {
+                doc.setPage(i);
+                doc.setFontSize(8);
+                doc.setTextColor(180, 180, 180);
+                doc.text(
+                    'epilepc.ch — {% trans %}Seite{% endtrans %} ' + i + ' / ' + totalPages,
+                    pageW / 2, pageH - 8,
+                    { align: 'center' }
+                );
+            }
 
-          });
-        });
-        function callback() {
-            getPDF();
+            // ── Save ───────────────────────────────────────────────
+
+            setProgress(100, '{% trans %}PDF wird heruntergeladen{% endtrans %}...');
+
+            var d = new Date();
+            var dateStr = ('0'+d.getDate()).slice(-2) + '-' + ('0'+(d.getMonth()+1)).slice(-2) + '-' + d.getFullYear();
+            var filename = 'epilepc-export-{{ app.user.firstname|e('js') }}-{{ app.user.lastname|e('js') }}-' + dateStr + '.pdf';
+
+            doc.save(filename);
+
+            // Show completion UI
+            document.getElementById('progressArea').style.display = 'none';
+            document.getElementById('doneArea').style.display = 'block';
         }
 
-        document.getElementById("closeWindow").addEventListener("click", function(){
+        // Wire up done-area buttons
+        document.getElementById('btnRetry').addEventListener('click', function() {
+            document.getElementById('doneArea').style.display = 'none';
+            document.getElementById('progressArea').style.display = 'block';
+            setProgress(0, '{% trans %}PDF wird generiert{% endtrans %}...');
+            buildPDF();
+        });
+        document.getElementById('btnClose').addEventListener('click', function() {
             window.close();
         });
 
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="{{ asset('application/vendor/datatables/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('application/vendor/datatables/moment.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('application/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
-    <script src="{{ asset('application/js/html2canvas.min.js') }}"></script>
-    <script>
-        setTimeout(callback, 3000);
+    })();
     </script>
 </body>
 </html>
-
