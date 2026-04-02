@@ -128,9 +128,6 @@
         });
 
         // 2-Year Chart
-        var twoYearOpts = JSON.parse(JSON.stringify(lineChartOptions));
-        twoYearOpts.scales.xAxes[0].ticks = { autoSkip: true, maxTicksLimit: 12 };
-        twoYearOpts.animation = animOpts;
         new Chart(document.getElementById("chart2Years").getContext('2d'), {
             type: 'line',
             data: {
@@ -141,7 +138,24 @@
                     { label: "{% trans %}Medikationen{% endtrans %}", lineTension: 0.3, backgroundColor: "rgba(246,194,62,0.05)", borderColor: "rgba(246,194,62,1)", pointRadius: 3, pointBackgroundColor: "rgba(246,194,62,1)", pointBorderColor: "rgba(246,194,62,1)", pointBorderWidth: 2, data: {{ medication_data|raw }} }
                 ]
             },
-            options: twoYearOpts
+            options: {
+                responsive: false,
+                animation: animOpts,
+                maintainAspectRatio: false,
+                layout: { padding: { left: 10, right: 25, top: 25, bottom: 0 } },
+                scales: {
+                    xAxes: [{ gridLines: { display: false, drawBorder: false }, ticks: { autoSkip: true, maxTicksLimit: 12 } }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true, maxTicksLimit: 5, padding: 10,
+                            callback: function(v) { if (v % 1 === 0) return v; }
+                        },
+                        gridLines: { color: "rgb(234,236,244)", zeroLineColor: "rgb(234,236,244)", drawBorder: false, borderDash: [2], zeroLineBorderDash: [2] }
+                    }]
+                },
+                legend: { display: true, position: 'bottom', labels: { fontColor: 'black', fontSize: 13 } },
+                tooltips: { enabled: false }
+            }
         });
 
         // Pie Chart
