@@ -294,23 +294,30 @@ class AppController extends AbstractController
         $medications = $medicationRepository->findForOverview($user);
         $decryptor->decryptColumn($medications, 'name');
 
-        // Sum the 24-month diagram data for counts (not all-time)
+        // Sum the 24-month and 12-month diagram data for counts
         $seizure2yCount = array_sum($seizure_data);
         $event2yCount = array_sum($event_data);
         $medication2yCount = array_sum($medication_data);
 
+        $seizure1yCount = array_sum(array_slice($seizureDiagramCount, 12));
+        $event1yCount = array_sum(array_slice($eventDiagramCount, 12));
+        $medication1yCount = array_sum(array_slice($medicationDiagramCount, 12));
+
         return $this->render('app/pdfGenerator.html.twig', [
             'medication_count' => $medication2yCount,
+            'medication_count_1y' => $medication1yCount,
             'medication_data' => $medicationValueJSON,
             'medication_data_1' => $medicationValueJSON12Month,
             'medications' => $medications,
             'seizure_count' => $seizure2yCount,
+            'seizure_count_1y' => $seizure1yCount,
             'seizure_month' => $seizureMonthJSON,
             'seizure_month_1' => $seizureMonthJSON12Month,
             'seizure_data' => $seizureValueJSON,
             'seizure_data_1' => $seizureValueJSON12Month,
             'seizures' => $seizures,
             'event_count' => $event2yCount,
+            'event_count_1y' => $event1yCount,
             'event_data' => $eventValueJSON,
             'event_data_1' => $eventValueJSON12Month,
             'events' => $events,

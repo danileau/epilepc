@@ -239,7 +239,25 @@
             var imgH = chartCardH - 9 - imgPad * 2;
             doc.addImage(chart1Img, 'PNG', m + imgPad, y + 9 + imgPad, imgW, imgH);
 
-            y += chartCardH + 6;
+            y += chartCardH + 3;
+
+            // 12-month summary counts
+            doc.setFontSize(8);
+            var items1y = [
+                { label: '{% trans %}Anfälle{% endtrans %}', count: {{ seizure_count_1y }}, color: C.danger },
+                { label: '{% trans %}Ereignisse{% endtrans %}', count: {{ event_count_1y }}, color: C.success },
+                { label: '{% trans %}Medikationen{% endtrans %}', count: {{ medication_count_1y }}, color: C.warning }
+            ];
+            var sx1 = m;
+            for (var i = 0; i < items1y.length; i++) {
+                doc.setFillColor.apply(doc, items1y[i].color);
+                doc.circle(sx1 + 1.5, y + 1, 1.5, 'F');
+                doc.setTextColor.apply(doc, C.gray800);
+                doc.text(items1y[i].label + ': ' + items1y[i].count, sx1 + 5, y + 2);
+                sx1 += 45;
+            }
+
+            y += 8;
 
             // ── 2-Year Chart Card (full width) ────────────────────
 
