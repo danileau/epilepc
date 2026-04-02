@@ -353,6 +353,8 @@
                 rowMeta.push(tableRows[r]);
             }
 
+            var lastContentPage = doc.internal.getNumberOfPages();
+
             doc.autoTable({
                 startY: m + 10,
                 margin: { left: m, right: m },
@@ -391,6 +393,11 @@
                         }
                     }
                 },
+                didDrawCell: function(data) {
+                    if (data.section === 'body') {
+                        lastContentPage = doc.internal.getNumberOfPages();
+                    }
+                },
                 didDrawPage: function(data) {
                     // Re-draw page background for continuation pages
                     if (data.pageNumber > 1) {
@@ -400,16 +407,12 @@
                 }
             });
 
-            // ── Remove trailing blank page if autoTable created one ─
+            // ── Remove trailing blank pages autoTable may have added ─
 
             var totalPages = doc.internal.getNumberOfPages();
-            var tableEnd = doc.autoTable.previous ? doc.autoTable.previous.finalY : 0;
-            // autoTable sometimes adds a page when the last row lands near the bottom.
-            // If the table's finalY on the current page is at/near the top margin,
-            // the last page is empty — delete it.
-            if (totalPages > 2 && tableEnd <= m + 2) {
+            while (totalPages > lastContentPage) {
                 doc.deletePage(totalPages);
-                totalPages = doc.internal.getNumberOfPages();
+                totalPages--;
             }
 
             // ── Footer on every page ──────────────────────────────
