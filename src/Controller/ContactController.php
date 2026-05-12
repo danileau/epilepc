@@ -43,7 +43,7 @@ class ContactController extends AbstractController
             } else {
 
                 // reCaptcha Validierung
-                $recaptchaToken = $request->request->all('contact')['recaptcha_token'] ?? '';
+                $recaptchaToken = (string) ($form->get('recaptcha_token')->getData() ?? '');
                 $recaptchaResponse = $this->httpClient->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
                     'body' => [
                         'secret'   => $_ENV['RECAPTCHA_SECRET'],

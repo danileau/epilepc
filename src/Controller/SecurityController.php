@@ -10,6 +10,7 @@ use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManager;
 use Psr\Log\LoggerInterface;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
@@ -26,10 +27,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class SecurityController extends AbstractController
 {
     private HttpClientInterface $httpClient;
+    private LoggerInterface $logger;
 
-    public function __construct(HttpClientInterface $httpClient)
+    public function __construct(HttpClientInterface $httpClient, LoggerInterface $logger)
     {
         $this->httpClient = $httpClient;
+        $this->logger = $logger;
     }
 
     // Loginfunktion
@@ -71,17 +74,31 @@ class SecurityController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
 
             // reCaptcha Validierung
-            $recaptchaToken = $request->request->all('user_registration_form')['recaptcha_token'] ?? '';
+            $recaptchaToken = (string) ($form->get('recaptcha_token')->getData() ?? '');
             $recaptchaResponse = $this->httpClient->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
                 'body' => [
                     'secret'   => $_ENV['RECAPTCHA_SECRET'],
                     'response' => $recaptchaToken,
                 ],
             ]);
-            $decoded_recaptcha_request = json_decode($recaptchaResponse->getContent(false));
+            $rawBody = $recaptchaResponse->getContent(false);
+            $decoded_recaptcha_request = json_decode($rawBody);
 
+            $isSuccess = ($decoded_recaptcha_request->success ?? false) == true
+                && ($decoded_recaptcha_request->score ?? -1) >= $_ENV['RECAPTCHA_SCORE'];
 
-            if ($decoded_recaptcha_request->success == true && $decoded_recaptcha_request->score >= $_ENV['RECAPTCHA_SCORE']) {
+            if (!$isSuccess) {
+                $this->logger->error('reCAPTCHA verification failed during registration', [
+                    'http_status'   => $recaptchaResponse->getStatusCode(),
+                    'token_length'  => strlen($recaptchaToken),
+                    'secret_set'    => !empty($_ENV['RECAPTCHA_SECRET']),
+                    'score_thresh'  => $_ENV['RECAPTCHA_SCORE'] ?? '(unset)',
+                    'response_body' => $rawBody,
+                    'client_ip'     => $request->getClientIp(),
+                ]);
+            }
+
+            if ($isSuccess) {
                 /** @var User $user */
                 $user = $form->getData();
                 // Verschlüsselt das eingegebene Passwort und SET ins User Objekt
