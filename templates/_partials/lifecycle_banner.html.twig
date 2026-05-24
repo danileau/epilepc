@@ -1,0 +1,264 @@
+{#
+    Phase-aware lifecycle banner. Included from templates/landing/base.html.twig,
+    templates/app/base.html.twig, and templates/app/authentication/base.html.twig
+    so it appears on every page (public, authed, and auth flows).
+
+    Branding: ciphra asterisk + brand colour grow more prominent as epilepc
+    fades, signalling "successor, not abandonment". Asterisk geometry mirrors
+    the canonical ciphra wordmark (8° rotation, 6 arms).
+
+    Contrast: landing/css/main.css has `b, strong { color: #fff }` which would
+    make our bold copy invisible. Every emphasis span here sets explicit
+    `color: inherit` to override.
+
+    Dismiss policy:
+      announce  | dismissable forever (localStorage)
+      warn      | dismissable for 24h (timestamp in localStorage)
+      readonly  | sticky
+      decommission | sticky
+#}
+
+{# Per-user migrated state takes precedence over global phase. #}
+{% set user_migrated = app.user is not null and app.user.isMigrated %}
+
+{# Banner-scoped CSS reset. The public landing's main.css applies
+   `body { font-size: 17pt; line-height: 1.65 }` and resets descendants
+   with `font: inherit; vertical-align: baseline; padding: 0; margin: 0` —
+   so without explicit cascading overrides the banner renders taller on
+   landing than on /login + /app/*. Every descendant gets pinned to
+   14px / 1.5 / system font to match the SB-Admin treatment. #}
+<style>
+    .ciphra-lifecycle-banner {
+        position: relative !important; /* anchor for the absolutely-positioned × close button */
+        min-height: 56px !important;
+        display: flex !important;
+        align-items: center !important;
+        flex-wrap: wrap !important;
+        gap: 12px !important;
+        padding: 12px 20px !important;
+    }
+    .ciphra-lifecycle-banner,
+    .ciphra-lifecycle-banner * {
+        box-sizing: border-box !important;
+        vertical-align: baseline !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        font-weight: 400;
+    }
+    .ciphra-lifecycle-banner strong,
+    .ciphra-lifecycle-banner b {
+        color: inherit !important;
+        font-weight: 700 !important;
+    }
+    .ciphra-lifecycle-banner a {
+        color: inherit;
+        text-decoration: underline;
+        font-weight: 600;
+    }
+    .ciphra-lifecycle-banner .lifecycle-cta {
+        padding: 8px 14px !important;
+        min-height: 36px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        text-decoration: none !important;
+    }
+    .ciphra-lifecycle-banner .lifecycle-dismiss {
+        position: absolute !important;
+        top: 4px !important;
+        right: 4px !important;
+        width: 36px !important;
+        height: 36px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: transparent !important;
+        border: none !important;
+        font-family: inherit !important;
+        font-size: 22px !important; /* × close button — visually larger */
+        line-height: 1 !important;
+        cursor: pointer !important;
+        opacity: 0.7;
+    }
+    .ciphra-lifecycle-banner .lifecycle-dismiss:hover,
+    .ciphra-lifecycle-banner .lifecycle-dismiss:focus { opacity: 1; }
+    .ciphra-lifecycle-banner svg {
+        font-size: 0 !important; /* SVG dimensions are width/height attrs, not font */
+    }
+
+    /* Tablet down. The dismiss × always reserves a 36px top-right slot
+       (absolutely positioned), so the text span needs a right-padding
+       reservation to avoid running under it on a single line. */
+    @media (max-width: 768px) {
+        .ciphra-lifecycle-banner {
+            padding: 10px 14px !important;
+            gap: 8px !important;
+        }
+        .ciphra-lifecycle-banner .lifecycle-text {
+            padding-right: 28px !important; /* reserve space for the × */
+            flex: 1 1 100% !important;
+            min-width: 0 !important;
+        }
+        .ciphra-lifecycle-banner .lifecycle-cta {
+            flex: 1 1 100% !important;
+            justify-content: center !important;
+            text-align: center !important;
+        }
+    }
+
+    /* Small phones (≤380px). Shrink type a notch + drop padding further so
+       the full first line of copy can land without three-deep stacking. */
+    @media (max-width: 380px) {
+        .ciphra-lifecycle-banner,
+        .ciphra-lifecycle-banner * {
+            font-size: 13px !important;
+            line-height: 1.45 !important;
+        }
+        .ciphra-lifecycle-banner {
+            padding: 10px 12px !important;
+        }
+    }
+</style>
+
+{% set ciphra_asterisk %}
+    <svg width="22" height="22" viewBox="-22 -22 44 44" aria-hidden="true" style="vertical-align: -5px; flex-shrink: 0;">
+        <g transform="rotate(8)" stroke="currentColor" stroke-linecap="round" fill="none">
+            <path d="M -16 0 L 16 0" stroke-width="3"/>
+            <path d="M -6.6 -11.4 L 6.6 11.4" stroke-width="2.4"/>
+            <path d="M 6.4 -11 L -6.4 11" stroke-width="2.2"/>
+        </g>
+    </svg>
+{% endset %}
+
+{% if user_migrated %}
+    <div
+        id="lifecycle-banner-migrated"
+        class="ciphra-lifecycle-banner"
+        role="region"
+        aria-label="{% trans %}Migration zu ciphra abgeschlossen{% endtrans %}"
+        style="background: #f5e8e6; color: #7a2920; border-bottom: 2px solid #b23c2c; padding: 12px 20px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1000;"
+    >
+        <span style="color: #b23c2c; display: inline-flex; align-items: center;">{{ ciphra_asterisk }}</span>
+        <span class="lifecycle-text" style="flex: 1; min-width: 120px; color: #7a2920;">
+            <span style="font-weight: 700; color: inherit;">{% trans %}Migration abgeschlossen.{% endtrans %}</span>
+            {% trans %}Deine Daten sind nun auf{% endtrans %}
+            <a href="https://ciphra.ch" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; font-weight: 700;">ciphra.ch</a>.
+            {% trans %}epilepc ist für dich im Read-Only Modus seit{% endtrans %} {{ app.user.migratedAt|date('d.m.Y') }}.
+        </span>
+        <a href="https://ciphra.ch" target="_blank" rel="noopener"
+           class="lifecycle-cta"
+           style="background: #b23c2c; color: #ffffff; border-radius: 4px; font-weight: 600;">
+            {% trans %}Zu ciphra wechseln{% endtrans %}
+        </a>
+    </div>
+
+{% else %}
+
+    {% set phase = lifecycle.currentPhase %}
+    {% if phase != 'normal' %}
+
+        {% set styles = {
+            'announce':     {'bg': '#f5e8e6', 'fg': '#7a2920', 'border': '#b23c2c', 'dismiss': 'forever'},
+            'warn':         {'bg': '#fef3c7', 'fg': '#7a4a07', 'border': '#d97706', 'dismiss': '24h'},
+            'readonly':     {'bg': '#fee2e2', 'fg': '#7a2920', 'border': '#b23c2c', 'dismiss': 'no'},
+            'decommission': {'bg': '#2c2520', 'fg': '#f5e8e6', 'border': '#b23c2c', 'dismiss': 'no'}
+        } %}
+        {% set s = styles[phase] %}
+
+        <div
+            id="lifecycle-banner-{{ phase }}"
+            class="ciphra-lifecycle-banner"
+            role="region"
+            aria-label="{% trans %}Hinweis zum epilepc-Lebenszyklus{% endtrans %}"
+            style="background: {{ s.bg }}; color: {{ s.fg }}; border-bottom: 2px solid {{ s.border }}; padding: 12px 20px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1000;"
+        >
+            <span style="color: {{ s.border }}; display: inline-flex; align-items: center;">{{ ciphra_asterisk }}</span>
+
+            <span class="lifecycle-text" style="flex: 1; min-width: 120px; color: {{ s.fg }};">
+                {# `ciphra.ch` rendered as a visible URL so new visitors
+                   know exactly where the successor lives. Inline anchor
+                   (no {% set %}…{% endset %} capture) to keep Twig
+                   escaping out of the picture. #}
+                {% if phase == 'announce' %}
+                    <a href="https://ciphra.ch" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; font-weight: 700;">ciphra.ch</a>
+                    {% trans %}ist die Weiterentwicklung von epilepc — auf deinem Gerät verschlüsselt.{% endtrans %}
+                    <a href="{{ path('app_landingpage_info_ciphra') }}" style="color: inherit; text-decoration: underline;">{% trans %}Mehr erfahren.{% endtrans %}</a>
+                {% elseif phase == 'warn' %}
+                    <span style="font-weight: 700; color: inherit;">{% trans %}epilepc wechselt in den Read-Only Modus{% endtrans %}</span> —
+                    {% trans %}noch{% endtrans %}
+                    <span style="font-weight: 700; color: inherit;">{{ lifecycle.daysUntilReadonly }}</span>
+                    {% trans %}Tage.{% endtrans %}
+                    {% trans %}Wechsle jetzt zu{% endtrans %}
+                    <a href="https://ciphra.ch" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; font-weight: 700;">ciphra.ch</a>
+                    {% trans %}oder lade deine Daten herunter.{% endtrans %}
+                {% elseif phase == 'readonly' %}
+                    <span style="font-weight: 700; color: inherit;">{% trans %}epilepc ist im Read-Only Modus.{% endtrans %}</span>
+                    {% trans %}Deine bisherigen Einträge bleiben sichtbar. Wechsle zu{% endtrans %}
+                    <a href="https://ciphra.ch" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; font-weight: 700;">ciphra.ch</a>
+                    {% trans %}für neue Einträge.{% endtrans %}
+                {% elseif phase == 'decommission' %}
+                    <span style="font-weight: 700; color: inherit;">{% trans %}epilepc ist stillgelegt.{% endtrans %}</span>
+                    {% trans %}Wechsle zu{% endtrans %}
+                    <a href="https://ciphra.ch" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline; font-weight: 700;">ciphra.ch</a>
+                    {% trans %}oder lade deine Daten herunter.{% endtrans %}
+                    {% if app.user is not null %}
+                        (<a href="{{ path('app_account') }}" style="color: {{ s.fg }}; text-decoration: underline;">{% trans %}auf /app/account{% endtrans %}</a>)
+                    {% else %}
+                        (<a href="{{ path('app_login') }}" style="color: {{ s.fg }}; text-decoration: underline;">{% trans %}Einloggen{% endtrans %}</a>)
+                    {% endif %}
+                    — {% trans %}bis zum{% endtrans %} {{ lifecycle.decommissionDate|date('d.m.Y') }}.
+                {% endif %}
+            </span>
+
+            {% if phase != 'decommission' %}
+                {% if app.user is not null %}
+                    <a href="{{ path('app_account') }}"
+                       class="lifecycle-cta"
+                       style="background: {{ s.border }}; color: #ffffff; border-radius: 4px; font-weight: 600;">
+                        {% trans %}Jetzt zu ciphra wechseln{% endtrans %}
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_login') }}"
+                       class="lifecycle-cta"
+                       style="background: {{ s.border }}; color: #ffffff; border-radius: 4px; font-weight: 600;">
+                        {% trans %}Einloggen und wechseln{% endtrans %}
+                    </a>
+                {% endif %}
+            {% endif %}
+
+            {% if s.dismiss != 'no' %}
+                <button
+                    type="button"
+                    class="lifecycle-dismiss"
+                    aria-label="{% trans %}Hinweis ausblenden{% endtrans %}"
+                    onclick="this.parentElement.style.display='none'; try{localStorage.setItem('epilepc_lifecycle_dismiss_{{ phase }}', String(Date.now()))}catch(e){}"
+                    style="color: {{ s.fg }};">×</button>
+            {% endif %}
+        </div>
+
+        {% if s.dismiss != 'no' %}
+            <script>
+                (function() {
+                    try {
+                        var key = 'epilepc_lifecycle_dismiss_{{ phase }}';
+                        var stored = localStorage.getItem(key);
+                        if (!stored) return;
+                        var hide = false;
+                        {% if s.dismiss == 'forever' %}
+                            hide = (stored === '1' || !isNaN(parseInt(stored, 10)));
+                        {% elseif s.dismiss == '24h' %}
+                            var ts = parseInt(stored, 10);
+                            if (!isNaN(ts) && (Date.now() - ts) < 24*60*60*1000) hide = true;
+                        {% endif %}
+                        if (hide) {
+                            var el = document.getElementById('lifecycle-banner-{{ phase }}');
+                            if (el) el.style.display = 'none';
+                        }
+                    } catch (e) { /* localStorage unavailable */ }
+                })();
+            </script>
+        {% endif %}
+
+    {% endif %}
+
+{% endif %}

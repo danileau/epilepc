@@ -1,0 +1,260 @@
+{% extends 'landing/base.html.twig' %}
+
+{% block title %}epilepc - {% trans %}Wechsel zu ciphra{% endtrans %}{% endblock %}
+
+{% block body %}
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li><a href="#intro" class="active">{% trans %}Wechsel zu ciphra{% endtrans %}</a></li>
+                <li><a href="{{ path('app_landingpage') }}">{% trans %}Zurück{% endtrans %}</a></li>
+                <li><a href="{{ path('app_login') }}">{% trans %}Login{% endtrans %}</a></li>
+            </ul>
+        </nav>
+
+        {# Scoped styles for the bespoke components only. Landing's main.css
+           gives `section.main` the rounded paper card + typography — we
+           don't override it, we just add what it doesn't already provide. #}
+        <style>
+            /* Migration-flow diagram */
+            .flow-diagram { display: flex; align-items: stretch; gap: 12px; margin: 1.5em 0 2em; flex-wrap: wrap; }
+            .flow-stage { flex: 1 1 180px; background: #fdfaf9; border: 1px solid #e8d6d3; border-radius: 8px; padding: 16px 14px; min-width: 180px; color: #2c2520; }
+            .flow-stage-label { font-size: 0.8em; color: #7a2920; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+            .flow-stage-body { font-size: 0.85em; color: #2c2520; line-height: 1.5; }
+            .flow-stage-body ul { padding-left: 16px; margin: 6px 0 0; }
+            .flow-stage-body li { margin-bottom: 4px; }
+            .flow-arrow-cell { display: flex; align-items: center; justify-content: center; flex: 0 0 36px; }
+            .flow-arrow { stroke-dasharray: 4 4; animation: cflow 1.4s linear infinite; }
+            @keyframes cflow { from { stroke-dashoffset: 16; } to { stroke-dashoffset: 0; } }
+            @media (prefers-reduced-motion: reduce) { .flow-arrow { animation: none; } }
+            @media (max-width: 640px) {
+                .flow-diagram { flex-direction: column; }
+                .flow-arrow-cell { flex: 0 0 24px; transform: rotate(90deg); }
+            }
+
+            /* Blueprint chips */
+            .bp-chips { margin: 0.5em 0 0; }
+            .bp-chip { display: inline-block; padding: 4px 10px; margin: 0 4px 6px 0; background: #fdfaf9; border: 1px solid #e8d6d3; border-radius: 999px; font-size: 0.8em; color: #7a2920; }
+
+            /* Timeline */
+            .ciphra-timeline { position: relative; margin: 1.5em 0 2em; padding: 24px 0 12px; }
+            .ciphra-timeline .track { position: absolute; left: 12px; right: 12px; top: 36px; height: 2px; background: #e8d6d3; }
+            .ciphra-timeline .stops { display: flex; justify-content: space-between; position: relative; }
+            .ciphra-timeline .stop { display: flex; flex-direction: column; align-items: center; flex: 1; min-width: 0; padding: 0 4px; }
+            .ciphra-timeline .dot { width: 14px; height: 14px; border-radius: 50%; background: #b23c2c; border: 3px solid #fdfaf9; position: relative; z-index: 1; }
+            .ciphra-timeline .stop.future .dot { background: #d4cbc6; }
+            .ciphra-timeline .date { font-size: 0.75em; font-weight: 600; color: #2c2520; margin-top: 8px; }
+            .ciphra-timeline .label { font-size: 0.7em; color: #6a6660; margin-top: 2px; text-align: center; line-height: 1.3; }
+
+            /* FAQ */
+            .ciphra-faq { margin: 1em 0; }
+            .ciphra-faq details { margin-bottom: 8px; border-bottom: 1px solid #e8e3dd; }
+            .ciphra-faq summary { cursor: pointer; padding: 12px 0; font-weight: 600; color: #2c2520; list-style: none; position: relative; padding-right: 28px; }
+            .ciphra-faq summary::-webkit-details-marker { display: none; }
+            .ciphra-faq summary::after { content: "+"; position: absolute; right: 8px; top: 12px; font-size: 1.1em; color: #b23c2c; font-weight: 400; }
+            .ciphra-faq details[open] summary::after { content: "−"; }
+            .ciphra-faq details > div { padding: 0 0 16px; color: #6a6660; }
+
+            /* Admin-confession aside */
+            .ciphra-aside { margin: 1.5em 0; padding: 14px 18px; border-left: 3px solid #b23c2c; background: #fdfaf9; font-size: 0.9em; color: #6a6660; }
+
+            /* Hero wordmark spacing */
+            .ciphra-hero { text-align: center; margin-bottom: 1.5em; }
+            .ciphra-hero .tagline { margin-top: 12px; color: #6a6660; }
+        </style>
+
+        <!-- Main -->
+        <div id="main">
+            <section id="intro" class="main">
+
+                {# ─── Wordmark hero — canonical ciphra* mark (Wordmark.svelte geometry) ─── #}
+                <div class="ciphra-hero">
+                    <svg viewBox="0 0 100 36" width="280" height="100" role="img" aria-label="ciphra" style="display: block; margin: 0 auto;">
+                        <text x="0" y="27" font-family="Inter, 'DM Sans', sans-serif" font-size="26" font-weight="500" letter-spacing="0.5" fill="#2c2520">ciphra</text>
+                        <g transform="translate(82,8)">
+                            <g transform="rotate(8)" stroke="#b23c2c" stroke-linecap="round" fill="none">
+                                <path d="M -5.4 0 L 5.4 0" stroke-width="1.3"/>
+                                <path d="M -2 -3.5 L 2 3.5" stroke-width="1"/>
+                                <path d="M 2 -3.3 L -2 3.3" stroke-width="0.9"/>
+                            </g>
+                        </g>
+                    </svg>
+                    <p class="tagline">{% trans %}Die Weiterentwicklung von epilepc — verschlüsselt auf deinem Gerät.{% endtrans %}</p>
+                </div>
+
+                <p>{% trans %}ciphra baut auf dem auf, was wir mit epilepc gelernt haben — mit neueren Werkzeugen, einem breiteren Diagnose-Bereich und Browser-seitiger Verschlüsselung. Deine Daten werden in deinem Browser verschlüsselt, bevor sie den Server erreichen.{% endtrans %}</p>
+
+                {# ─── Migration-flow diagram ─── #}
+                <h3>{% trans %}Was passiert beim Wechsel?{% endtrans %}</h3>
+                <p>{% trans %}Der Wechsel läuft direkt zwischen deinem Browser und den beiden Diensten ab. Drei Schritte, eine Minute:{% endtrans %}</p>
+                <div class="flow-diagram" role="img" aria-label="{% trans %}Migrationsfluss von epilepc über deinen Browser zu ciphra{% endtrans %}">
+                    <div class="flow-stage">
+                        <div class="flow-stage-label">epilepc</div>
+                        <div class="flow-stage-body">
+                            {% trans %}Deine bisherigen Einträge:{% endtrans %}
+                            <ul>
+                                <li>{% trans %}Anfälle{% endtrans %}</li>
+                                <li>{% trans %}Medikation{% endtrans %}</li>
+                                <li>{% trans %}Ereignisse{% endtrans %}</li>
+                                <li>{% trans %}Tagebuch{% endtrans %}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flow-arrow-cell" aria-hidden="true">
+                        <svg width="36" height="24" viewBox="0 0 36 24">
+                            <path class="flow-arrow" d="M 2 12 L 28 12" stroke="#b23c2c" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <path d="M 24 6 L 32 12 L 24 18" stroke="#b23c2c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="flow-stage">
+                        <div class="flow-stage-label">{% trans %}Dein Browser{% endtrans %}</div>
+                        <div class="flow-stage-body">
+                            <ul>
+                                <li>{% trans %}Epilepsie-Blueprint wird gewählt{% endtrans %}</li>
+                                <li>{% trans %}Daten verschlüsselt mit deinem persönlichen Schlüssel{% endtrans %}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flow-arrow-cell" aria-hidden="true">
+                        <svg width="36" height="24" viewBox="0 0 36 24">
+                            <path class="flow-arrow" d="M 2 12 L 28 12" stroke="#b23c2c" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <path d="M 24 6 L 32 12 L 24 18" stroke="#b23c2c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="flow-stage">
+                        <div class="flow-stage-label">ciphra</div>
+                        <div class="flow-stage-body">
+                            <ul>
+                                <li>{% trans %}Fertig eingerichteter Vault{% endtrans %}</li>
+                                <li>{% trans %}Verschlüsselt mit deinem Schlüssel — der Server kann nicht entschlüsseln{% endtrans %}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>{% trans %}Was ist ciphra?{% endtrans %}</h3>
+                <p>{% trans %}ciphra ist die Nachfolge-Anwendung von epilepc. Daten werden in deinem Browser verschlüsselt, bevor sie an den Server gesendet werden. Der Schlüssel liegt nur bei dir — niemand sonst kann den Inhalt lesen, auch wir nicht.{% endtrans %}</p>
+
+                <h3>{% trans %}Was ist ein Blueprint?{% endtrans %}</h3>
+                <p>{% trans %}ciphra arbeitet mit{% endtrans %} <b>{% trans %}Blueprints{% endtrans %}</b> — {% trans %}diagnose-spezifische Vorlagen, die bestimmen, was du erfassen kannst, wie deine Daten gegliedert werden und welche Diagramme ciphra für dich rendert.{% endtrans %}</p>
+                <p>{% trans %}Wenn du von epilepc migrierst, wählt ciphra automatisch den{% endtrans %} <b>{% trans %}Epilepsie-Blueprint{% endtrans %}</b>: {% trans %}Anfallstypen, Auslöser-Liste, Notfall-Medikation, alles auf Epilepsie zugeschnitten. Deine bisherigen epilepc-Daten passen 1:1 in dieses Schema, ohne dass du etwas konfigurieren musst.{% endtrans %}</p>
+                <p>{% trans %}Verfügbare Blueprints heute:{% endtrans %}</p>
+                <div class="bp-chips">
+                    <span class="bp-chip">{% trans %}Epilepsie{% endtrans %}</span>
+                    <span class="bp-chip">{% trans %}Migräne{% endtrans %}</span>
+                    <span class="bp-chip">{% trans %}Cluster-Kopfschmerz{% endtrans %}</span>
+                    <span class="bp-chip">PCOS</span>
+                    <span class="bp-chip">{% trans %}Endometriose{% endtrans %}</span>
+                    <span class="bp-chip">Hashimoto</span>
+                    <span class="bp-chip">{% trans %}Asthma{% endtrans %}</span>
+                    <span class="bp-chip">{% trans %}Morbus Crohn / Colitis{% endtrans %}</span>
+                    <span class="bp-chip">{% trans %}Glaukom{% endtrans %}</span>
+                    <span class="bp-chip">Parkinson</span>
+                    <span class="bp-chip">{% trans %}Bipolare Störung{% endtrans %}</span>
+                    <span class="bp-chip">{% trans %}Menopause{% endtrans %}</span>
+                    <span class="bp-chip">Long-COVID</span>
+                </div>
+                <p>{% trans %}Du kannst später jederzeit zwischen Blueprints wechseln oder zusätzliche Konditionen ergänzen.{% endtrans %}</p>
+
+                <h3>{% trans %}Was du gewinnst{% endtrans %}</h3>
+                <ul>
+                    <li><b>{% trans %}Verschlüsselung im Browser{% endtrans %}</b> — {% trans %}der Schlüssel zu deinen Daten liegt nur bei dir, nicht auf dem Server.{% endtrans %}</li>
+                    <li><b>{% trans %}Weitere Diagnosen{% endtrans %}</b> — {% trans %}ciphra ist nicht mehr epilepsie-spezifisch und unterstützt mehrere chronische Krankheiten.{% endtrans %}</li>
+                    <li><b>{% trans %}Familien-Sharing{% endtrans %}</b> — {% trans %}du kannst Angehörige bei der Pflege einbinden, ohne dein Passwort zu teilen.{% endtrans %}</li>
+                    <li><b>{% trans %}Portable Exporte{% endtrans %}</b> — {% trans %}wenn dich später eine andere Plattform interessiert, exportierst du dein Bundle in einem Format, das wieder importierbar ist.{% endtrans %}</li>
+                </ul>
+
+                <h3>{% trans %}Wie läuft der Wechsel ab?{% endtrans %}</h3>
+                <ol>
+                    <li>{% trans %}Du loggst dich in dein epilepc-Konto ein und gehst zum Profil.{% endtrans %}</li>
+                    <li>{% trans %}Du erstellst einen Einweg-Migrationslink.{% endtrans %}</li>
+                    <li>{% trans %}Der Link öffnet ciphra — dort legst du ein neues Konto an.{% endtrans %}</li>
+                    <li><b>{% trans %}ciphra wählt automatisch den Epilepsie-Blueprint{% endtrans %}</b> — {% trans %}alle Formulare, Diagramme und Vokabular sind direkt auf deine bisherigen Anfallsdaten zugeschnitten.{% endtrans %}</li>
+                    <li>{% trans %}Deine epilepc-Daten werden im Browser verschlüsselt und in dein neues ciphra-Konto übertragen.{% endtrans %}</li>
+                    <li>{% trans %}Du landest auf deinem Dashboard — gleiche Daten, neues Zuhause.{% endtrans %}</li>
+                </ol>
+
+                <h3>{% trans %}Wann musst du handeln?{% endtrans %}</h3>
+                <p>{% trans %}epilepc wird über mehrere Phasen schrittweise zurückgefahren. Solange du vor dem 1. Oktober 2026 migrierst, läuft alles ohne Eile.{% endtrans %}</p>
+                <div class="ciphra-timeline" aria-label="{% trans %}Stilllegungs-Zeitleiste von epilepc{% endtrans %}">
+                    <div class="track" aria-hidden="true"></div>
+                    <div class="stops">
+                        <div class="stop">
+                            <div class="dot"></div>
+                            <div class="date">{% trans %}heute{% endtrans %}</div>
+                            <div class="label">{% trans %}Migration offen{% endtrans %}</div>
+                        </div>
+                        <div class="stop future">
+                            <div class="dot"></div>
+                            <div class="date">1. Jul 2026</div>
+                            <div class="label">{% trans %}Keine neuen Konten mehr{% endtrans %}</div>
+                        </div>
+                        <div class="stop future">
+                            <div class="dot"></div>
+                            <div class="date">1. Sep 2026</div>
+                            <div class="label">{% trans %}Hinweis verstärkt{% endtrans %}</div>
+                        </div>
+                        <div class="stop future">
+                            <div class="dot"></div>
+                            <div class="date">1. Okt 2026</div>
+                            <div class="label">{% trans %}Read-Only Modus{% endtrans %}</div>
+                        </div>
+                        <div class="stop future">
+                            <div class="dot"></div>
+                            <div class="date">31. Okt 2026</div>
+                            <div class="label">{% trans %}Service stillgelegt{% endtrans %}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>{% trans %}Häufige Fragen{% endtrans %}</h3>
+                <div class="ciphra-faq">
+                    <details>
+                        <summary>{% trans %}Verliere ich Daten beim Wechsel?{% endtrans %}</summary>
+                        <div>{% trans %}Nein. Alle Anfälle, Ereignisse, Medikamente und Tagebucheinträge werden übertragen. Lediglich der freie Titel eines Anfalls wird mit der Beschreibung zusammengeführt — sonst bleibt alles erhalten.{% endtrans %}</div>
+                    </details>
+                    <details>
+                        <summary>{% trans %}Kann ich es rückgängig machen?{% endtrans %}</summary>
+                        <div>{% trans %}Dein epilepc-Konto bleibt bis zum 31. Oktober 2026 bestehen und ist nach der Migration im Read-Only Modus. Du kannst deine ciphra-Daten zudem jederzeit als JSON oder CSV exportieren — das Format ist wieder importierbar.{% endtrans %}</div>
+                    </details>
+                    <details>
+                        <summary>{% trans %}Was passiert mit meinen alten PDFs für den Arzt?{% endtrans %}</summary>
+                        <div>{% trans %}Bestehende PDFs auf deinem Gerät bleiben unverändert. Auf ciphra kannst du jederzeit neue Berichte erstellen — basierend auf den übertragenen Daten und dem Epilepsie-Blueprint.{% endtrans %}</div>
+                    </details>
+                    <details>
+                        <summary>{% trans %}Wie lange dauert die Übertragung?{% endtrans %}</summary>
+                        <div>{% trans %}Bei 50 Anfällen rund 10 Sekunden. Bei 500 Anfällen bis zu 2 Minuten. Bricht die Verbindung ab, merkt sich ciphra, wo es war, und macht beim nächsten Öffnen des Links nahtlos weiter — ohne Duplikate.{% endtrans %}</div>
+                    </details>
+                    <details>
+                        <summary>{% trans %}Ist der Migrationslink sicher zu teilen?{% endtrans %}</summary>
+                        <div>{% trans %}Nein. Der Link ist einmalig gültig und an dein epilepc-Konto gebunden. Behalte ihn für dich. Nach dem ersten erfolgreichen Öffnen ist er verbraucht.{% endtrans %}</div>
+                    </details>
+                    <details>
+                        <summary>{% trans %}Kann ich später eine andere Diagnose hinzufügen?{% endtrans %}</summary>
+                        <div>{% trans %}Ja. ciphra unterstützt mehrere Diagnosen pro Konto — du kannst jederzeit zusätzliche Blueprints aktivieren oder zwischen ihnen wechseln. In Planung für die Alpha-Phase: mehrere getrennte Vaults pro Konto, einer pro Diagnose.{% endtrans %}</div>
+                    </details>
+                    <details>
+                        <summary>{% trans %}Warum gibt es einen Nachfolger?{% endtrans %}</summary>
+                        <div>{% trans %}ciphra baut auf dem auf, was wir mit epilepc gelernt haben — mit neueren Werkzeugen, einem breiteren Diagnose-Bereich und Browser-seitiger Verschlüsselung. epilepc bleibt lesbar bis Ende Oktober 2026.{% endtrans %}</div>
+                    </details>
+                </div>
+
+                <div class="ciphra-aside">
+                    {% trans %}Wir, die epilepc-Admins, sehen während der Übertragung nichts vom Inhalt deiner Daten. Sie werden auf deinem Gerät verschlüsselt, bevor sie ciphra erreichen.{% endtrans %}
+                </div>
+
+                <ul class="actions">
+                    {% if app.user is not null %}
+                        <li><a href="{{ path('app_account') }}" class="button primary">{% trans %}Migrationslink erstellen{% endtrans %}</a></li>
+                        <li><a href="https://ciphra.ch" target="_blank" rel="noopener" class="button">{% trans %}Mehr über ciphra.ch{% endtrans %}</a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}" class="button primary">{% trans %}Einloggen und migrieren{% endtrans %}</a></li>
+                        <li><a href="https://ciphra.ch" target="_blank" rel="noopener" class="button">{% trans %}Neu bei ciphra registrieren{% endtrans %}</a></li>
+                    {% endif %}
+                </ul>
+
+            </section>
+        </div>
+
+{% endblock %}

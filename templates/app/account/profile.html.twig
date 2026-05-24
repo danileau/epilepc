@@ -4,35 +4,192 @@
 {% block title %}Epilepc - {% trans %}Dein Profil{% endtrans %}{% endblock %}
 
 {% block body %}
+{# Slice 3 — in `decommission`, the profile form is hidden and the page
+   becomes a focused "service ended, here are your options" screen.
+   Migration + export cards remain. #}
+{% set _is_decommissioned = lifecycle.currentPhase == 'decommission' %}
+
 <div class="container">
-    <!-- Page Heading -->
-    <div class="mb-5">
-        <div class="text-center">
-            <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Profilübersicht von{% endtrans %} {{ app.user.firstname }}</h1>
-            <p class="mb-4">{% trans %}Hier findest du alle Informationen über dein Profil und kannst Sie gleich bearbeiten{% endtrans %}</p>
+    {% if _is_decommissioned %}
+        <div class="mb-5 text-center">
+            <svg width="48" height="48" viewBox="-22 -22 44 44" style="display: block; margin: 24px auto 12px;" aria-hidden="true">
+                <g transform="rotate(8)" stroke="#b23c2c" stroke-linecap="round" fill="none">
+                    <path d="M -16 0 L 16 0" stroke-width="3"/>
+                    <path d="M -6.6 -11.4 L 6.6 11.4" stroke-width="2.4"/>
+                    <path d="M 6.4 -11 L -6.4 11" stroke-width="2.2"/>
+                </g>
+            </svg>
+            <h1 class="h3" style="color: #2c2520;">{% trans %}epilepc wurde stillgelegt{% endtrans %}</h1>
+            <p style="color: #6a6660; max-width: 540px; margin: 12px auto 0;">
+                {% trans %}Du hast bis zum{% endtrans %} <strong>{{ lifecycle.decommissionDate|date('d.m.Y') }}</strong>
+                {% trans %}Zeit, deine Daten zu sichern oder zu übertragen.{% endtrans %}
+                {% trans %}Danach werden alle Konten gelöscht.{% endtrans %}
+            </p>
         </div>
-    </div>
-
-    <!-- DataTales Example -->
-<div class="row">
-    <!-- Area Chart -->
-    <div class="col-xl-12 col-lg-7">
-        <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">{% trans %}Profilinformationen{% endtrans %}</h6>
+    {% else %}
+        <div class="mb-5">
+            <div class="text-center">
+                <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Profilübersicht von{% endtrans %} {{ app.user.firstname }}</h1>
+                <p class="mb-4">{% trans %}Hier findest du alle Informationen über dein Profil und kannst Sie gleich bearbeiten{% endtrans %}</p>
+            </div>
         </div>
-        <div class="card-body">
 
-            <div class="row">
-                <div class="col-md-12 order-md-1">
-                    {{ include('app/account/_form.html.twig', {'button_text': 'Speichern'|trans}) }}
-                    <br/>
-                    <a class="btn btn-dark" href="{{ path('app_dashboard') }}">{% trans %}Zurück zur Übersicht{% endtrans %}</a>
+        <div class="row">
+            <div class="col-xl-12 col-lg-7">
+                <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">{% trans %}Profilinformationen{% endtrans %}</h6>
                 </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-12 order-md-1">
+                            {{ include('app/account/_form.html.twig', {'button_text': 'Speichern'|trans}) }}
+                            <br/>
+                            <a class="btn btn-dark" href="{{ path('app_dashboard') }}">{% trans %}Zurück zur Übersicht{% endtrans %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    {% endif %}
+
+{# ciphra migration card — first checks per-user migrated state, then
+   falls back to phase-aware reshape.
+
+   per-user migrated: completion card, no more "create link" button.
+   normal/announce:   calm card.
+   warn:              amber accent + countdown.
+   readonly:          rust hero card promoted as the page's primary CTA.
+   decommission:      full-bleed forced screen, profile fields demoted.
+
+   Brand colour #b23c2c is ciphra's, used here on the button and accents
+   so the user gets a visual preview of where they're going. #}
+{% if app.user.isMigrated %}
+<!-- ciphra migration card (completed) -->
+<div class="row">
+    <div class="col-xl-12 col-lg-7">
+        <div class="card shadow mb-4" style="border-left: 4px solid #b23c2c; background: #fdfaf9;">
+            <div class="card-header py-3" style="background: transparent; border-bottom: 1px solid rgba(178,60,44,0.15);">
+                <h6 class="m-0 font-weight-bold" style="color: #b23c2c;">
+                    <svg width="18" height="18" viewBox="-22 -22 44 44" style="vertical-align: -3px; margin-right: 4px;" aria-hidden="true">
+                        <g transform="rotate(8)" stroke="currentColor" stroke-linecap="round" fill="none">
+                            <path d="M -16 0 L 16 0" stroke-width="3"/>
+                            <path d="M -6.6 -11.4 L 6.6 11.4" stroke-width="2.4"/>
+                            <path d="M 6.4 -11 L -6.4 11" stroke-width="2.2"/>
+                        </g>
+                    </svg>
+                    {% trans %}Migration zu ciphra abgeschlossen{% endtrans %}
+                </h6>
+            </div>
+            <div class="card-body">
+                <p class="mb-3">
+                    {% trans %}Du hast deine epilepc-Daten am{% endtrans %} <strong>{{ app.user.migratedAt|date('d.m.Y') }}</strong> {% trans %}zu ciphra übertragen.{% endtrans %}
+                </p>
+                <p class="small text-muted mb-3">
+                    {% trans %}Dein epilepc-Konto ist nun im Nur-Lese-Modus. Du kannst deine bisherigen Einträge weiterhin ansehen, aber neue Einträge erstellst du in deinem ciphra-Konto. So entstehen keine widersprüchlichen Daten in zwei Systemen.{% endtrans %}
+                </p>
+                <a href="https://ciphra.ch" target="_blank" rel="noopener" class="btn"
+                   style="background: #b23c2c; color: #fff; border-color: #b23c2c; padding: 8px 20px; font-weight: 600;">
+                    {% trans %}Zu ciphra wechseln{% endtrans %}
+                </a>
             </div>
         </div>
     </div>
+</div>
+{% else %}
+{% set _phase = lifecycle.currentPhase %}
+{# Readonly bg lightened so dark-on-light text stays readable. Previous
+   #fee2e2 with muted .text-muted grey was hard to read against the red wash. #}
+{% set _accent = {
+    'normal':       {'border': '#b23c2c', 'bg': '#ffffff',  'btn': '#b23c2c', 'tone': ''},
+    'announce':     {'border': '#b23c2c', 'bg': '#fdfaf9',  'btn': '#b23c2c', 'tone': ''},
+    'warn':         {'border': '#d97706', 'bg': '#fffbeb',  'btn': '#b23c2c', 'tone': 'warn'},
+    'readonly':     {'border': '#b23c2c', 'bg': '#fdf6f6',  'btn': '#b23c2c', 'tone': 'alert'},
+    'decommission': {'border': '#b23c2c', 'bg': '#2c2520',  'btn': '#b23c2c', 'tone': 'final'}
+}[_phase] %}
+
+<!-- ciphra migration card -->
+<div class="row">
+    <div class="col-xl-12 col-lg-7">
+        <div class="card shadow mb-4"
+             style="border-left: 4px solid {{ _accent.border }}; background: {{ _accent.bg }};{% if _phase == 'decommission' %} color: #f5e8e6;{% endif %}">
+            <div class="card-header py-3" style="background: transparent; border-bottom: 1px solid rgba(178,60,44,0.15);">
+                <h6 class="m-0 font-weight-bold" style="color: {{ _phase == 'decommission' ? '#f5e8e6' : '#b23c2c' }};">
+                    {% if _phase == 'readonly' or _phase == 'decommission' %}
+                        {% trans %}Migriere jetzt zu ciphra{% endtrans %}
+                    {% elseif _phase == 'warn' %}
+                        {% trans %}Wechsel zu ciphra — noch{% endtrans %} {{ lifecycle.daysUntilReadonly }} {% trans %}Tage{% endtrans %}
+                    {% else %}
+                        {% trans %}Wechsel zu ciphra{% endtrans %}
+                    {% endif %}
+                </h6>
+            </div>
+            <div class="card-body">
+                <p class="mb-3">
+                    {% trans %}ciphra ist die Weiterentwicklung von epilepc. Deine Daten werden auf deinem Gerät verschlüsselt — der Inhalt verlässt es nie unverschlüsselt. ciphra unterstützt auch andere Diagnosen als Epilepsie.{% endtrans %}
+                </p>
+                <p class="small{% if _phase != 'decommission' %} text-muted{% endif %} mb-3" {% if _phase == 'decommission' %}style="color: #d4cbc6;"{% endif %}>
+                    {% if _phase == 'readonly' %}
+                        {% trans %}epilepc ist im Read-Only Modus. Erstelle jetzt einen Migrationslink, um deine Daten in dein neues ciphra-Konto zu übertragen.{% endtrans %}
+                    {% elseif _phase == 'decommission' %}
+                        {% trans %}epilepc ist stillgelegt. Du hast bis zum{% endtrans %} {{ lifecycle.decommissionDate|date('d.m.Y') }} {% trans %}Zeit, deine Daten zu sichern.{% endtrans %}
+                    {% else %}
+                        {% trans %}Beim Klick auf den Knopf erstellen wir dir einen Einweg-Link. Du öffnest ihn, erstellst auf ciphra ein neues Konto und deine epilepc-Daten werden verschlüsselt übertragen. Dein epilepc-Konto bleibt bestehen, bis du es selbst löschst.{% endtrans %}
+                    {% endif %}
+                </p>
+                <form method="post" action="{{ path('app_ciphra_migrate_start') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('migrate_start') }}">
+                    <button type="submit" class="btn"
+                            style="background: {{ _accent.btn }}; color: #fff; border-color: {{ _accent.btn }}; padding: 8px 20px; font-weight: 600;">
+                        {% trans %}Migrationslink erstellen{% endtrans %}
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
+{% endif %}
+
+<!-- Datenexport card — always available, regardless of phase or migration state -->
+<div class="row">
+    <div class="col-xl-12 col-lg-7">
+        <div class="card shadow mb-4" style="border-left: 4px solid #d4cbc6;">
+            <div class="card-header py-3" style="background: transparent;">
+                <h6 class="m-0 font-weight-bold" style="color: #2c2520;">{% trans %}Datenexport{% endtrans %}</h6>
+            </div>
+            <div class="card-body">
+                <p class="mb-3" style="color: #2c2520;">
+                    {% trans %}Lade alle deine epilepc-Daten herunter — Anfälle, Ereignisse, Medikation und Tagebucheinträge.{% endtrans %}
+                </p>
+
+                {# Unencrypted-file warning — load-bearing copy. The data is
+                   encrypted at rest in epilepc's DB, but the exported file
+                   is plaintext on the user's machine. They need to know. #}
+                <div class="small mb-3" style="background: #fffbeb; border-left: 4px solid #d97706; border-radius: 4px; padding: 10px 14px; color: #7a4a07;">
+                    <strong style="color: #7a4a07;">⚠ {% trans %}Wichtig{% endtrans %}:</strong>
+                    {% trans %}Die heruntergeladene Datei ist unverschlüsselt. Sie enthält deine Gesundheitsdaten im Klartext und ist weder durch dein epilepc-Passwort noch durch Verschlüsselung geschützt. Bewahre sie sicher auf oder lösche sie nach Gebrauch.{% endtrans %}
+                </div>
+
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="{{ path('app_ciphra_export_csv') }}" class="btn"
+                       style="background: transparent; color: #b23c2c; border: 1px solid #b23c2c; padding: 8px 20px; font-weight: 600;">
+                        {% trans %}Als CSV herunterladen{% endtrans %}
+                    </a>
+                    <a href="{{ path('app_ciphra_export_json') }}" class="btn"
+                       style="background: transparent; color: #b23c2c; border: 1px solid #b23c2c; padding: 8px 20px; font-weight: 600;">
+                        {% trans %}Als JSON herunterladen{% endtrans %}
+                    </a>
+                </div>
+
+                <p class="small mb-0 mt-3" style="color: #6a6660;">
+                    {% trans %}CSV öffnet direkt in Excel oder LibreOffice. JSON entspricht dem ciphra-Migrationsbundle (Schema v1.1) und kann später auch in andere Tools importiert werden.{% endtrans %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 {% endblock %}

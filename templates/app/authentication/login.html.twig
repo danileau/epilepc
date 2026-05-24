@@ -35,7 +35,12 @@
                 </form>
                 <hr>
                 <div class="text-center">
-                    <a class="small" href="{{ path('app_register') }}">{% trans %}Jetzt registrieren{% endtrans %}!</a>
+                    {% if lifecycle.isRegistrationDisabled %}
+                        {# Slice 3 — registration is closed; point newcomers to ciphra. #}
+                        <a class="small" href="https://ciphra.ch" target="_blank" rel="noopener">{% trans %}Neues Konto auf ciphra.ch erstellen{% endtrans %}</a>
+                    {% else %}
+                        <a class="small" href="{{ path('app_register') }}">{% trans %}Jetzt registrieren{% endtrans %}!</a>
+                    {% endif %}
                 </div>
                 <div class="text-center">
                     <a class="small" href="{{ path('app_forgot-password') }}">{% trans %}Passwort vergessen{% endtrans %}</a>

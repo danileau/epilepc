@@ -19,3 +19,23 @@ emptyapp:
     permanent: true
     # ...and keep the original query string parameters
     keepQueryParams: true
+
+# ciphra migration export — declared here (not via @Route) so it bypasses
+# the /{_locale} prefix the annotation loader applies to controllers in
+# config/routes/annotations.yaml. The ciphra browser fetcher expects a
+# stable, locale-free URL: GET https://epilepc.ch/api/ciphra-export/<token>
+ciphra_migration_export:
+  path: /api/ciphra-export/{token}
+  controller: App\Controller\CiphraMigrationController::export
+  methods: [GET, OPTIONS]
+  requirements:
+    token: '[A-Za-z0-9_-]{1,64}'
+
+# Slice 3b — ciphra signals successful import. Locks the user out of writes
+# on epilepc. Same locale-bypass pattern as the export route.
+ciphra_migration_complete:
+  path: /api/migration-complete/{token}
+  controller: App\Controller\CiphraMigrationController::complete
+  methods: [POST, OPTIONS]
+  requirements:
+    token: '[A-Za-z0-9_-]{1,64}'

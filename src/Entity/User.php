@@ -103,6 +103,15 @@ class User implements UserInterface
      */
     private $diagnose;
 
+    /**
+     * Stamped by CiphraMigrationController::complete when ciphra signals
+     * a successful migration. From that moment on, this user is in
+     * read+export-only mode on epilepc — see App\EventSubscriber\MigrationLockdownSubscriber.
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $migrated_at;
+
 
 
     public function __construct()
@@ -377,6 +386,23 @@ class User implements UserInterface
         $this->diagnose = $diagnose;
 
         return $this;
+    }
+
+    public function getMigratedAt(): ?\DateTimeInterface
+    {
+        return $this->migrated_at;
+    }
+
+    public function setMigratedAt(?\DateTimeInterface $migrated_at): self
+    {
+        $this->migrated_at = $migrated_at;
+
+        return $this;
+    }
+
+    public function isMigrated(): bool
+    {
+        return $this->migrated_at !== null;
     }
 
 }

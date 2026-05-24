@@ -46,5 +46,14 @@ class LandingPageController extends AbstractController
         return $this->render('landing/releasenotes.html.twig', []);
     }
 
-
+    /**
+     * @Route("/info/ciphra", name="app_landingpage_info_ciphra")
+     *
+     * Explainer for the deprecation: what ciphra is, why migrate, what
+     * happens during the transfer. Linked from the lifecycle banner's
+     * "Mehr erfahren" target.
+     */
+    public function infoCiphra(){
+        return $this->render('landing/info_ciphra.html.twig', []);
+    }
 }

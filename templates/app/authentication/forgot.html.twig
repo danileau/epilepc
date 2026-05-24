@@ -14,7 +14,11 @@
                 {{ include('app/authentication/_form-forgot.html.twig', {'button_text': 'Passwort zurücksetzen'|trans}) }}
                 <hr>
                 <div class="text-center">
-                    <a class="small" href="{{ path('app_register') }}">{% trans %}Registriere dich{% endtrans %}!</a>
+                    {% if lifecycle.isRegistrationDisabled %}
+                        <a class="small" href="https://ciphra.ch" target="_blank" rel="noopener">{% trans %}Neues Konto auf ciphra.ch erstellen{% endtrans %}</a>
+                    {% else %}
+                        <a class="small" href="{{ path('app_register') }}">{% trans %}Registriere dich{% endtrans %}!</a>
+                    {% endif %}
                 </div>
                 <div class="text-center">
                     <a class="small" href="{{ path('app_login') }}">{% trans %}Account bereits erstellt? Log dich jetzt ein{% endtrans %}!</a>

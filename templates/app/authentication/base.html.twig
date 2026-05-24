@@ -20,6 +20,8 @@
         {% endblock %}
     </head>
     <body class="bg-gradient-primary">
+        {# Lifecycle banner — only renders when EPILEPC_LIFECYCLE_PHASE != 'normal' #}
+        {% include '_partials/lifecycle_banner.html.twig' %}
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-10 col-lg-12 col-md-9">

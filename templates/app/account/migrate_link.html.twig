@@ -1,0 +1,66 @@
+{% extends 'app/base.html.twig' %}
+
+{% block title %}Epilepc - {% trans %}Migrationslink{% endtrans %}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="mb-4 d-flex align-items-center" style="gap: 10px;">
+        <svg width="28" height="28" viewBox="-22 -22 44 44" aria-hidden="true">
+            <g transform="rotate(8)" stroke="#b23c2c" stroke-linecap="round" fill="none">
+                <path d="M -16 0 L 16 0" stroke-width="3"/>
+                <path d="M -6.6 -11.4 L 6.6 11.4" stroke-width="2.4"/>
+                <path d="M 6.4 -11 L -6.4 11" stroke-width="2.2"/>
+            </g>
+        </svg>
+        <h1 class="h3 mb-0" style="color: #2c2520;">{% trans %}Dein Migrationslink für ciphra{% endtrans %}</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-lg-8">
+            <div class="card shadow mb-4" style="border-left: 4px solid #b23c2c;">
+                <div class="card-body">
+                    <p class="mb-3" style="color: #2c2520;">
+                        {% trans %}Öffne den folgenden Link in einem neuen Tab. Er bringt dich zu ciphra, wo du ein neues Konto erstellst und deine epilepc-Daten verschlüsselt überträgst.{% endtrans %}
+                    </p>
+
+                    <div class="form-group">
+                        <label for="migrate-url" class="font-weight-bold" style="color: #7a2920;">{% trans %}Link{% endtrans %}</label>
+                        <input id="migrate-url" type="text" class="form-control form-control-sm" value="{{ url }}" readonly onclick="this.select()"
+                               style="border-color: #d4cbc6;">
+                    </div>
+
+                    <div class="mb-3">
+                        <a href="{{ url }}" target="_blank" rel="noopener" class="btn"
+                           style="background: #b23c2c; color: #ffffff; border-color: #b23c2c; padding: 8px 20px; font-weight: 600;">
+                            {% trans %}Link öffnen{% endtrans %}
+                        </a>
+                        <button type="button" class="btn"
+                                style="background: transparent; color: #7a2920; border: 1px solid #b23c2c; padding: 8px 20px; font-weight: 600;"
+                                onclick="navigator.clipboard.writeText(document.getElementById('migrate-url').value)">
+                            {% trans %}Kopieren{% endtrans %}
+                        </button>
+                    </div>
+
+                    <div class="small mb-3" style="background: #fdfaf9; border: 1px solid #b23c2c; border-radius: 4px; padding: 10px 14px; color: #7a2920;">
+                        <strong style="color: #7a2920;">{% trans %}Wichtig{% endtrans %}:</strong>
+                        <ul class="mb-0 mt-1">
+                            <li>{% trans %}Der Link ist nur einmal gültig. Sobald die Übertragung gestartet wurde, kann er nicht erneut verwendet werden.{% endtrans %}</li>
+                            <li>{% trans %}Der Link läuft am{% endtrans %} <strong style="color: inherit;">{{ expires_at|date('d.m.Y H:i') }}</strong> {% trans %}ab.{% endtrans %}</li>
+                            <li>{% trans %}Dein epilepc-Konto bleibt bestehen, bis du es selbst löschst.{% endtrans %}</li>
+                        </ul>
+                    </div>
+
+                    <p class="small mb-3" style="color: #6a6660;">
+                        {% trans %}Was passiert beim Klick: ciphra öffnet sich in deinem Browser, du erstellst dort ein neues Konto und deine Daten werden auf deinem Gerät verschlüsselt nach ciphra übertragen.{% endtrans %}
+                    </p>
+
+                    <a class="btn" href="{{ path('app_account') }}"
+                       style="background: transparent; color: #2c2520; border: 1px solid #d4cbc6; padding: 6px 16px;">
+                        {% trans %}Zurück zum Profil{% endtrans %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

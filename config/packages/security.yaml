@@ -50,4 +50,9 @@ security:
         - { path: ^(%app_locales%)/admin, roles: ROLE_ADMIN }
         - { path: ^(%app_locales%)/app, roles: ROLE_USER }
         - { path: ^(%app_locales%)/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # ciphra migration export + complete signal — public, machine
+        # endpoints. Locale-free by design so ciphra's browser fetcher
+        # hits a stable URL. Tokens are the auth.
+        - { path: ^/api/ciphra-export, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/migration-complete, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/profile, roles: ROLE_USER }

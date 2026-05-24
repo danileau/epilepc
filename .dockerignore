@@ -1,0 +1,17 @@
+# Keep the build context tiny — the source is bind-mounted at runtime, so
+# we don't actually need to copy any of this into the image. But cutting
+# the context size makes `docker compose build` faster.
+.git
+.idea
+.vscode
+node_modules
+vendor
+var/cache
+var/log
+.env
+.env.local
+.env.*.local
+.Defuse.key
+ui-test
+*.md
+public/application/vendor

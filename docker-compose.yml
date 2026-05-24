@@ -1,0 +1,82 @@
+# Local dev stack for epilepc. Runs:
+#   - app   on http://localhost:8081 (8080 is taken by the ciphra frontend container)
+#   - db    on localhost:3307 (MariaDB; non-standard port to avoid host clashes)
+#   - mail  on http://localhost:8025 (MailHog SMTP catcher for password-reset etc.)
+#
+# Test flow:
+#   1. docker compose up -d --build
+#   2. docker compose exec app bin/console app:seed-demo --users=2
+#   3. visit http://localhost:8081 → login with demo1@epilepc.test / demo1234
+#   4. click "Migrationslink erstellen" on /app/account
+#   5. open the returned link; ciphra (on localhost:5173 or localhost:8080) takes over.
+
+services:
+  app:
+    build:
+      context: .
+      args:
+        UID: "${UID:-1000}"
+        GID: "${GID:-1000}"
+    image: epilepc-dev:latest
+    container_name: epilepc-app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_ENV: dev
+      APP_DEBUG: "1"
+      APP_SECRET: "${APP_SECRET:-dev-secret-not-for-prod-d1c50a}"
+      DATABASE_URL: "mysql://epilepc:epilepc@db:3306/epilepc?serverVersion=mariadb-10.6.4"
+      MAILER_URL: "smtp://mail:1025?encryption=&auth_mode="
+      # Used by CiphraMigrationController.
+      CIPHRA_ORIGIN: "${CIPHRA_ORIGIN:-http://localhost:5173}"
+      EPILEPC_ORIGIN: "${EPILEPC_ORIGIN:-localhost:8081}"
+      EPILEPC_DECOMMISSION_AT: "${EPILEPC_DECOMMISSION_AT:-2026-10-01T00:00:00Z}"
+      # Lifecycle phase — flip this to walk through the deprecation states.
+      # Valid: normal | announce | warn | readonly | decommission
+      # Default `normal` = nothing changes from today's behavior.
+      EPILEPC_LIFECYCLE_PHASE: "${EPILEPC_LIFECYCLE_PHASE:-normal}"
+      # Required by config/packages/twig.yaml (referenced as %env(RECAPTCHA_SITEKEY)%).
+      # Google reCAPTCHA test key — never validates, always passes. Fine for dev,
+      # never for prod. Source: https://developers.google.com/recaptcha/docs/faq
+      RECAPTCHA_SITEKEY: "${RECAPTCHA_SITEKEY:-6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI}"
+      RECAPTCHA_SECRETKEY: "${RECAPTCHA_SECRETKEY:-6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe}"
+      # Set SEED_ON_BOOT=1 once you want demo users created on first up.
+      SEED_ON_BOOT: "${SEED_ON_BOOT:-0}"
+      SEED_USERS: "${SEED_USERS:-2}"
+    volumes:
+      - .:/var/www/html
+      - composer-cache:/var/www/.composer
+    ports:
+      - "8081:80"
+    # Network mode: localhost↔localhost — ciphra fetches localhost:8080
+    # from the user's host browser, so default bridge networking is fine.
+
+  db:
+    image: mariadb:10.6
+    container_name: epilepc-db
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpw
+      MARIADB_DATABASE: epilepc
+      MARIADB_USER: epilepc
+      MARIADB_PASSWORD: epilepc
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  mail:
+    image: mailhog/mailhog:latest
+    container_name: epilepc-mail
+    ports:
+      - "1025:1025"  # SMTP
+      - "8025:8025"  # web UI
+
+volumes:
+  db-data:
+  composer-cache:

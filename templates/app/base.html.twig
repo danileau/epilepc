@@ -31,6 +31,9 @@
 
     <body id="page-top">
 
+    {# Lifecycle banner — only renders when EPILEPC_LIFECYCLE_PHASE != 'normal' #}
+    {% include '_partials/lifecycle_banner.html.twig' %}
+
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
@@ -54,6 +57,15 @@
             <div class="sidebar-heading">
                 {% trans %}Deine Daten{% endtrans %}
             </div>
+            {# Slice 3b — `is_locked` greys out "Neuer ..." create CTAs in the
+               nav when the user has migrated or the global phase blocks writes.
+               Links still resolve (to /app/account = the migration card) so
+               URL-based navigation lands somewhere useful, but the disabled
+               styling + lock icon communicate why they're inert. #}
+            {% set is_locked = (app.user is not null and app.user.isMigrated) or lifecycle.isWritesBlocked %}
+            {% set locked_style = is_locked ? 'opacity: 0.45; pointer-events: none; text-decoration: line-through; cursor: not-allowed;' : '' %}
+            {% set locked_title = is_locked ? ((app.user is not null and app.user.isMigrated) ? 'Migration zu ciphra abgeschlossen — neue Einträge in ciphra'|trans : 'epilepc ist im Read-Only Modus'|trans) : '' %}
+
             <!-- Nav Item - Seizures Collapse Menu -->
             <li class="nav-item seizure{% if app.request.get('_route') == 'seizure_index' or app.request.get('_route') == 'seizure_new' %} active {% endif %}">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseSeizures" aria-expanded="true" aria-controls="collapseSeizures">
@@ -63,7 +75,7 @@
                 <div id="collapseSeizures" class="collapse" aria-labelledby="headingSeizures" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">{% trans %}Anfall Funktionen{% endtrans %}</h6>
-                        <a class="collapse-item" href="{{ path('seizure_new') }}">{% trans %}Neuer Anfall{% endtrans %}</a>
+                        <a class="collapse-item" href="{{ is_locked ? path('app_account') : path('seizure_new') }}" style="{{ locked_style }}" title="{{ locked_title }}">{% trans %}Neuer Anfall{% endtrans %}</a>
                         <a class="collapse-item" href="{{ path('seizure_index') }}">{% trans %}Alle anzeigen{% endtrans %}</a>
                     </div>
                 </div>
@@ -78,7 +90,7 @@
                 <div id="collapseEvents" class="collapse" aria-labelledby="headingEvents" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">{% trans %}Ereignis Funktionen{% endtrans %}</h6>
-                        <a class="collapse-item" href="{{ path('event_new') }}">{% trans %}Neues Ereignis{% endtrans %}</a>
+                        <a class="collapse-item" href="{{ is_locked ? path('app_account') : path('event_new') }}" style="{{ locked_style }}" title="{{ locked_title }}">{% trans %}Neues Ereignis{% endtrans %}</a>
                         <a class="collapse-item" href="{{ path('event_index') }}">{% trans %}Alle anzeigen{% endtrans %}</a>
                     </div>
                 </div>
@@ -92,7 +104,7 @@
                 <div id="collapseDiary" class="collapse" aria-labelledby="headingDiary" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">{% trans %}Tagebuch Funktionen{% endtrans %}</h6>
-                        <a class="collapse-item" href="{{ path('diaryentry_new') }}">{% trans %}Neuer Tagebucheintrag{% endtrans %}</a>
+                        <a class="collapse-item" href="{{ is_locked ? path('app_account') : path('diaryentry_new') }}" style="{{ locked_style }}" title="{{ locked_title }}">{% trans %}Neuer Tagebucheintrag{% endtrans %}</a>
                         <a class="collapse-item" href="{{ path('diaryentry_index') }}">{% trans %}Alle anzeigen{% endtrans %}</a>
                     </div>
                 </div>
@@ -106,7 +118,7 @@
                 <div id="collapseMeds" class="collapse" aria-labelledby="headingMeds" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">{% trans %}Medikation Funktionen{% endtrans %}</h6>
-                        <a class="collapse-item" href="{{ path('medication_new') }}">{% trans %}Neue Medikation{% endtrans %}</a>
+                        <a class="collapse-item" href="{{ is_locked ? path('app_account') : path('medication_new') }}" style="{{ locked_style }}" title="{{ locked_title }}">{% trans %}Neue Medikation{% endtrans %}</a>
                         <a class="collapse-item" href="{{ path('medication_index') }}">{% trans %}Alle anzeigen{% endtrans %}</a>
                     </div>
                 </div>
@@ -194,6 +206,15 @@
                     </button>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <!-- ciphra migration entry — always visible while the
+                             deprecation lifecycle is active. -->
+                        <li class="nav-item d-none d-md-block">
+                            <a class="nav-link" href="{{ path('app_landingpage_info_ciphra') }}"
+                               style="color: #b23c2c; font-weight: 600;">
+                                {% trans %}Wechsel zu ciphra{% endtrans %}
+                            </a>
+                        </li>
+                        <div class="topbar-divider d-none d-sm-block"></div>
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="mr-2 fa fa-language"></i>

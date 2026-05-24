@@ -6,3 +6,6 @@ twig:
     exception_controller: null
     globals:
         RECAPTCHA_SITEKEY: '%env(RECAPTCHA_SITEKEY)%'
+        # Phase-aware lifecycle banner + UI affordances read from this.
+        # See App\Service\LifecycleService for predicates.
+        lifecycle: '@App\Service\LifecycleService'
