@@ -89,6 +89,14 @@ class CiphraMigrationController extends AbstractController
         EpilepcBundleSerializer $serializer,
         CiphraExportRateLimiter $rateLimiter
     ): Response {
+        // defuse/php-encryption runs PBKDF2 per encrypted record, so users
+        // with hundreds of seizures hit the default 30s PHP timeout.
+        // 300s + 512M is generous headroom; proper fix is key-derive-once
+        // refactor (P2, tracked separately). Bumped 2026-06-11 after first
+        // migrant timeout.
+        @set_time_limit(300);
+        @ini_set('memory_limit', '512M');
+
         $corsHeaders = $this->corsHeaders($request);
 
         if ($request->getMethod() === 'OPTIONS') {
