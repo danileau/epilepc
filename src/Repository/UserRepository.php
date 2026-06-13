@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,6 +20,66 @@ class UserRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, User::class);
+    }
+
+    /**
+     * One page of users, newest registration first. Only this slice is
+     * hydrated/decrypted — the admin index decrypts firstname+lastname per
+     * row, and each Defuse decrypt runs a 100k-iteration PBKDF2 (~74ms), so
+     * loading every user blows past the 30s execution cap once the user base
+     * grows past ~200. Pagination bounds the per-request decrypt count.
+     */
+    public function findPaginated(int $page, int $perPage): Paginator
+    {
+        $query = $this->createQueryBuilder('u')
+            ->orderBy('u.agreedTermsAt', 'DESC')
+            ->setFirstResult(($page - 1) * $perPage)
+            ->setMaxResults($perPage)
+            ->getQuery();
+
+        return new Paginator($query, false);
+    }
+
+    /**
+     * Aggregate counts for the admin overview cards. Computed over ALL users
+     * via SQL COUNT() — never over the paginated slice — so the metrics stay
+     * correct regardless of which page is shown. roles/deactivated/migrated_at
+     * are plain columns (not encrypted), so these are cheap.
+     */
+    public function countAll(): int
+    {
+        return (int) $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function countAdmins(): int
+    {
+        return (int) $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->andWhere('u.roles LIKE :admin')
+            ->setParameter('admin', '%ROLE_ADMIN%')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function countDeactivated(): int
+    {
+        return (int) $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->andWhere('u.deactivated = 1')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function countMigrated(): int
+    {
+        return (int) $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->andWhere('u.migrated_at IS NOT NULL')
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 
     public function translateMonth($month_name, $lang)
