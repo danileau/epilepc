@@ -44,6 +44,12 @@ class UserAdminController extends AbstractController
             $paginator = $userRepository->findPaginated($page, $perPage);
         }
 
+        // Activity windows for the ciphra-migration push — distinct users who
+        // created/modified any record recently (no last_login column exists).
+        $now = new \DateTime();
+        $active30 = $userRepository->countActiveSince((clone $now)->modify('-30 days'));
+        $active90 = $userRepository->countActiveSince((clone $now)->modify('-90 days'));
+
         return $this->render('user_admin/index.html.twig', [
             'users' => $paginator,
             'page' => $page,
@@ -53,6 +59,8 @@ class UserAdminController extends AbstractController
             'admin_count' => $userRepository->countAdmins(),
             'deactivated_count' => $userRepository->countDeactivated(),
             'migrated_count' => $userRepository->countMigrated(),
+            'active_30_count' => $active30,
+            'active_90_count' => $active90,
         ]);
 
     }

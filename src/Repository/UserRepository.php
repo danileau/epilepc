@@ -82,6 +82,30 @@ class UserRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * Distinct users who created OR modified any record (seizure / event /
+     * medication / diaryentry) since $since. A proxy for "active users":
+     * epilepc has no last_login column, so record timestamps are the only
+     * retroactive activity signal — used to size the ciphra-migration push.
+     */
+    public function countActiveSince(\DateTimeInterface $since): int
+    {
+        // Raw UNION across the four content tables; UNION dedupes user_ids so
+        // COUNT(*) is the distinct active-user count. `event` is backticked
+        // because EVENT is a reserved word.
+        $sql =
+            'SELECT COUNT(*) FROM ('
+            . ' SELECT user_id FROM seizure WHERE created_at >= :s OR modified_at >= :s'
+            . ' UNION SELECT user_id FROM `event` WHERE created_at >= :s OR modified_at >= :s'
+            . ' UNION SELECT user_id FROM medication WHERE created_at >= :s OR modified_at >= :s'
+            . ' UNION SELECT user_id FROM diaryentry WHERE created_at >= :s OR modified_at >= :s'
+            . ') active';
+
+        return (int) $this->getEntityManager()->getConnection()
+            ->executeQuery($sql, ['s' => $since->format('Y-m-d H:i:s')])
+            ->fetchOne();
+    }
+
     public function translateMonth($month_name, $lang)
     {
 
