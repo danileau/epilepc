@@ -36,9 +36,11 @@
                         <input type="text" class="form-control" id="SeizureDate" value="{{ seizure.seizuretype.name|trans }}" readonly>
                     </div>
 
+                    {% if not is_locked %}
                     <div class="form-group">
                         <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('seizure_edit', {'id': seizure.id}) }}">{% trans %}Bearbeiten{% endtrans %}</a></button>
                     </div>
+                    {% endif %}
 
                 </form>
 

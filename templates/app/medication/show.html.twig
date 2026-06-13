@@ -39,9 +39,11 @@
                         <label for="MedicationPrescriptionDate">{% trans %}Verschreibungsdatum{% endtrans %}</label>
                         <input type="text" class="form-control" id="MedicationPrescriptionDate" value="{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y') : ''  }}" readonly>
                     </div>
+                    {% if not is_locked %}
                     <div class="form-group">
                         <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('medication_edit', {'id': medication.id}) }}">{% trans %}Bearbeiten{% endtrans %}</a></button>
                     </div>
+                    {% endif %}
 
                 </form>
 
