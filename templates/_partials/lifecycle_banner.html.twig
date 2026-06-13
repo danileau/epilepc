@@ -35,7 +35,11 @@
         align-items: center !important;
         flex-wrap: wrap !important;
         gap: 12px !important;
-        padding: 12px 20px !important;
+        /* Right padding reserves the 36px top-right slot for the × button at
+           ALL widths. The × is out of flow (position:absolute), so flex never
+           reserves space for it — without this reservation the CTA/text run
+           under the × on desktop. */
+        padding: 12px 52px 12px 20px !important;
     }
     .ciphra-lifecycle-banner,
     .ciphra-lifecycle-banner * {
@@ -69,6 +73,15 @@
         right: 4px !important;
         width: 36px !important;
         height: 36px !important;
+        /* The landing page's main.css styles ALL <button> elements with
+           `min-width: 9.25em; padding: 0 1.5em` — at the inherited font that
+           blows the × up to ~204px wide, so it sails left over the CTA. width
+           alone can't beat min-width, so pin min/max-width and zero the padding
+           explicitly. flex:0 0 36px keeps it from being stretched as a flex item. */
+        min-width: 36px !important;
+        max-width: 36px !important;
+        padding: 0 !important;
+        flex: 0 0 36px !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -91,11 +104,10 @@
        reservation to avoid running under it on a single line. */
     @media (max-width: 768px) {
         .ciphra-lifecycle-banner {
-            padding: 10px 14px !important;
+            padding: 10px 44px 10px 14px !important; /* keep the × slot reserved */
             gap: 8px !important;
         }
         .ciphra-lifecycle-banner .lifecycle-text {
-            padding-right: 28px !important; /* reserve space for the × */
             flex: 1 1 100% !important;
             min-width: 0 !important;
         }
@@ -115,7 +127,7 @@
             line-height: 1.45 !important;
         }
         .ciphra-lifecycle-banner {
-            padding: 10px 12px !important;
+            padding: 10px 40px 10px 12px !important; /* keep the × slot reserved */
         }
     }
 </style>
