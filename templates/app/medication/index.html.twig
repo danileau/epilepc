@@ -7,9 +7,11 @@
     <div class="mb-5">
         <div class="text-center">
             <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Medikation - Übersicht{% endtrans %}</h1>
-            <p class="mb-4">{% trans %}Untenstehend findest du alle deine erfassten{% endtrans %} {% trans %}Medikationen{% endtrans %}. <br />{% trans %}Zusätzlich kannst du auf das Pluszeichen{% endtrans %} <i class="fas fa-plus-circle"></i> {% trans %}klicken, um eine neue Medikation zu erstellen{% endtrans %}</p>
+            <p class="mb-4">{% trans %}Untenstehend findest du alle deine erfassten{% endtrans %} {% trans %}Medikationen{% endtrans %}.{% if not is_locked %} <br />{% trans %}Zusätzlich kannst du auf das Pluszeichen{% endtrans %} <i class="fas fa-plus-circle"></i> {% trans %}klicken, um eine neue Medikation zu erstellen{% endtrans %}{% endif %}</p>
 
+            {% if not is_locked %}
             <a href="{{ path('medication_new') }}" title="{% trans %}Neue Medikation erstellen{% endtrans %}"><i class="fas fa-plus-circle fa-3x text-medication"></i></a>
+            {% endif %}
         </div>
     </div>
 
@@ -47,7 +49,13 @@
                           <!--  <td data-order="{{ medication.timestampPrescription|date('U') }}">{{ medication.timestampPrescription ? medication.timestampPrescription|date('d.m.Y')}}</td>-->
                             <td data-order="{{ medication.modifiedAt|date('U') }}">{{ medication.modifiedAt ? medication.modifiedAt|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
                             <td align="center">
-                                <a href="{{ path('medication_edit', {'id': medication.id}) }}" title="{% trans %}Bearbeiten{% endtrans %}" class="text-medication"><i class="fas fa-fw fa-edit" ></i></a>
+                                {# Edit is removed once the user has migrated or the phase blocks
+                                   writes — server-side MigrationLockdownSubscriber also blocks it. #}
+                                {% if is_locked %}
+                                    <i class="fas fa-fw fa-lock text-muted" title="{{ locked_title }}"></i>
+                                {% else %}
+                                    <a href="{{ path('medication_edit', {'id': medication.id}) }}" title="{% trans %}Bearbeiten{% endtrans %}" class="text-medication"><i class="fas fa-fw fa-edit" ></i></a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% else %}

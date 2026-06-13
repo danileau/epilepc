@@ -22,20 +22,37 @@ class UserAdminController extends AbstractController
     /**
      * @Route("/admin", name="admin_user_index")
      * Visualisiert die Benutzerübersicht
+     *
+     * The list is paginated server-side: each row decrypts firstname+lastname
+     * (Defuse PBKDF2, ~74ms each), so rendering every user at once exceeded the
+     * host's 30s execution cap once the user base passed ~200. The overview
+     * metrics are counted via SQL over ALL users (cheap, unencrypted columns)
+     * so they are not limited to the current page.
      */
-    public function index(UserRepository $userRepository){
+    public function index(Request $request, UserRepository $userRepository){
 
-        set_time_limit(300);
-        #$em = $this->getDoctrine()->getManager();
-        #$query = $em->createQuery('SELECT u FROM App\Entity\User u')
-        #    ->setCacheable(true)
-        #    ->setCacheMode('NORMAL');
-    
-        #$users = $query->getResult();
-        
+        $perPage = 25;
+        $page = max(1, (int) $request->query->get('page', 1));
+
+        $paginator = $userRepository->findPaginated($page, $perPage);
+        $total = $userRepository->countAll();
+        $totalPages = (int) max(1, ceil($total / $perPage));
+
+        // Clamp out-of-range page requests to the last real page.
+        if ($page > $totalPages) {
+            $page = $totalPages;
+            $paginator = $userRepository->findPaginated($page, $perPage);
+        }
+
         return $this->render('user_admin/index.html.twig', [
-            'users' => $userRepository->findAll()
-        #    'users' => $users
+            'users' => $paginator,
+            'page' => $page,
+            'perPage' => $perPage,
+            'totalPages' => $totalPages,
+            'total_count' => $total,
+            'admin_count' => $userRepository->countAdmins(),
+            'deactivated_count' => $userRepository->countDeactivated(),
+            'migrated_count' => $userRepository->countMigrated(),
         ]);
 
     }

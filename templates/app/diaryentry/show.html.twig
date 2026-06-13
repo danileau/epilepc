@@ -31,9 +31,11 @@
                         <label for="SeizureDate">{% trans %}Zuletzt bearbeitet{% endtrans %}</label>
                         <input type="text" class="form-control" id="SeizureDate" value="{{ diaryentry.modifiedAt ? diaryentry.modifiedAt|date('d.m.Y H:i') : '' }} Uhr" readonly>
                     </div>
+                    {% if not is_locked %}
                     <div class="form-group">
                         <button type="button" class="btn btn-primary"><a style="color: #FFFFFF" href="{{ path('diaryentry_edit', {'id': diaryentry.id}) }}">{% trans %}Bearbeiten{% endtrans %}</a></button>
                     </div>
+                    {% endif %}
                 </form>
 
             </div>

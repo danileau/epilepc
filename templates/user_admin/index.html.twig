@@ -13,6 +13,43 @@
         </div>
     </div>
 
+    {# Kennzahlen — über ALLE Benutzer per SQL gezählt, nicht über die aktuelle
+       Seite. So bleiben sie korrekt, egal welche Seite der Paginator zeigt. #}
+    <div class="row">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Benutzer total</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_count }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Administratoren</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ admin_count }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Deaktiviert</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ deactivated_count }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Zu ciphra migriert</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ migrated_count }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -79,12 +116,34 @@
                         </tr>
                     {% else %}
                         <tr>
-                            <td colspan="6">Keine Benutzer vorhanden</td>
+                            <td colspan="7">Keine Benutzer vorhanden</td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
             </div>
+
+            {# Server-seitige Seitennavigation. Die Suche/Sortierung von DataTables
+               wirkt nur auf die aktuelle Seite — die Liste wird absichtlich
+               paginiert, damit nicht alle Benutzer entschlüsselt werden müssen. #}
+            {% if totalPages > 1 %}
+                <nav aria-label="Benutzer-Seiten" class="mt-3">
+                    <ul class="pagination justify-content-center mb-1">
+                        <li class="page-item {{ page <= 1 ? 'disabled' }}">
+                            <a class="page-link" href="{{ path('admin_user_index', {'page': page - 1}) }}" aria-label="Zurück">&laquo;</a>
+                        </li>
+                        {% for p in 1..totalPages %}
+                            <li class="page-item {{ p == page ? 'active' }}">
+                                <a class="page-link" href="{{ path('admin_user_index', {'page': p}) }}">{{ p }}</a>
+                            </li>
+                        {% endfor %}
+                        <li class="page-item {{ page >= totalPages ? 'disabled' }}">
+                            <a class="page-link" href="{{ path('admin_user_index', {'page': page + 1}) }}" aria-label="Weiter">&raquo;</a>
+                        </li>
+                    </ul>
+                </nav>
+            {% endif %}
+            <p class="text-center text-muted small mb-0">{{ total_count }} Benutzer · Seite {{ page }} von {{ totalPages }}</p>
         </div>
     </div>
 {% endblock %}
@@ -113,7 +172,12 @@
             "language": {
                 "url": "{{ asset('application/json/German.json'|trans) }}"
             },
-            "order": [[ 5, "desc" ]]
+            "order": [[ 5, "desc" ]],
+            // Server handles pagination — DataTables only sorts/filters the
+            // current page, so disable its own pager + info line to avoid a
+            // misleading "1 of 1" alongside the server pagination below.
+            "paging": false,
+            "info": false
         });
     });
 

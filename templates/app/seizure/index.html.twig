@@ -7,9 +7,11 @@
     <div class="mb-5">
         <div class="text-center">
             <h1 class="h3 text-gray-800 justify-content-center border-bottom pb-2 mb-2">{% trans %}Anfälle{% endtrans %} - {% trans %}Übersicht{% endtrans %}</h1>
-            <p class="mb-4">{% trans %}Untenstehend findest du alle deine erfassten{% endtrans %} {% trans %}Anfälle{% endtrans %}.<br />{% trans %}Zusätzlich kannst du auf das Pluszeichen{% endtrans %} <i class="fas fa-plus-circle"></i> {% trans %}klicken, um einen neuen Anfall zu erstellen{% endtrans %}</p>
+            <p class="mb-4">{% trans %}Untenstehend findest du alle deine erfassten{% endtrans %} {% trans %}Anfälle{% endtrans %}.{% if not is_locked %}<br />{% trans %}Zusätzlich kannst du auf das Pluszeichen{% endtrans %} <i class="fas fa-plus-circle"></i> {% trans %}klicken, um einen neuen Anfall zu erstellen{% endtrans %}{% endif %}</p>
 
+            {% if not is_locked %}
             <a href="{{ path('seizure_new') }}" title="{% trans %}Neuer Anfall erstellen{% endtrans %}"><i class="fas fa-plus-circle fa-3x text-seizure" ></i></a>
+            {% endif %}
         </div>
     </div>
 
@@ -36,7 +38,13 @@
                             <td data-order="{{ seizure.timestampWhen|date('U')  }}">{{ seizure.timestampWhen ? seizure.timestampWhen|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
                             <td data-order="{{ seizure.modifiedAt|date('U')  }}">{{ seizure.modifiedAt ? seizure.modifiedAt|date('d.m.Y H:i') : '' }} {% trans %}Uhr{% endtrans %}</td>
                             <td align="center">
-                                <a href="{{ path('seizure_edit', {'id': seizure.id}) }}" title="{% trans %}Bearbeiten{% endtrans %}" class="text-seizure"><i class="fas fa-fw fa-edit"></i></a>
+                                {# Edit is removed once the user has migrated or the phase blocks
+                                   writes — server-side MigrationLockdownSubscriber also blocks it. #}
+                                {% if is_locked %}
+                                    <i class="fas fa-fw fa-lock text-muted" title="{{ locked_title }}"></i>
+                                {% else %}
+                                    <a href="{{ path('seizure_edit', {'id': seizure.id}) }}" title="{% trans %}Bearbeiten{% endtrans %}" class="text-seizure"><i class="fas fa-fw fa-edit"></i></a>
+                                {% endif %}
                             </td>
                         </tr>
                     {% else %}
