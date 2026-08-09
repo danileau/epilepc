@@ -18,7 +18,28 @@ AddHandler application/x-httpd-php81 .php
 Header always set x-frame-options "SAMEORIGIN"
 
 RewriteEngine On
-RewriteCond %{HTTP_HOST} !^www.epilepc.ch$
+
+# INC-001 (2026-08-07) — the ciphra migration endpoints must never be
+# redirected.
+#
+# They are called cross-origin by ciphra's browser with `mode: 'cors'`. Per the
+# Fetch spec every response in a redirect chain must itself pass the CORS check
+# before the browser will follow it, and a mod_rewrite 301 carries no
+# Access-Control-Allow-Origin. So the fetch aborts at the redirect, PHP is
+# never reached, nothing is logged, and the migration token is never consumed —
+# the user just sees "could not reach the source". That is exactly how a real
+# migrant lost his transfer.
+#
+# This also un-breaks direct.epilepc.ch, which exists precisely to bypass the
+# CDN for these long-running exports (a heavy account takes ~193s to serialise,
+# well past Cloudflare's 100s origin cut-off) but was being swallowed by the
+# same rule.
+#
+# Keep this condition FIRST, and keep it in sync with config/routes.yaml.
+RewriteCond %{REQUEST_URI} !^/api/(ciphra-export|migration-complete)/ [NC]
+# NB: the dot is escaped — `www.epilepc.ch` unescaped also matches e.g.
+# `wwwXepilepc.ch`, which would silently skip canonicalisation for it.
+RewriteCond %{HTTP_HOST} !^www\.epilepc\.ch$
 RewriteRule ^(.*)$ https://www.epilepc.ch/$1 [R=301,L]
 
 # compress text, html, javascript, css, xml:
