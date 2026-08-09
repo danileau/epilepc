@@ -61,7 +61,26 @@ class CiphraMigrationController extends AbstractController
         }
 
         $ciphraOrigin = (string) ($_ENV['CIPHRA_ORIGIN'] ?? 'https://ciphra.ch');
-        $sourceHost   = (string) ($_ENV['EPILEPC_ORIGIN'] ?? 'epilepc.ch');
+
+        // INC-001 — the source host must be one that SERVES, not one that
+        // redirects. This previously defaulted to the bare apex `epilepc.ch`,
+        // which .htaccess 301s to www; a cross-origin fetch cannot follow a
+        // redirect that carries no CORS headers, so every link minted that way
+        // was dead on arrival.
+        //
+        // Order of preference:
+        //   1. MIGRATION_EXPORT_HOST — an explicit override, and the way to
+        //      point exports at a CDN-bypassing host (direct.epilepc.ch) so a
+        //      long serialise isn't cut off at the edge's origin timeout.
+        //   2. EPILEPC_ORIGIN — legacy setting, honoured if present.
+        //   3. The host of THIS request. Self-correcting by construction: the
+        //      user is talking to it right now, so it demonstrably serves.
+        // Never a hardcoded constant again — that is what drifted.
+        $sourceHost = (string) (
+            $_ENV['MIGRATION_EXPORT_HOST']
+            ?? $_ENV['EPILEPC_ORIGIN']
+            ?? $request->getHttpHost()
+        );
 
         // Fragment-encoded so the token never appears in the ciphra server
         // logs. The browser keeps it client-side only.
@@ -131,17 +150,39 @@ class CiphraMigrationController extends AbstractController
             return $this->jsonWithCors(['error' => 'token_expired'], 401, $corsHeaders);
         }
 
-        // Atomic single-use stamp BEFORE serialising. If the export itself
-        // throws, the token is still consumed — by design. A retry would
-        // need a new token, which is the safer default.
-        $entity->setUsedAt($now);
+        $em = $this->getDoctrine()->getManager();
+
+        // Record WHO asked, immediately — this is the abuse-forensics signal
+        // and it must survive even a failed export.
         if ($entity->getIpFirstSeen() === null) {
             $entity->setIpFirstSeen((string) $request->getClientIp());
+            $em->flush();
         }
-        $em = $this->getDoctrine()->getManager();
-        $em->flush();
 
-        $bundle = $serializer->serialize($entity->getUser(), $now);
+        // INC-001 — consume the token only once we actually have a bundle to
+        // hand over.
+        //
+        // This used to stamp used_at BEFORE serialising, on the reasoning that
+        // a retry should need a fresh token. In practice that traded a rare
+        // abuse case for a common own-goal: any failure after the stamp — a
+        // serializer exception, an OOM, a gateway timeout — permanently burned
+        // the user's only link while delivering nothing, and the user cannot
+        // mint a replacement without getting back into their account. The
+        // failure here is far more likely to be ours than an attacker's.
+        //
+        // Replay is not a meaningful risk: the token only ever returns THIS
+        // user's own data to whoever already holds the link, and the lockout
+        // path (complete()) has its own guard. Single-use is still enforced —
+        // just on success rather than on attempt.
+        try {
+            $bundle = $serializer->serialize($entity->getUser(), $now);
+        } catch (\Throwable $e) {
+            // Deliberately NOT consumed: the user can retry the same link.
+            return $this->jsonWithCors(['error' => 'export_failed'], 500, $corsHeaders);
+        }
+
+        $entity->setUsedAt($now);
+        $em->flush();
 
         return $this->jsonWithCors($bundle, 200, $corsHeaders);
     }
