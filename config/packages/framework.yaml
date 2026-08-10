@@ -7,9 +7,50 @@ framework:
     # Enables session support. Note that the session will ONLY be started if you read or write from it.
     # Remove or comment this section to explicitly disable session support.
     session:
-        handler_id: ~
+        # NOT `handler_id: ~`. With null, Symfony only sets the
+        # session.save_path ini value and never creates the directory — so a
+        # missing directory reproduces this very incident with a different
+        # first line. NativeFileSessionHandler mkdir's it on construction,
+        # which is what makes the fix self-sufficient on a fresh deploy.
+        handler_id: session.handler.native_file
+        # INC-001 ops (2026-08-07) — own the session directory.
+        #
+        # With no save_path, PHP's host default applied: /var/cache/php-sessions,
+        # a system path OUTSIDE this account. On 2026-08-07 it became unwritable
+        # for our user and every request died:
+        #
+        #   open(/var/cache/php-sessions/sess_...) failed: Permission denied (13)
+        #   -> session_start(): Failed to read session data
+        #   -> RuntimeException: "Failed to start the session."
+        #
+        # The error page failed on the same fault, so users got a bare 500. No
+        # login could persist, and CSRF tokens live in the session — so the
+        # ciphra migration form was unusable even when reachable. That is why
+        # the reporter could not help himself.
+        #
+        # var/ is ours, already writable (cache + logs live there), already
+        # gitignored, and NOT under public/ so it is not web-reachable.
+        # `cache:clear` does not touch var/sessions.
+        #
+        # NOTE on permissions: NativeFileSessionHandler mkdir's this 0777.
+        # Session FILES are 0600 (PHP), so contents are not readable by other
+        # local accounts — but on shared hosting the directory itself should
+        # not be world-writable. Pre-create it once with 0700 and PHP will
+        # leave it alone, since it only mkdir's when missing:
+        #
+        #   mkdir -p var/sessions/prod && chmod 700 var/sessions var/sessions/prod
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+        # Owning the directory means owning its cleanup: the host's GC cron
+        # only knows its own path, so without this the files accumulate
+        # forever. Lifetime is deliberately generous — remember_me (30 days)
+        # re-authenticates anyway, so this must not become a surprise-logout
+        # knob.
+        gc_probability: 1
+        gc_divisor: 100
+        gc_maxlifetime: 86400
         cookie_secure: auto
         cookie_samesite: lax
+        cookie_httponly: true
 
     #esi: true
     #fragments: true
