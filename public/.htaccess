@@ -36,7 +36,22 @@ RewriteEngine On
 # same rule.
 #
 # Keep this condition FIRST, and keep it in sync with config/routes.yaml.
-RewriteCond %{REQUEST_URI} !^/api/(ciphra-export|migration-complete)/ [NC]
+#
+# %{THE_REQUEST}, NOT %{REQUEST_URI} — and that distinction is load-bearing.
+# The Symfony front controller below rewrites everything to index.php, which
+# makes Apache re-run this whole ruleset. On that second pass %{REQUEST_URI}
+# is already "/index.php", so an exemption written against it stops matching
+# and the redirect fires after all — sending /api/ciphra-export/<token> to
+# https://www.epilepc.ch/index.php and losing the path entirely.
+# (Observed in production on 2026-08-10, first attempt at this fix.)
+# %{THE_REQUEST} is the verbatim request line ("GET /api/... HTTP/1.1") and is
+# never rewritten, so it stays true across every pass.
+RewriteCond %{THE_REQUEST} !\s/api/(ciphra-export|migration-complete)/ [NC]
+# Never canonicalise a local dev host. Production HTTP_HOST is never
+# loopback, so this cannot weaken anything there — but it lets the dev
+# container run with AllowOverride All, which is what makes this file
+# testable at all. It previously could not be exercised outside production.
+RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:[0-9]+)?$ [NC]
 # NB: the dot is escaped — `www.epilepc.ch` unescaped also matches e.g.
 # `wwwXepilepc.ch`, which would silently skip canonicalisation for it.
 RewriteCond %{HTTP_HOST} !^www\.epilepc\.ch$
